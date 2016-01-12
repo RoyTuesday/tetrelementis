@@ -1,8 +1,12 @@
+body {
+  background-color: #F9F5FC;
+}
+
 div {
-  background-color: #FFF;
-  border: 0.25em outset #FFF;
+  background-color: #F1EEFA;
+  border: 0.25em outset #F1EEFA;
   border-radius: 20%;
-  color: #FFF;
+  color: #F1EEFA;
   display: inline-block;
   font-size: 2em;
   font-family: monospace;
@@ -12,6 +16,7 @@ div {
 }
 
 .container {
+  background-color: #F1EEFA;
   border: 0.5em inset #AAF;
   border-radius: 0.625em;
   margin: 0 auto;
