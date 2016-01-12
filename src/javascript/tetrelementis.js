@@ -1,7 +1,18 @@
 var CHEMICAL_ELEMENTS = {
-  0: {'background-color': '#F1EEFA', 'color': '#F1EEFA', name: 'hydrogen'},
-  1: {'background-color': '#dde', 'color': 'black', name: 'hydrogen'},
-  2: {'background-color': '#edd', 'color': 'black', name: 'helium'},
+  0: {'background-color': '#F1EEFA',
+      'border-color': '#F1EEFA',
+      'color': '#F1EEFA',
+      'name': 'n/a'},
+
+  H: {'background-color': '#dde',
+      'border-color': '#888',
+      'color': 'black',
+      'name': 'hydrogen'},
+
+  He: {'background-color': '#edd',
+      'border-color': '#888',
+      'color': 'black',
+      'name': 'helium'},
 };
 
 var TETRONIMO_TEMPLATES = {
@@ -36,7 +47,8 @@ var processTetronimos = function() {
       for(var row in currentShape) {
         for(var col in currentShape[row]) {
           if(currentShape[row][col] == 'x') {
-            tetraShape[shape].push({x: col, y: row});
+            tetraShape[shape].push({x: parseInt(col, 10),
+                                    y: parseInt(row, 10)});
           }
         }
       }
@@ -49,12 +61,14 @@ var tetronimoShapes = processTetronimos();
 
 var tetrisBoard = [];
 
-for(var row = 0; row < 20; row++) {
-  tetrisBoard[row] = [];
-  for(var col = 0; col < 10; col++) {
-    tetrisBoard[row][col] = 0;
+clearBoard = function () {
+  for(var row = 0; row < 20; row++) {
+    tetrisBoard[row] = [];
+    for(var col = 0; col < 10; col++) {
+      tetrisBoard[row][col] = 0;
+    }
   }
-}
+};
 
 var drawBoard = function() {
   for(var row = 0; row < 20; row++) {
@@ -79,7 +93,6 @@ var updateBoard = function() {
 var setElementStyles = function(element, htmlNode) {
   for(var prop in element) {
     if(element.hasOwnProperty(prop)) {
-      console.log(prop);
       htmlNode.css(prop, element[prop]);
     }
   }
@@ -92,24 +105,25 @@ var Tetronimo = function(args) {
   this.col = 5;
 
   for(var block in this.blocks) {
-    if(this.blocks.hasOwnProperty(block)) {
-      this.blocks.block.y += row;
-      this.blocks.block.x += col;
-    }
+    this.blocks[block].y += this.row;
+    this.blocks[block].x += this.col;
   }
 }
 
 Tetronimo.prototype.blit = function() {
   for(var block in this.blocks) {
-    if(this.blocks.hasOwnProperty(block)) {
-      tetrisBoard[block.y][block.x] = this.element;
-    }
+    var currentBlock = this.blocks[block]
+    tetrisBoard[currentBlock.y][currentBlock.x] = this.element;
   }
   updateBoard();
 }
 
 Tetronimo.prototype.drop = function() {
   this.row++;
+  for(var block in this.blocks) {
+    this.blocks[block].y++;
+  }
+  this.blit();
 };
 
 $(document).ready(function() {
