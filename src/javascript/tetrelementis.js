@@ -61,12 +61,10 @@ var tetronimoShapes = processTetronimos();
 
 var tetrisBoard = [];
 
-clearBoard = function () {
-  for(var row = 0; row < 20; row++) {
-    tetrisBoard[row] = [];
-    for(var col = 0; col < 10; col++) {
-      tetrisBoard[row][col] = 0;
-    }
+for(var row = 0; row < 20; row++) {
+  tetrisBoard[row] = [];
+  for(var col = 0; col < 10; col++) {
+    tetrisBoard[row][col] = 0;
   }
 };
 
