@@ -4,12 +4,12 @@ var CHEMICAL_ELEMENTS = {
       'color': '#F1EEFA',
       'name': 'n/a'},
 
-  H: {'background-color': '#dde',
+  1: {'background-color': '#dde',
       'border-color': '#888',
       'color': 'black',
       'name': 'hydrogen'},
 
-  He: {'background-color': '#edd',
+  2: {'background-color': '#edd',
       'border-color': '#888',
       'color': 'black',
       'name': 'helium'},
@@ -37,7 +37,6 @@ var TETRONIMO_TEMPLATES = {
   tBlock: ['xxx',
            ' x ']
 };
-
 var processTetronimos = function() {
   var tetraShape = new Object;
   for(var shape in TETRONIMO_TEMPLATES) {
@@ -56,25 +55,15 @@ var processTetronimos = function() {
   }
   return tetraShape
 }
-
 var tetronimoShapes = processTetronimos();
 
 var tetrisBoard = [];
-
 for(var row = 0; row < 20; row++) {
   tetrisBoard[row] = [];
   for(var col = 0; col < 10; col++) {
     tetrisBoard[row][col] = 0;
   }
 };
-
-var setElementStyles = function(element, htmlNode) {
-  for(var prop in element) {
-    if(element.hasOwnProperty(prop)) {
-      htmlNode.css(prop, element[prop]);
-    }
-  }
-}
 
 var Tetronimo = function(args) {
   this.element = args.element;
@@ -87,14 +76,12 @@ var Tetronimo = function(args) {
     this.blocks[block].x += this.col;
   }
 }
-
 Tetronimo.prototype.blit = function() {
   for(var block in this.blocks) {
     var currentBlock = this.blocks[block]
     tetrisBoard[currentBlock.y][currentBlock.x] = this.element;
   }
 }
-
 Tetronimo.prototype.drop = function() {
   this.row++;
   for(var block in this.blocks) {
@@ -103,5 +90,27 @@ Tetronimo.prototype.drop = function() {
   this.blit();
 };
 
-$(document).ready(function() {
+var drawBoard = function(board, context) {
+  board.forEach(function(row, rIndex) {
+    row.forEach(function(col, cIndex) {
+      if(col != 0) context.fillStyle = CHEMICAL_ELEMENTS[col].color;
+      else context.fillStyle = '#BBB';
+      context.fillRect(cIndex * 25, rIndex * 25, 20, 20);
+    });
+  });
+}
+
+var ready = function(fn) {
+  if(document.readyState != 'loading') {
+    fn();
+  }
+  else {
+    document.addEventListener('DOMContentLoaded', fn);
+  }
+}
+ready(function() {
+  var canvas = document.querySelector('canvas');
+  var context = canvas.getContext('2d');
+
+  drawBoard(tetrisBoard, context);
 });
