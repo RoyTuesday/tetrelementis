@@ -15,6 +15,9 @@ var CHEMICAL_ELEMENTS = {
       'name': 'helium'},
 };
 
+var BLOCK_WIDTH, BLOCK_HEIGHT;
+var BLOCK_SPACING_WIDTH, BLOCK_SPACING_HEIGHT;
+
 var TETRONIMO_TEMPLATES = {
   jBlock: ['xx',
            'x ',
@@ -95,7 +98,7 @@ var drawBoard = function(board, context) {
     row.forEach(function(col, cIndex) {
       if(col != 0) context.fillStyle = CHEMICAL_ELEMENTS[col].color;
       else context.fillStyle = '#BBB';
-      context.fillRect(cIndex * 25, rIndex * 25, 20, 20);
+      context.fillRect(cIndex * BLOCK_SPACING_WIDTH, rIndex * BLOCK_SPACING_HEIGHT, BLOCK_WIDTH, BLOCK_HEIGHT);
     });
   });
 }
@@ -111,6 +114,10 @@ var ready = function(fn) {
 ready(function() {
   var canvas = document.querySelector('canvas');
   var context = canvas.getContext('2d');
+  BLOCK_WIDTH = (canvas.getAttribute('width') - 50) / 10;
+  BLOCK_HEIGHT = (canvas.getAttribute('height') - 100) / 20;
+  BLOCK_SPACING_WIDTH = BLOCK_WIDTH + 10;
+  BLOCK_SPACING_HEIGHT = BLOCK_HEIGHT + 10;
 
   drawBoard(tetrisBoard, context);
 });
