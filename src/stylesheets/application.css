@@ -17,16 +17,10 @@ div {
 
 .container {
   background-color: #F1EEFA;
-  border: 0.5em inset #AAF;
-  border-radius: 0.625em;
+  border: 0.5em solid #AAF;
+  box-shadow: 0.25em 0.25em 0.25em #333;
   margin: 0 auto;
   padding: 2em;
   text-align: center;
   width: 30em;
-}
-
-.element-1 {
-  background-color: #dde;
-  border-color: #ccd;
-  color: black;
 }
