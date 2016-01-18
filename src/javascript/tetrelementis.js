@@ -68,26 +68,6 @@ for(var row = 0; row < 20; row++) {
   }
 };
 
-var drawBoard = function() {
-  for(var row = 0; row < 20; row++) {
-    $('main').append('<section id="row-' + row + '"></section>');
-  }
-  for(var col = 0; col < 10; col++) {
-    $('section').append('<div class="col-' + col + '">0</div>');
-  }
-};
-
-var updateBoard = function() {
-  for(var row = 0; row < 20; row++) {
-    for(var col = 0; col < 10; col++) {
-      var currentNode = $('#row-' + row + ' .col-' + col);
-
-      currentNode.text(tetrisBoard[row][col]);
-      setElementStyles(CHEMICAL_ELEMENTS[tetrisBoard[row][col]], currentNode);
-    }
-  }
-}
-
 var setElementStyles = function(element, htmlNode) {
   for(var prop in element) {
     if(element.hasOwnProperty(prop)) {
@@ -113,7 +93,6 @@ Tetronimo.prototype.blit = function() {
     var currentBlock = this.blocks[block]
     tetrisBoard[currentBlock.y][currentBlock.x] = this.element;
   }
-  updateBoard();
 }
 
 Tetronimo.prototype.drop = function() {
@@ -125,5 +104,4 @@ Tetronimo.prototype.drop = function() {
 };
 
 $(document).ready(function() {
-  drawBoard();
 });
