@@ -102,8 +102,8 @@ var View = function(args) {
 }
 View.prototype.drawBoard = function(board) {
   var context = this.context
-  context.lineWidth = 2;
-  context.font = "20px verdana";
+  context.lineWidth = 4;
+  context.font = "20px Verdana";
 
   board.forEach(function(row, rIndex) {
     row.forEach(function(col, cIndex) {
@@ -113,7 +113,7 @@ View.prototype.drawBoard = function(board) {
       context.fillRect((cIndex * BLOCK_SPACING_WIDTH) + 5, (rIndex * BLOCK_SPACING_HEIGHT) + 5, BLOCK_WIDTH, BLOCK_HEIGHT);
       context.strokeRect((cIndex * BLOCK_SPACING_WIDTH) + 5, (rIndex * BLOCK_SPACING_HEIGHT) + 5, BLOCK_WIDTH, BLOCK_HEIGHT);
       context.fillStyle = CHEMICAL_ELEMENTS[col]['color'];
-      context.fillText(CHEMICAL_ELEMENTS[col].symbol, (cIndex * BLOCK_SPACING_WIDTH) + 20, (rIndex * BLOCK_SPACING_HEIGHT) + 20);
+      context.fillText(CHEMICAL_ELEMENTS[col].symbol, (cIndex * BLOCK_SPACING_WIDTH) + (BLOCK_SPACING_WIDTH / 2) - 8, (rIndex * BLOCK_SPACING_HEIGHT) + (BLOCK_SPACING_HEIGHT / 2) + 8);
     });
   });
 }
