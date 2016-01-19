@@ -2,17 +2,20 @@ var CHEMICAL_ELEMENTS = {
   0: {'background-color': '#F1EEFA',
       'border-color': '#888',
       'color': '#F1EEFA',
-      'name': 'n/a'},
+      'name': 'n/a',
+      'symbol': ''},
 
   1: {'background-color': '#dde',
       'border-color': '#888',
       'color': 'black',
-      'name': 'hydrogen'},
+      'name': 'hydrogen',
+      'symbol': 'H'},
 
   2: {'background-color': '#edd',
       'border-color': '#888',
       'color': 'black',
-      'name': 'helium'},
+      'name': 'helium',
+      'symbol': 'He'},
 };
 
 var BLOCK_WIDTH, BLOCK_HEIGHT;
@@ -100,13 +103,17 @@ var View = function(args) {
 View.prototype.drawBoard = function(board) {
   var context = this.context
   context.lineWidth = 2;
+  context.font = "20px monospace";
+
   board.forEach(function(row, rIndex) {
     row.forEach(function(col, cIndex) {
-      context.fillStyle = CHEMICAL_ELEMENTS[col]['color'];
+      context.fillStyle = CHEMICAL_ELEMENTS[col]['background-color'];
       context.strokeStyle = CHEMICAL_ELEMENTS[col]['border-color'];
 
       context.fillRect(cIndex * BLOCK_WIDTH, rIndex * BLOCK_HEIGHT, BLOCK_WIDTH, BLOCK_HEIGHT);
       context.strokeRect(cIndex * BLOCK_WIDTH, rIndex * BLOCK_HEIGHT, BLOCK_WIDTH, BLOCK_HEIGHT);
+      context.fillStyle = CHEMICAL_ELEMENTS[col]['color'];
+      context.fillText(CHEMICAL_ELEMENTS[col].symbol, (cIndex * BLOCK_WIDTH) + 20, (rIndex * BLOCK_HEIGHT) + 20);
     });
   });
 }
@@ -128,6 +135,6 @@ ready(function() {
   var lineBlock = new Tetronimo({element: 1, blocks: tetronimoShapes.line});
   
   gameView.drawBoard(tetrisBoard);
-  lineBlock.drop();
+  lineBlock.blit();
   gameView.drawBoard(tetrisBoard);
 });
