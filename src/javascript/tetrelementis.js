@@ -82,18 +82,19 @@ var Tetronimo = function(args) {
     this.blocks[block].x += this.col;
   }
 }
-Tetronimo.prototype.blit = function() {
+Tetronimo.prototype.blit = function(element) {
   for(var block in this.blocks) {
     var currentBlock = this.blocks[block]
-    tetrisBoard[currentBlock.y][currentBlock.x] = this.element;
+    tetrisBoard[currentBlock.y][currentBlock.x] = element;
   }
 }
 Tetronimo.prototype.drop = function() {
+  this.blit(0)
   this.row++;
   for(var block in this.blocks) {
     this.blocks[block].y++;
   }
-  this.blit();
+  this.blit(this.element);
 };
 
 var View = function(args) {
@@ -137,6 +138,14 @@ ready(function() {
   var lineBlock = new Tetronimo({element: 1, blocks: tetronimoShapes.line});
   
   gameView.drawBoard(tetrisBoard);
-  lineBlock.blit();
-  gameView.drawBoard(tetrisBoard);
+  var counter = 0;
+  var dropLoop = setInterval(function() {
+    if(counter > 5) {
+      clearInterval(dropLoop);
+      return;
+    }
+    lineBlock.drop();
+    gameView.drawBoard(tetrisBoard);
+    counter++;
+  }, 200);
 });
