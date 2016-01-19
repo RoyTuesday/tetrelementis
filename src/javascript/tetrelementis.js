@@ -1,6 +1,6 @@
 var CHEMICAL_ELEMENTS = {
   0: {'background-color': '#F1EEFA',
-      'border-color': '#888',
+      'border-color': '#AAA',
       'color': '#F1EEFA',
       'name': 'n/a',
       'symbol': ''},
@@ -103,17 +103,17 @@ var View = function(args) {
 View.prototype.drawBoard = function(board) {
   var context = this.context
   context.lineWidth = 2;
-  context.font = "20px monospace";
+  context.font = "20px verdana";
 
   board.forEach(function(row, rIndex) {
     row.forEach(function(col, cIndex) {
       context.fillStyle = CHEMICAL_ELEMENTS[col]['background-color'];
       context.strokeStyle = CHEMICAL_ELEMENTS[col]['border-color'];
 
-      context.fillRect(cIndex * BLOCK_WIDTH, rIndex * BLOCK_HEIGHT, BLOCK_WIDTH, BLOCK_HEIGHT);
-      context.strokeRect(cIndex * BLOCK_WIDTH, rIndex * BLOCK_HEIGHT, BLOCK_WIDTH, BLOCK_HEIGHT);
+      context.fillRect((cIndex * BLOCK_SPACING_WIDTH) + 5, (rIndex * BLOCK_SPACING_HEIGHT) + 5, BLOCK_WIDTH, BLOCK_HEIGHT);
+      context.strokeRect((cIndex * BLOCK_SPACING_WIDTH) + 5, (rIndex * BLOCK_SPACING_HEIGHT) + 5, BLOCK_WIDTH, BLOCK_HEIGHT);
       context.fillStyle = CHEMICAL_ELEMENTS[col]['color'];
-      context.fillText(CHEMICAL_ELEMENTS[col].symbol, (cIndex * BLOCK_WIDTH) + 20, (rIndex * BLOCK_HEIGHT) + 20);
+      context.fillText(CHEMICAL_ELEMENTS[col].symbol, (cIndex * BLOCK_SPACING_WIDTH) + 20, (rIndex * BLOCK_SPACING_HEIGHT) + 20);
     });
   });
 }
@@ -128,8 +128,10 @@ var ready = function(fn) {
 }
 ready(function() {
   var canvas = document.querySelector('canvas');
-  BLOCK_WIDTH = canvas.getAttribute('width') / 10;
-  BLOCK_HEIGHT = canvas.getAttribute('height') / 20;
+  BLOCK_SPACING_HEIGHT = canvas.getAttribute('height') / 20;
+  BLOCK_SPACING_WIDTH = canvas.getAttribute('width') / 10;
+  BLOCK_HEIGHT = BLOCK_SPACING_HEIGHT - 10;
+  BLOCK_WIDTH = BLOCK_SPACING_WIDTH - 10;
 
   var gameView = new View();
   var lineBlock = new Tetronimo({element: 1, blocks: tetronimoShapes.line});
