@@ -1,6 +1,6 @@
 var CHEMICAL_ELEMENTS = {
   0: {'background-color': '#F1EEFA',
-      'border-color': '#F1EEFA',
+      'border-color': '#888',
       'color': '#F1EEFA',
       'name': 'n/a'},
 
@@ -60,9 +60,9 @@ var processTetronimos = function() {
 }
 var tetronimoShapes = processTetronimos();
 
-var tetrisBoard = [];
+var tetrisBoard = new Array;
 for(var row = 0; row < 20; row++) {
-  tetrisBoard[row] = [];
+  tetrisBoard[row] = new Array;
   for(var col = 0; col < 10; col++) {
     tetrisBoard[row][col] = 0;
   }
@@ -93,12 +93,20 @@ Tetronimo.prototype.drop = function() {
   this.blit();
 };
 
-var drawBoard = function(board, context) {
+var View = function(args) {
+  this.context = document.querySelector('canvas').getContext('2d');
+  this.debug = "debug string";
+}
+View.prototype.drawBoard = function(board) {
+  var context = this.context
+  context.lineWidth = 2;
   board.forEach(function(row, rIndex) {
     row.forEach(function(col, cIndex) {
-      if(col != 0) context.fillStyle = CHEMICAL_ELEMENTS[col].color;
-      else context.fillStyle = '#BBB';
-      context.fillRect(cIndex * BLOCK_SPACING_WIDTH, rIndex * BLOCK_SPACING_HEIGHT, BLOCK_WIDTH, BLOCK_HEIGHT);
+      context.fillStyle = CHEMICAL_ELEMENTS[col]['color'];
+      context.strokeStyle = CHEMICAL_ELEMENTS[col]['border-color'];
+
+      context.fillRect(cIndex * BLOCK_WIDTH, rIndex * BLOCK_HEIGHT, BLOCK_WIDTH, BLOCK_HEIGHT);
+      context.strokeRect(cIndex * BLOCK_WIDTH, rIndex * BLOCK_HEIGHT, BLOCK_WIDTH, BLOCK_HEIGHT);
     });
   });
 }
@@ -113,11 +121,13 @@ var ready = function(fn) {
 }
 ready(function() {
   var canvas = document.querySelector('canvas');
-  var context = canvas.getContext('2d');
-  BLOCK_WIDTH = (canvas.getAttribute('width') - 50) / 10;
-  BLOCK_HEIGHT = (canvas.getAttribute('height') - 100) / 20;
-  BLOCK_SPACING_WIDTH = BLOCK_WIDTH + 10;
-  BLOCK_SPACING_HEIGHT = BLOCK_HEIGHT + 10;
+  BLOCK_WIDTH = canvas.getAttribute('width') / 10;
+  BLOCK_HEIGHT = canvas.getAttribute('height') / 20;
 
-  drawBoard(tetrisBoard, context);
+  var gameView = new View();
+  var lineBlock = new Tetronimo({element: 1, blocks: tetronimoShapes.line});
+  
+  gameView.drawBoard(tetrisBoard);
+  lineBlock.drop();
+  gameView.drawBoard(tetrisBoard);
 });
