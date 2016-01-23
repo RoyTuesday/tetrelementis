@@ -18,6 +18,8 @@ var CHEMICAL_ELEMENTS = {
       'symbol': 'He'},
 };
 
+var DROP_DELAY = 300;
+
 var BLOCK_WIDTH, BLOCK_HEIGHT;
 var BLOCK_SPACING_WIDTH, BLOCK_SPACING_HEIGHT;
 
@@ -89,7 +91,7 @@ Tetronimo.prototype.blit = function(element) {
   }
 }
 Tetronimo.prototype.drop = function() {
-  this.blit(0)
+  this.blit(0);
   this.row++;
   for(var block in this.blocks) {
     this.blocks[block].y++;
@@ -147,5 +149,5 @@ ready(function() {
     lineBlock.drop();
     gameView.drawBoard(tetrisBoard);
     counter++;
-  }, 200);
+  }, DROP_DELAY);
 });
