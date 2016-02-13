@@ -66,13 +66,30 @@ var processTetronimos = function() {
 }
 var tetronimoShapes = processTetronimos();
 
-var tetrisBoard = new Array;
-for(var row = 0; row < 20; row++) {
-  tetrisBoard[row] = new Array;
-  for(var col = 0; col < 10; col++) {
-    tetrisBoard[row][col] = 0;
+var TetrisBoard = function() {
+  this.board = new Array;
+
+  for(var row = 0; row < 20; row++) {
+    this.board[row] = new Array;
+    for(var col = 0; col < 10; col++) {
+      this.board[row][col] = 0;
+    }
+  };
+
+}
+TetrisBoard.prototype.blit = function(args) {
+  var tetronimo = args.tetronimo;
+  var element = tetronimo.element;
+
+  if(args.clear) {
+    element = 0;
   }
-};
+
+  for(var block in tetronimo.blocks) {
+    var currentBlock = tetronimo.blocks[block];
+    this.board[currentBlock.y][currentBlock.x] = element;
+  }
+}
 
 var Tetronimo = function(args) {
   this.element = args.element;
@@ -85,19 +102,11 @@ var Tetronimo = function(args) {
     this.blocks[block].x += this.col;
   }
 }
-Tetronimo.prototype.blit = function(element) {
-  for(var block in this.blocks) {
-    var currentBlock = this.blocks[block]
-    tetrisBoard[currentBlock.y][currentBlock.x] = element;
-  }
-};
 Tetronimo.prototype.drop = function() {
-  this.blit(0);
   this.row++;
   for(var block in this.blocks) {
     this.blocks[block].y++;
   }
-  this.blit(this.element);
 };
 
 var View = function(args) {
@@ -138,17 +147,20 @@ ready(function() {
   BLOCK_WIDTH = BLOCK_SPACING_WIDTH - 10;
 
   var gameView = new View();
+  var gameBoard = new TetrisBoard();
   var lineBlock = new Tetronimo({element: 1, blocks: tetronimoShapes.line});
   
-  gameView.drawBoard(tetrisBoard);
+  gameView.drawBoard(gameBoard.board);
   var counter = 0;
   var dropLoop = setInterval(function() {
     if(counter > 5) {
       clearInterval(dropLoop);
       return;
     }
+    gameBoard.blit({tetronimo: lineBlock, clear: true});
     lineBlock.drop();
-    gameView.drawBoard(tetrisBoard);
+    gameBoard.blit({tetronimo: lineBlock});
+    gameView.drawBoard(gameBoard.board);
     counter++;
   }, DROP_DELAY);
 });
