@@ -34,6 +34,7 @@ The Minimum Viable Product must replicate Tetris, and have some educational cont
 <p>&#10064 Tetrinimo collision: A tetrinimo stops moving when it collides with a landed tetrinimo.</p>
 <p>&#10064 Lateral Control: Player can move the active tetrinimo left or right.</p>
 <p>&#10064 Vertical Control: Player can increase the falling speed of the active tetrinimo.</p>
+<p>&#10064 Rotation: Player can rotate the active tetrinimo clockwise or counter-clockwise.</p>
 <p>&#10064 Block preview: Display upcoming block.</p>
 <p>&#10064 Score: As player clears lines, score increases: more lines at once provide exponentially greater points.</p>
 <p>&#10064 Levels: As score increases, blocks drop faster.</p>
