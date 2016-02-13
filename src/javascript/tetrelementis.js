@@ -18,6 +18,7 @@ var CHEMICAL_ELEMENTS = {
       'symbol': 'He'},
 };
 
+var BLOCK_FONT = "12px Verdana";
 var DROP_DELAY = 300;
 
 var BLOCK_WIDTH, BLOCK_HEIGHT;
@@ -89,7 +90,7 @@ Tetronimo.prototype.blit = function(element) {
     var currentBlock = this.blocks[block]
     tetrisBoard[currentBlock.y][currentBlock.x] = element;
   }
-}
+};
 Tetronimo.prototype.drop = function() {
   this.blit(0);
   this.row++;
@@ -106,7 +107,7 @@ var View = function(args) {
 View.prototype.drawBoard = function(board) {
   var context = this.context
   context.lineWidth = 4;
-  context.font = "20px Verdana";
+  context.font = BLOCK_FONT;
 
   board.forEach(function(row, rIndex) {
     row.forEach(function(col, cIndex) {
