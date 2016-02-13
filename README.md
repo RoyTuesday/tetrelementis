@@ -45,5 +45,6 @@ The Minimum Viable Product must replicate Tetris, and have some educational cont
 
 ## Stretch Goals
 
-<p>&#10064 Provide alternate control scheme for tablet and mobile users</p>
-<p>&#10064</p>
+<p>&#10064 Ensure compatability on mobile platforms</p>
+<p>&#10064 Provide alternate control scheme for mobile users</p>
+<p>&#10064 Ensure compatability on more browsers: Opera, Internet Explorer</p>
