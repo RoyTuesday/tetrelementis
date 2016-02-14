@@ -69,8 +69,9 @@ var processTetrinimos = function() {
 }
 var tetrinimoShapes = processTetrinimos();
 
-var TetrisBoard = function() {
+var TetrisBoard = function(args) {
   this.board = new Array;
+  this.tetrinimo = args.tetrinimo;
 
   for(var row = 0; row < 20; row++) {
     this.board[row] = new Array;
@@ -230,8 +231,8 @@ ready(function() {
   BLOCK_HEIGHT = BLOCK_SPACING_HEIGHT - 10;
   BLOCK_WIDTH = BLOCK_SPACING_WIDTH - 10;
 
-  window.gameBoard = new TetrisBoard();
   window.lineBlock = new Tetrinimo({element: 1, blocks: tetrinimoShapes.line});
+  window.gameBoard = new TetrisBoard({tetrinimo: lineBlock});
   window.gameView = new View({gameBoard: gameBoard});
   
   gameBoard.blit({tetrinimo: lineBlock});
