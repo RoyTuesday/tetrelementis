@@ -162,6 +162,11 @@ var charCodes = {
 var View = function(args) {
   this.context = document.querySelector('canvas').getContext('2d');
   this.debug = "debug string";
+
+  addEventListener('keydown', function(event) {
+    event.preventDefault();
+    console.log("event happened!", event);
+  });
 }
 View.prototype.drawBoard = function(board) {
   var context = this.context
