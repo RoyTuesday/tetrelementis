@@ -80,22 +80,21 @@ var TetrisBoard = function(args) {
     }
   };
 }
-TetrisBoard.prototype.blit = function(args) {
-  var tetrinimo = args.tetrinimo;
-  var element = tetrinimo.element;
+TetrisBoard.prototype.blit = function(clear) {
+  var element = this.tetrinimo.element;
 
-  if(args.clear) {
+  if(clear) {
     element = 0;
   }
 
-  for(var block in tetrinimo.blocks) {
-    var currentBlock = tetrinimo.blocks[block];
+  for(var block in this.tetrinimo.blocks) {
+    var currentBlock = this.tetrinimo.blocks[block];
     this.board[currentBlock.y][currentBlock.x] = element;
   }
 };
-TetrisBoard.prototype.detectCollision = function(tetrinimo) {
-  for(var block in tetrinimo.blocks) {
-    currentBlock = tetrinimo.blocks[block];
+TetrisBoard.prototype.detectCollision = function() {
+  for(var block in this.tetrinimo.blocks) {
+    currentBlock = this.tetrinimo.blocks[block];
     if(currentBlock.y >= GRID_HEIGHT) {
       return 'floor';
     }
@@ -108,15 +107,15 @@ TetrisBoard.prototype.detectCollision = function(tetrinimo) {
   }
   return 'clear';
 };
-TetrisBoard.prototype.dropBlock = function(tetrinimo) {
-  this.blit({tetrinimo: tetrinimo, clear: true});
-  tetrinimo.drop();
-  var collision = this.detectCollision(tetrinimo);
+TetrisBoard.prototype.dropBlock = function() {
+  this.blit(true);
+  this.tetrinimo.drop();
+  var collision = this.detectCollision();
   if(collision == 'floor' || collision == 'block') {
-    tetrinimo.raise();
+    this.tetrinimo.raise();
     clearInterval(this.intervalID);
   }
-  this.blit({tetrinimo: tetrinimo});
+  this.blit();
 };
 
 var Tetrinimo = function(args) {
