@@ -19,7 +19,7 @@ The more I learned about JavaScript, the more I realized my resulting game neede
 
 ## Version History
 
-0.058: Tetris grid, line block drops five spaces and stops.
+0.058 : 13 Feb 2016 - Tetris grid, line block drops five spaces and stops.
 
 ## MVP Checklist
 
