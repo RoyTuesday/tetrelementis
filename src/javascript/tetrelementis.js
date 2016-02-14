@@ -162,6 +162,11 @@ var keyCodes = {
 var View = function(args) {
   this.context = document.querySelector('canvas').getContext('2d');
   this.debug = "debug string";
+  this.intervalIDs = {
+    slide: null,
+    rotate: null,
+    drop: null
+  };
 
   addEventListener('keydown', function(event) {
     event.preventDefault();
@@ -171,7 +176,7 @@ var View = function(args) {
   addEventListener('keyup', function(event) {
     event.preventDefault();
     console.log("keyup happened!", event);
-  })
+  });
 }
 View.prototype.drawBoard = function(board) {
   var context = this.context
