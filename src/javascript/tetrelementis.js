@@ -165,8 +165,13 @@ var View = function(args) {
 
   addEventListener('keydown', function(event) {
     event.preventDefault();
-    console.log("event happened!", event);
+    console.log("keydown happened!", event);
   });
+
+  addEventListener('keyup', function(event) {
+    event.preventDefaul();
+    console.log("keyup happened!", event);
+  })
 }
 View.prototype.drawBoard = function(board) {
   var context = this.context
