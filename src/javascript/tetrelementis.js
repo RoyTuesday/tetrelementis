@@ -21,6 +21,9 @@ var CHEMICAL_ELEMENTS = {
 var BLOCK_FONT = "12px Verdana";
 var DROP_DELAY = 300;
 
+var GRID_HEIGHT = 20;
+var GRID_WIDTH = 10;
+
 var BLOCK_WIDTH, BLOCK_HEIGHT;
 var BLOCK_SPACING_WIDTH, BLOCK_SPACING_HEIGHT;
 
@@ -75,7 +78,6 @@ var TetrisBoard = function() {
       this.board[row][col] = 0;
     }
   };
-
 }
 TetrisBoard.prototype.blit = function(args) {
   var tetrinimo = args.tetrinimo;
@@ -90,10 +92,25 @@ TetrisBoard.prototype.blit = function(args) {
     this.board[currentBlock.y][currentBlock.x] = element;
   }
 };
-TetrisBoard.prototype.dropBlock = function(block) {
-  this.blit({tetrinimo: block, clear: true});
-  block.drop();
-  this.blit({tetrinimo: block});
+TetrisBoard.prototype.detectCollision = function(tetrinimo) {
+  for(var block in tetrinimo.blocks) {
+    currentBlock = tetrinimo.blocks[block];
+    if(currentBlock.y >= GRID_HEIGHT) {
+      return 'floor';
+    }
+    else if(currentBlock.x < 0 || currentBlock.x >= GRID_WIDTH) {
+      return 'wall';
+    }
+    else if(this.board[currentBlock.y][currentBlock.x] !== 0) {
+      return 'block';
+    }
+  }
+  return 'clear';
+};
+TetrisBoard.prototype.dropBlock = function(tetrinimo) {
+  this.blit({tetrinimo: tetrinimo, clear: true});
+  tetrinimo.drop();
+  this.blit({tetrinimo: tetrinimo});
 };
 
 var Tetrinimo = function(args) {
