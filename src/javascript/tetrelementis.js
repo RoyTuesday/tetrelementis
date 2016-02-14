@@ -118,6 +118,11 @@ TetrisBoard.prototype.dropBlock = function() {
   }
   this.blit();
 };
+TetrisBoard.prototype.slideBlock = function(direction) {
+  this.blit(true);
+  this.tetrinimo.slide(direction);
+  this.blit();
+};
 
 var Tetrinimo = function(args) {
   this.element = args.element;
