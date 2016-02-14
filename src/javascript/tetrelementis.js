@@ -171,7 +171,25 @@ View.prototype.drawBoard = function(board) {
       context.fillText(CHEMICAL_ELEMENTS[col].symbol, (cIndex * BLOCK_SPACING_WIDTH) + (BLOCK_SPACING_WIDTH / 2) - 4, (rIndex * BLOCK_SPACING_HEIGHT) + (BLOCK_SPACING_HEIGHT / 2) + 4);
     });
   });
-}
+};
+View.prototype.animate = function(board) {
+  var lastTime = null;
+  var progress = true;
+  var self = this;
+
+  var animate = function(time) {
+    if(lastTime) {
+      var timeStep = Math.min(time - lastTime, 100) / 1000;
+      progress = timeStep < 2000;
+    }
+    lastTime = time;
+    self.drawBoard(board);
+    if(progress) {
+      requestAnimationFrame(animate);
+    }
+  }
+  requestAnimationFrame(animate);
+};
 
 var ready = function(fn) {
   if(document.readyState != 'loading') {
@@ -193,10 +211,9 @@ ready(function() {
   window.lineBlock = new Tetrinimo({element: 1, blocks: tetrinimoShapes.line});
   
   gameBoard.blit({tetrinimo: lineBlock});
-  gameView.drawBoard(gameBoard.board);
+  gameView.animate(gameBoard.board);
   
   gameBoard.intervalID = setInterval(function() {
     gameBoard.dropBlock(lineBlock);
-    gameView.drawBoard(gameBoard.board);
   }, DROP_DELAY);
 });
