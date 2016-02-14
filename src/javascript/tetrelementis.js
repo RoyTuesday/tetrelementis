@@ -212,10 +212,9 @@ ready(function() {
   window.lineBlock = new Tetrinimo({element: 1, blocks: tetrinimoShapes.line});
   
   gameBoard.blit({tetrinimo: lineBlock});
-  gameView.drawBoard(gameBoard.board);
+  gameView.animate(gameBoard.board);
   
   gameBoard.intervalID = setInterval(function() {
     gameBoard.dropBlock(lineBlock);
-    gameView.drawBoard(gameBoard.board);
   }, DROP_DELAY);
 });
