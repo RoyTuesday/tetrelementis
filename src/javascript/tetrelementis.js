@@ -162,6 +162,7 @@ var keyCodes = {
 var View = function(args) {
   this.context = document.querySelector('canvas').getContext('2d');
   this.debug = "debug string";
+  this.gameBoard = args.gameBoard;
   this.intervalIDs = {
     slide: null,
     rotate: null,
@@ -229,9 +230,9 @@ ready(function() {
   BLOCK_HEIGHT = BLOCK_SPACING_HEIGHT - 10;
   BLOCK_WIDTH = BLOCK_SPACING_WIDTH - 10;
 
-  window.gameView = new View();
   window.gameBoard = new TetrisBoard();
   window.lineBlock = new Tetrinimo({element: 1, blocks: tetrinimoShapes.line});
+  window.gameView = new View({gameBoard: gameBoard});
   
   gameBoard.blit({tetrinimo: lineBlock});
   gameView.animate(gameBoard.board);
