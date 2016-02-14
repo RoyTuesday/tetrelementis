@@ -24,7 +24,7 @@ var DROP_DELAY = 300;
 var BLOCK_WIDTH, BLOCK_HEIGHT;
 var BLOCK_SPACING_WIDTH, BLOCK_SPACING_HEIGHT;
 
-var TETRONIMO_TEMPLATES = {
+var TETRINIMO_TEMPLATES = {
   jBlock: ['xx',
            'x ',
            'x '],
@@ -46,12 +46,12 @@ var TETRONIMO_TEMPLATES = {
   tBlock: ['xxx',
            ' x ']
 };
-var processTetronimos = function() {
+var processTetrinimos = function() {
   var tetraShape = new Object;
-  for(var shape in TETRONIMO_TEMPLATES) {
-    if( TETRONIMO_TEMPLATES.hasOwnProperty(shape)) {
+  for(var shape in TETRINIMO_TEMPLATES) {
+    if( TETRINIMO_TEMPLATES.hasOwnProperty(shape)) {
       tetraShape[shape] = new Array;
-      var currentShape = TETRONIMO_TEMPLATES[shape];
+      var currentShape = TETRINIMO_TEMPLATES[shape];
       for(var row in currentShape) {
         for(var col in currentShape[row]) {
           if(currentShape[row][col] == 'x') {
@@ -64,7 +64,7 @@ var processTetronimos = function() {
   }
   return tetraShape
 }
-var tetronimoShapes = processTetronimos();
+var tetrinimoShapes = processTetrinimos();
 
 var TetrisBoard = function() {
   this.board = new Array;
@@ -78,25 +78,25 @@ var TetrisBoard = function() {
 
 }
 TetrisBoard.prototype.blit = function(args) {
-  var tetronimo = args.tetronimo;
-  var element = tetronimo.element;
+  var tetrinimo = args.tetrinimo;
+  var element = tetrinimo.element;
 
   if(args.clear) {
     element = 0;
   }
 
-  for(var block in tetronimo.blocks) {
-    var currentBlock = tetronimo.blocks[block];
+  for(var block in tetrinimo.blocks) {
+    var currentBlock = tetrinimo.blocks[block];
     this.board[currentBlock.y][currentBlock.x] = element;
   }
 };
 TetrisBoard.prototype.dropBlock = function(block) {
-  this.blit({tetronimo: block, clear: true});
+  this.blit({tetrinimo: block, clear: true});
   block.drop();
-  this.blit({tetronimo: block});
+  this.blit({tetrinimo: block});
 };
 
-var Tetronimo = function(args) {
+var Tetrinimo = function(args) {
   this.element = args.element;
   this.blocks = args.blocks;
   this.row = 0;
@@ -107,7 +107,7 @@ var Tetronimo = function(args) {
     this.blocks[block].x += this.col;
   }
 }
-Tetronimo.prototype.drop = function() {
+Tetrinimo.prototype.drop = function() {
   this.row++;
   for(var block in this.blocks) {
     this.blocks[block].y++;
@@ -153,7 +153,7 @@ ready(function() {
 
   var gameView = new View();
   var gameBoard = new TetrisBoard();
-  var lineBlock = new Tetronimo({element: 1, blocks: tetronimoShapes.line});
+  var lineBlock = new Tetrinimo({element: 1, blocks: tetrinimoShapes.line});
   
   gameView.drawBoard(gameBoard.board);
   var counter = 0;
