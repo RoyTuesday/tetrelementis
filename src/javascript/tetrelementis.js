@@ -107,6 +107,12 @@ var Tetrinimo = function(args) {
     this.blocks[block].x += this.col;
   }
 }
+Tetrinimo.prototype.raise = function() {
+  this.row--;
+  for(var block in this.blocks) {
+    this.blocks[block].y--;
+  }
+};
 Tetrinimo.prototype.drop = function() {
   this.row++;
   for(var block in this.blocks) {
@@ -131,7 +137,7 @@ View.prototype.drawBoard = function(board) {
       context.fillRect((cIndex * BLOCK_SPACING_WIDTH) + 5, (rIndex * BLOCK_SPACING_HEIGHT) + 5, BLOCK_WIDTH, BLOCK_HEIGHT);
       context.strokeRect((cIndex * BLOCK_SPACING_WIDTH) + 5, (rIndex * BLOCK_SPACING_HEIGHT) + 5, BLOCK_WIDTH, BLOCK_HEIGHT);
       context.fillStyle = CHEMICAL_ELEMENTS[col]['color'];
-      context.fillText(CHEMICAL_ELEMENTS[col].symbol, (cIndex * BLOCK_SPACING_WIDTH) + (BLOCK_SPACING_WIDTH / 2) - 8, (rIndex * BLOCK_SPACING_HEIGHT) + (BLOCK_SPACING_HEIGHT / 2) + 8);
+      context.fillText(CHEMICAL_ELEMENTS[col].symbol, (cIndex * BLOCK_SPACING_WIDTH) + (BLOCK_SPACING_WIDTH / 2) - 4, (rIndex * BLOCK_SPACING_HEIGHT) + (BLOCK_SPACING_HEIGHT / 2) + 4);
     });
   });
 }
