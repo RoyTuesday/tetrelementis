@@ -173,7 +173,24 @@ View.prototype.drawBoard = function(board) {
   });
 };
 View.prototype.animate = function(board) {
-}
+  var lastTime = null;
+  var progress = true;
+  var self = this;
+
+  var animate = function(time) {
+    if(lastTime) {
+      var timeStep = Math.min(time - lastTime, 100) / 1000;
+      progress = timeStep < 2000;
+    }
+    lastTime = time;
+    console.log('self', self, 'time', time, 'lastTime', lastTime);
+    self.drawBoard(board);
+    if(progress) {
+      requestAnimationFrame(animate);
+    }
+  }
+  requestAnimationFrame(animate);
+};
 
 var ready = function(fn) {
   if(document.readyState != 'loading') {
