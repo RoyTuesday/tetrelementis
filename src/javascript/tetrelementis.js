@@ -171,6 +171,8 @@ View.prototype.drawBoard = function(board) {
       context.fillText(CHEMICAL_ELEMENTS[col].symbol, (cIndex * BLOCK_SPACING_WIDTH) + (BLOCK_SPACING_WIDTH / 2) - 4, (rIndex * BLOCK_SPACING_HEIGHT) + (BLOCK_SPACING_HEIGHT / 2) + 4);
     });
   });
+};
+View.prototype.animate = function(board) {
 }
 
 var ready = function(fn) {
