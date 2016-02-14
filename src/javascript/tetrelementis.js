@@ -173,19 +173,19 @@ var View = function(args) {
 
   var self = this;
   addEventListener('keydown', function(event) {
-    event.preventDefault();
     var pressedKey = keyCodes[event.keyCode];
     console.log('pressedKey', pressedKey);
     if(pressedKey == 'left' || pressedKey == 'right') {
+      event.preventDefault();
       self.intervalIDs[pressedKey] = setInterval(console.log('direction', pressedKey), SLIDE_DELAY);
     }
   });
 
   addEventListener('keyup', function(event) {
-    event.preventDefault();
     var releasedKey = keyCodes[event.keyCode];
     console.log("releasedKey", releasedKey);
     if(releasedKey == 'left' || releasedKey == 'right') {
+      event.preventDefault();
       clearInterval(self.intervalIDs[releasedKey]);
     }
   });
