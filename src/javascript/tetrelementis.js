@@ -184,14 +184,8 @@ ready(function() {
   var lineBlock = new Tetrinimo({element: 1, blocks: tetrinimoShapes.line});
   
   gameView.drawBoard(gameBoard.board);
-  var counter = 0;
-  var dropLoop = setInterval(function() {
-    if(counter > 5) {
-      clearInterval(dropLoop);
-      return;
-    }
+  gameBoard.intervalID = setInterval(function() {
     gameBoard.dropBlock(lineBlock);
     gameView.drawBoard(gameBoard.board);
-    counter++;
   }, DROP_DELAY);
 });
