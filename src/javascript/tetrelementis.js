@@ -20,6 +20,7 @@ var CHEMICAL_ELEMENTS = {
 
 var BLOCK_FONT = "12px Verdana";
 var DROP_DELAY = 300;
+var SLIDE_DELAY = 200;
 
 var GRID_HEIGHT = 20;
 var GRID_WIDTH = 10;
@@ -163,20 +164,25 @@ var View = function(args) {
   this.context = document.querySelector('canvas').getContext('2d');
   this.debug = "debug string";
   this.gameBoard = args.gameBoard;
-  this.intervalIDs = {
-    slide: null,
-    rotate: null,
-    drop: null
-  };
+  this.intervalIDs = new Object;
 
+  var self = this;
   addEventListener('keydown', function(event) {
     event.preventDefault();
-    console.log("keydown happened!", event);
+    var pressedKey = keyCodes[event.keyCode];
+    console.log('pressedKey', pressedKey);
+    if(pressedKey == 'left' || pressedKey == 'right') {
+      self.intervalIDs[pressedKey] = setInterval(console.log('direction', pressedKey), SLIDE_DELAY);
+    }
   });
 
   addEventListener('keyup', function(event) {
     event.preventDefault();
-    console.log("keyup happened!", event);
+    var releasedKey = keyCodes[event.keyCode];
+    console.log("releasedKey", releasedKey);
+    if(releasedKey == 'left' || releasedKey == 'right') {
+      clearInterval(self.intervalIDs[releasedKey]);
+    }
   });
 }
 View.prototype.drawBoard = function(board) {
