@@ -183,7 +183,6 @@ View.prototype.animate = function(board) {
       progress = timeStep < 2000;
     }
     lastTime = time;
-    console.log('self', self, 'time', time, 'lastTime', lastTime);
     self.drawBoard(board);
     if(progress) {
       requestAnimationFrame(animate);
