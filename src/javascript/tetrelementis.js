@@ -89,7 +89,12 @@ TetrisBoard.prototype.blit = function(args) {
     var currentBlock = tetronimo.blocks[block];
     this.board[currentBlock.y][currentBlock.x] = element;
   }
-}
+};
+TetrisBoard.prototype.dropBlock = function(block) {
+  this.blit({tetronimo: block, clear: true});
+  block.drop();
+  this.blit({tetronimo: block});
+};
 
 var Tetronimo = function(args) {
   this.element = args.element;
@@ -157,9 +162,7 @@ ready(function() {
       clearInterval(dropLoop);
       return;
     }
-    gameBoard.blit({tetronimo: lineBlock, clear: true});
-    lineBlock.drop();
-    gameBoard.blit({tetronimo: lineBlock});
+    gameBoard.dropBlock(lineBlock);
     gameView.drawBoard(gameBoard.board);
     counter++;
   }, DROP_DELAY);
