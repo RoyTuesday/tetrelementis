@@ -188,8 +188,8 @@ ready(function() {
   BLOCK_HEIGHT = BLOCK_SPACING_HEIGHT - 10;
   BLOCK_WIDTH = BLOCK_SPACING_WIDTH - 10;
 
-  var gameView = new View();
-  var gameBoard = new TetrisBoard();
+  window.gameView = new View();
+  window.gameBoard = new TetrisBoard();
   window.lineBlock = new Tetrinimo({element: 1, blocks: tetrinimoShapes.line});
   
   gameBoard.blit({tetrinimo: lineBlock});
