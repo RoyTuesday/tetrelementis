@@ -19,7 +19,13 @@ The more I learned about JavaScript, the more I realized my resulting game neede
 
 ## Version History
 
-0.353 : 13 Feb 2016 - Tetris grid, line block drops five spaces and stops.
+**0.353 : 13 Feb 2016 -** Line block drops until it reaches the bottom of the grid. Tetrinimo model includes function to move laterally.
+
+**0.235 : 09 Feb 2016 -** Line block drops five spaces and stops.
+
+**0.118 : 18 Jan 2016 -** Draw a tetrinimo on the grid.
+
+**0.059 : 12 Jan 2016 -** Draw the Tetris grid.
 
 ## MVP Checklist
 
