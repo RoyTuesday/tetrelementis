@@ -141,6 +141,15 @@ Tetrinimo.prototype.drop = function() {
     this.blocks[block].y++;
   }
 };
+var directToInt = {
+  'left': -1,
+  'right': 1
+};
+Tetrinimo.prototype.slide = function(direction) {
+  this.blocks.forEach(function(block) {
+    block.x += directToInt[direction];
+  });
+};
 
 var View = function(args) {
   this.context = document.querySelector('canvas').getContext('2d');
@@ -179,9 +188,9 @@ ready(function() {
   BLOCK_HEIGHT = BLOCK_SPACING_HEIGHT - 10;
   BLOCK_WIDTH = BLOCK_SPACING_WIDTH - 10;
 
-  var gameView = new View();
-  var gameBoard = new TetrisBoard();
-  var lineBlock = new Tetrinimo({element: 1, blocks: tetrinimoShapes.line});
+  window.gameView = new View();
+  window.gameBoard = new TetrisBoard();
+  window.lineBlock = new Tetrinimo({element: 1, blocks: tetrinimoShapes.line});
   
   gameBoard.blit({tetrinimo: lineBlock});
   gameView.drawBoard(gameBoard.board);
