@@ -151,6 +151,14 @@ Tetrinimo.prototype.slide = function(direction) {
   });
 };
 
+var charCodes = {
+  'left': 37,
+  'right': 38,
+  'up': 39,
+  'down': 40,
+  'backspace': 8
+}
+
 var View = function(args) {
   this.context = document.querySelector('canvas').getContext('2d');
   this.debug = "debug string";
