@@ -159,8 +159,8 @@ Tetrinimo.prototype.slide = function(direction) {
 
 var keyCodes = {
   37: 'left',
-  38: 'right',
-  39: 'up',
+  38: 'up',
+  39: 'right',
   40: 'down',
   8: 'backspace'
 }
