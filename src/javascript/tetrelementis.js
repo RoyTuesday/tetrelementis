@@ -21,6 +21,9 @@ var CHEMICAL_ELEMENTS = {
 var BLOCK_FONT = "12px Verdana";
 var DROP_DELAY = 300;
 
+var GRID_HEIGHT = 20;
+var GRID_WIDTH = 10;
+
 var BLOCK_WIDTH, BLOCK_HEIGHT;
 var BLOCK_SPACING_WIDTH, BLOCK_SPACING_HEIGHT;
 
@@ -75,7 +78,6 @@ var TetrisBoard = function() {
       this.board[row][col] = 0;
     }
   };
-
 }
 TetrisBoard.prototype.blit = function(args) {
   var tetrinimo = args.tetrinimo;
@@ -90,10 +92,30 @@ TetrisBoard.prototype.blit = function(args) {
     this.board[currentBlock.y][currentBlock.x] = element;
   }
 };
-TetrisBoard.prototype.dropBlock = function(block) {
-  this.blit({tetrinimo: block, clear: true});
-  block.drop();
-  this.blit({tetrinimo: block});
+TetrisBoard.prototype.detectCollision = function(tetrinimo) {
+  for(var block in tetrinimo.blocks) {
+    currentBlock = tetrinimo.blocks[block];
+    if(currentBlock.y >= GRID_HEIGHT) {
+      return 'floor';
+    }
+    else if(currentBlock.x < 0 || currentBlock.x >= GRID_WIDTH) {
+      return 'wall';
+    }
+    else if(this.board[currentBlock.y][currentBlock.x] !== 0) {
+      return 'block';
+    }
+  }
+  return 'clear';
+};
+TetrisBoard.prototype.dropBlock = function(tetrinimo) {
+  this.blit({tetrinimo: tetrinimo, clear: true});
+  tetrinimo.drop();
+  var collision = this.detectCollision(tetrinimo);
+  if(collision == 'floor' || collision == 'block') {
+    tetrinimo.raise();
+    clearInterval(this.intervalID);
+  }
+  this.blit({tetrinimo: tetrinimo});
 };
 
 var Tetrinimo = function(args) {
@@ -107,6 +129,12 @@ var Tetrinimo = function(args) {
     this.blocks[block].x += this.col;
   }
 }
+Tetrinimo.prototype.raise = function() {
+  this.row--;
+  for(var block in this.blocks) {
+    this.blocks[block].y--;
+  }
+};
 Tetrinimo.prototype.drop = function() {
   this.row++;
   for(var block in this.blocks) {
@@ -131,7 +159,7 @@ View.prototype.drawBoard = function(board) {
       context.fillRect((cIndex * BLOCK_SPACING_WIDTH) + 5, (rIndex * BLOCK_SPACING_HEIGHT) + 5, BLOCK_WIDTH, BLOCK_HEIGHT);
       context.strokeRect((cIndex * BLOCK_SPACING_WIDTH) + 5, (rIndex * BLOCK_SPACING_HEIGHT) + 5, BLOCK_WIDTH, BLOCK_HEIGHT);
       context.fillStyle = CHEMICAL_ELEMENTS[col]['color'];
-      context.fillText(CHEMICAL_ELEMENTS[col].symbol, (cIndex * BLOCK_SPACING_WIDTH) + (BLOCK_SPACING_WIDTH / 2) - 8, (rIndex * BLOCK_SPACING_HEIGHT) + (BLOCK_SPACING_HEIGHT / 2) + 8);
+      context.fillText(CHEMICAL_ELEMENTS[col].symbol, (cIndex * BLOCK_SPACING_WIDTH) + (BLOCK_SPACING_WIDTH / 2) - 4, (rIndex * BLOCK_SPACING_HEIGHT) + (BLOCK_SPACING_HEIGHT / 2) + 4);
     });
   });
 }
@@ -155,15 +183,11 @@ ready(function() {
   var gameBoard = new TetrisBoard();
   var lineBlock = new Tetrinimo({element: 1, blocks: tetrinimoShapes.line});
   
+  gameBoard.blit({tetrinimo: lineBlock});
   gameView.drawBoard(gameBoard.board);
-  var counter = 0;
-  var dropLoop = setInterval(function() {
-    if(counter > 5) {
-      clearInterval(dropLoop);
-      return;
-    }
+  
+  gameBoard.intervalID = setInterval(function() {
     gameBoard.dropBlock(lineBlock);
     gameView.drawBoard(gameBoard.board);
-    counter++;
   }, DROP_DELAY);
 });
