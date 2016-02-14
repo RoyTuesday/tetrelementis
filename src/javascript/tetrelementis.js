@@ -183,7 +183,9 @@ ready(function() {
   var gameBoard = new TetrisBoard();
   var lineBlock = new Tetrinimo({element: 1, blocks: tetrinimoShapes.line});
   
+  gameBoard.blit({tetrinimo: lineBlock});
   gameView.drawBoard(gameBoard.board);
+  
   gameBoard.intervalID = setInterval(function() {
     gameBoard.dropBlock(lineBlock);
     gameView.drawBoard(gameBoard.board);
