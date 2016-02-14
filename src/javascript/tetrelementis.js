@@ -152,11 +152,11 @@ Tetrinimo.prototype.slide = function(direction) {
 };
 
 var charCodes = {
-  'left': 37,
-  'right': 38,
-  'up': 39,
-  'down': 40,
-  'backspace': 8
+  37: 'left',
+  38: 'right',
+  39: 'up',
+  40: 'down',
+  8: 'backspace'
 }
 
 var View = function(args) {
