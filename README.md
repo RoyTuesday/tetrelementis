@@ -19,7 +19,7 @@ The more I learned about JavaScript, the more I realized my resulting game neede
 
 ## Version History
 
-0.058 : 13 Feb 2016 - Tetris grid, line block drops five spaces and stops.
+0.353 : 13 Feb 2016 - Tetris grid, line block drops five spaces and stops.
 
 ## MVP Checklist
 
@@ -29,8 +29,8 @@ The Minimum Viable Product must replicate Tetris, and have some educational cont
 <p>&#10004 Draw a tetrinimo on the grid.</p>
 <p>&#10004 Draw the appropriate chemical symbol on each block of the tetrinimo.</p>
 <p>&#10004 Drop a tetrinimo at a constant rate.</p>
-<p>&#10064 Floor collision: A tetrinimo stops falling once it reaches the bottom of the grid.</p>
-<p>&#10064 Wall collision: A tetrinimo stops moving laterally once it reaches a side of the grid.</p>
+<p>&#10004 Floor collision: A tetrinimo stops falling once it reaches the bottom of the grid.</p>
+<p>&#10004 Wall collision: A tetrinimo stops moving laterally once it reaches a side of the grid.</p>
 <p>&#10064 Tetrinimo collision: A tetrinimo stops moving when it collides with a landed tetrinimo.</p>
 <p>&#10064 Lateral Control: Player can move the active tetrinimo left or right.</p>
 <p>&#10064 Vertical Control: Player can increase the falling speed of the active tetrinimo.</p>
