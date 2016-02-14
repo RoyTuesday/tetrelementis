@@ -151,7 +151,7 @@ Tetrinimo.prototype.slide = function(direction) {
   });
 };
 
-var charCodes = {
+var keyCodes = {
   37: 'left',
   38: 'right',
   39: 'up',
