@@ -19,38 +19,56 @@ The more I learned about JavaScript, the more I realized my resulting game neede
 
 ## Version History
 
-**0.353 : 13 Feb 2016 -** Line block drops until it reaches the bottom of the grid. Tetrinimo model includes function to move laterally.
+:large_blue_diamond: **0.353 : 13 Feb 2016 -** Line block drops until it reaches the bottom of the grid. Tetrinimo model includes function to move laterally.
 
-**0.235 : 09 Feb 2016 -** Line block drops five spaces and stops.
+:small_red_triangle_down: **0.235 : 09 Feb 2016 -** Line block drops five spaces and stops.
 
-**0.118 : 18 Jan 2016 -** Draw a tetrinimo on the grid.
+:small_red_triangle_down: **0.118 : 18 Jan 2016 -** Draw a tetrinimo on the grid.
 
-**0.059 : 12 Jan 2016 -** Draw the Tetris grid.
+:small_red_triangle_down: **0.059 : 12 Jan 2016 -** Draw the Tetris grid.
 
 ## MVP Checklist
 
 The Minimum Viable Product must replicate Tetris, and have some educational content about the chemical elements.
 
-<p>&#10004 Draw a grid 10 blocks wide, 20 blocks high.</p>
-<p>&#10004 Draw a tetrinimo on the grid.</p>
-<p>&#10004 Draw the appropriate chemical symbol on each block of the tetrinimo.</p>
-<p>&#10004 Drop a tetrinimo at a constant rate.</p>
-<p>&#10004 Floor collision: A tetrinimo stops falling once it reaches the bottom of the grid.</p>
-<p>&#10004 Wall collision: A tetrinimo stops moving laterally once it reaches a side of the grid.</p>
-<p>&#10064 Tetrinimo collision: A tetrinimo stops moving when it collides with a landed tetrinimo.</p>
-<p>&#10064 Lateral Control: Player can move the active tetrinimo left or right.</p>
-<p>&#10064 Vertical Control: Player can increase the falling speed of the active tetrinimo.</p>
-<p>&#10064 Rotation: Player can rotate the active tetrinimo clockwise or counter-clockwise.</p>
-<p>&#10064 Block preview: Display upcoming block.</p>
-<p>&#10064 Score: As player clears lines, score increases: more lines at once provide exponentially greater points.</p>
-<p>&#10064 Levels: As score increases, blocks drop faster.</p>
-<p>&#10064 Difficulty options: Player can choose to begin at different drop speeds and whether level increases.</p>
-<p>&#10064 Periodic Table: Fill in elements on the table as they are cleared from the grid.</p>
-<p>&#10064 Element Details: Small display with a few facts about each element.</p>
-<p>&#10064 External Links: Provide a link to an external page about each element (NOT Wikipedia!)</p>
+:white_check_mark: Draw a grid 10 blocks wide, 20 blocks high.
+
+:white_check_mark: Draw a tetrinimo on the grid.
+
+:white_check_mark: Draw the appropriate chemical symbol on each block of the tetrinimo.
+
+:white_check_mark: Drop a tetrinimo at a constant rate.
+
+:white_check_mark: Floor collision: A tetrinimo stops falling once it reaches the bottom of the grid.
+
+:white_check_mark: Wall collision: A tetrinimo stops moving laterally once it reaches a side of the grid.
+
+:white_medium_small_square: Tetrinimo collision: A tetrinimo stops moving when it collides with a landed tetrinimo.
+
+:white_medium_small_square: Lateral Control: Player can move the active tetrinimo left or right.
+
+:white_medium_small_square: Vertical Control: Player can increase the falling speed of the active tetrinimo.
+
+:white_medium_small_square: Rotation: Player can rotate the active tetrinimo clockwise or counter-clockwise.
+
+:white_medium_small_square: Block preview: Display upcoming block.
+
+:white_medium_small_square: Score: As player clears lines, score increases: more lines at once provide exponentially greater points.
+
+:white_medium_small_square: Levels: As score increases, blocks drop faster.
+
+:white_medium_small_square: Difficulty options: Player can choose to begin at different drop speeds and whether level increases.
+
+:white_medium_small_square: Periodic Table: Fill in elements on the table as they are cleared from the grid.
+
+:white_medium_small_square: Element Details: Small display with a few facts about each element.
+
+:white_medium_small_square: External Links: Provide a link to an external page about each element (NOT Wikipedia!)
 
 ## Stretch Goals
 
-<p>&#10064 Ensure compatability on mobile platforms</p>
-<p>&#10064 Provide alternate control scheme for mobile users</p>
-<p>&#10064 Ensure compatability on more browsers: Opera, Internet Explorer</p>
+:white_medium_small_square: Ensure compatability on mobile platforms
+
+:white_medium_small_square: Provide alternate control scheme for mobile users
+
+:white_medium_small_square: Ensure compatability on more browsers: Opera, Internet Explorer
