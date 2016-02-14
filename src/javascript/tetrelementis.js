@@ -169,7 +169,7 @@ var View = function(args) {
   });
 
   addEventListener('keyup', function(event) {
-    event.preventDefaul();
+    event.preventDefault();
     console.log("keyup happened!", event);
   })
 }
