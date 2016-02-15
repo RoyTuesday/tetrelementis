@@ -73,6 +73,7 @@ var TETRINIMO_SHAPES = processTetrinimos();
 var TetrisBoard = function(args) {
   this.board = new Array;
   this.tetrinimo = args.tetrinimo;
+  this.dropDelay = DROP_DELAY;
 
   for(var row = 0; row < 20; row++) {
     this.board[row] = new Array;
@@ -120,6 +121,7 @@ TetrisBoard.prototype.dropBlock = function() {
     return;
   }
   this.blit();
+  setInterval(function() {this.dropBlock}, this.dropDelay);
 };
 TetrisBoard.prototype.slideBlock = function(direction) {
   this.blit(true);
@@ -267,8 +269,5 @@ ready(function() {
   
   gameBoard.blit({tetrinimo: lineBlock});
   gameView.animate(gameBoard.board);
-  
-  gameBoard.intervalID = setInterval(function() {
-    gameBoard.dropBlock(lineBlock);
-  }, DROP_DELAY);
+  gameBoard.dropBlock();
 });
