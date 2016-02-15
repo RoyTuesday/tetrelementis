@@ -114,7 +114,10 @@ TetrisBoard.prototype.dropBlock = function() {
   var collision = this.detectCollision();
   if(collision == 'floor' || collision == 'block') {
     this.tetrinimo.raise();
+    this.blit();
+    this.tetrinimo = null;
     clearInterval(this.intervalID);
+    return;
   }
   this.blit();
 };
