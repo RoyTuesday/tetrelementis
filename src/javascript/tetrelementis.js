@@ -174,14 +174,12 @@ var View = function(args) {
   this.context = document.querySelector('canvas').getContext('2d');
   this.gameBoard = args.gameBoard;
 
-  var self = this;
   addEventListener('keydown', function(event) {
     var pressedKey = keyCodes[event.keyCode];
     if(pressedKey == 'left' || pressedKey == 'right') {
       event.preventDefault();
       console.log('pressedKey', pressedKey);
-      this.pressed = pressedKey;
-      console.log("this.pressed:", this.pressed);
+      if(this.pressed !== pressedKey) this.pressed = pressedKey;
     }
   });
 
