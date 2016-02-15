@@ -172,26 +172,24 @@ var keyCodes = {
 
 var View = function(args) {
   this.context = document.querySelector('canvas').getContext('2d');
-  this.debug = "debug string";
   this.gameBoard = args.gameBoard;
-  this.intervalIDs = new Object;
 
   var self = this;
   addEventListener('keydown', function(event) {
     var pressedKey = keyCodes[event.keyCode];
-    console.log('pressedKey', pressedKey);
     if(pressedKey == 'left' || pressedKey == 'right') {
       event.preventDefault();
-      self.intervalIDs[pressedKey] = setInterval(console.log('direction', pressedKey), SLIDE_DELAY);
+      console.log('pressedKey', pressedKey);
+      this.pressed = pressedKey;
+      console.log("this.pressed:", this.pressed);
     }
   });
 
   addEventListener('keyup', function(event) {
     var releasedKey = keyCodes[event.keyCode];
-    console.log("releasedKey", releasedKey);
     if(releasedKey == 'left' || releasedKey == 'right') {
       event.preventDefault();
-      clearInterval(self.intervalIDs[releasedKey]);
+      console.log("releasedKey", releasedKey);
     }
   });
 }
