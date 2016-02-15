@@ -37,9 +37,11 @@ TetrisBoard.prototype.detectCollision = function() {
   }
   return 'clear';
 };
-TetrisBoard.prototype.cycleDropBlock = function() {
+TetrisBoard.prototype.cycleDropBlock = function(args = {}) {
+  var dropDelay = args.quickly ? FAST_DROP : DROP_DELAY;
   this.blit();
-  this.dropInterval = setInterval(this.dropBlock.bind(this), DROP_DELAY);
+  if(this.dropInterval) clearInterval(this.dropInterval);
+  this.dropInterval = setInterval(this.dropBlock.bind(this), dropDelay);
 }
 TetrisBoard.prototype.dropBlock = function() {
   this.blit(true);
