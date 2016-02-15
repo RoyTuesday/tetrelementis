@@ -19,9 +19,7 @@ The more I learned about JavaScript, the more I realized my resulting game neede
 
 ## Version History
 
-:large_blue_diamond: **0.529 : 15 Feb 2016 -** Player can make the tetrinimo fall more quickly by holding the down cursor key. Default drop speed has been slowed.
-
-:small_red_triangle_down: **0.471 : 15 Feb 2016 -** Player can now move the tetrinimo left or right using the cursor keys. The tetrinimo stops moving if it reaches either edge of the grid or collides with another tetrinimo.
+:large_blue_diamond: **0.529 : 15 Feb 2016 -** Player can make the tetrinimo fall more quickly by holding the down cursor key and can slide tetrinimo left or right with the corresponding cursor key. Tetrinimo will stop when colliding with the edges of the grid and with other tetrinimos. Default drop speed has been slowed.
 
 :small_red_triangle_down: **0.353 : 13 Feb 2016 -** Line block drops until it reaches the bottom of the grid. Tetrinimo model includes function to move laterally.
 
