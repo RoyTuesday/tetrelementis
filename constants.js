@@ -69,3 +69,11 @@ var processTetrinimos = function() {
   return tetraShape
 }
 var TETRINIMO_SHAPES = processTetrinimos();
+
+var KEY_CODES = {
+  37: 'left',
+  38: 'up',
+  39: 'right',
+  40: 'down',
+  8: 'backspace'
+}
