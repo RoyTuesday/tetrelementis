@@ -9,7 +9,7 @@
 **Download:** If you want to keep a copy on your own computer instead of visiting my site (and why don't you want to visit my site?), keep reading.
 
 1. Clone the repo to your Desktop or whatever directory in which you want to keep it.
-2. Use your favorite browser to open 'index.html' in the 'app' directory
+2. Use your favorite browser to open 'index.html' in the root directory.
 3. Follow the in-game instructions to begin!
 
 ## Development
