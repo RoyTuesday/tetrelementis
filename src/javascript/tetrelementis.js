@@ -227,6 +227,12 @@ View.prototype.animate = function(board) {
   }
   requestAnimationFrame(animate);
 };
+View.prototype.handleInput = function() {
+  if(this.pressed) {
+    console.log(this.pressed);
+    setTimeout(this.handleInput, DROP_DELAY);
+  }
+};
 
 var ready = function(fn) {
   if(document.readyState != 'loading') {
