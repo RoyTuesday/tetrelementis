@@ -121,7 +121,8 @@ TetrisBoard.prototype.dropBlock = function() {
 TetrisBoard.prototype.slideBlock = function(direction) {
   this.blit(true);
   this.tetrinimo.slide(direction);
-  if(this.detectCollision() == 'wall') {
+  var collision = this.detectCollision();
+  if(collision == 'wall' || collision == 'block') {
     var reverseDirection = direction == 'left' ? 'right' : 'left';
     this.tetrinimo.slide(reverseDirection);
   }
