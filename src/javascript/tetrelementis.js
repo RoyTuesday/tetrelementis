@@ -178,8 +178,10 @@ var View = function(args) {
     var pressedKey = keyCodes[event.keyCode];
     if(pressedKey == 'left' || pressedKey == 'right') {
       event.preventDefault();
-      console.log('pressedKey', pressedKey);
-      if(this.pressed !== pressedKey) this.pressed = pressedKey;
+      if(this.pressed !== pressedKey) {
+        this.pressed = pressedKey;
+        console.log('pressedKey', pressedKey);
+      }
     }
   });
 
