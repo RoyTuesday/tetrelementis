@@ -35,3 +35,6 @@ Tetrinimo.prototype.slide = function(direction) {
     block.x += directToInt[direction];
   });
 };
+Tetrinimo.prototype.rotate = function(direction) {
+  ;
+};
