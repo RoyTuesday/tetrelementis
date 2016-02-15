@@ -172,29 +172,36 @@ var keyCodes = {
 
 var View = function(args) {
   this.context = document.querySelector('canvas').getContext('2d');
-  this.debug = "debug string";
   this.gameBoard = args.gameBoard;
-  this.intervalIDs = new Object;
+  this.pressed = false;
 
-  var self = this;
-  addEventListener('keydown', function(event) {
-    var pressedKey = keyCodes[event.keyCode];
-    console.log('pressedKey', pressedKey);
-    if(pressedKey == 'left' || pressedKey == 'right') {
-      event.preventDefault();
-      self.intervalIDs[pressedKey] = setInterval(console.log('direction', pressedKey), SLIDE_DELAY);
-    }
-  });
-
-  addEventListener('keyup', function(event) {
-    var releasedKey = keyCodes[event.keyCode];
-    console.log("releasedKey", releasedKey);
-    if(releasedKey == 'left' || releasedKey == 'right') {
-      event.preventDefault();
-      clearInterval(self.intervalIDs[releasedKey]);
-    }
-  });
+  addEventListener('keydown', this.keyDown.bind(this));
+  addEventListener('keyup', this.keyUp.bind(this));
 }
+View.prototype.keyDown = function(event) {
+  var pressedKey = keyCodes[event.keyCode];
+  if(pressedKey == 'left' || pressedKey == 'right') {
+    event.preventDefault();
+    if(this.pressed == false) {
+      this.pressed = pressedKey;
+      this.handleInput.bind(this).call();
+    }
+  }
+};
+View.prototype.keyUp = function(event){
+  var releasedKey = keyCodes[event.keyCode];
+  if(releasedKey == 'left' || releasedKey == 'right') {
+    event.preventDefault();
+    this.pressed = false;
+  }
+};
+View.prototype.handleInput = function() {
+  console.log('pressed in handleInput', this.pressed);
+  if(this.pressed) {
+    this.gameBoard.slideBlock(this.pressed);
+    setTimeout(this.handleInput.bind(this), DROP_DELAY);
+  }
+};
 View.prototype.drawBoard = function(board) {
   var context = this.context
   context.lineWidth = 4;
