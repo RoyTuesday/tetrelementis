@@ -1,7 +1,11 @@
 var BrowserView = function(args) {
   this.context = document.querySelector('canvas').getContext('2d');
   this.gameBoard = args.gameBoard;
-  this.pressed = false;
+  this.pressed = {
+    slide: false,
+    drop: false,
+    rotate: false
+  };
 
   addEventListener('keydown', this.keyDown.bind(this));
   addEventListener('keyup', this.keyUp.bind(this));
@@ -10,8 +14,15 @@ BrowserView.prototype.keyDown = function(event) {
   var pressedKey = KEY_CODES[event.keyCode];
   if(pressedKey == 'left' || pressedKey == 'right') {
     event.preventDefault();
-    if(this.pressed == false) {
-      this.pressed = pressedKey;
+    if(this.pressed.slide == false) {
+      this.pressed.slide = pressedKey;
+      this.handleInput.bind(this).call();
+    }
+  }
+  if(pressedKey == 'down') {
+    event.preventDefault();
+    if(this.pressed.drop == false) {
+      this.pressed.drop = true;
       this.handleInput.bind(this).call();
     }
   }
@@ -20,13 +31,21 @@ BrowserView.prototype.keyUp = function(event){
   var releasedKey = KEY_CODES[event.keyCode];
   if(releasedKey == 'left' || releasedKey == 'right') {
     event.preventDefault();
-    this.pressed = false;
+    this.pressed.slide = false;
+  }
+  if(releasedKey == 'down') {
+    event.preventDefault();
+    this.pressed.drop = false;
+    this.gameBoard.cycleDropBlock();
   }
 };
 BrowserView.prototype.handleInput = function() {
-  if(this.pressed) {
-    this.gameBoard.slideBlock(this.pressed);
+  if(this.pressed.slide) {
+    this.gameBoard.slideBlock(this.pressed.slide);
     setTimeout(this.handleInput.bind(this), INPUT_DELAY);
+  }
+  if(this.pressed.drop) {
+    this.gameBoard.cycleDropBlock({quickly: true});
   }
 };
 BrowserView.prototype.drawBoard = function(board) {

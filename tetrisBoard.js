@@ -1,7 +1,7 @@
 var TetrisBoard = function(args) {
   this.board = new Array;
   this.tetrinimo = args.tetrinimo;
-  this.dropDelay = DROP_DELAY;
+  this.dropInterval = new Number;
 
   for(var row = 0; row < 20; row++) {
     this.board[row] = new Array;
@@ -37,6 +37,12 @@ TetrisBoard.prototype.detectCollision = function() {
   }
   return 'clear';
 };
+TetrisBoard.prototype.cycleDropBlock = function(args = {}) {
+  var dropDelay = args.quickly ? FAST_DROP : DROP_DELAY;
+  this.blit();
+  if(this.dropInterval) clearInterval(this.dropInterval);
+  this.dropInterval = setInterval(this.dropBlock.bind(this), dropDelay);
+}
 TetrisBoard.prototype.dropBlock = function() {
   this.blit(true);
   this.tetrinimo.drop();
@@ -45,11 +51,10 @@ TetrisBoard.prototype.dropBlock = function() {
     this.tetrinimo.raise();
     this.blit();
     this.tetrinimo = null;
-    clearInterval(this.intervalID);
+    clearInterval(this.dropInterval);
     return;
   }
   this.blit();
-  setTimeout(this.dropBlock.bind(this), this.dropDelay);
 };
 TetrisBoard.prototype.slideBlock = function(direction) {
   this.blit(true);
