@@ -188,6 +188,7 @@ var View = function(args) {
     if(releasedKey == 'left' || releasedKey == 'right') {
       event.preventDefault();
       console.log("releasedKey", releasedKey);
+      this.pressed = null;
     }
   });
 }
