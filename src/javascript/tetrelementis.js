@@ -121,7 +121,7 @@ TetrisBoard.prototype.dropBlock = function() {
     return;
   }
   this.blit();
-  setInterval(function() {this.dropBlock}, this.dropDelay);
+  setTimeout(this.dropBlock.bind(this), this.dropDelay);
 };
 TetrisBoard.prototype.slideBlock = function(direction) {
   this.blit(true);
@@ -206,7 +206,6 @@ View.prototype.keyUp = function(event){
   }
 };
 View.prototype.handleInput = function() {
-  console.log('pressed in handleInput', this.pressed);
   if(this.pressed) {
     this.gameBoard.slideBlock(this.pressed);
     setTimeout(this.handleInput.bind(this), INPUT_DELAY);
