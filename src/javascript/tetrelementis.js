@@ -198,6 +198,7 @@ View.prototype.keyUp = function(event){
 View.prototype.handleInput = function() {
   console.log('pressed in handleInput', this.pressed);
   if(this.pressed) {
+    this.gameBoard.slideBlock(this.pressed);
     setTimeout(this.handleInput.bind(this), DROP_DELAY);
   }
 };
