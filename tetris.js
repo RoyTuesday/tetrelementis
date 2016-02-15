@@ -19,5 +19,5 @@ ready(function() {
   
   gameBoard.blit({tetrinimo: lineBlock});
   gameView.animate(gameBoard.board);
-  gameBoard.dropBlock();
+  gameBoard.cycleDropBlock();
 });
