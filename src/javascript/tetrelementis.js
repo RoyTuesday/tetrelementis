@@ -173,27 +173,34 @@ var keyCodes = {
 var View = function(args) {
   this.context = document.querySelector('canvas').getContext('2d');
   this.gameBoard = args.gameBoard;
+  this.pressed = false;
 
-  addEventListener('keydown', function(event) {
-    var pressedKey = keyCodes[event.keyCode];
-    if(pressedKey == 'left' || pressedKey == 'right') {
-      event.preventDefault();
-      if(this.pressed !== pressedKey) {
-        this.pressed = pressedKey;
-        console.log('pressedKey', pressedKey);
-      }
-    }
-  });
-
-  addEventListener('keyup', function(event) {
-    var releasedKey = keyCodes[event.keyCode];
-    if(releasedKey == 'left' || releasedKey == 'right') {
-      event.preventDefault();
-      console.log("releasedKey", releasedKey);
-      this.pressed = null;
-    }
-  });
+  addEventListener('keydown', this.keyDown.bind(this));
+  addEventListener('keyup', this.keyUp.bind(this));
 }
+View.prototype.keyDown = function(event) {
+  var pressedKey = keyCodes[event.keyCode];
+  if(pressedKey == 'left' || pressedKey == 'right') {
+    event.preventDefault();
+    if(this.pressed == false) {
+      this.pressed = pressedKey;
+      this.handleInput.bind(this).call();
+    }
+  }
+};
+View.prototype.keyUp = function(event){
+  var releasedKey = keyCodes[event.keyCode];
+  if(releasedKey == 'left' || releasedKey == 'right') {
+    event.preventDefault();
+    this.pressed = false;
+  }
+};
+View.prototype.handleInput = function() {
+  console.log('pressed in handleInput', this.pressed);
+  if(this.pressed) {
+    setTimeout(this.handleInput.bind(this), DROP_DELAY);
+  }
+};
 View.prototype.drawBoard = function(board) {
   var context = this.context
   context.lineWidth = 4;
@@ -228,12 +235,6 @@ View.prototype.animate = function(board) {
     }
   }
   requestAnimationFrame(animate);
-};
-View.prototype.handleInput = function() {
-  if(this.pressed) {
-    console.log(this.pressed);
-    setTimeout(this.handleInput, DROP_DELAY);
-  }
 };
 
 var ready = function(fn) {
