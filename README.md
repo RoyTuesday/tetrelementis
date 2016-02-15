@@ -19,7 +19,9 @@ The more I learned about JavaScript, the more I realized my resulting game neede
 
 ## Version History
 
-:large_blue_diamond: **0.353 : 13 Feb 2016 -** Line block drops until it reaches the bottom of the grid. Tetrinimo model includes function to move laterally.
+:large_blue_diamond: **0.471 : 15 Feb 2016 -** Player can now move the tetrinimo left or right using the cursor keys. The tetrinimo stops moving if it reaches either edge of the grid or collides with another tetrinimo.
+
+:small_red_triangle_down: **0.353 : 13 Feb 2016 -** Line block drops until it reaches the bottom of the grid. Tetrinimo model includes function to move laterally.
 
 :small_red_triangle_down: **0.235 : 09 Feb 2016 -** Line block drops five spaces and stops.
 
@@ -43,9 +45,9 @@ The Minimum Viable Product must replicate Tetris, and have some educational cont
 
 :white_check_mark: Wall collision: A tetrinimo stops moving laterally once it reaches a side of the grid.
 
-:white_medium_small_square: Tetrinimo collision: A tetrinimo stops moving when it collides with a landed tetrinimo.
+:white_check_mark: Tetrinimo collision: A tetrinimo stops moving when it collides with a landed tetrinimo.
 
-:white_medium_small_square: Lateral Control: Player can move the active tetrinimo left or right.
+:white_check_mark: Lateral Control: Player can move the active tetrinimo left or right.
 
 :white_medium_small_square: Vertical Control: Player can increase the falling speed of the active tetrinimo.
 
