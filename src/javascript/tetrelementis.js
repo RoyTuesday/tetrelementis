@@ -20,7 +20,7 @@ var CHEMICAL_ELEMENTS = {
 
 var BLOCK_FONT = "12px Verdana";
 var DROP_DELAY = 300;
-var SLIDE_DELAY = 200;
+var INPUT_DELAY = 200;
 
 var GRID_HEIGHT = 20;
 var GRID_WIDTH = 10;
@@ -204,7 +204,7 @@ View.prototype.handleInput = function() {
   console.log('pressed in handleInput', this.pressed);
   if(this.pressed) {
     this.gameBoard.slideBlock(this.pressed);
-    setTimeout(this.handleInput.bind(this), DROP_DELAY);
+    setTimeout(this.handleInput.bind(this), INPUT_DELAY);
   }
 };
 View.prototype.drawBoard = function(board) {
