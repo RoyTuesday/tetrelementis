@@ -20,6 +20,7 @@ var CHEMICAL_ELEMENTS = {
 
 var BLOCK_FONT = "12px Verdana";
 var DROP_DELAY = 300;
+var FAST_DROP = 100;
 var INPUT_DELAY = 200;
 
 var GRID_HEIGHT = 20;
