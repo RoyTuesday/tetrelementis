@@ -36,12 +36,16 @@ BrowserView.prototype.keyUp = function(event){
   if(releasedKey == 'down') {
     event.preventDefault();
     this.pressed.drop = false;
+    this.gameBoard.cycleDropBlock();
   }
 };
 BrowserView.prototype.handleInput = function() {
   if(this.pressed.slide) {
     this.gameBoard.slideBlock(this.pressed.slide);
     setTimeout(this.handleInput.bind(this), INPUT_DELAY);
+  }
+  if(this.pressed.drop) {
+    this.gameBoard.cycleDropBlock({quickly: true});
   }
 };
 BrowserView.prototype.drawBoard = function(board) {
