@@ -20,7 +20,7 @@ var CHEMICAL_ELEMENTS = {
 
 var BLOCK_FONT = "12px Verdana";
 var DROP_DELAY = 300;
-var SLIDE_DELAY = 200;
+var INPUT_DELAY = 200;
 
 var GRID_HEIGHT = 20;
 var GRID_WIDTH = 10;
@@ -73,6 +73,7 @@ var TETRINIMO_SHAPES = processTetrinimos();
 var TetrisBoard = function(args) {
   this.board = new Array;
   this.tetrinimo = args.tetrinimo;
+  this.dropDelay = DROP_DELAY;
 
   for(var row = 0; row < 20; row++) {
     this.board[row] = new Array;
@@ -114,9 +115,13 @@ TetrisBoard.prototype.dropBlock = function() {
   var collision = this.detectCollision();
   if(collision == 'floor' || collision == 'block') {
     this.tetrinimo.raise();
+    this.blit();
+    this.tetrinimo = null;
     clearInterval(this.intervalID);
+    return;
   }
   this.blit();
+  setInterval(function() {this.dropBlock}, this.dropDelay);
 };
 TetrisBoard.prototype.slideBlock = function(direction) {
   this.blit(true);
@@ -204,7 +209,7 @@ View.prototype.handleInput = function() {
   console.log('pressed in handleInput', this.pressed);
   if(this.pressed) {
     this.gameBoard.slideBlock(this.pressed);
-    setTimeout(this.handleInput.bind(this), DROP_DELAY);
+    setTimeout(this.handleInput.bind(this), INPUT_DELAY);
   }
 };
 View.prototype.drawBoard = function(board) {
@@ -264,8 +269,5 @@ ready(function() {
   
   gameBoard.blit({tetrinimo: lineBlock});
   gameView.animate(gameBoard.board);
-  
-  gameBoard.intervalID = setInterval(function() {
-    gameBoard.dropBlock(lineBlock);
-  }, DROP_DELAY);
+  gameBoard.dropBlock();
 });
