@@ -41,7 +41,6 @@ BrowserView.prototype.keyUp = function(event){
 BrowserView.prototype.handleInput = function() {
   if(this.pressed.slide) {
     this.gameBoard.slideBlock(this.pressed.slide);
-    this.gameBoard.dropQuickly();
     setTimeout(this.handleInput.bind(this), INPUT_DELAY);
   }
 };
