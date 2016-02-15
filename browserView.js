@@ -19,6 +19,13 @@ BrowserView.prototype.keyDown = function(event) {
       this.handleInput.bind(this).call();
     }
   }
+  if(pressedKey == 'down') {
+    event.preventDefault();
+    if(this.pressed.drop == false) {
+      this.pressed.drop = true;
+      this.handleInput.bind(this).call();
+    }
+  }
 };
 BrowserView.prototype.keyUp = function(event){
   var releasedKey = KEY_CODES[event.keyCode];
@@ -26,10 +33,15 @@ BrowserView.prototype.keyUp = function(event){
     event.preventDefault();
     this.pressed.slide = false;
   }
+  if(releasedKey == 'down') {
+    event.preventDefault();
+    this.pressed.drop = false;
+  }
 };
 BrowserView.prototype.handleInput = function() {
   if(this.pressed.slide) {
     this.gameBoard.slideBlock(this.pressed.slide);
+    this.gameBoard.dropQuickly();
     setTimeout(this.handleInput.bind(this), INPUT_DELAY);
   }
 };
