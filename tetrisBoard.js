@@ -66,3 +66,8 @@ TetrisBoard.prototype.slideBlock = function(direction) {
   }
   this.blit();
 };
+TetrisBoard.prototype.rotateBlock = function() {
+  this.blit(true);
+  this.tetrinimo.rotate();
+  this.blit();
+}
