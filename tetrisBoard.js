@@ -28,6 +28,9 @@ TetrisBoard.prototype.detectCollision = function() {
     if(currentBlock.y >= GRID_HEIGHT) {
       return 'floor';
     }
+    else if(currentBlock.y < 0) {
+      return 'ceiling';
+    }
     else if(currentBlock.x < 0 || currentBlock.x >= GRID_WIDTH) {
       return 'wall';
     }
