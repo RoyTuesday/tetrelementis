@@ -40,8 +40,12 @@ Tetrinimo.prototype.rotate = function(direction) {
   var center = this.blocks[0];
 
   this.blocks.forEach(function(block) {
+    console.log('block', block, 'center', center);
     modX = block.y - center.y;
-    modY = (block.x - center.x) * -1;
+    modY = block.x - center.x;
+    if(modY !== 0) modY * -1;
+
+    console.log('modX', modX, 'modY', modY);
     block.x = center.x + modX;
     block.y = center.y + modY;
   });
