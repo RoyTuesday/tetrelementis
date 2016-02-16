@@ -19,7 +19,9 @@ The more I learned about JavaScript, the more I realized my resulting game neede
 
 ## Version History
 
-:large_blue_diamond: **0.529 : 15 Feb 2016 -** Player can make the tetrinimo fall more quickly by holding the down cursor key and can slide tetrinimo left or right with the corresponding cursor key. Tetrinimo will stop when colliding with the edges of the grid and with other tetrinimos. Default drop speed has been slowed.
+:large_blue_diamond: **0.588 : 16 Feb 2016 -** Player now can rotate tetrinimo, unless doing so would collide with the bounds of the grid or another tetrinimo.
+
+:small_red_triangle_down: **0.529 : 15 Feb 2016 -** Player can make the tetrinimo fall more quickly by holding the down cursor key and can slide tetrinimo left or right with the corresponding cursor key. Tetrinimo will stop when colliding with the edges of the grid and with other tetrinimos. Default drop speed has been slowed.
 
 :small_red_triangle_down: **0.353 : 13 Feb 2016 -** Line block drops until it reaches the bottom of the grid. Tetrinimo model includes function to move laterally.
 
@@ -51,7 +53,7 @@ The Minimum Viable Product must replicate Tetris, and have some educational cont
 
 :white_check_mark: Vertical Control: Player can increase the falling speed of the active tetrinimo.
 
-:white_medium_small_square: Rotation: Player can rotate the active tetrinimo clockwise or counter-clockwise.
+:white_check_mark: Rotation: Player can rotate the active tetrinimo clockwise or counter-clockwise.
 
 :white_medium_small_square: Block preview: Display upcoming block.
 
