@@ -35,3 +35,23 @@ Tetrinimo.prototype.slide = function(direction) {
     block.x += directToInt[direction];
   });
 };
+Tetrinimo.prototype.rotate = function(direction) {
+  var modX, modY;
+  var center = this.blocks[0];
+
+  this.blocks.forEach(function(block) {
+    console.log('block', block, 'center', center);
+    modX = block.y - center.y;
+    modY = block.x - center.x;
+    if(direction == 'counter') {
+      if(modY !== 0) modY *= -1;
+    }
+    else {
+      if(modX !== 0) modX *= -1;
+    }
+
+    console.log('modX', modX, 'modY', modY);
+    block.x = center.x + modX;
+    block.y = center.y + modY;
+  });
+};

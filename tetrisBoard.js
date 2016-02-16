@@ -66,3 +66,13 @@ TetrisBoard.prototype.slideBlock = function(direction) {
   }
   this.blit();
 };
+TetrisBoard.prototype.rotateBlock = function(direction) {
+  this.blit(true);
+  this.tetrinimo.rotate(direction);
+  var collision = this.detectCollision();
+  if(collision != 'clear') {
+    var reverseDirection = direction == 'clock' ? 'counter' : 'clock';
+    this.tetrinimo.rotate(reverseDirection);
+  }
+  this.blit();
+}
