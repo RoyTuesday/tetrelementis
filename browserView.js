@@ -26,6 +26,13 @@ BrowserView.prototype.keyDown = function(event) {
       this.handleInput.bind(this).call();
     }
   }
+  if(pressedKey == 'up') {
+    event.preventDefault();
+    if(this.pressed.rotate == false) {
+      this.pressed.rotate = true;
+      this.handleInput.bind(this).call();
+    }
+  }
 };
 BrowserView.prototype.keyUp = function(event){
   var releasedKey = KEY_CODES[event.keyCode];
@@ -38,6 +45,10 @@ BrowserView.prototype.keyUp = function(event){
     this.pressed.drop = false;
     this.gameBoard.cycleDropBlock();
   }
+  if(releasedKey == 'up') {
+    event.preventDefault();
+    this.pressed.rotate = false;
+  }
 };
 BrowserView.prototype.handleInput = function() {
   if(this.pressed.slide) {
@@ -46,6 +57,10 @@ BrowserView.prototype.handleInput = function() {
   }
   if(this.pressed.drop) {
     this.gameBoard.cycleDropBlock({quickly: true});
+  }
+  if(this.pressed.rotate) {
+    this.gameBoard.rotateBlock('counter');
+    setTimeout(this.handleInput.bind(this), INPUT_DELAY);
   }
 };
 BrowserView.prototype.drawBoard = function(board) {
