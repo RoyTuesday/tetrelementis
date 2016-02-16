@@ -36,5 +36,13 @@ Tetrinimo.prototype.slide = function(direction) {
   });
 };
 Tetrinimo.prototype.rotate = function(direction) {
-  ;
+  var modX, modY;
+  var center = this.blocks[0];
+
+  this.blocks.forEach(function(block) {
+    modX = block.y - center.y;
+    modY = (block.x - center.x) * -1;
+    block.x = center.x + modX;
+    block.y = center.y + modY;
+  });
 };
