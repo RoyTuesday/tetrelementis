@@ -1,4 +1,4 @@
-var TetrisBoard = function(args) {
+var TetrisBoard = function(args = {}) {
   this.board = new Array;
   this.tetrinimo = args.tetrinimo || new Tetrinimo({
     element: 1, shape: TETRINIMO_SHAPES.line
