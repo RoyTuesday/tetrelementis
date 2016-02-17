@@ -76,3 +76,17 @@ The Minimum Viable Product must replicate Tetris, and have some educational cont
 :white_medium_small_square: Provide alternate control scheme for mobile users
 
 :white_medium_small_square: Ensure compatability on more browsers: Opera, Internet Explorer
+
+## Old Version Screenshots
+
+Here's the old game board, using a grid made of div elements.
+
+![old game board](/imgs/old-tetris-board.png)
+
+The upcoming tetrinimo preview was also used div elements, and included a brief description of the chemical element the tetrinimo used.
+
+![old game preview](/imgs/old-tetris-preview.png)
+
+More of the old version, here we can see the periodic table filling in with every new tetrinimo.
+
+![old game periodic table](/imgs/old-tetris-table.png)
