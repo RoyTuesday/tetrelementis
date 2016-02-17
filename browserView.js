@@ -1,5 +1,12 @@
 var BrowserView = function(args) {
-  this.context = document.querySelector('canvas').getContext('2d');
+  var canvas = document.querySelector('canvas');
+
+  BLOCK_SPACING_HEIGHT = canvas.getAttribute('height') / 20;
+  BLOCK_SPACING_WIDTH = canvas.getAttribute('width') / 10;
+  BLOCK_HEIGHT = BLOCK_SPACING_HEIGHT - 10;
+  BLOCK_WIDTH = BLOCK_SPACING_WIDTH - 10;
+
+  this.context = canvas.getContext('2d');
   this.gameBoard = args.gameBoard;
   this.pressed = {
     slide: false,
@@ -80,7 +87,7 @@ BrowserView.prototype.drawBoard = function(board) {
     });
   });
 };
-BrowserView.prototype.animate = function(board) {
+BrowserView.prototype.animate = function() {
   var lastTime = null;
   var progress = true;
   var self = this;
@@ -91,7 +98,7 @@ BrowserView.prototype.animate = function(board) {
       progress = timeStep < 2000;
     }
     lastTime = time;
-    self.drawBoard(board);
+    self.drawBoard(self.gameBoard.board);
     if(progress) {
       requestAnimationFrame(animate);
     }
