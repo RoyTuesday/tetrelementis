@@ -18,6 +18,17 @@ var generateRandomElements = function() {
 
   return randElements;
 };
+var getRandomShape = function() {
+  var counter = 0;
+  var randNum = Math.floor(Math.random() * 7);
+
+  for(var prop in TETRINIMO_SHAPES) {
+    if(TETRINIMO_SHAPES.hasOwnProperty(prop)) {
+      if(counter == randNum) return TETRINIMO_SHAPES[prop];
+      counter++;
+    }
+  }
+};
 
 var TetrisBoard = function(args = {}) {
   this.board = new Array;
