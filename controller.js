@@ -10,7 +10,7 @@ var generateRandomElements = function() {
 
   var length = new Number(orderedElements.length);
 
-  for(var i = 0; i < length; i += 1) {
+  for(var i = 0; i < length; i++) {
     var randIndex = Math.floor(Math.random() * orderedElements.length);
     randElements.push(orderedElements[randIndex]);
     orderedElements.splice(randIndex, 1);
