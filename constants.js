@@ -1,23 +1,3 @@
-var CHEMICAL_ELEMENTS = {
-  0: {'background-color': '#F1EEFA',
-      'border-color': '#AAA',
-      'color': '#F1EEFA',
-      'name': 'n/a',
-      'symbol': ''},
-
-  1: {'background-color': '#dde',
-      'border-color': '#888',
-      'color': 'black',
-      'name': 'hydrogen',
-      'symbol': 'H'},
-
-  2: {'background-color': '#edd',
-      'border-color': '#888',
-      'color': 'black',
-      'name': 'helium',
-      'symbol': 'He'},
-};
-
 var BLOCK_FONT = "12px Verdana";
 var DROP_DELAY = 600;
 var FAST_DROP = 100;
