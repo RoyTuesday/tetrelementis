@@ -22,6 +22,7 @@ var generateRandomElements = function() {
 var Controller = function(shape) {
   this.gameBoard = new TetrisBoard();
   this.gameView = new BrowserView({gameBoard: this.gameBoard});
+  this.randElements = generateRandomElements();
 }
 Controller.prototype.startGame = function() {
   this.gameBoard.blit();
