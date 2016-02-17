@@ -4,7 +4,7 @@
 
 ## Setup
 
-**Easy method:** I keep my most up-to-date, stable version of the game on my personal website [here!](http://peternatewood.com)
+**Easy method:** I keep my most up-to-date, stable version of the game on my personal website <a href="http://peternatewood.com" target="_blank">here!</a>
 
 **Download:** If you want to keep a copy on your own computer instead of visiting my site (and why don't you want to visit my site?), keep reading.
 
