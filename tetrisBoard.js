@@ -1,8 +1,31 @@
+var generateRandomElements = function() {
+  var randElements = new Array;
+  var orderedElements = new Array;
+
+  for(var prop in CHEMICAL_ELEMENTS) {
+    if(CHEMICAL_ELEMENTS.hasOwnProperty(prop)) {
+      orderedElements.push(prop);
+    }
+  }
+
+  var length = new Number(orderedElements.length);
+
+  for(var i = 0; i < length; i++) {
+    var randIndex = Math.floor(Math.random() * orderedElements.length);
+    randElements.push(orderedElements[randIndex]);
+    orderedElements.splice(randIndex, 1);
+  }
+
+  return randElements;
+};
+
 var TetrisBoard = function(args = {}) {
   this.board = new Array;
   this.tetrinimo = args.tetrinimo || new Tetrinimo({
     element: 1, shape: TETRINIMO_SHAPES.line
   });
+  this.randElements = generateRandomElements();
+
   this.dropInterval = new Number;
 
   for(var row = 0; row < 20; row++) {
