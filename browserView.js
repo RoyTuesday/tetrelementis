@@ -80,7 +80,7 @@ BrowserView.prototype.drawBoard = function(board) {
     });
   });
 };
-BrowserView.prototype.animate = function(board) {
+BrowserView.prototype.animate = function() {
   var lastTime = null;
   var progress = true;
   var self = this;
@@ -91,7 +91,7 @@ BrowserView.prototype.animate = function(board) {
       progress = timeStep < 2000;
     }
     lastTime = time;
-    self.drawBoard(board);
+    self.drawBoard(self.gameBoard.board);
     if(progress) {
       requestAnimationFrame(animate);
     }
