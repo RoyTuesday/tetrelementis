@@ -6,4 +6,4 @@ Controller.prototype.startGame = function() {
   this.gameBoard.blit();
   this.gameView.animate();
   this.gameBoard.cycleDropBlock();
-}
+};
