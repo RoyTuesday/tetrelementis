@@ -32,10 +32,11 @@ var getRandomShape = function() {
 
 var TetrisBoard = function(args = {}) {
   this.board = new Array;
-  this.tetrinimo = args.tetrinimo || new Tetrinimo({
-    element: 1, shape: TETRINIMO_SHAPES.line
-  });
   this.randElements = generateRandomElements();
+  this.tetrinimo = args.tetrinimo || new Tetrinimo({
+    element: this.randElements.pop(),
+    shape: getRandomShape()
+  });
 
   this.dropInterval = new Number;
 
