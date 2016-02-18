@@ -82,7 +82,7 @@ TetrisBoard.prototype.cycleDropBlock = function(args = {}) {
   this.blit();
   if(this.dropInterval) clearInterval(this.dropInterval);
   this.dropInterval = setInterval(this.dropBlock.bind(this), dropDelay);
-}
+};
 TetrisBoard.prototype.dropBlock = function() {
   this.blit(true);
   this.tetrinimo.drop();
@@ -92,9 +92,7 @@ TetrisBoard.prototype.dropBlock = function() {
     this.blit();
     this.tetrinimo = null;
     clearInterval(this.dropInterval);
-    this.tetrinimo = new Tetrinimo({shape: getRandomShape(), element: this.randElements.pop()})
-    if(this.isGameOver() === false) this.cycleDropBlock();
-    return;
+    return 'landed';
   }
   this.blit();
 };
