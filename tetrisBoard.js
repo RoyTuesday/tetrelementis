@@ -92,6 +92,8 @@ TetrisBoard.prototype.dropBlock = function() {
     this.blit();
     this.tetrinimo = null;
     clearInterval(this.dropInterval);
+    this.tetrinimo = new Tetrinimo({shape: getRandomShape(), element: this.randElements.pop()})
+    if(this.isGameOver() === false) this.cycleDropBlock();
     return;
   }
   this.blit();
@@ -115,4 +117,10 @@ TetrisBoard.prototype.rotateBlock = function(direction) {
     this.tetrinimo.rotate(reverseDirection);
   }
   this.blit();
-}
+};
+TetrisBoard.prototype.isGameOver = function() {
+  if(this.detectCollision() == 'clear') {
+    return false;
+  }
+  return true;
+};
