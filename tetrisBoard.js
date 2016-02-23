@@ -64,6 +64,7 @@ TetrisBoard.prototype.dropBlock = function() {
     this.createNextTetrinimo();
     if(this.isOutOfSpace()) {
       clearInterval(this.dropInterval);
+      this.blit();
       this.showGameOver();
       return;
     }
