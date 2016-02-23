@@ -106,7 +106,6 @@ BrowserView.prototype.drawPreview = function() {
 BrowserView.prototype.animate = function() {
   var lastTime = null;
   var progress = true;
-  var self = this;
 
   var animate = function(time) {
     if(lastTime) {
@@ -114,11 +113,11 @@ BrowserView.prototype.animate = function() {
       progress = timeStep < 2000;
     }
     lastTime = time;
-    self.drawBoard(self.gameBoard.board);
-    self.drawPreview();
+    this.drawBoard(this.gameBoard.board);
+    this.drawPreview();
     if(progress) {
-      requestAnimationFrame(animate);
+      requestAnimationFrame(animate.bind(this));
     }
   }
-  requestAnimationFrame(animate);
+  requestAnimationFrame(animate.bind(this));
 };
