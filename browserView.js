@@ -1,5 +1,5 @@
 var BrowserView = function(args) {
-  var canvas = document.querySelector('canvas.tetris-grid');
+  var canvas = document.querySelector('canvas#tetris-grid');
 
   BLOCK_SPACING_HEIGHT = canvas.getAttribute('height') / 20;
   BLOCK_SPACING_WIDTH = canvas.getAttribute('width') / 10;
