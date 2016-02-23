@@ -17,4 +17,5 @@ body {
 }
 #tetris-preview {
   border: 4px double #977;
+  vertical-align: top;
 }
