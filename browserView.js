@@ -93,6 +93,9 @@ BrowserView.prototype.drawBoard = function(board) {
     });
   });
 };
+BrowserView.prototype.drawPreview = function() {
+  ;
+};
 BrowserView.prototype.animate = function() {
   var lastTime = null;
   var progress = true;
