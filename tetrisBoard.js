@@ -68,6 +68,7 @@ TetrisBoard.prototype.dropBlock = function() {
       this.showGameOver();
       return;
     }
+    this.handleFullLines();
   }
   this.blit();
 };
@@ -90,6 +91,22 @@ TetrisBoard.prototype.rotateBlock = function(direction) {
     this.tetrinimo.rotate(reverseDirection);
   }
   this.blit();
+};
+TetrisBoard.prototype.handleFullLines = function() {
+  this.board.forEach(function(row, rIndex, board) {
+    var filled = true;
+    row.forEach(function(block) {
+      if(block == 0) filled = false;
+    });
+    if(filled) {
+      for(var i = rIndex; i > 0; i--) {
+        board[i] = board[i - 1].map(function(col) {
+          return col;
+        });
+      }
+      board[0] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    }
+  });
 };
 TetrisBoard.prototype.isOutOfSpace = function() {
   if(this.detectCollision() == 'clear') {
