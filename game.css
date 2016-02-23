@@ -13,9 +13,9 @@ body {
 }
 
 #tetris-grid {
-  border: 1px solid #779;
+  border: 1px solid #DAA;
 }
 #tetris-preview {
-  border: 4px double #977;
+  border: 1px solid #AAD;
   vertical-align: top;
 }
