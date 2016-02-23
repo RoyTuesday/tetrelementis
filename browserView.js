@@ -1,6 +1,7 @@
 var BrowserView = function(args) {
   var gridCanvas = document.querySelector('canvas#tetris-grid');
   var previewCanvas = document.querySelector('canvas#tetris-preview');
+  var tableCanvas = document.querySelector('canvas#tetris-table');
 
   BLOCK_SPACING_HEIGHT = gridCanvas.getAttribute('height') / 20;
   BLOCK_SPACING_WIDTH = gridCanvas.getAttribute('width') / 10;
@@ -17,6 +18,7 @@ var BrowserView = function(args) {
     [0, 0, 0, 0],
     [0, 0, 0, 0]
   ];
+  this.tableBoard = new Array;
 
   this.cycleDropBlock = args.cycleDropBlock;
   this.pressed = {
