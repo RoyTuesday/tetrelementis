@@ -84,7 +84,7 @@ TetrisBoard.prototype.rotateBlock = function(direction) {
   }
   this.blit();
 };
-TetrisBoard.prototype.isGameOver = function() {
+TetrisBoard.prototype.isOutOfSpace = function() {
   if(this.detectCollision() == 'clear') {
     return false;
   }
