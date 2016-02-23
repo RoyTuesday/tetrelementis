@@ -5,6 +5,7 @@ var TetrisBoard = function(args = {}) {
     element: 1,
     shape: TETRINIMO_SHAPES.line
   });
+  this.createNextTetrinimo = args.createNextTetrinimo;
 
   this.dropInterval = new Number;
 
@@ -59,8 +60,7 @@ TetrisBoard.prototype.dropBlock = function() {
     this.tetrinimo.raise();
     this.blit();
     this.tetrinimo = null;
-    clearInterval(this.dropInterval);
-    return 'landed';
+    this.createNextTetrinimo();
   }
   this.blit();
 };
