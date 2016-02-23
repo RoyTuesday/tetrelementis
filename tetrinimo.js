@@ -37,7 +37,10 @@ Tetrinimo.prototype.slide = function(direction) {
 };
 Tetrinimo.prototype.rotate = function(direction) {
   var modX, modY;
-  var center = this.blocks[0];
+  var center = {
+    x: Math.ceil((this.blocks[3].x - this.blocks[0].x) / 2) + this.blocks[0].x,
+    y: Math.ceil((this.blocks[3].y - this.blocks[0].y) / 2) + this.blocks[0].y
+  };
 
   this.blocks.forEach(function(block) {
     console.log('block', block, 'center', center);
