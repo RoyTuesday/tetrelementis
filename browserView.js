@@ -11,6 +11,13 @@ var BrowserView = function(args) {
   this.previewContext = previewCanvas.getContext('2d');
 
   this.gameBoard = args.gameBoard;
+  this.previewBoard = [
+    [0, 0, 0, 0],
+    [0, 0, 0, 0],
+    [0, 0, 0, 0],
+    [0, 0, 0, 0]
+  ];
+
   this.cycleDropBlock = args.cycleDropBlock;
   this.pressed = {
     slide: false,
