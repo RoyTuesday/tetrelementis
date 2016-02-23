@@ -83,8 +83,8 @@ BrowserView.prototype.handleInput = function() {
     setTimeout(this.handleInput.bind(this), INPUT_DELAY);
   }
 };
-BrowserView.prototype.drawBoard = function(board) {
-  var gridContext = this.gridContext
+BrowserView.prototype.drawBoard = function(board, context) {
+  var gridContext = context || this.gridContext
   gridContext.lineWidth = 4;
   gridContext.font = BLOCK_FONT;
 
@@ -101,7 +101,7 @@ BrowserView.prototype.drawBoard = function(board) {
   });
 };
 BrowserView.prototype.drawPreview = function() {
-  ;
+  this.drawBoard(this.previewBoard, this.previewContext);
 };
 BrowserView.prototype.animate = function() {
   var lastTime = null;
