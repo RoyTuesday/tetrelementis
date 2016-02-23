@@ -36,7 +36,8 @@ var Controller = function(shape) {
     tetrinimo: new Tetrinimo({
       element: this.elements.pop(),
       shape: getRandomShape()
-    })
+    }),
+    createNextTetrinimo: this.createNextTetrinimo.bind(this)
   });
   this.gameView = new BrowserView({
     gameBoard: this.gameBoard,
@@ -60,3 +61,9 @@ Controller.prototype.cycleDropBlock = function (args = {}) {
     dropDelay
   );
 };
+Controller.prototype.createNextTetrinimo = function() {
+  this.gameBoard.tetrinimo = new Tetrinimo({
+    element: this.elements.pop(),
+    shape: getRandomShape()
+  })
+}
