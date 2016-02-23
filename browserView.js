@@ -84,7 +84,7 @@ BrowserView.prototype.handleInput = function() {
   }
 };
 BrowserView.prototype.drawBoard = function(board, context) {
-  var gridContext = context || this.gridContext
+  var gridContext = context;
   gridContext.lineWidth = 4;
   gridContext.font = BLOCK_FONT;
 
@@ -100,9 +100,6 @@ BrowserView.prototype.drawBoard = function(board, context) {
     });
   });
 };
-BrowserView.prototype.drawPreview = function() {
-  this.drawBoard(this.previewBoard, this.previewContext);
-};
 BrowserView.prototype.animate = function() {
   var lastTime = null;
   var progress = true;
@@ -113,8 +110,8 @@ BrowserView.prototype.animate = function() {
       progress = timeStep < 2000;
     }
     lastTime = time;
-    this.drawBoard(this.gameBoard.board);
-    this.drawPreview();
+    this.drawBoard(this.gameBoard.board, this.gridContext);
+    this.drawBoard(this.previewBoard, this.previewContext);
     if(progress) {
       requestAnimationFrame(animate.bind(this));
     }
