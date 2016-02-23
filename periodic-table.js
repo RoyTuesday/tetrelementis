@@ -17,3 +17,7 @@ var PeriodicTable = function() {
     this.board.push(tableRow);
   }
 }
+PeriodicTable.prototype.showElement = function(atomicNum) {
+  this.elements[atomicNum].show = true;
+  this.board[elements[atomicNum].y][elements[atomicNum].x] = atomicNum;
+}
