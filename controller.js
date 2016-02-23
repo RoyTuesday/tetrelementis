@@ -31,7 +31,13 @@ var getRandomShape = function() {
 };
 
 var Controller = function(shape) {
-  this.gameBoard = new TetrisBoard();
+  this.elements = generateRandomElements();
+  this.gameBoard = new TetrisBoard({
+    tetrinimo: new Tetrinimo({
+      element: this.elements.pop(),
+      shape: getRandomShape()
+    })
+  });
   this.gameView = new BrowserView({
     gameBoard: this.gameBoard,
     cycleDropBlock: this.cycleDropBlock
