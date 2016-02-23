@@ -7,7 +7,7 @@ var BrowserView = function(args) {
   BLOCK_HEIGHT = BLOCK_SPACING_HEIGHT - 10;
   BLOCK_WIDTH = BLOCK_SPACING_WIDTH - 10;
 
-  this.context = gridCanvas.getContext('2d');
+  this.gridContext = gridCanvas.getContext('2d');
   this.gameBoard = args.gameBoard;
   this.cycleDropBlock = args.cycleDropBlock;
   this.pressed = {
@@ -75,19 +75,19 @@ BrowserView.prototype.handleInput = function() {
   }
 };
 BrowserView.prototype.drawBoard = function(board) {
-  var context = this.context
-  context.lineWidth = 4;
-  context.font = BLOCK_FONT;
+  var gridContext = this.gridContext
+  gridContext.lineWidth = 4;
+  gridContext.font = BLOCK_FONT;
 
   board.forEach(function(row, rIndex) {
     row.forEach(function(col, cIndex) {
-      context.fillStyle = CHEMICAL_ELEMENTS[col]['background-color'];
-      context.strokeStyle = CHEMICAL_ELEMENTS[col]['border-color'];
+      gridContext.fillStyle = CHEMICAL_ELEMENTS[col]['background-color'];
+      gridContext.strokeStyle = CHEMICAL_ELEMENTS[col]['border-color'];
 
-      context.fillRect((cIndex * BLOCK_SPACING_WIDTH) + 5, (rIndex * BLOCK_SPACING_HEIGHT) + 5, BLOCK_WIDTH, BLOCK_HEIGHT);
-      context.strokeRect((cIndex * BLOCK_SPACING_WIDTH) + 5, (rIndex * BLOCK_SPACING_HEIGHT) + 5, BLOCK_WIDTH, BLOCK_HEIGHT);
-      context.fillStyle = CHEMICAL_ELEMENTS[col]['color'];
-      context.fillText(CHEMICAL_ELEMENTS[col].symbol, (cIndex * BLOCK_SPACING_WIDTH) + (BLOCK_SPACING_WIDTH / 2) - 6, (rIndex * BLOCK_SPACING_HEIGHT) + (BLOCK_SPACING_HEIGHT / 2) + 4);
+      gridContext.fillRect((cIndex * BLOCK_SPACING_WIDTH) + 5, (rIndex * BLOCK_SPACING_HEIGHT) + 5, BLOCK_WIDTH, BLOCK_HEIGHT);
+      gridContext.strokeRect((cIndex * BLOCK_SPACING_WIDTH) + 5, (rIndex * BLOCK_SPACING_HEIGHT) + 5, BLOCK_WIDTH, BLOCK_HEIGHT);
+      gridContext.fillStyle = CHEMICAL_ELEMENTS[col]['color'];
+      gridContext.fillText(CHEMICAL_ELEMENTS[col].symbol, (cIndex * BLOCK_SPACING_WIDTH) + (BLOCK_SPACING_WIDTH / 2) - 6, (rIndex * BLOCK_SPACING_HEIGHT) + (BLOCK_SPACING_HEIGHT / 2) + 4);
     });
   });
 };
