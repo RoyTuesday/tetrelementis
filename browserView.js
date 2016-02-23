@@ -8,6 +8,8 @@ var BrowserView = function(args) {
   BLOCK_WIDTH = BLOCK_SPACING_WIDTH - 10;
 
   this.gridContext = gridCanvas.getContext('2d');
+  this.previewContext = previewCanvas.getContext('2d');
+
   this.gameBoard = args.gameBoard;
   this.cycleDropBlock = args.cycleDropBlock;
   this.pressed = {
