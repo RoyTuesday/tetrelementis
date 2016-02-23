@@ -37,7 +37,8 @@ var Controller = function(shape) {
       element: this.elements.pop(),
       shape: getRandomShape()
     }),
-    createNextTetrinimo: this.createNextTetrinimo.bind(this)
+    createNextTetrinimo: this.createNextTetrinimo.bind(this),
+    showGameOver: this.showGameOver
   });
   this.gameView = new BrowserView({
     gameBoard: this.gameBoard,
@@ -66,4 +67,7 @@ Controller.prototype.createNextTetrinimo = function() {
     element: this.elements.pop(),
     shape: getRandomShape()
   })
+}
+Controller.prototype.showGameOver = function() {
+  console.log('game over!');
 }
