@@ -8,6 +8,7 @@ var BrowserView = function(args) {
 
   this.context = canvas.getContext('2d');
   this.gameBoard = args.gameBoard;
+  this.cycleDropBlock = args.cycleDropBlock;
   this.pressed = {
     slide: false,
     drop: false,
@@ -50,7 +51,8 @@ BrowserView.prototype.keyUp = function(event){
   if(releasedKey == 'down') {
     event.preventDefault();
     this.pressed.drop = false;
-    this.gameBoard.cycleDropBlock();
+    clearTimeout(this.dropTimeout);
+    this.cycleDropBlock();
   }
   if(releasedKey == 'up') {
     event.preventDefault();
@@ -63,7 +65,8 @@ BrowserView.prototype.handleInput = function() {
     setTimeout(this.handleInput.bind(this), INPUT_DELAY);
   }
   if(this.pressed.drop) {
-    this.gameBoard.cycleDropBlock({quickly: true});
+    clearTimeout(this.dropTimeout);
+    this.cycleDropBlock({quickly: true});
   }
   if(this.pressed.rotate) {
     this.gameBoard.rotateBlock('counter');
