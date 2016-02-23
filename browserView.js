@@ -115,6 +115,7 @@ BrowserView.prototype.animate = function() {
     }
     lastTime = time;
     self.drawBoard(self.gameBoard.board);
+    self.drawPreview();
     if(progress) {
       requestAnimationFrame(animate);
     }
