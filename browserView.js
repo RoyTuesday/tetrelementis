@@ -13,12 +13,7 @@ var BrowserView = function(args) {
   this.tableContext = tableCanvas.getContext('2d');
 
   this.gameBoard = args.gameBoard;
-  this.previewBoard = [
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0]
-  ];
+  this.previewBoard = new PreviewBoard();
   this.tableBoard = new PeriodicTable();
 
   this.cycleDropBlock = args.cycleDropBlock;
@@ -132,7 +127,7 @@ BrowserView.prototype.animate = function() {
     }
     lastTime = time;
     this.drawBoard(this.gameBoard.board, this.gridContext);
-    this.drawBoard(this.previewBoard, this.previewContext);
+    this.drawBoard(this.previewBoard.board, this.previewContext);
     this.drawBoard(this.tableBoard.board, this.tableContext);
     if(progress) {
       requestAnimationFrame(animate.bind(this));
