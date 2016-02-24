@@ -12,13 +12,15 @@ body {
   width: 60em;
 }
 
+#element-description {
+  border: 1px solid #DDA;
+}
 #tetris-grid {
   border: 1px solid #DAA;
 }
 #tetris-preview {
   border: 1px solid #AAD;
   display: block;
-  margin-bottom: 29px;
 }
 #tetris-table {
   border: 1px solid #ADA;
