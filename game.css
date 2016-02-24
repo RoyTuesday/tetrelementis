@@ -12,6 +12,10 @@ body {
   width: 60em;
 }
 
+#right-container {
+  display: inline-block;
+  vertical-align: top;
+}
 #element-description {
   border: 1px solid #DDA;
   height: 182px;
