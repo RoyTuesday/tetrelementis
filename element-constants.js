@@ -11,8 +11,8 @@ var CHEMICAL_ELEMENTS = {
   1: {
     'name': 'hydrogen',
     'symbol': 'H',
-    'background-color': '#C1C5CB',
-    'border-color': '#909399',
+    'background-color': '#DBC3DB',
+    'border-color': '#A971A9',
     'color': 'black',
     'descrip': ""
   },
@@ -21,7 +21,7 @@ var CHEMICAL_ELEMENTS = {
     'name': 'helium',
     'symbol': 'He',
     'background-color': '#EFE09F',
-    'border-color': '#EFB830',
+    'border-color': '#FF9830',
     'color': 'black',
     'descrip': ""
   },
@@ -48,7 +48,7 @@ var CHEMICAL_ELEMENTS = {
     'name': 'boron',
     'symbol': 'B',
     'background-color': '#ACAFA0',
-    'border-color': '#484B40',
+    'border-color': '#876750',
     'color': 'black',
     'descrip': ""
   },
@@ -65,8 +65,8 @@ var CHEMICAL_ELEMENTS = {
   7: {
     'name': 'nitrogen',
     'symbol': 'N',
-    'background-color': '#C8DBC0',
-    'border-color': '#9CAF90',
+    'background-color': '#FFF',
+    'border-color': '#999',
     'color': 'black',
     'descrip': "Makes up the largest percent of air at the Earth's surface."
   },
@@ -83,8 +83,8 @@ var CHEMICAL_ELEMENTS = {
   9: {
     'name': 'fluorine',
     'symbol': 'F',
-    'background-color': '#CEDBC0',
-    'border-color': '#A4AF90',
+    'background-color': '#FFEF82',
+    'border-color': '#B8B870',
     'color': 'black',
     'descrip': "Named after the word \"flow\"."
   },
@@ -173,8 +173,8 @@ var CHEMICAL_ELEMENTS = {
   19: {
     'name': 'potassium',
     'symbol': 'K',
-    'background-color': '#BBA3BB',
-    'border-color': '#A971A9',
+    'background-color': '#FFDFEF',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': "Commonly found in bananas and potatoes."
   },
@@ -182,8 +182,8 @@ var CHEMICAL_ELEMENTS = {
   20: {
     'name': 'calcium',
     'symbol': 'Ca',
-    'background-color': '#9EA3BB',
-    'border-color': '#6871A9',
+    'background-color': '#E4E4DA',
+    'border-color': '#505057',
     'color': 'black',
     'descrip': "Typically found in limestone, from which it gets its \"name\"."
   },
@@ -201,7 +201,7 @@ var CHEMICAL_ELEMENTS = {
     'name': 'titanium',
     'symbol': 'Ti',
     'background-color': '#E4E4DA',
-    'border-color': '#505057',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': ""
   },
@@ -281,8 +281,8 @@ var CHEMICAL_ELEMENTS = {
   31: {
     'name': 'gallium',
     'symbol': 'Ga',
-    'background-color': '#ACAFA0',
-    'border-color': '#484B40',
+    'background-color': '#EFEFEF',
+    'border-color': '#656463',
     'color': 'black',
     'descrip': "Named after the ancient Celtic peoples who inhabited what is now France, Gaul."
   },
@@ -290,8 +290,8 @@ var CHEMICAL_ELEMENTS = {
   32: {
     'name': 'germanium',
     'symbol': 'Ge',
-    'background-color': '#C8DBC0',
-    'border-color': '#9CAF90',
+    'background-color': '#EFEFEF',
+    'border-color': '#656463',
     'color': 'black',
     'descrip': 'Named after the country of Germany.'
   },
@@ -299,8 +299,8 @@ var CHEMICAL_ELEMENTS = {
   33: {
     'name': 'arsenic',
     'symbol': 'As',
-    'background-color': '#C8DBC0',
-    'border-color': '#9CAF90',
+    'background-color': '#EFDF82',
+    'border-color': '#989840',
     'color': 'black',
     'descrip': "Deadly poison to humans, named for its yellow color."
   },
@@ -308,8 +308,8 @@ var CHEMICAL_ELEMENTS = {
   34: {
     'name': 'selenium',
     'symbol': 'Se',
-    'background-color': '#C8DBC0',
-    'border-color': '#9CAF90',
+    'background-color': '#EF9F9F',
+    'border-color': '#EF5C30',
     'color': 'black',
     'descrip': ""
   },
@@ -326,8 +326,8 @@ var CHEMICAL_ELEMENTS = {
   36: {
     'name': 'krypton',
     'symbol': 'Kr',
-    'background-color': '#CDCDC0',
-    'border-color': '#9D9D90',
+    'background-color': '#FFDFEF',
+    'border-color': '#9093A9',
     'color': 'black',
     'descrip': "Named after the Greek for \"hidden\"."
   },
@@ -335,8 +335,8 @@ var CHEMICAL_ELEMENTS = {
   37: {
     'name': 'rubidium',
     'symbol': 'Rb',
-    'background-color': '#BBA3BB',
-    'border-color': '#A971A9',
+    'background-color': '#E4C4DA',
+    'border-color': '#505057',
     'color': 'black',
     'descrip': "Named for it's \"ruby red\" color."
   },
@@ -344,8 +344,8 @@ var CHEMICAL_ELEMENTS = {
   38: {
     'name': 'strontium',
     'symbol': 'Sr',
-    'background-color': '#9EA3BB',
-    'border-color': '#6871A9',
+    'background-color': '#EFEFB2',
+    'border-color': '#656463',
     'color': 'black',
     'descrip': ""
   },
@@ -353,8 +353,8 @@ var CHEMICAL_ELEMENTS = {
   39: {
     'name': 'yttrium',
     'symbol': 'Y',
-    'background-color': '#C1C5DB',
-    'border-color': '#9093A9',
+    'background-color': '#EFEFEF',
+    'border-color': '#656463',
     'color': 'black',
     'descrip': "Named after the village of Ytterby."
   },
@@ -362,8 +362,8 @@ var CHEMICAL_ELEMENTS = {
   40: {
     'name': 'zirconium',
     'symbol': 'Zr',
-    'background-color': '#9093A9',
-    'border-color': '#C1C5DB',
+    'background-color': '#EFEFEF',
+    'border-color': '#656463',
     'color': 'black',
     'descrip': ""
   },
@@ -371,8 +371,8 @@ var CHEMICAL_ELEMENTS = {
   41: {
     'name': 'niobium',
     'symbol': 'Nb',
-    'background-color': '#9093A9',
-    'border-color': '#C1C5DB',
+    'background-color': '#C1C5DB',
+    'border-color': '#707389',
     'color': 'black',
     'descrip': "Named after the city of Niobe."
   },
@@ -380,17 +380,17 @@ var CHEMICAL_ELEMENTS = {
   42: {
     'name': 'molybdenum',
     'symbol': 'Mo',
-    'background-color': '#9093A9',
-    'border-color': '#C1C5DB',
+    'background-color': '#EFEFEF',
+    'border-color': '#656463',
     'color': 'black',
     'descrip': "Also known as \"fool's lead\"."
   },
 
   43: {
-    'name': 'technitium',
+    'name': 'technetium',
     'symbol': 'Tc',
-    'background-color': '#9093A9',
-    'border-color': '#C1C5DB',
+    'background-color': '#EFEFEF',
+    'border-color': '#656463',
     'color': 'black',
     'descrip': ""
   },
@@ -398,8 +398,8 @@ var CHEMICAL_ELEMENTS = {
   44: {
     'name': 'ruthenium',
     'symbol': 'Ru',
-    'background-color': '#9093A9',
-    'border-color': '#C1C5DB',
+    'background-color': '#EFEFEF',
+    'border-color': '#656463',
     'color': 'black',
     'descrip': ""
   },
@@ -407,8 +407,8 @@ var CHEMICAL_ELEMENTS = {
   45: {
     'name': 'rhodium',
     'symbol': 'Rh',
-    'background-color': '#C1C5DB',
-    'border-color': '#9093A9',
+    'background-color': '#FFDFEF',
+    'border-color': '#616063',
     'color': 'black',
     'descrip': "Named for its pink color."
   },
@@ -416,8 +416,8 @@ var CHEMICAL_ELEMENTS = {
   46: {
     'name': 'palladium',
     'symbol': 'Pd',
-    'background-color': '#C1C5DB',
-    'border-color': '#9093A9',
+    'background-color': '#EFEFEF',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': ""
   },
@@ -425,8 +425,8 @@ var CHEMICAL_ELEMENTS = {
   47: {
     'name': 'silver',
     'symbol': 'Ag',
-    'background-color': '#C1C5DB',
-    'border-color': '#9093A9',
+    'background-color': '#EFEFEF',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': "Its chemical symbol derives from the Latin \"argent\"."
   },
@@ -435,7 +435,7 @@ var CHEMICAL_ELEMENTS = {
     'name': 'cadmium',
     'symbol': 'Cd',
     'background-color': '#C1C5DB',
-    'border-color': '#9093A9',
+    'border-color': '#707399',
     'color': 'black',
     'descrip': ""
   },
@@ -443,8 +443,8 @@ var CHEMICAL_ELEMENTS = {
   49: {
     'name': 'indium',
     'symbol': 'In',
-    'background-color': '#ACAFA0',
-    'border-color': '#484B40',
+    'background-color': '#EFEFEF',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': "Named after the country of India."
   },
@@ -452,8 +452,8 @@ var CHEMICAL_ELEMENTS = {
   50: {
     'name': 'tin',
     'symbol': 'Sn',
-    'background-color': '#ACAFA0',
-    'border-color': '#484B40',
+    'background-color': '#EFEFEF',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': ""
   },
@@ -461,8 +461,8 @@ var CHEMICAL_ELEMENTS = {
   51: {
     'name': 'antimony',
     'symbol': 'Sb',
-    'background-color': '#C8DBC0',
-    'border-color': '#9CAF90',
+    'background-color': '#EFEFEF',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': "Known during the Medieval Era to be the death of many monks who did not take enough care while gardening."
   },
@@ -470,8 +470,8 @@ var CHEMICAL_ELEMENTS = {
   52: {
     'name': 'tellurium',
     'symbol': 'Te',
-    'background-color': '#C8DBC0',
-    'border-color': '#9CAF90',
+    'background-color': '#C7A770',
+    'border-color': '#876730',
     'color': 'black',
     'descrip': ""
   },
@@ -488,17 +488,17 @@ var CHEMICAL_ELEMENTS = {
   54: {
     'name': 'xenon',
     'symbol': 'Xe',
-    'background-color': '#CDCDC0',
-    'border-color': '#9D9D90',
+    'background-color': '#EFDFEF',
+    'border-color': '#9093A9',
     'color': 'black',
     'descrip': ""
   },
 
   55: {
-    'name': 'cesium',
+    'name': 'caesium',
     'symbol': 'Cs',
-    'background-color': '#BBA3BB',
-    'border-color': '#A971A9',
+    'background-color': '#F5F391',
+    'border-color': '#838260',
     'color': 'black',
     'descrip': "Named for its sky blue color."
   },
@@ -506,8 +506,8 @@ var CHEMICAL_ELEMENTS = {
   56: {
     'name': 'barium',
     'symbol': 'Ba',
-    'background-color': '#9EA3BB',
-    'border-color': '#6871A9',
+    'background-color': '#EFEFB2',
+    'border-color': '#656463',
     'color': 'black',
     'descrip': "Named after the word for \"heavy\"."
   },
@@ -515,8 +515,8 @@ var CHEMICAL_ELEMENTS = {
   57: {
     'name': 'lanthanum',
     'symbol': 'La',
-    'background-color': '#EFE09F',
-    'border-color': '#EFB830',
+    'background-color': '#EFEFEF',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': ""
   },
@@ -524,8 +524,8 @@ var CHEMICAL_ELEMENTS = {
   58: {
     'name': 'cerium',
     'symbol': 'Ce',
-    'background-color': '#EFE09F',
-    'border-color': '#EFB830',
+    'background-color': '#EFEFEF',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': "Named after the word for \"farm\"."
   },
@@ -533,8 +533,8 @@ var CHEMICAL_ELEMENTS = {
   59: {
     'name': 'praseodymium',
     'symbol': 'Pr',
-    'background-color': '#EFE09F',
-    'border-color': '#EFB830',
+    'background-color': '#EFEFEF',
+    'border-color': '#656463',
     'color': 'black',
     'descrip': ""
   },
@@ -542,8 +542,8 @@ var CHEMICAL_ELEMENTS = {
   60: {
     'name': 'neodymium',
     'symbol': 'Nd',
-    'background-color': '#EFE09F',
-    'border-color': '#EFB830',
+    'background-color': '#EFEFEF',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': ""
   },
@@ -551,8 +551,8 @@ var CHEMICAL_ELEMENTS = {
   61: {
     'name': 'promethium',
     'symbol': 'Pm',
-    'background-color': '#EFE09F',
-    'border-color': '#EFB830',
+    'background-color': '#EFEFFF',
+    'border-color': '#656478',
     'color': 'black',
     'descrip': "Named after the tragic Greek hero Prometheus."
   },
@@ -560,8 +560,8 @@ var CHEMICAL_ELEMENTS = {
   62: {
     'name': 'samarium',
     'symbol': 'Sm',
-    'background-color': '#EFE09F',
-    'border-color': '#EFB830',
+    'background-color': '#EFEFEF',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': ""
   },
@@ -569,8 +569,8 @@ var CHEMICAL_ELEMENTS = {
   63: {
     'name': 'europium',
     'symbol': 'Eu',
-    'background-color': '#EFE09F',
-    'border-color': '#EFB830',
+    'background-color': '#EFEFB2',
+    'border-color': '#656463',
     'color': 'black',
     'descrip': "Named after the continent of Europe."
   },
@@ -578,8 +578,8 @@ var CHEMICAL_ELEMENTS = {
   64: {
     'name': 'gadolinium',
     'symbol': 'Gd',
-    'background-color': '#EFE09F',
-    'border-color': '#EFB830',
+    'background-color': '#EFEFEF',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': ""
   },
@@ -587,8 +587,8 @@ var CHEMICAL_ELEMENTS = {
   65: {
     'name': 'terbium',
     'symbol': 'Tb',
-    'background-color': '#EFE09F',
-    'border-color': '#EFB830',
+    'background-color': '#EFEFEF',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': "Named after the village of Ytterby."
   },
@@ -596,8 +596,8 @@ var CHEMICAL_ELEMENTS = {
   66: {
     'name': 'dysprosium',
     'symbol': 'Dy',
-    'background-color': '#EFE09F',
-    'border-color': '#EFB830',
+    'background-color': '#EFEFEF',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': "Named for being difficult to acquire."
   },
@@ -605,8 +605,8 @@ var CHEMICAL_ELEMENTS = {
   67: {
     'name': 'holmium',
     'symbol': 'Ho',
-    'background-color': '#EFE09F',
-    'border-color': '#EFB830',
+    'background-color': '#EFEFEF',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': "Named after the city of Stockholm, Sweden."
   },
@@ -614,8 +614,8 @@ var CHEMICAL_ELEMENTS = {
   68: {
     'name': 'erbium',
     'symbol': 'Er',
-    'background-color': '#EFE09F',
-    'border-color': '#EFB830',
+    'background-color': '#EFEFEF',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': "Named after the village of Ytterby."
   },
@@ -623,8 +623,8 @@ var CHEMICAL_ELEMENTS = {
   69: {
     'name': 'thulium',
     'symbol': 'Tm',
-    'background-color': '#EFE09F',
-    'border-color': '#EFB830',
+    'background-color': '#E4E4DA',
+    'border-color': '#505057',
     'color': 'black',
     'descrip': "Named after the country of Iceland."
   },
@@ -632,8 +632,8 @@ var CHEMICAL_ELEMENTS = {
   70: {
     'name': 'ytterbium',
     'symbol': 'Yb',
-    'background-color': '#EFE09F',
-    'border-color': '#EFB830',
+    'background-color': '#EFEFB2',
+    'border-color': '#656463',
     'color': 'black',
     'descrip': "Named after the village of Ytterby."
   },
@@ -641,8 +641,8 @@ var CHEMICAL_ELEMENTS = {
   71: {
     'name': 'lutetium',
     'symbol': 'Lu',
-    'background-color': '#EFE09F',
-    'border-color': '#EFB830',
+    'background-color': '#EFEFEF',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': "Named after the original \"name\" of the city of Paris, Lutetia Parisii. 'Lutetia' may refer to the once swamp-like quality of the region."
   },
@@ -650,8 +650,8 @@ var CHEMICAL_ELEMENTS = {
   72: {
     'name': 'hafnum',
     'symbol': 'Hf',
-    'background-color': '#C1C5DB',
-    'border-color': '#9093A9',
+    'background-color': '#E4E4DA',
+    'border-color': '#505057',
     'color': 'black',
     'descrip': "Named after the city of Copenhagen, Switzerland."
   },
@@ -660,7 +660,7 @@ var CHEMICAL_ELEMENTS = {
     'name': 'tantalum',
     'symbol': 'Ta',
     'background-color': '#C1C5DB',
-    'border-color': '#9093A9',
+    'border-color': '#707389',
     'color': 'black',
     'descrip': "Named for the mythical Greek Tantalus: a region deep beneath the surface of the Earth, where Zeus banished the titans."
   },
@@ -668,8 +668,8 @@ var CHEMICAL_ELEMENTS = {
   74: {
     'name': 'tungsten',
     'symbol': 'W',
-    'background-color': '#C1C5DB',
-    'border-color': '#9093A9',
+    'background-color': '#EFEFEF',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': "Also known as \"Wolfram\", from which it derives its chemical symbol."
   },
@@ -677,8 +677,8 @@ var CHEMICAL_ELEMENTS = {
   75: {
     'name': 'rhenium',
     'symbol': 'Re',
-    'background-color': '#C1C5DB',
-    'border-color': '#9093A9',
+    'background-color': '#DEDEDA',
+    'border-color': '#50506A',
     'color': 'black',
     'descrip': "Named after the Rhine river."
   },
@@ -686,8 +686,8 @@ var CHEMICAL_ELEMENTS = {
   76: {
     'name': 'osmium',
     'symbol': 'Os',
-    'background-color': '#C1C5DB',
-    'border-color': '#9093A9',
+    'background-color': '#DEDEDA',
+    'border-color': '#50508A',
     'color': 'black',
     'descrip': "Named for its smell."
   },
@@ -695,8 +695,8 @@ var CHEMICAL_ELEMENTS = {
   77: {
     'name': 'iridium',
     'symbol': 'Ir',
-    'background-color': '#C1C5DB',
-    'border-color': '#9093A9',
+    'background-color': '#EFEFEF',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': ""
   },
@@ -704,8 +704,8 @@ var CHEMICAL_ELEMENTS = {
   78: {
     'name': 'platinum',
     'symbol': 'Pt',
-    'background-color': '#C1C5DB',
-    'border-color': '#9093A9',
+    'background-color': '#EFEFEF',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': "Named \"little silver\"."
   },
@@ -713,8 +713,8 @@ var CHEMICAL_ELEMENTS = {
   79: {
     'name': 'gold',
     'symbol': 'Au',
-    'background-color': '#C1C5DB',
-    'border-color': '#9093A9',
+    'background-color': '#EFEF62',
+    'border-color': '#A89840',
     'color': 'black',
     'descrip': ""
   },
@@ -722,8 +722,8 @@ var CHEMICAL_ELEMENTS = {
   80: {
     'name': 'mercury',
     'symbol': 'Hg',
-    'background-color': '#C1C5DB',
-    'border-color': '#9093A9',
+    'background-color': '#EFEFEF',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': "Also known as 'quicksilver'. Its chemical symbol derives from ."
   },
@@ -731,8 +731,8 @@ var CHEMICAL_ELEMENTS = {
   81: {
     'name': 'thallium',
     'symbol': 'Tl',
-    'background-color': '#ACAFA0',
-    'border-color': '#484B40',
+    'background-color': '#EFEFEF',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': ""
   },
@@ -740,8 +740,8 @@ var CHEMICAL_ELEMENTS = {
   82: {
     'name': 'lead',
     'symbol': 'Pb',
-    'background-color': '#ACAFA0',
-    'border-color': '#484B40',
+    'background-color': '#EFEFEF',
+    'border-color': '#656463',
     'color': 'black',
     'descrip': ""
   },
@@ -749,8 +749,8 @@ var CHEMICAL_ELEMENTS = {
   83: {
     'name': 'bismuth',
     'symbol': 'Bi',
-    'background-color': '#ACAFA0',
-    'border-color': '#484B40',
+    'background-color': '#EFEFEF',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': ""
   },
@@ -758,8 +758,8 @@ var CHEMICAL_ELEMENTS = {
   84: {
     'name': 'polonium',
     'symbol': 'Po',
-    'background-color': '#ACAFA0',
-    'border-color': '#484B40',
+    'background-color': '#EFEFEF',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': "Discovered by Marie Curie, and named after her home country, Poland."
   },
@@ -767,8 +767,8 @@ var CHEMICAL_ELEMENTS = {
   85: {
     'name': 'astatine',
     'symbol': 'At',
-    'background-color': '#C8DBC0',
-    'border-color': '#9CAF90',
+    'background-color': '#CDCDC0',
+    'border-color': '#9D9D90',
     'color': 'black',
     'descrip': ""
   },
@@ -776,8 +776,8 @@ var CHEMICAL_ELEMENTS = {
   86: {
     'name': 'radon',
     'symbol': 'Rn',
-    'background-color': '#CDCDC0',
-    'border-color': '#9D9D90',
+    'background-color': '#FFF',
+    'border-color': '#999',
     'color': 'black',
     'descrip': "Named for its radioactive, \"glowing\" properties."
   },
@@ -785,8 +785,8 @@ var CHEMICAL_ELEMENTS = {
   87: {
     'name': 'francium',
     'symbol': 'Fr',
-    'background-color': '#BBA3BB',
-    'border-color': '#A971A9',
+    'background-color': '#EFEFEF',
+    'border-color': '#656463',
     'color': 'black',
     'descrip': "Named for the country of France."
   },
@@ -794,8 +794,8 @@ var CHEMICAL_ELEMENTS = {
   88: {
     'name': 'radium',
     'symbol': 'Ra',
-    'background-color': '#9EA3BB',
-    'border-color': '#6871A9',
+    'background-color': '#EFEFEF',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': "Named for its radioactive properties."
   },
@@ -803,8 +803,8 @@ var CHEMICAL_ELEMENTS = {
   89: {
     'name': 'actinium',
     'symbol': 'Ac',
-    'background-color': '#EF9F9F',
-    'border-color': '#EF5C30',
+    'background-color': '#DEDEDD',
+    'border-color': '#50508A',
     'color': 'black',
     'descrip': ""
   },
@@ -812,8 +812,8 @@ var CHEMICAL_ELEMENTS = {
   90: {
     'name': 'thorium',
     'symbol': 'Th',
-    'background-color': '#EF9F9F',
-    'border-color': '#EF5C30',
+    'background-color': '#EFEFEF',
+    'border-color': '#555',
     'color': 'black',
     'descrip': "Named after the Norse god, Thor."
   },
@@ -821,8 +821,8 @@ var CHEMICAL_ELEMENTS = {
   91: {
     'name': 'proactinium',
     'symbol': 'Pa',
-    'background-color': '#EF9F9F',
-    'border-color': '#EF5C30',
+    'background-color': '#EFEFEF',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': ""
   },
@@ -830,8 +830,8 @@ var CHEMICAL_ELEMENTS = {
   92: {
     'name': 'uranium',
     'symbol': 'U',
-    'background-color': '#EF9F9F',
-    'border-color': '#EF5C30',
+    'background-color': '#EFEFEF',
+    'border-color': '#555',
     'color': 'black',
     'descrip': "Named after the Roman god, Uranus, often equated to the Greek Ouranos."
   },
@@ -839,8 +839,8 @@ var CHEMICAL_ELEMENTS = {
   93: {
     'name': 'neptunium',
     'symbol': 'Np',
-    'background-color': '#EF9F9F',
-    'border-color': '#EF5C30',
+    'background-color': '#EFEFEF',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': "Named after the Roman god, Neptune."
   },
@@ -848,8 +848,8 @@ var CHEMICAL_ELEMENTS = {
   94: {
     'name': 'plutonium',
     'symbol': 'Pu',
-    'background-color': '#EF9F9F',
-    'border-color': '#EF5C30',
+    'background-color': '#FAFAFA',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': "Named after the Roman god, Pluto."
   },
@@ -857,8 +857,8 @@ var CHEMICAL_ELEMENTS = {
   95: {
     'name': 'americanium',
     'symbol': 'Am',
-    'background-color': '#EF9F9F',
-    'border-color': '#EF5C30',
+    'background-color': '#EFEFEF',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': "Named after the country of the United States of America."
   },
@@ -866,8 +866,8 @@ var CHEMICAL_ELEMENTS = {
   96: {
     'name': 'curium',
     'symbol': 'Cm',
-    'background-color': '#EF9F9F',
-    'border-color': '#EF5C30',
+    'background-color': '#FAFAFA',
+    'border-color': '#A971A9',
     'color': 'black',
     'descrip': "Named after Marie Curie."
   },
@@ -875,8 +875,8 @@ var CHEMICAL_ELEMENTS = {
   97: {
     'name': 'berkelium',
     'symbol': 'Bk',
-    'background-color': '#EF9F9F',
-    'border-color': '#EF5C30',
+    'background-color': '#EFEFEF',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': "Named \"birch tree\"."
   },
@@ -884,8 +884,8 @@ var CHEMICAL_ELEMENTS = {
   98: {
     'name': 'californium',
     'symbol': 'Cf',
-    'background-color': '#EF9F9F',
-    'border-color': '#EF5C30',
+    'background-color': '#EFEFEF',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': "Named after the US state, California."
   },
@@ -893,8 +893,8 @@ var CHEMICAL_ELEMENTS = {
   99: {
     'name': 'einsteinium',
     'symbol': 'Es',
-    'background-color': '#EF9F9F',
-    'border-color': '#EF5C30',
+    'background-color': '#EFEFEF',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': "Named after the physicist, Albert Einstein."
   },
@@ -902,8 +902,8 @@ var CHEMICAL_ELEMENTS = {
   100: {
     'name': 'fermium',
     'symbol': 'Fm',
-    'background-color': '#EF9F9F',
-    'border-color': '#EF5C30',
+    'background-color': '#EFEFEF',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': "Named after the _, Enrico Fermi."
   },
@@ -911,8 +911,8 @@ var CHEMICAL_ELEMENTS = {
   101: {
     'name': 'mendelevium',
     'symbol': 'Md',
-    'background-color': '#EF9F9F',
-    'border-color': '#EF5C30',
+    'background-color': '#EFEFEF',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': "Named after the chemist who devised what would become the modern periodic table of elements, Mendeleev."
   },
@@ -920,8 +920,8 @@ var CHEMICAL_ELEMENTS = {
   102: {
     'name': 'nobelium',
     'symbol': 'No',
-    'background-color': '#EF9F9F',
-    'border-color': '#EF5C30',
+    'background-color': '#EFEFEF',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': "Named after the _, Nobel."
   },
@@ -929,8 +929,8 @@ var CHEMICAL_ELEMENTS = {
   103: {
     'name': 'lawrencium',
     'symbol': 'Lr',
-    'background-color': '#EF9F9F',
-    'border-color': '#EF5C30',
+    'background-color': '#EFEFEF',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': "Named after the _, Lawrence."
   },
@@ -938,8 +938,8 @@ var CHEMICAL_ELEMENTS = {
   104: {
     'name': 'rutherford',
     'symbol': 'Rf',
-    'background-color': '#C1C5DB',
-    'border-color': '#9093A9',
+    'background-color': '#EFEFEF',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': "Named after the physicist, Ernst Rutherford."
   },
@@ -947,8 +947,8 @@ var CHEMICAL_ELEMENTS = {
   105: {
     'name': 'dubnium',
     'symbol': 'Db',
-    'background-color': '#C1C5DB',
-    'border-color': '#9093A9',
+    'background-color': '#EFEFEF',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': ""
   },
@@ -956,8 +956,8 @@ var CHEMICAL_ELEMENTS = {
   106: {
     'name': 'seaborgium',
     'symbol': 'Sg',
-    'background-color': '#C1C5DB',
-    'border-color': '#9093A9',
+    'background-color': '#EFEFEF',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': "Named after the _, Seaborg."
   },
@@ -965,8 +965,8 @@ var CHEMICAL_ELEMENTS = {
   107: {
     'name': 'bohrium',
     'symbol': 'Bh',
-    'background-color': '#C1C5DB',
-    'border-color': '#9093A9',
+    'background-color': '#EFEFEF',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': "Named after the physicist, Niels Bohr."
   },
@@ -974,8 +974,8 @@ var CHEMICAL_ELEMENTS = {
   108: {
     'name': 'hassium',
     'symbol': 'Hs',
-    'background-color': '#C1C5DB',
-    'border-color': '#9093A9',
+    'background-color': '#EFEFEF',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': ""
   },
@@ -984,7 +984,7 @@ var CHEMICAL_ELEMENTS = {
     'name': 'meitnerium',
     'symbol': 'Mt',
     'background-color': '#EFEFEF',
-    'border-color': '#656463',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': ""
   },
@@ -993,7 +993,7 @@ var CHEMICAL_ELEMENTS = {
     'name': 'darmstadtium',
     'symbol': 'Ds',
     'background-color': '#EFEFEF',
-    'border-color': '#656463',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': ""
   },
@@ -1002,7 +1002,7 @@ var CHEMICAL_ELEMENTS = {
     'name': 'roentgenium',
     'symbol': 'Rg',
     'background-color': '#EFEFEF',
-    'border-color': '#656463',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': ""
   },
@@ -1010,8 +1010,8 @@ var CHEMICAL_ELEMENTS = {
   112: {
     'name': 'copernicium',
     'symbol': 'Cn',
-    'background-color': '#C1C5DB',
-    'border-color': '#9093A9',
+    'background-color': '#EFEFEF',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': "Named after the philosopher, Copernicus."
   },
@@ -1020,7 +1020,7 @@ var CHEMICAL_ELEMENTS = {
     'name': 'ununtrium',
     'symbol': 'Uut',
     'background-color': '#EFEFEF',
-    'border-color': '#656463',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': ""
   },
@@ -1028,8 +1028,8 @@ var CHEMICAL_ELEMENTS = {
   114: {
     'name': 'flerovium',
     'symbol': 'Fl',
-    'background-color': '#ACAFA0',
-    'border-color': '#484B40',
+    'background-color': '#EFEFEF',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': ""
   },
@@ -1038,7 +1038,7 @@ var CHEMICAL_ELEMENTS = {
     'name': 'ununpentium',
     'symbol': 'Uup',
     'background-color': '#EFEFEF',
-    'border-color': '#656463',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': ""
   },
@@ -1046,8 +1046,8 @@ var CHEMICAL_ELEMENTS = {
   116: {
     'name': 'livermorium',
     'symbol': 'Lv',
-    'background-color': '#ACAFA0',
-    'border-color': '#484B40',
+    'background-color': '#EFEFEF',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': ""
   },
@@ -1056,7 +1056,7 @@ var CHEMICAL_ELEMENTS = {
     'name': 'ununseptium',
     'symbol': 'Uus',
     'background-color': '#EFEFEF',
-    'border-color': '#656463',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': ""
   },
@@ -1065,7 +1065,7 @@ var CHEMICAL_ELEMENTS = {
     'name': 'ununoctium',
     'symbol': 'Uuo',
     'background-color': '#EFEFEF',
-    'border-color': '#656463',
+    'border-color': '#818083',
     'color': 'black',
     'descrip': ""
   },
