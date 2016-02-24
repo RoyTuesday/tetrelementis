@@ -19,5 +19,5 @@ var PeriodicTable = function() {
 }
 PeriodicTable.prototype.showElement = function(atomicNum) {
   this.elements[atomicNum].show = true;
-  this.board[elements[atomicNum].y][elements[atomicNum].x] = atomicNum;
+  this.board[this.elements[atomicNum].y][this.elements[atomicNum].x] = atomicNum;
 }
