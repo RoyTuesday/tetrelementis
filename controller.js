@@ -21,7 +21,7 @@ var Controller = function(shape) {
   });
 }
 Controller.prototype.startGame = function() {
-  this.gameView.animate();
+  this.gameView.animateGame();
   this.gameView.previewBoard.blit();
   this.gameView.tableBoard.showElement(this.gameBoard.tetrinimo.element);
   this.gameView.updateElementDescrip();

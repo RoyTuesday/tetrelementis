@@ -119,7 +119,7 @@ BrowserView.prototype.drawBoard = function(board, context) {
     });
   });
 };
-BrowserView.prototype.animate = function() {
+BrowserView.prototype.animateGame = function() {
   var lastTime = null;
   var progress = true;
 
