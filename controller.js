@@ -32,6 +32,7 @@ var getRandomShape = function() {
 
 var Controller = function(shape) {
   this.elements = generateRandomElements();
+
   this.gameBoard = new TetrisBoard({
     tetrinimo: new Tetrinimo({
       element: this.elements.pop(),
@@ -40,14 +41,20 @@ var Controller = function(shape) {
     createNextTetrinimo: this.createNextTetrinimo.bind(this),
     showGameOver: this.showGameOver
   });
+
   this.gameView = new BrowserView({
     gameBoard: this.gameBoard,
     cycleDropBlock: this.cycleDropBlock
   });
+
+  this.gameView.previewBoard.tetrinimo = new Tetrinimo({
+    element: this.elements.pop(),
+    shape: getRandomShape()
+  });
 }
 Controller.prototype.startGame = function() {
   this.gameView.animate();
-  this.gameBoard.blit();
+  this.gameView.previewBoard.blit();
   
   this.cycleDropBlock();
 };
@@ -63,10 +70,15 @@ Controller.prototype.cycleDropBlock = function (args = {}) {
   );
 };
 Controller.prototype.createNextTetrinimo = function() {
-  this.gameBoard.tetrinimo = new Tetrinimo({
+  this.gameBoard.tetrinimo = this.gameView.previewBoard.tetrinimo;
+  if(this.elements.length <= 0) {
+    this.elements = generateRandomElements();
+  }
+  this.gameView.previewBoard.tetrinimo = new Tetrinimo({
     element: this.elements.pop(),
     shape: getRandomShape()
   })
+  this.gameView.previewBoard.blit();
 }
 Controller.prototype.showGameOver = function() {
   console.log('game over!');
