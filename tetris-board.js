@@ -1,4 +1,5 @@
 var TetrisBoard = function(args = {}) {
+  this.score = 0;
   this.board = new Array;
   this.randElements = generateRandomElements();
   this.tetrinimo = args.tetrinimo || new Tetrinimo({
@@ -93,12 +94,14 @@ TetrisBoard.prototype.rotateBlock = function(direction) {
   this.blit();
 };
 TetrisBoard.prototype.handleFullLines = function() {
+  var lines = 0;
   this.board.forEach(function(row, rIndex, board) {
     var filled = true;
     row.forEach(function(block) {
       if(block == 0) filled = false;
     });
     if(filled) {
+      lines++;
       for(var i = rIndex; i > 0; i--) {
         board[i] = board[i - 1].map(function(col) {
           return col;
@@ -107,6 +110,7 @@ TetrisBoard.prototype.handleFullLines = function() {
       board[0] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     }
   });
+  if(lines > 0) this.score += Math.pow(2, lines) / 2;
 };
 TetrisBoard.prototype.isOutOfSpace = function() {
   if(this.detectCollision() == 'clear') {
