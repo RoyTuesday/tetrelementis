@@ -7,7 +7,7 @@ var Tetrinimo = function(args) {
   });
 
   this.row = 0;
-  this.col = 5;
+  this.col = 4;
 
   for(var block in this.blocks) {
     this.blocks[block].y += this.row;
