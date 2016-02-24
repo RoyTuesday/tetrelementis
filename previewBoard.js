@@ -5,11 +5,13 @@ var PreviewBoard = function() {
 PreviewBoard.prototype.blit = function() {
   this.board = generateEmptyBoard();
 
+  var blockX, blockY;
   for(var block in this.tetrinimo.blocks) {
-    var currentBlock = this.tetrinimo.blocks[block];
-    this.board[currentBlock.y][currentBlock.x] = this.tetrinimo.element;
+    blockX = this.tetrinimo.blocks[block].x - 4;
+    blockY = this.tetrinimo.blocks[block].y;
+    this.board[blockY][blockX] = this.tetrinimo.element;
   }
-}
+};
 
 var generateEmptyBoard = function() {
   emptyBoard = new Array;
