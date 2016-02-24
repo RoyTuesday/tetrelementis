@@ -138,7 +138,8 @@ BrowserView.prototype.animate = function() {
 };
 BrowserView.prototype.updateElementDescrip = function() {
   var element = this.previewBoard.tetrinimo.element;
-  this.elementDescrip.innerHTML = '<h2>' + CHEMICAL_ELEMENTS[element].symbol + ': '
-  + CHEMICAL_ELEMENTS[element].name + '</h2>'
+  this.elementDescrip.innerHTML = '<h2>' + CHEMICAL_ELEMENTS[element].name
+  + ' [' + CHEMICAL_ELEMENTS[element].symbol + "]</h2>"
+  + '<p>Atomic Number: ' + element + '</p>'
   + '<p>' + CHEMICAL_ELEMENTS[element].descrip + '</p>';
 }
