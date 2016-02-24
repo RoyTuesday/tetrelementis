@@ -19,7 +19,9 @@ The more I learned about JavaScript, the more I realized my resulting game neede
 
 ## Version History
 
-:large_blue_diamond: **0.588 : 16 Feb 2016 -** Player now can rotate tetrinimo, unless doing so would collide with the bounds of the grid or another tetrinimo.
+:large_blue_diamond: **0.705 : 24 Feb 2016 -** Game now displays a preview for the next tetrinimo. When one or more lines are filled, they are instantly cleared and all blocks above them move down. The Periodic Table of Elements fills in with each new tetrinimo.
+
+:small_red_triangle_down: **0.588 : 16 Feb 2016 -** Player now can rotate tetrinimo, unless doing so would collide with the bounds of the grid or another tetrinimo.
 
 :small_red_triangle_down: **0.529 : 15 Feb 2016 -** Player can make the tetrinimo fall more quickly by holding the down cursor key and can slide tetrinimo left or right with the corresponding cursor key. Tetrinimo will stop when colliding with the edges of the grid and with other tetrinimos. Default drop speed has been slowed.
 
@@ -55,15 +57,15 @@ The Minimum Viable Product must replicate Tetris, and have some educational cont
 
 :white_check_mark: Rotation: Player can rotate the active tetrinimo clockwise or counter-clockwise.
 
-:white_medium_small_square: Block preview: Display upcoming block.
+:white_check_mark: Block preview: Display upcoming block.
+
+:white_check_mark: Periodic Table: Fill in elements on the table as they are cleared from the grid.
 
 :white_medium_small_square: Score: As player clears lines, score increases: more lines at once provide exponentially greater points.
 
 :white_medium_small_square: Levels: As score increases, blocks drop faster.
 
 :white_medium_small_square: Difficulty options: Player can choose to begin at different drop speeds and whether level increases.
-
-:white_medium_small_square: Periodic Table: Fill in elements on the table as they are cleared from the grid.
 
 :white_medium_small_square: Element Details: Small display with a few facts about each element.
 
