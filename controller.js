@@ -56,6 +56,7 @@ Controller.prototype.startGame = function() {
   this.gameView.animate();
   this.gameView.previewBoard.blit();
   this.gameView.tableBoard.showElement(this.gameBoard.tetrinimo.element);
+  this.gameView.updateElementDescrip();
 
   this.cycleDropBlock();
 };
@@ -81,6 +82,7 @@ Controller.prototype.createNextTetrinimo = function() {
   })
   this.gameView.previewBoard.blit();
   this.gameView.tableBoard.showElement(this.gameBoard.tetrinimo.element);
+  this.gameView.updateElementDescrip();
 }
 Controller.prototype.showGameOver = function() {
   console.log('game over!');
