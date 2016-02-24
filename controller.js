@@ -28,8 +28,8 @@ Controller.prototype.startGame = function() {
 
   this.cycleDropBlock();
 };
-Controller.prototype.cycleDropBlock = function (args = {}) {
-  var dropDelay = args.quickly ? FAST_DROP : DROP_DELAY;
+Controller.prototype.cycleDropBlock = function (args) {
+  var dropDelay = args ? FAST_DROP : DROP_DELAY;
   this.gameBoard.blit();
   if(this.gameBoard.dropInterval) {
     clearInterval(this.gameBoard.dropInterval);
