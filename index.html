@@ -19,7 +19,7 @@
     <title>Tetrelementis</title>
   </head>
   <body>
-    <main class="container">
+    <main id="container">
       <canvas id="tetris-grid" height="600" width="300">
         Main Game View
       </canvas>
@@ -28,8 +28,18 @@
           Block Preview
         </canvas>
         <div id="level-display">
-          Level: 0
-          Score: 0
+          <div style="float:left">
+            <p>
+              Level: <span id="game-level">0</span>
+            </p>
+            <br/>
+            <p>
+              Score: <span id="player-score">0</span>
+            </p>
+          </div>
+          <div style="float:right">
+            Difficulty: <span id="game-difficulty">Easy</span>
+          </div>
         </div>
         <div id="element-description">
           Next Element
