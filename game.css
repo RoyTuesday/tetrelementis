@@ -11,16 +11,15 @@ body {
   text-align: center;
   width: 60em;
 }
-
 #right-container {
   display: inline-block;
   vertical-align: top;
 }
+
 #element-description {
   border: 1px solid #DDA;
   height: 182px;
   padding: 12px;
-  text-align: left;
   width: 516px;
 }
 #element-description h2 {
@@ -29,12 +28,18 @@ body {
 #element-description p {
   margin: 8px 0 0 0;
 }
+#level-display {
+  border: 1px solid #DAD;
+  display: inline-block;
+  vertical-align: top;
+  height: 120px;
+  width: 416px;
+}
 #tetris-grid {
   border: 1px solid #DAA;
 }
 #tetris-preview {
   border: 1px solid #AAD;
-  display: block;
 }
 #tetris-table {
   border: 1px solid #ADA;
