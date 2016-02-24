@@ -55,7 +55,8 @@ var Controller = function(shape) {
 Controller.prototype.startGame = function() {
   this.gameView.animate();
   this.gameView.previewBoard.blit();
-  
+  this.gameView.tableBoard.showElement(this.gameBoard.tetrinimo.element);
+
   this.cycleDropBlock();
 };
 Controller.prototype.cycleDropBlock = function (args = {}) {
@@ -79,6 +80,7 @@ Controller.prototype.createNextTetrinimo = function() {
     shape: getRandomShape()
   })
   this.gameView.previewBoard.blit();
+  this.gameView.tableBoard.showElement(this.gameBoard.tetrinimo.element);
 }
 Controller.prototype.showGameOver = function() {
   console.log('game over!');
