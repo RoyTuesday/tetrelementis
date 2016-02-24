@@ -1,4 +1,5 @@
-var BLOCK_FONT = "10px Verdana";
+var FONT_SIZE = 11;
+var BLOCK_FONT = "px monospace";
 var DROP_DELAY = 600;
 var FAST_DROP = 100;
 var INPUT_DELAY = 200;
