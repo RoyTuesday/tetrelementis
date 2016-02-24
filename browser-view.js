@@ -9,6 +9,8 @@ var BrowserView = function(args) {
   BLOCK_WIDTH = BLOCK_SPACING_WIDTH - 10;
 
   this.elementDescrip = document.querySelector('#element-description');
+  this.playerScore = document.getElementById('player-score');
+
   this.gridContext = gridCanvas.getContext('2d');
   this.previewContext = previewCanvas.getContext('2d');
   this.tableContext = tableCanvas.getContext('2d');
@@ -130,6 +132,8 @@ BrowserView.prototype.animate = function() {
     this.drawBoard(this.gameBoard.board, this.gridContext);
     this.drawBoard(this.previewBoard.board, this.previewContext);
     this.drawBoard(this.tableBoard.board, this.tableContext);
+
+    this.updatePlayerScore(this.gameBoard.score);
     if(progress) {
       requestAnimationFrame(animate.bind(this));
     }
@@ -142,4 +146,7 @@ BrowserView.prototype.updateElementDescrip = function() {
   + ' [' + CHEMICAL_ELEMENTS[element].symbol + "]</h2>"
   + '<p>Atomic Number: ' + element + '</p>'
   + '<p>' + CHEMICAL_ELEMENTS[element].descrip + '</p>';
+}
+BrowserView.prototype.updatePlayerScore = function(score) {
+  this.playerScore.innerHTML = score;
 }
