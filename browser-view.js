@@ -8,6 +8,7 @@ var BrowserView = function(args) {
   BLOCK_HEIGHT = BLOCK_SPACING_HEIGHT - 10;
   BLOCK_WIDTH = BLOCK_SPACING_WIDTH - 10;
 
+  this.elementDescrip = document.querySelector('#element-description');
   this.gridContext = gridCanvas.getContext('2d');
   this.previewContext = previewCanvas.getContext('2d');
   this.tableContext = tableCanvas.getContext('2d');
@@ -135,3 +136,9 @@ BrowserView.prototype.animate = function() {
   }
   requestAnimationFrame(animate.bind(this));
 };
+BrowserView.prototype.updateElementDescrip = function() {
+  var element = this.previewBoard.tetrinimo.element;
+  this.elementDescrip.innerHTML = '<h2>' + CHEMICAL_ELEMENTS[element].symbol + ': '
+  + CHEMICAL_ELEMENTS[element].name + '</h2>'
+  + '<p>' + CHEMICAL_ELEMENTS[element].descrip + '</p>';
+}
