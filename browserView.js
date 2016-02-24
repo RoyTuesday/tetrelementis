@@ -89,17 +89,35 @@ BrowserView.prototype.handleInput = function() {
 BrowserView.prototype.drawBoard = function(board, context) {
   var gridContext = context;
   gridContext.lineWidth = 4;
-  gridContext.font = BLOCK_FONT;
 
   board.forEach(function(row, rIndex) {
     row.forEach(function(col, cIndex) {
       gridContext.fillStyle = CHEMICAL_ELEMENTS[col]['background-color'];
       gridContext.strokeStyle = CHEMICAL_ELEMENTS[col]['border-color'];
 
-      gridContext.fillRect((cIndex * BLOCK_SPACING_WIDTH) + 5, (rIndex * BLOCK_SPACING_HEIGHT) + 5, BLOCK_WIDTH, BLOCK_HEIGHT);
-      gridContext.strokeRect((cIndex * BLOCK_SPACING_WIDTH) + 5, (rIndex * BLOCK_SPACING_HEIGHT) + 5, BLOCK_WIDTH, BLOCK_HEIGHT);
+      var xPos = (cIndex * BLOCK_SPACING_WIDTH) + 5;
+      var yPos = (rIndex * BLOCK_SPACING_HEIGHT) + 5;
+      var textX = (cIndex * BLOCK_SPACING_WIDTH) + (BLOCK_SPACING_WIDTH / 2);
+      var textY = (rIndex * BLOCK_SPACING_HEIGHT) + (BLOCK_SPACING_HEIGHT / 2) + 4;
+
+      var textLen = CHEMICAL_ELEMENTS[col].symbol.length;
+      if(textLen == 1) {
+        gridContext.font = FONT_SIZE + BLOCK_FONT;
+        textX -= 3;
+      }
+      else if(textLen == 2) {
+        gridContext.font = FONT_SIZE + BLOCK_FONT;
+        textX -= 7;
+      }
+      else if(textLen == 3) {
+        gridContext.font = (FONT_SIZE - 2) + BLOCK_FONT;
+        textX -= 7;
+      }
+
+      gridContext.fillRect(xPos, yPos, BLOCK_WIDTH, BLOCK_HEIGHT);
+      gridContext.strokeRect(xPos, yPos, BLOCK_WIDTH, BLOCK_HEIGHT);
       gridContext.fillStyle = CHEMICAL_ELEMENTS[col]['color'];
-      gridContext.fillText(CHEMICAL_ELEMENTS[col].symbol, (cIndex * BLOCK_SPACING_WIDTH) + (BLOCK_SPACING_WIDTH / 2) - 6, (rIndex * BLOCK_SPACING_HEIGHT) + (BLOCK_SPACING_HEIGHT / 2) + 4);
+      gridContext.fillText(CHEMICAL_ELEMENTS[col].symbol, textX, textY);
     });
   });
 };
