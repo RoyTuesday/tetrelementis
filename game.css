@@ -17,5 +17,10 @@ body {
 }
 #tetris-preview {
   border: 1px solid #AAD;
-  vertical-align: top;
+  display: block;
+  margin-bottom: 29px;
+}
+#tetris-table {
+  border: 1px solid #ADA;
+  display: block;
 }
