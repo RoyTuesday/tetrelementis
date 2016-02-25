@@ -57,7 +57,7 @@ TetrisBoard.prototype.dropBlock = function() {
     this.blit();
     this.tetrinimo = null;
     this.createNextTetrinimo();
-    if(this.isOutOfSpace()) {
+    if(this.detectCollision() != 'clear') {
       clearInterval(this.dropInterval);
       this.blit();
       this.showGameOver();
@@ -105,10 +105,4 @@ TetrisBoard.prototype.handleFullLines = function() {
     }
   });
   if(lines > 0) this.score += Math.pow(2, lines) / 2;
-};
-TetrisBoard.prototype.isOutOfSpace = function() {
-  if(this.detectCollision() == 'clear') {
-    return false;
-  }
-  return true;
 };
