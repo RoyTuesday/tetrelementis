@@ -38,17 +38,17 @@ body {
   margin: 2px;
 }
 
-#element-description {
+#element-description-container {
   border: 1px solid #DDA;
   height: 182px;
   padding: 12px;
   text-align: left;
   width: 516px;
 }
-#element-description h2 {
+#element-name {
   margin: 0;
 }
-#element-description p {
+#element-description, #atomic-number {
   margin: 8px 0 0 0;
 }
 #level-display {
