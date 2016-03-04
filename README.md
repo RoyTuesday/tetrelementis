@@ -83,6 +83,10 @@ The Minimum Viable Product must replicate Tetris, and have some educational cont
 
 :white_medium_small_square: Ensure compatibility on more browsers: Opera, Internet Explorer.
 
+## Production Screenshots
+
+![version 0.764](/img/ver-0_764.png)
+
 ## Old Version Screenshots
 
 Here's the old game board, using a grid made of div elements.
