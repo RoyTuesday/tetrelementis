@@ -50,7 +50,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#ACAFA0',
     'border-color': '#876750',
     'color': 'black',
-    'descrip': "n/a"
+    'descrip': "Named for the salt from which it was isolated: borax. Used to create green flares and in insulation fiberglass."
   },
 
   6: {
