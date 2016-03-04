@@ -8,7 +8,9 @@ var BrowserView = function(args) {
   BLOCK_HEIGHT = BLOCK_SPACING_HEIGHT - 10;
   BLOCK_WIDTH = BLOCK_SPACING_WIDTH - 10;
 
-  this.elementDescrip = document.querySelector('#element-description');
+  this.elementDescrip = document.getElementById('element-description');
+  this.elementName = document.getElementById('element-name');
+  this.atomicNumDisplay = document.getElementById('atomic-number');
   this.playerScore = document.getElementById('player-score');
 
   this.gridContext = gridCanvas.getContext('2d');
@@ -195,10 +197,10 @@ BrowserView.prototype.animateGame = function() {
 };
 BrowserView.prototype.updateElementDescrip = function() {
   var element = this.previewBoard.tetrinimo.element;
-  this.elementDescrip.innerHTML = '<h2>' + CHEMICAL_ELEMENTS[element].name
-  + ' [' + CHEMICAL_ELEMENTS[element].symbol + "]</h2>"
-  + '<p>Atomic Number: ' + element + '</p>'
-  + '<p>' + CHEMICAL_ELEMENTS[element].descrip + '</p>';
+
+  this.elementName.innerHTML = CHEMICAL_ELEMENTS[element].name + ' [' + CHEMICAL_ELEMENTS[element].symbol + ']';
+  this.atomicNumDisplay.innerHTML = element;
+  this.elementDescrip.innerHTML = CHEMICAL_ELEMENTS[element].descrip;
 }
 BrowserView.prototype.updatePlayerScore = function(score) {
   this.playerScore.innerHTML = score;
