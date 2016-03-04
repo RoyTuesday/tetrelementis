@@ -22,6 +22,7 @@ var BrowserView = function(args) {
   this.tableBoard = new PeriodicTable();
 
   this.cycleDropBlock = args.cycleDropBlock;
+  this.isPaused = true;
   this.pressed = {
     slide: false,
     drop: false,
@@ -38,50 +39,71 @@ var BrowserView = function(args) {
   addEventListener('mouseup', this.buttonUp.bind(this));
 }
 BrowserView.prototype.keyDown = function(event) {
+  console.log('isPaused in keyDown', this.isPaused);
   var pressedKey = KEY_CODES[event.keyCode];
-  if(pressedKey == 'left' || pressedKey == 'right') {
-    event.preventDefault();
-    if(this.pressed.slide == false) {
-      this.pressed.slide = pressedKey;
-      clearInterval(this.interval.slide);
-      this.interval.slide = setInterval(this.handleInput.bind(this), INPUT_DELAY);
+  if(this.isPaused) {
+    if(pressedKey == 'space') {
+      event.preventDefault();
+      this.isPaused = false;
+      this.cycleDropBlock();
     }
   }
-  else if(pressedKey == 'down') {
-    event.preventDefault();
-    if(this.pressed.drop == false) {
-      this.pressed.drop = true;
+  else {
+    if(pressedKey == 'left' || pressedKey == 'right') {
+      event.preventDefault();
+      if(this.pressed.slide == false) {
+        this.pressed.slide = pressedKey;
+        clearInterval(this.interval.slide);
+        this.interval.slide = setInterval(this.handleInput.bind(this), INPUT_DELAY);
+      }
+    }
+    else if(pressedKey == 'down') {
+      event.preventDefault();
+      if(this.pressed.drop == false) {
+        this.pressed.drop = true;
+        clearTimeout(this.dropTimeout);
+        this.cycleDropBlock({quickly: true});
+      }
+    }
+    else if(pressedKey == 'up') {
+      event.preventDefault();
+      if(this.pressed.rotate == false) {
+        this.pressed.rotate = true;
+        clearInterval(this.interval.rotate);
+        this.interval.rotate = setInterval(this.handleInput.bind(this), INPUT_DELAY);
+      }
+    }
+    else if(pressedKey == 'space') {
+      event.preventDefault();
+      clearTimeout(this.gameBoard.dropInterval);
       clearTimeout(this.dropTimeout);
-      this.cycleDropBlock({quickly: true});
-    }
-  }
-  else if(pressedKey == 'up') {
-    event.preventDefault();
-    if(this.pressed.rotate == false) {
-      this.pressed.rotate = true;
       clearInterval(this.interval.rotate);
-      this.interval.rotate = setInterval(this.handleInput.bind(this), INPUT_DELAY);
+      clearInterval(this.interval.slide);
+      this.isPaused = true;
     }
+    this.handleInput();
   }
-  this.handleInput();
 };
 BrowserView.prototype.keyUp = function(event){
+  console.log('isPaused in keyUp', this.isPaused);
   var releasedKey = KEY_CODES[event.keyCode];
-  if(releasedKey == 'left' || releasedKey == 'right') {
-    event.preventDefault();
-    clearInterval(this.interval.slide);
-    this.pressed.slide = false;
-  }
-  if(releasedKey == 'down') {
-    event.preventDefault();
-    clearTimeout(this.dropTimeout);
-    this.pressed.drop = false;
-    this.cycleDropBlock();
-  }
-  if(releasedKey == 'up') {
-    event.preventDefault();
-    clearInterval(this.interval.rotate);
-    this.pressed.rotate = false;
+  if(this.isPaused === false) {
+    if(releasedKey == 'left' || releasedKey == 'right') {
+      event.preventDefault();
+      clearInterval(this.interval.slide);
+      this.pressed.slide = false;
+    }
+    if(releasedKey == 'down') {
+      event.preventDefault();
+      clearTimeout(this.dropTimeout);
+      this.pressed.drop = false;
+      this.cycleDropBlock();
+    }
+    if(releasedKey == 'up') {
+      event.preventDefault();
+      clearInterval(this.interval.rotate);
+      this.pressed.rotate = false;
+    }
   }
 };
 BrowserView.prototype.buttonDown = function(event) {
