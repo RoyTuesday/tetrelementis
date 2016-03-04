@@ -14,7 +14,6 @@ var ready = function(fn) {
 }
 ready(function() {
 	document.querySelector('body').innerHTML = removeExcessSpaces(document.querySelector('body').innerHTML);
-	console.log('main html', document.querySelector('body').innerHTML);
 
   window.gameControl = new Controller();
 
