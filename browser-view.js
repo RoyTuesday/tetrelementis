@@ -39,7 +39,6 @@ var BrowserView = function(args) {
   addEventListener('mouseup', this.buttonUp.bind(this));
 }
 BrowserView.prototype.keyDown = function(event) {
-  console.log('isPaused in keyDown', this.isPaused);
   var pressedKey = KEY_CODES[event.keyCode];
   if(this.isPaused) {
     if(pressedKey == 'space') {
@@ -54,7 +53,8 @@ BrowserView.prototype.keyDown = function(event) {
       if(this.pressed.slide == false) {
         this.pressed.slide = pressedKey;
         clearInterval(this.interval.slide);
-        this.interval.slide = setInterval(this.handleInput.bind(this), INPUT_DELAY);
+        this.gameBoard.slideBlock(this.pressed.slide);
+        this.interval.slide = setInterval(this.gameBoard.slideBlock.bind(this.gameBoard, this.pressed.slide), INPUT_DELAY);
       }
     }
     else if(pressedKey == 'down') {
@@ -70,7 +70,8 @@ BrowserView.prototype.keyDown = function(event) {
       if(this.pressed.rotate == false) {
         this.pressed.rotate = true;
         clearInterval(this.interval.rotate);
-        this.interval.rotate = setInterval(this.handleInput.bind(this), INPUT_DELAY);
+        this.gameBoard.rotateBlock('counter');
+        this.interval.rotate = setInterval(this.gameBoard.rotateBlock.bind(this.gameBoard, 'counter'), INPUT_DELAY);
       }
     }
     else if(pressedKey == 'space') {
@@ -81,11 +82,9 @@ BrowserView.prototype.keyDown = function(event) {
       clearInterval(this.interval.slide);
       this.isPaused = true;
     }
-    this.handleInput();
   }
 };
 BrowserView.prototype.keyUp = function(event){
-  console.log('isPaused in keyUp', this.isPaused);
   var releasedKey = KEY_CODES[event.keyCode];
   if(this.isPaused === false) {
     if(releasedKey == 'left' || releasedKey == 'right') {
@@ -223,7 +222,7 @@ BrowserView.prototype.updateElementDescrip = function() {
   this.elementName.innerHTML = CHEMICAL_ELEMENTS[element].name + ' [' + CHEMICAL_ELEMENTS[element].symbol + ']';
   this.atomicNumDisplay.innerHTML = element;
   this.elementDescrip.innerHTML = CHEMICAL_ELEMENTS[element].descrip;
-}
+};
 BrowserView.prototype.updatePlayerScore = function(score) {
   this.playerScore.innerHTML = score;
-}
+};
