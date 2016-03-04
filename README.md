@@ -19,7 +19,9 @@ The more I learned about JavaScript, the more I realized my resulting game neede
 
 ## Version History
 
-:large_blue_diamond: **0.705 : 24 Feb 2016 -** Game now displays a preview for the next tetrinimo. When one or more lines are filled, they are instantly cleared and all blocks above them move down. The Periodic Table of Elements fills in with each new tetrinimo.
+:large_blue_diamond: **0.764 : 04 Mar 2016 -** Game doesn't start until player presses the spacebar. On gameover, the board clears, allowing another game to begin. Starting screen includes directions. Four buttons in the upper right simulate the arrow keys.
+
+:small_red_triangle_down: **0.705 : 24 Feb 2016 -** Game now displays a preview for the next tetrinimo. When one or more lines are filled, they are instantly cleared and all blocks above them move down. The Periodic Table of Elements fills in with each new tetrinimo.
 
 :small_red_triangle_down: **0.588 : 16 Feb 2016 -** Player now can rotate tetrinimo, unless doing so would collide with the bounds of the grid or another tetrinimo.
 
@@ -61,7 +63,7 @@ The Minimum Viable Product must replicate Tetris, and have some educational cont
 
 :white_check_mark: Periodic Table: Fill in elements on the table as they are cleared from the grid.
 
-:white_medium_small_square: Score: As player clears lines, score increases: more lines at once provide exponentially greater points.
+:white_check_mark: Score: As player clears lines, score increases: more lines at once provide exponentially greater points.
 
 :white_medium_small_square: Levels: As score increases, blocks drop faster.
 
@@ -73,11 +75,13 @@ The Minimum Viable Product must replicate Tetris, and have some educational cont
 
 ## Stretch Goals
 
-:white_medium_small_square: Ensure compatibility on mobile platforms
+:white_medium_small_square: Game responds with sound effects.
 
-:white_medium_small_square: Provide alternate control scheme for mobile users
+:white_medium_small_square: Ensure compatibility on mobile platforms.
 
-:white_medium_small_square: Ensure compatibility on more browsers: Opera, Internet Explorer
+:white_medium_small_square: Provide alternate control scheme for mobile users.
+
+:white_medium_small_square: Ensure compatibility on more browsers: Opera, Internet Explorer.
 
 ## Old Version Screenshots
 
