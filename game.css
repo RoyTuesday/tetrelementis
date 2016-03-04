@@ -2,6 +2,24 @@ body {
   background-color: #F9F5FC;
 }
 
+.arrow-key {
+  background-color: #EEE;
+  border-radius: 10px;
+  color: #333;
+  font-size: 20px;
+  height: 36px;
+  margin: 2px;
+  padding: 2px;
+  text-align: center;
+  width: 36px;
+}
+.controls-container {
+  display: webkit-flex;
+  -webkit-justify-content: center;
+  display: flex;
+  justify-content: center;
+}
+
 #container {
   background-color: #F1EEFA;
   border: 0.5em solid #AAF;
