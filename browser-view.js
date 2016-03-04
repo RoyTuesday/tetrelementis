@@ -168,6 +168,11 @@ BrowserView.prototype.drawBoard = function(board, context) {
     });
   });
 };
+BrowserView.prototype.drawAllBoards = function() {
+  this.drawBoard(this.gameBoard.board, this.gridContext);
+  this.drawBoard(this.previewBoard.board, this.previewContext);
+  this.drawBoard(this.tableBoard.board, this.tableContext);
+};
 BrowserView.prototype.animateGame = function() {
   var lastTime = null;
   var progress = true;
@@ -178,9 +183,8 @@ BrowserView.prototype.animateGame = function() {
       progress = timeStep < 2000;
     }
     lastTime = time;
-    this.drawBoard(this.gameBoard.board, this.gridContext);
-    this.drawBoard(this.previewBoard.board, this.previewContext);
-    this.drawBoard(this.tableBoard.board, this.tableContext);
+
+    this.drawAllBoards();
 
     this.updatePlayerScore(this.gameBoard.score);
     if(progress) {
