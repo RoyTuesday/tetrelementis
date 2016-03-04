@@ -14,7 +14,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#DBC3DB',
     'border-color': '#A971A9',
     'color': 'black',
-    'descrip': "n/a"
+    'descrip': "The single most abundant element in the known universe. Named using the Greek word \"hydro,\" meaning \"water,\" because it makes up two parts of the water molecule."
   },
 
   2: {
@@ -23,7 +23,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFE09F',
     'border-color': '#FF9830',
     'color': 'black',
-    'descrip': "n/a"
+    'descrip': "Named after the Greek god of the sun, \"Helios,\" because it's presence was discovered to be on the surface of the sun."
   },
 
   3: {
@@ -32,7 +32,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#E4E4DA',
     'border-color': '#505057',
     'color': 'black',
-    'descrip': "Named after the Greek for \"stone\"."
+    'descrip': "Named after the Greek word \"lithos,\" meaning \"stone\". Often used in rechargeable batteries."
   },
 
   4: {
@@ -41,7 +41,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#DEDEDA',
     'border-color': '#50506A',
     'color': 'black',
-    'descrip': "n/a"
+    'descrip': "Named for the salt from which it was isolated: beryl. Typically used to create copper alloys for use in electrical wiring."
   },
 
   5: {
