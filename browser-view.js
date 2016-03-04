@@ -28,6 +28,8 @@ var BrowserView = function(args) {
 
   addEventListener('keydown', this.keyDown.bind(this));
   addEventListener('keyup', this.keyUp.bind(this));
+  addEventListener('mousedown', this.buttonDown.bind(this));
+  addEventListener('mouseup', this.buttonUp.bind(this));
 }
 BrowserView.prototype.keyDown = function(event) {
   var pressedKey = KEY_CODES[event.keyCode];
@@ -70,6 +72,36 @@ BrowserView.prototype.keyUp = function(event){
     this.pressed.rotate = false;
   }
 };
+BrowserView.prototype.buttonDown = function(event) {
+  if(event.target.nodeName == "BUTTON") {
+    var buttonPressed = event.target.dataset.key;
+    console.log('Button pressed:', buttonPressed);
+    switch(buttonPressed) {
+      case "up":
+        this.pressed.rotate = true;
+        break;
+      case "down":
+        this.pressed.drop = true;
+        break;
+      case "left":
+        this.pressed.slide = buttonPressed;
+        break;
+      case "right":
+        this.pressed.slide = buttonPressed;
+        break;
+      default: console.log('Some other button pressed', buttonPressed);
+    }
+    this.handleInput.bind(this).call();
+  }
+};
+BrowserView.prototype.buttonUp = function(event) {
+  if(this.pressed.drop) {
+    clearTimeout(this.dropTimeout);
+    this.cycleDropBlock();
+  }
+  this.releaseAllKeys();
+  console.log('Button released', event, 'pressed in buttonUp', this.pressed);
+};
 BrowserView.prototype.handleInput = function() {
   if(this.pressed.slide) {
     this.gameBoard.slideBlock(this.pressed.slide);
@@ -83,6 +115,13 @@ BrowserView.prototype.handleInput = function() {
     this.gameBoard.rotateBlock('counter');
     setTimeout(this.handleInput.bind(this), INPUT_DELAY);
   }
+};
+BrowserView.prototype.releaseAllKeys = function() {
+  this.pressed = {
+    slide: false,
+    drop: false,
+    rotate: false
+  };
 };
 BrowserView.prototype.drawBoard = function(board, context) {
   var gridContext = context;
