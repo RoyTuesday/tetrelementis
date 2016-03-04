@@ -7,7 +7,7 @@ var Controller = function(shape) {
       shape: getRandomShape()
     }),
     createNextTetrinimo: this.createNextTetrinimo.bind(this),
-    showGameOver: this.showGameOver
+    showGameOver: this.showGameOver.bind(this)
   });
 
   this.gameView = new BrowserView({
@@ -20,9 +20,10 @@ var Controller = function(shape) {
     shape: getRandomShape()
   });
   this.gameView.drawAllBoards();
+  this.gameState = 'gameover';
 
   addEventListener('keydown', function(event) {
-    if(this.gameState === undefined) {
+    if(this.gameState === 'gameover') {
       var keyPressed = KEY_CODES[event.keyCode];
       if(keyPressed == 'space') {
         event.preventDefault();
@@ -66,6 +67,8 @@ Controller.prototype.createNextTetrinimo = function() {
 };
 Controller.prototype.showGameOver = function() {
   console.log('game over!');
+  this.gameState = 'gameover';
+  this.gameView.isPaused = true;
 }
 
 var generateRandomElements = function() {
