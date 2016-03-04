@@ -1,6 +1,7 @@
 var removeExcessSpaces = function(htmlString) {
 	var processedString = htmlString.replace(/\s+</g, '<');
 	processedString = processedString.replace(/>\s+/g, '>');
+  processedString = processedString.replace(/\:</g, ': <');
 	return processedString;
 }
 
