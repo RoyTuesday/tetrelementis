@@ -19,8 +19,19 @@ var Controller = function(shape) {
     element: this.elements.pop(),
     shape: getRandomShape()
   });
+
+  addEventListener('keydown', function(event) {
+    if(this.gameState === undefined) {
+      var keyPressed = KEY_CODES[event.keyCode];
+      if(keyPressed == 'space') {
+        event.preventDefault();
+        this.startGame();
+      }
+    }
+  }.bind(this));
 }
 Controller.prototype.startGame = function() {
+  this.gameState = 'inProgress';
   this.gameView.animateGame();
   this.gameView.previewBoard.blit();
   this.gameView.tableBoard.showElement(this.gameBoard.tetrinimo.element);
