@@ -15,7 +15,7 @@
 ## Development
 While first learning JavaScript, but before learning Git workflow, I spent some extra time building a Tetris clone in the browser. Early on, I decided to distinguish my version by assigning a chemical element to each Tetris block (or 'tetrinimo'). After several weeks, I had a functional, if clunky, game with a twist of Chemistry.
 
-The more I learned about JavaScript, the more I realized my resulting game needed a total rehaul. Rather than start a new Git repository with no history of my work (or worse, continuing to work _without_ Git) I resolved to start over!
+The more I learned about JavaScript, the more I realized my resulting game needed a total rehaul. Rather than start a new Git repository with no history of my work (or worse, continuing to work _without_ version control) I resolved to start over!
 
 ## Version History
 
@@ -73,11 +73,11 @@ The Minimum Viable Product must replicate Tetris, and have some educational cont
 
 ## Stretch Goals
 
-:white_medium_small_square: Ensure compatability on mobile platforms
+:white_medium_small_square: Ensure compatibility on mobile platforms
 
 :white_medium_small_square: Provide alternate control scheme for mobile users
 
-:white_medium_small_square: Ensure compatability on more browsers: Opera, Internet Explorer
+:white_medium_small_square: Ensure compatibility on more browsers: Opera, Internet Explorer
 
 ## Old Version Screenshots
 
@@ -85,7 +85,7 @@ Here's the old game board, using a grid made of div elements.
 
 ![old game board](/imgs/old-tetris-board.png)
 
-The upcoming tetrinimo preview was also used div elements, and included a brief description of the chemical element the tetrinimo used.
+The upcoming tetrinimo preview also used div elements, and included a brief description of the chemical element the tetrinimo used.
 
 ![old game preview](/imgs/old-tetris-preview.png)
 
