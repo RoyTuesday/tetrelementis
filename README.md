@@ -85,7 +85,11 @@ The Minimum Viable Product must replicate Tetris, and have some educational cont
 
 ## Production Screenshots
 
-![version 0.764](/img/ver-0_764.png)
+Version 0.764 (pictured below) was the earliest version to be reasonably playable.
+
+![version 0.764](/imgs/ver-0_764.png)
+
+Previous versions did not clear the board on a "Game Over." The player would have to refresh the page to play a new game.
 
 ## Old Version Screenshots
 
