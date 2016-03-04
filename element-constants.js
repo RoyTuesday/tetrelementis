@@ -59,7 +59,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#625858',
     'border-color': '#121212',
     'color': 'black',
-    'descrip': "Typically manifests in coal, graphite, and diamond."
+    'descrip': "Named after the Latin \"carbo,\" meaning \"charcoal.\" Typically manifests in coal, graphite, and diamond."
   },
 
   7: {
