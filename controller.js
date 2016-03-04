@@ -19,6 +19,7 @@ var Controller = function(shape) {
     element: this.elements.pop(),
     shape: getRandomShape()
   });
+  this.gameView.drawAllBoards();
 
   addEventListener('keydown', function(event) {
     if(this.gameState === undefined) {
