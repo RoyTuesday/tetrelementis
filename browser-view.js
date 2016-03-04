@@ -25,6 +25,10 @@ var BrowserView = function(args) {
     drop: false,
     rotate: false
   };
+  this.interval = {
+    slide: null,
+    rotate: null
+  };
 
   addEventListener('keydown', this.keyDown.bind(this));
   addEventListener('keyup', this.keyUp.bind(this));
@@ -37,38 +41,44 @@ BrowserView.prototype.keyDown = function(event) {
     event.preventDefault();
     if(this.pressed.slide == false) {
       this.pressed.slide = pressedKey;
-      this.handleInput.bind(this).call();
+      clearInterval(this.interval.slide);
+      this.interval.slide = setInterval(this.handleInput.bind(this), INPUT_DELAY);
     }
   }
-  if(pressedKey == 'down') {
+  else if(pressedKey == 'down') {
     event.preventDefault();
     if(this.pressed.drop == false) {
       this.pressed.drop = true;
-      this.handleInput.bind(this).call();
+      clearTimeout(this.dropTimeout);
+      this.cycleDropBlock({quickly: true});
     }
   }
-  if(pressedKey == 'up') {
+  else if(pressedKey == 'up') {
     event.preventDefault();
     if(this.pressed.rotate == false) {
       this.pressed.rotate = true;
-      this.handleInput.bind(this).call();
+      clearInterval(this.interval.rotate);
+      this.interval.rotate = setInterval(this.handleInput.bind(this), INPUT_DELAY);
     }
   }
+  this.handleInput();
 };
 BrowserView.prototype.keyUp = function(event){
   var releasedKey = KEY_CODES[event.keyCode];
   if(releasedKey == 'left' || releasedKey == 'right') {
     event.preventDefault();
+    clearInterval(this.interval.slide);
     this.pressed.slide = false;
   }
   if(releasedKey == 'down') {
     event.preventDefault();
-    this.pressed.drop = false;
     clearTimeout(this.dropTimeout);
+    this.pressed.drop = false;
     this.cycleDropBlock();
   }
   if(releasedKey == 'up') {
     event.preventDefault();
+    clearInterval(this.interval.rotate);
     this.pressed.rotate = false;
   }
 };
@@ -76,22 +86,28 @@ BrowserView.prototype.buttonDown = function(event) {
   if(event.target.nodeName == "BUTTON") {
     var buttonPressed = event.target.dataset.key;
     console.log('Button pressed:', buttonPressed);
-    switch(buttonPressed) {
-      case "up":
-        this.pressed.rotate = true;
-        break;
-      case "down":
-        this.pressed.drop = true;
-        break;
-      case "left":
+    if(buttonPressed == 'left' || buttonPressed == 'right') {
+      if(this.pressed.slide == false) {
         this.pressed.slide = buttonPressed;
-        break;
-      case "right":
-        this.pressed.slide = buttonPressed;
-        break;
-      default: console.log('Some other button pressed', buttonPressed);
+        clearInterval(this.interval.slide);
+        this.interval.slide = setInterval(this.handleInput.bind(this), INPUT_DELAY);
+      }
     }
-    this.handleInput.bind(this).call();
+    else if(buttonPressed == 'down') {
+      if(this.pressed.drop == false) {
+        this.pressed.drop = true;
+        clearTimeout(this.dropTimeout);
+        this.cycleDropBlock({quickly: true});
+      }
+    }
+    else if(buttonPressed == 'up') {
+      if(this.pressed.rotate == false) {
+        this.pressed.rotate = true;
+        clearInterval(this.interval.rotate);
+        this.interval.rotate = setInterval(this.handleInput.bind(this), INPUT_DELAY);
+      }
+    }
+    this.handleInput();
   }
 };
 BrowserView.prototype.buttonUp = function(event) {
@@ -99,21 +115,17 @@ BrowserView.prototype.buttonUp = function(event) {
     clearTimeout(this.dropTimeout);
     this.cycleDropBlock();
   }
+  clearInterval(this.interval.slide);
+  clearInterval(this.interval.rotate);
   this.releaseAllKeys();
   console.log('Button released', event, 'pressed in buttonUp', this.pressed);
 };
 BrowserView.prototype.handleInput = function() {
   if(this.pressed.slide) {
     this.gameBoard.slideBlock(this.pressed.slide);
-    setTimeout(this.handleInput.bind(this), INPUT_DELAY);
   }
-  if(this.pressed.drop) {
-    clearTimeout(this.dropTimeout);
-    this.cycleDropBlock({quickly: true});
-  }
-  if(this.pressed.rotate) {
+  else if(this.pressed.rotate) {
     this.gameBoard.rotateBlock('counter');
-    setTimeout(this.handleInput.bind(this), INPUT_DELAY);
   }
 };
 BrowserView.prototype.releaseAllKeys = function() {
