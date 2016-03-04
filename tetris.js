@@ -16,6 +16,4 @@ ready(function() {
 	document.querySelector('body').innerHTML = removeExcessSpaces(document.querySelector('body').innerHTML);
 
   window.gameControl = new Controller();
-
-  gameControl.startGame();
 });
