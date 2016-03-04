@@ -66,10 +66,10 @@ Controller.prototype.createNextTetrinimo = function() {
   this.gameView.updateElementDescrip();
 };
 Controller.prototype.showGameOver = function() {
-  console.log('game over!');
   this.gameState = 'gameover';
   this.gameView.isPaused = true;
-}
+  this.gameBoard.clearForGameover();
+};
 
 var generateRandomElements = function() {
   var randElements = new Array;
