@@ -85,7 +85,6 @@ BrowserView.prototype.keyUp = function(event){
 BrowserView.prototype.buttonDown = function(event) {
   if(event.target.nodeName == "BUTTON") {
     var buttonPressed = event.target.dataset.key;
-    console.log('Button pressed:', buttonPressed);
     if(buttonPressed == 'left' || buttonPressed == 'right') {
       if(this.pressed.slide == false) {
         this.pressed.slide = buttonPressed;
@@ -118,7 +117,6 @@ BrowserView.prototype.buttonUp = function(event) {
   clearInterval(this.interval.slide);
   clearInterval(this.interval.rotate);
   this.releaseAllKeys();
-  console.log('Button released', event, 'pressed in buttonUp', this.pressed);
 };
 BrowserView.prototype.handleInput = function() {
   if(this.pressed.slide) {
