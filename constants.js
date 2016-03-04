@@ -5,7 +5,7 @@ var BLOCK_FONT = "px monospace";
 var DROP_DELAY = 600;
 var FAST_DROP = 100;
 var INPUT_DELAY = 200;
-var CLEAR_DELAY = 3;
+var CLEAR_DELAY = 1;
 
 var GRID_HEIGHT = 20;
 var GRID_WIDTH = 10;
