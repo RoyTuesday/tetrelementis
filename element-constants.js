@@ -563,7 +563,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#818083',
     'color': 'black',
-    'descrip': "n/a"
+    'descrip': "Named after the mineral from which it was first isolated, \"samarskite.\" Used in electronics and to create lasers and masers."
   },
 
   63: {
