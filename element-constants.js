@@ -572,7 +572,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFB2',
     'border-color': '#656463',
     'color': 'black',
-    'descrip': "Named after the continent of Europe."
+    'descrip': "Named after the continent of Europe. Used in the red phosphor of television tubes."
   },
 
   64: {
