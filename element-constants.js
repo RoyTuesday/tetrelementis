@@ -590,7 +590,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#818083',
     'color': 'black',
-    'descrip': "Named after the village of Ytterby. Useful as a laser material and as a phosphor in tv tubes."
+    'descrip': "Named after the Swedish village of Ytterby. Useful as a laser material and as a phosphor in tv tubes."
   },
 
   66: {
@@ -617,7 +617,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#818083',
     'color': 'black',
-    'descrip': "Named after the village of Ytterby."
+    'descrip': "Named after the Swedish village of Ytterby. Used in the nuclear industry and as an alloying agent."
   },
 
   69: {
