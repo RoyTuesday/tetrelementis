@@ -959,7 +959,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#818083',
     'color': 'black',
-    'descrip': "Named after the _, Seaborg."
+    'descrip': "Named after the American nuclear chemist, Glenn T. Seaborg. A synthetic element, too little has been produced to have any practical uses."
   },
 
   107: {
