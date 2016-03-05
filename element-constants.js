@@ -1004,7 +1004,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#818083',
     'color': 'black',
-    'descrip': "n/a"
+    'descrip': "Its proposed name comes from Wilhelm Conrad Roentgen, who discovered x-rays in 1895. A synthetic element, too little has been produced to have any practical uses."
   },
 
   112: {
