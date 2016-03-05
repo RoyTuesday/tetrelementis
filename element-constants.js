@@ -500,7 +500,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#F5F391',
     'border-color': '#838260',
     'color': 'black',
-    'descrip': "Named for its sky blue color."
+    'descrip': "Also spelled \"Cesium,\" named after the Latin \"caesius,\" meaning \"sky blue.\" Used in atomic clocks, and has potential for use in ion propulsion."
   },
 
   56: {
