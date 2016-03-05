@@ -482,7 +482,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#DF8F9F',
     'border-color': '#876730',
     'color': 'black',
-    'descrip': "Named for its dark purple color."
+    'descrip': "Named after the Greek \"iodes,\" meaning \"violet.\" Useful as a disinfectant, and is added to table salt for nutrition."
   },
 
   54: {
