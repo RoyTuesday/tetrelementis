@@ -473,7 +473,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#C7A770',
     'border-color': '#876730',
     'color': 'black',
-    'descrip': "n/a"
+    'descrip': "Named after the Latin \"tellus,\" meaning \"earth.\" Used in ceramics, semiconductors, and as an alloying agent."
   },
 
   53: {
