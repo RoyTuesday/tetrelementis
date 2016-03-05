@@ -509,7 +509,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFB2',
     'border-color': '#656463',
     'color': 'black',
-    'descrip': "Named after the word for \"heavy\"."
+    'descrip': "Named after the Greek \"barys,\" meaning \"heavy.\" Used in making rubber and glass, and in x-ray diagnostics."
   },
 
   57: {
