@@ -158,7 +158,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFDF82',
     'border-color': '#989840',
     'color': 'black',
-    'descrip': "n/a"
+    'descrip': "Named after the Greek \"chloro,\" meaning \"greenish yellow.\" It is used as a disinfectant and in water treatment plants to provide clean drinking water."
   },
 
   18: {
