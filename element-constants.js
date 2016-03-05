@@ -779,7 +779,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#FFF',
     'border-color': '#999',
     'color': 'black',
-    'descrip': "Named for its radioactive, \"glowing\" properties."
+    'descrip': "Named for its radioactive, \"glowing\" properties. Used in earthquake prediction and radiation therapy."
   },
 
   87: {
