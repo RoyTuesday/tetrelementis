@@ -936,12 +936,12 @@ var CHEMICAL_ELEMENTS = {
   },
 
   104: {
-    'name': 'Rutherford',
+    'name': 'Rutherfordium',
     'symbol': 'Rf',
     'background-color': '#EFEFEF',
     'border-color': '#818083',
     'color': 'black',
-    'descrip': "Named after the physicist, Ernst Rutherford."
+    'descrip': "Named after the New Zealand chemist and physicist, Ernst Rutherford. A synthetic element, too little has been produced to have any practical uses."
   },
 
   105: {
