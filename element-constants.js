@@ -383,7 +383,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#656463',
     'color': 'black',
-    'descrip': "Also known as \"fool's lead\"."
+    'descrip': "Named after the Greek \"molybdos,\" meaning \"lead\". Also known as \"fool's lead\". Used as an alloying agent in steel."
   },
 
   43: {
