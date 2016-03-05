@@ -58,6 +58,14 @@ var TETRINIMO_TEMPLATES = {
   tBlock: ['xxx',
            ' x ']
 };
+var scoreToLevel = function(score) {
+  var level = Math.floor((score - 10) / 10);
+  if(level < 0) {
+    return 0;
+  }
+  return level;
+};
+
 var processTetrinimos = function() {
   var tetraShape = new Object;
   for(var shape in TETRINIMO_TEMPLATES) {
