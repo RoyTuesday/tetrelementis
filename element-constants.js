@@ -194,7 +194,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#656463',
     'color': 'black',
-    'descrip': "Named after the country of Scandinavia."
+    'descrip': "Named after the country of Scandinavia. Once used in high-intensity lights, sometimes used to create certain aluminum alloys."
   },
 
   22: {
