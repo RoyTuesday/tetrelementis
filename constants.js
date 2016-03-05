@@ -1,4 +1,4 @@
-var CHEMISTRY_URL = "http://periodic.lanl.gov/index.shtml";
+var CHEMISTRY_URL = "http://www.webelements.com/";
 var FONT_SIZE = 11;
 var BLOCK_FONT = "px monospace";
 
