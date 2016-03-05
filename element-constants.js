@@ -752,7 +752,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#818083',
     'color': 'black',
-    'descrip': "n/a"
+    'descrip': "Its name is of uncertain origin. Used in fire detection and extinguishing systems."
   },
 
   84: {
