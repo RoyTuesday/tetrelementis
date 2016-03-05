@@ -77,7 +77,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#C1C5DB',
     'border-color': '#9093A9',
     'color': 'black',
-    'descrip': "Makes up the second largest percent of air at the Earth's surface. Named after the Greek root for 'sour' or 'sharp', because the scientist who identified it believed Oxygen to be the key component of all acids."
+    'descrip': "Named after the Greek root for 'sour' or 'sharp', because the scientist who identified it believed Oxygen to be the key component of all acids. Makes up the second largest percent of air at the Earth's surface."
   },
 
   9: {
