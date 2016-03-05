@@ -320,7 +320,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EF8F8F',
     'border-color': '#CF3C20',
     'color': 'black',
-    'descrip': "Named after the Greek for \"\" ( bad smell )."
+    'descrip': "Named after the Greek \"bromos,\" meaning \"stench\". Gaseous Bromine is heavier than air; in an open container at room temperature the gas will pour out over the edges. Used as a flame retardant."
   },
 
   36: {
