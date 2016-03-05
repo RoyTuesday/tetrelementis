@@ -15,6 +15,7 @@ var BrowserView = function(args) {
   this.atomicNumDisplay = document.getElementById('atomic-number');
   this.elementLink = document.getElementById('element-link');
   this.playerScore = document.getElementById('player-score');
+  this.gameLevel = document.getElementById('game-level');
 
   this.gridContext = gridCanvas.getContext('2d');
   this.previewContext = previewCanvas.getContext('2d');
@@ -257,6 +258,7 @@ BrowserView.prototype.animateGame = function() {
     this.drawAllBoards();
 
     this.updatePlayerScore(this.gameBoard.score);
+    this.updateGameLevel();
     if(progress) {
       requestAnimationFrame(animate.bind(this));
     }
@@ -277,4 +279,13 @@ BrowserView.prototype.updateElementDescrip = function(element) {
 };
 BrowserView.prototype.updatePlayerScore = function(score) {
   this.playerScore.innerHTML = score;
+};
+BrowserView.prototype.updateGameLevel = function() {
+  var newLevel = scoreToLevel(this.gameBoard.score);
+  if(this.level != newLevel) {
+    this.level = newLevel;
+    this.gameLevel.innerHTML = this.level;
+    clearTimeout(this.dropTimeout);
+    this.cycleDropBlock();
+  }
 };
