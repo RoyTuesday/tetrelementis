@@ -887,7 +887,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#818083',
     'color': 'black',
-    'descrip': "Named after the US state, California."
+    'descrip': "Named after the US state, California. Useful in moisture gauges and as a source of neutron radiation."
   },
 
   99: {
