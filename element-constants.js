@@ -644,7 +644,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#818083',
     'color': 'black',
-    'descrip': "Named after the original \"name\" of the city of Paris, Lutetia Parisii. 'Lutetia' may refer to the once swamp-like quality of the region."
+    'descrip': "Named after the Roman name for the city of Paris, \"Lutetia Parisiorum.\""
   },
 
   72: {
