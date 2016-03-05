@@ -527,7 +527,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#818083',
     'color': 'black',
-    'descrip': "Named after the word for \"farm\"."
+    'descrip': "Named after the asteroid \"Ceres,\" the Greek goddess of agriculture. Used in \"self-cleaning\" ovens and as a glass polishing agent."
   },
 
   59: {
