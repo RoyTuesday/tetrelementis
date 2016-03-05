@@ -293,7 +293,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#656463',
     'color': 'black',
-    'descrip': 'Named after the country of Germany.'
+    'descrip': 'Named after the Latin "Germania," meaning "Germany". Used in infrared spectroscopes and to detect gamma radiation.'
   },
 
   33: {
