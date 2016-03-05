@@ -302,7 +302,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFDF82',
     'border-color': '#989840',
     'color': 'black',
-    'descrip': "Deadly poison to humans, named for its yellow color."
+    'descrip': "Named for the Greek \"arsenikon,\" meaning \"yellow orpiment\". Deadly poison to humans. Used as a laser material."
   },
 
   34: {
