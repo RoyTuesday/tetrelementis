@@ -599,7 +599,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#818083',
     'color': 'black',
-    'descrip': "Named for being difficult to acquire."
+    'descrip': "Named after the Greek \"dysprositos,\" meaning \"difficult to acquire.\" Used to make laser materials and in compact disks."
   },
 
   67: {
