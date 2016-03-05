@@ -869,7 +869,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#FAFAFA',
     'border-color': '#A971A9',
     'color': 'black',
-    'descrip': "Named after Marie Curie."
+    'descrip': "Named after Marie Curie. Used as the power source in NASA's Mars rover."
   },
 
   97: {
