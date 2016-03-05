@@ -284,7 +284,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#656463',
     'color': 'black',
-    'descrip': "Named after the ancient Celtic peoples who inhabited what is now France, Gaul."
+    'descrip': "Named after the Latin \"Gallia,\" the ancient Celtic peoples who inhabited Gaul, now France. Used in the study of solar neutrinos."
   },
 
   32: {
