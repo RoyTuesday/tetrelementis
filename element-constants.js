@@ -671,7 +671,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#818083',
     'color': 'black',
-    'descrip': "Also known as \"Wolfram\", from which it derives its chemical symbol."
+    'descrip': "Named after the Swedish \"tung sten,\" meaning \"heavy stone.\" Also known as \"Wolfram,\" from which it derives its chemical symbol."
   },
 
   75: {
