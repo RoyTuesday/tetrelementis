@@ -221,7 +221,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#818083',
     'color': 'black',
-    'descrip': "n/a"
+    'descrip': "Named after the Greek \"chroma,\" meaning \"color,\" because its known compounds were many different colors. Responsible for the green color of emeralds."
   },
 
   25: {
