@@ -266,7 +266,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#DFCE8F',
     'border-color': '#BF8230',
     'color': 'black',
-    'descrip': "It's chemical symbol derives from the Latin 'Cuprus'."
+    'descrip': "Named after the Latin \"cuprum,\" referring to the island of Cyprus. Typically used as wiring. Popular in ancient times for its malleability."
   },
 
   30: {
