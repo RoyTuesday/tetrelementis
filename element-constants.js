@@ -1022,7 +1022,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#818083',
     'color': 'black',
-    'descrip': "n/a"
+    'descrip': "No name has yet been proposed for this element as its discovery has not been officially confirmed."
   },
 
   114: {
