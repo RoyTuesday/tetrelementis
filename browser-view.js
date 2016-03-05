@@ -11,6 +11,7 @@ var BrowserView = function(args) {
   this.elementDescrip = document.getElementById('element-description');
   this.elementName = document.getElementById('element-name');
   this.atomicNumDisplay = document.getElementById('atomic-number');
+  this.elementLink = document.getElementById('element-link');
   this.playerScore = document.getElementById('player-score');
 
   this.gridContext = gridCanvas.getContext('2d');
@@ -222,6 +223,9 @@ BrowserView.prototype.updateElementDescrip = function() {
   this.elementName.innerHTML = CHEMICAL_ELEMENTS[element].name + ' [' + CHEMICAL_ELEMENTS[element].symbol + ']';
   this.atomicNumDisplay.innerHTML = element;
   this.elementDescrip.innerHTML = CHEMICAL_ELEMENTS[element].descrip;
+
+  this.elementLink.href = CHEMISTRY_URL + CHEMICAL_ELEMENTS[element].name.toLowerCase();
+  this.elementLink.innerHTML = 'Learn more about ' + CHEMICAL_ELEMENTS[element].name.toLowerCase();
 };
 BrowserView.prototype.updatePlayerScore = function(score) {
   this.playerScore.innerHTML = score;
