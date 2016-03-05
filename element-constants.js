@@ -203,7 +203,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#E4E4DA',
     'border-color': '#818083',
     'color': 'black',
-    'descrip': "n/a"
+    'descrip': "Named after the Greek \"titans.\" Used as an alloy in aircraft, bicycle frames, and other lightweight, rigid structures. Titanium oxide is commonly used in house paint."
   },
 
   23: {
