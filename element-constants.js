@@ -545,7 +545,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#818083',
     'color': 'black',
-    'descrip': "n/a"
+    'descrip': "Named after the Greek \"neos didymos,\" meaning \"new twin.\" Used in very powerful permanent magnets."
   },
 
   61: {
