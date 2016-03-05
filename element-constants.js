@@ -131,7 +131,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#DEDEDA',
     'border-color': '#50506A',
     'color': 'black',
-    'descrip': "Common component in electronics, as its chemical properties are ideal for creating microscopic transistors."
+    'descrip': "Named after the Latin \"silex,\" meaning \"flint\". Common component in electronics, as its chemical properties are ideal for creating microscopic transistors."
   },
 
   15: {
