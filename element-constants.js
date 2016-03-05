@@ -716,7 +716,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEF62',
     'border-color': '#A89840',
     'color': 'black',
-    'descrip': "n/a"
+    'descrip': "Its chemical symbol comes from the Latin word for gold, \"aurum.\" The most malleable and ductile known metal, it doesn't tarnish in air."
   },
 
   80: {
