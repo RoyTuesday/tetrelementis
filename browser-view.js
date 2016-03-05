@@ -1,6 +1,8 @@
 var BrowserView = function(args) {
   var gridCanvas = document.querySelector('canvas#tetris-grid');
   var previewCanvas = document.querySelector('canvas#tetris-preview');
+
+  this.tableOverlay = document.querySelector('canvas#table-overlay');
   this.tableCanvas = document.querySelector('canvas#tetris-table');
 
   BLOCK_SPACING_HEIGHT = gridCanvas.getAttribute('height') / 20;
@@ -17,6 +19,9 @@ var BrowserView = function(args) {
   this.gridContext = gridCanvas.getContext('2d');
   this.previewContext = previewCanvas.getContext('2d');
   this.tableContext = this.tableCanvas.getContext('2d');
+  this.overlayContext = this.tableOverlay.getContext('2d');
+
+  this.overlayContext.fillStyle = 'rgba(255, 255, 255, 0.5)';
 
   this.gameBoard = args.gameBoard;
   this.previewBoard = new PreviewBoard();
@@ -40,13 +45,26 @@ var BrowserView = function(args) {
   document.querySelector('#level-right').addEventListener('mousedown', this.buttonDown.bind(this));
   document.querySelector('#level-right').addEventListener('mouseup', this.buttonUp.bind(this));
 
-  this.tableCanvas.addEventListener('mousedown', function(event) {
-    var mouseX = Math.floor((event.layerX - this.tableCanvas.offsetLeft) / (540 / 18));
-    var mouseY = Math.floor((event.layerY - this.tableCanvas.offsetTop) / (270 / 9));
+  this.tableOverlay.addEventListener('mousedown', function(event) {
+    var mouseX = Math.floor((event.pageX - this.tableOverlay.offsetLeft) / (540 / 18));
+    var mouseY = Math.floor((event.pageY - this.tableOverlay.offsetTop) / (270 / 9));
     var element = this.tableBoard.board[mouseY][mouseX];
-    
+
     if(element > 0) {
       this.updateElementDescrip(element);
+    }
+  }.bind(this));
+  this.tableOverlay.addEventListener('mousemove', function(event) {
+    var mouseX = Math.floor((event.pageX - this.tableOverlay.offsetLeft) / (540 / 18));
+    var mouseY = Math.floor((event.pageY - this.tableOverlay.offsetTop) / (270 / 9));
+    var element = this.tableBoard.board[mouseY][mouseX];
+
+    if(element > 0) {
+      this.overlayContext.clearRect(0, 0, 540, 270);
+      this.overlayContext.fillRect((mouseX * BLOCK_SPACING_WIDTH) + 5, (mouseY * BLOCK_SPACING_HEIGHT) + 5, BLOCK_WIDTH, BLOCK_HEIGHT);
+    }
+    else {
+      this.overlayContext.clearRect(0, 0, 540, 270);
     }
   }.bind(this));
 }
