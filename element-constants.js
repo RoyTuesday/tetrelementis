@@ -878,7 +878,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#818083',
     'color': 'black',
-    'descrip': "Named \"birch tree\"."
+    'descrip': "Named after the city of Berkeley, California."
   },
 
   98: {
