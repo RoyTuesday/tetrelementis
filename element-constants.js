@@ -797,7 +797,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#818083',
     'color': 'black',
-    'descrip': "Named for its radioactive properties."
+    'descrip': "Named after the Latin \"radius,\" meaning \"ray,\" because of its radioactive properties. It can emit alpha, beta, and gamma rays."
   },
 
   89: {
