@@ -36,8 +36,9 @@ var BrowserView = function(args) {
 
   addEventListener('keydown', this.keyDown.bind(this));
   addEventListener('keyup', this.keyUp.bind(this));
-  addEventListener('mousedown', this.buttonDown.bind(this));
-  addEventListener('mouseup', this.buttonUp.bind(this));
+
+  document.querySelector('#level-right').addEventListener('mousedown', this.buttonDown.bind(this));
+  document.querySelector('#level-right').addEventListener('mouseup', this.buttonUp.bind(this));
 }
 BrowserView.prototype.keyDown = function(event) {
   var pressedKey = KEY_CODES[event.keyCode];
