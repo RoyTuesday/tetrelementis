@@ -707,7 +707,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#818083',
     'color': 'black',
-    'descrip': "Named \"little silver\"."
+    'descrip': "Named after the Spanish \"platina,\" meaning \"little silver.\" Used in jewelery, dentistry, and catalytic converters."
   },
 
   79: {
