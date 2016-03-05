@@ -329,7 +329,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#FFDFEF',
     'border-color': '#9093A9',
     'color': 'black',
-    'descrip': "Named after the Greek for \"hidden\"."
+    'descrip': "Named after the Greek \"kryptos,\" meaning \"hidden\". Used in fluorescent lightbulbs."
   },
 
   37: {
