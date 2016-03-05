@@ -824,7 +824,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#818083',
     'color': 'black',
-    'descrip': "n/a"
+    'descrip': "Named after the Greek \"protos,\" meaning \"first.\" Acts as a superconductor at extremely low temperatures."
   },
 
   92: {
