@@ -365,7 +365,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#656463',
     'color': 'black',
-    'descrip': "n/a"
+    'descrip': "Named after the Arabic \"zargun,\" meaning \"gold color\". Used in the nuclear industry. Useful to protect against corrosion."
   },
 
   41: {
