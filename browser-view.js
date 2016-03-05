@@ -251,15 +251,14 @@ BrowserView.prototype.animateGame = function() {
   var animate = function(time) {
     if(lastTime) {
       var timeStep = Math.min(time - lastTime, 100) / 1000;
-      progress = timeStep < 2000;
+      progress = timeStep < 1000;
     }
     lastTime = time;
 
-    this.drawAllBoards();
-
-    this.updatePlayerScore(this.gameBoard.score);
-    this.updateGameLevel();
     if(progress) {
+      this.drawAllBoards();
+      this.updatePlayerScore(this.gameBoard.score);
+      this.updateGameLevel();
       requestAnimationFrame(animate.bind(this));
     }
   }
