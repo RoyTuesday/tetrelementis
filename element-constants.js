@@ -464,7 +464,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#818083',
     'color': 'black',
-    'descrip': "Known during the Medieval Era to be the death of many monks who did not take enough care while gardening."
+    'descrip': "Possibly named from the Greek \"anti\" and \"monos,\" meaning \"not alone.\" Known during the Medieval Era to be the death of many monks who did not take enough care while gardening."
   },
 
   52: {
