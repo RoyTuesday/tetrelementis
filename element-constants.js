@@ -491,7 +491,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFDFEF',
     'border-color': '#9093A9',
     'color': 'black',
-    'descrip': "n/a"
+    'descrip': "Named after the Greek \"xenos,\" meaning \"stranger.\" Used in electron tubes."
   },
 
   55: {
