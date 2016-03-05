@@ -734,7 +734,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#818083',
     'color': 'black',
-    'descrip': "n/a"
+    'descrip': "Named after the Greek \"thallos,\" meaning \"green twig.\" Once used as rodenticide."
   },
 
   82: {
