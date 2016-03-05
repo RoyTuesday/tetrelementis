@@ -122,7 +122,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#E0E0F3',
     'border-color': '#656070',
     'color': 'black',
-    'descrip': "Named for the salt from which it was derived: Alum. Once a very precious metal, so much so that the Washington Monument was originally capped with Aluminum."
+    'descrip': "Named for the salt from which it was derived, \"alum\". Once a very precious metal, so much so that the Washington Monument was originally capped with Aluminum."
   },
 
   14: {
