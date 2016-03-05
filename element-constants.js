@@ -446,7 +446,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#818083',
     'color': 'black',
-    'descrip': "Named after the country of India."
+    'descrip': "Named after its indigo color. Useful as an alloying agent, and to make mirrors."
   },
 
   50: {
