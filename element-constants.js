@@ -347,7 +347,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFB2',
     'border-color': '#656463',
     'color': 'black',
-    'descrip': "n/a"
+    'descrip': "Named after the Scottish village \"Strontian\". Useful in pyrotechnics for its red flame. Used in nuclear fission power plants."
   },
 
   39: {
