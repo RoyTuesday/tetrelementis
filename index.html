@@ -28,7 +28,7 @@
           Block Preview
         </canvas>
         <div id="level-display">
-          <div style="float:left">
+          <div id="level-left">
             <p>
               Level: <span id="game-level">0</span>
             </p>
@@ -36,20 +36,22 @@
             <p>
               Score: <span id="player-score">0</span>
             </p>
-          </div>
-          <div style="float:right">
+            <br/>
             <p>
               Difficulty: <span id="game-difficulty">Easy</span>
             </p>
-            <div id="controls-container">
-              <div class="controls-row">
-                <button class="arrow-key" data-key="up" title="Arrow Key Up: Rotate Block">&#8593;</button>
-              </div>
-              <div class="controls-row">
-                <button class="arrow-key" data-key="left" title="Arrow Key Left: Move Block Left">&#8592;</button>
-                <button class="arrow-key" data-key="down" title="Arrow Key Down: Drop Block Faster">&#8595;</button>
-                <button class="arrow-key" data-key="right" title="Arrow Key Right: Move Block Right">&#8594;</button>
-              </div>
+          </div>
+          <div id="level-right">
+            <div class="controls-row">
+              <button class="control-button" data-key="up" title="Arrow Key Up: Rotate Block">&#8593;</button>
+            </div>
+            <div class="controls-row">
+              <button class="control-button" data-key="left" title="Arrow Key Left: Move Block Left">&#8592;</button>
+              <button class="control-button" data-key="down" title="Arrow Key Down: Drop Block Faster">&#8595;</button>
+              <button class="control-button" data-key="right" title="Arrow Key Right: Move Block Right">&#8594;</button>
+            </div>
+            <div class="controls-row">
+              <button class="control-button" data-key="space" id="spacebar" title="Spacebar: Start or Pause">start / pause</button>
             </div>
           </div>
         </div>
