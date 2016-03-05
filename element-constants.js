@@ -86,7 +86,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#FFEF82',
     'border-color': '#B8B870',
     'color': 'black',
-    'descrip': "Named after the word \"flow\"."
+    'descrip': "Named for the French \"fluere,\" meaning \"flow\". Chlorine Trifluoride is one of the most dangerous, reactive chemicals in the world. It is known to burn concrete, melt sand, and explode on contact with water."
   },
 
   10: {
