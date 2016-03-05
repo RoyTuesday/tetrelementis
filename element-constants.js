@@ -770,7 +770,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#CDCDC0',
     'border-color': '#9D9D90',
     'color': 'black',
-    'descrip': "n/a"
+    'descrip': "Named after the Greek \"astatos,\" meaning \"unstable.\" All of its known isotopes are radioactive."
   },
 
   86: {
