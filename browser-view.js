@@ -43,7 +43,11 @@ var BrowserView = function(args) {
   this.tableCanvas.addEventListener('mousedown', function(event) {
     var mouseX = Math.floor((event.layerX - this.tableCanvas.offsetLeft) / (540 / 18));
     var mouseY = Math.floor((event.layerY - this.tableCanvas.offsetTop) / (270 / 9));
-    console.log('mouseX', mouseX, 'mouseY', mouseY, this.tableBoard.board[mouseY][mouseX], event);
+    var element = this.tableBoard.board[mouseY][mouseX];
+    
+    if(element > 0) {
+      this.updateElementDescrip(element);
+    }
   }.bind(this));
 }
 BrowserView.prototype.keyDown = function(event) {
@@ -241,8 +245,10 @@ BrowserView.prototype.animateGame = function() {
   }
   requestAnimationFrame(animate.bind(this));
 };
-BrowserView.prototype.updateElementDescrip = function() {
-  var element = this.previewBoard.tetrinimo.element;
+BrowserView.prototype.updateElementDescrip = function(element) {
+  if(element === undefined) {
+    var element = this.previewBoard.tetrinimo.element;
+  }
 
   this.elementName.innerHTML = CHEMICAL_ELEMENTS[element].name + ' [' + CHEMICAL_ELEMENTS[element].symbol + ']';
   this.atomicNumDisplay.innerHTML = element;
