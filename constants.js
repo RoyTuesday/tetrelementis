@@ -3,7 +3,7 @@ var FONT_SIZE = 11;
 var BLOCK_FONT = "px monospace";
 
 // Delay values in milliseconds
-var FAST_DROP = 100;
+var FAST_DROP = 50;
 var INPUT_DELAY = 200;
 var CLEAR_DELAY = 1;
 var DROP_DELAY = {
