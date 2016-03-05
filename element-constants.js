@@ -257,7 +257,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#E4E4DA',
     'border-color': '#505057',
     'color': 'black',
-    'descrip': "n/a"
+    'descrip': "Named after the German \"kupfernickel,\" meaning \"Nick's copper\" (as in Saint Nicholas). An American nickel is 25% Nickel."
   },
 
   29: {
