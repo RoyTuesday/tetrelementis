@@ -455,7 +455,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#818083',
     'color': 'black',
-    'descrip': "n/a"
+    'descrip': "The chemical symbol comes from the Latin word for tin, \"stannum.\" Used to create the copper alloy, bronze."
   },
 
   51: {
