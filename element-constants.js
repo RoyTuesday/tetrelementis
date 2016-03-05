@@ -806,7 +806,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#DEDEDD',
     'border-color': '#50508A',
     'color': 'black',
-    'descrip': "n/a"
+    'descrip': "Named after the Greek \"aktinos,\" meaning \"ray.\" Highly radioactive, it's often used in thermoelectric power and as a source of neutrons."
   },
 
   90: {
