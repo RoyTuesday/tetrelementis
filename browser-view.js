@@ -39,6 +39,12 @@ var BrowserView = function(args) {
 
   document.querySelector('#level-right').addEventListener('mousedown', this.buttonDown.bind(this));
   document.querySelector('#level-right').addEventListener('mouseup', this.buttonUp.bind(this));
+
+  tableCanvas.addEventListener('mousedown', function(event) {
+    var mouseX = event.layerX - this.offsetLeft;
+    var mouseY = event.layerY - this.offsetTop;
+    console.log('mouseX', mouseX, 'mouseY', mouseY, event);
+  });
 }
 BrowserView.prototype.keyDown = function(event) {
   var pressedKey = KEY_CODES[event.keyCode];
