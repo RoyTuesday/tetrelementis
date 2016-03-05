@@ -140,7 +140,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#F5D311',
     'border-color': '#877040',
     'color': 'black',
-    'descrip': "n/a"
+    'descrip': "Named after the Ancient Greek name for the planet Venus, meaning \"light-carrier.\" It is an essential component of cell structure."
   },
 
   16: {
