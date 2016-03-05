@@ -20,7 +20,7 @@ ready(function() {
   var tableLeft = document.querySelector('#tetris-table').offsetLeft;
   var tableTop = document.querySelector('#tetris-table').offsetTop;
   document.querySelector('#table-overlay').style.left = tableLeft + 1 + 'px';
-  document.querySelector('#table-overlay').style.top = tableTop + 'px';
+  document.querySelector('#table-overlay').style.top = tableTop + 1 + 'px';
 
   // This variable is global for the purposes of development and debugging
   // Once the game is complete, remove the variable assignment
