@@ -851,7 +851,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#FAFAFA',
     'border-color': '#818083',
     'color': 'black',
-    'descrip': "Named after the Roman god, Pluto."
+    'descrip': "Named after the planet Pluto, because it follows Neptunium in the periodic table. Used in pacemakers, and as a fuel for nuclear fission."
   },
 
   95: {
