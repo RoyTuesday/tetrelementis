@@ -239,7 +239,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#E4E4DA',
     'border-color': '#BF9270',
     'color': 'black',
-    'descrip': "n/a"
+    'descrip': "It's English name may have been derived from words meaning \"holy metal\" because it was used to make swords for the Crusades. Its chemical symbol comes from the Latin word for Iron, \"ferrum.\""
   },
 
   27: {
