@@ -428,7 +428,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#818083',
     'color': 'black',
-    'descrip': "Its chemical symbol derives from the Latin \"argent\"."
+    'descrip': "The chemical symbol derives from the Latin \"argentum.\" Used in high capacity batteries, as a paint for printing circuits, and alloyed with copper as silverware."
   },
 
   48: {
