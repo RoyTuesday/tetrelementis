@@ -662,7 +662,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#C1C5DB',
     'border-color': '#707389',
     'color': 'black',
-    'descrip': "Named for the mythical Greek Tantalus: a region deep beneath the surface of the Earth, where Zeus banished the titans."
+    'descrip': "Named after the mythical Greek Tantalus, son of Zeus who was banished to Tartarus. Useful for strengthening steel."
   },
 
   74: {
