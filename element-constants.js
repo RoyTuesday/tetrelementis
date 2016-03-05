@@ -3,7 +3,7 @@ var CHEMICAL_ELEMENTS = {
     'name': 'n/a',
     'symbol': "",
     'background-color': '#F1EEFA',
-    'border-color': '#AAA',
+    'border-color': '#DDD',
     'color': '#F1EEFA',
     'descrip': "n/a"
   },
