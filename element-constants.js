@@ -212,7 +212,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#C1C5DB',
     'border-color': '#9093A9',
     'color': 'black',
-    'descrip': "n/a"
+    'descrip': "Named after the Scandinavian goddess of beauty, \"Vanadis.\" It is used to improve steel, and has been identified in the spectra of several stars and the sun."
   },
 
   24: {
