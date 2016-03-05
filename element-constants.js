@@ -518,7 +518,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#818083',
     'color': 'black',
-    'descrip': "n/a"
+    'descrip': "Named after the Greek \"lanthanein,\" meaning \"to lie hidden.\" Used in film projection and to create cast iron."
   },
 
   58: {
