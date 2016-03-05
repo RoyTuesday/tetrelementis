@@ -230,7 +230,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#E4E4DA',
     'border-color': '#505057',
     'color': 'black',
-    'descrip': "Named for its magnetic properties."
+    'descrip': "Named after the Latin \"magnes,\" meaning \"magnet,\" for its magnetic properties. Responsible for the purple color of true amethyst."
   },
 
   26: {
