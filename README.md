@@ -19,7 +19,9 @@ The more I learned about JavaScript, the more I realized my resulting game neede
 
 ## Version History
 
-:large_blue_diamond: **0.764 : 04 Mar 2016 -** Game doesn't start until player presses the spacebar. On gameover, the board clears, allowing another game to begin. Starting screen includes directions. Four buttons in the upper right simulate the arrow keys.
+:large_blue_diamond: **0.882 : 05 Mar 2016 -** All 118 elements have a brief description and link to a more detailed article on the element. A player can click on any element showing in the table to display its description.
+
+:small_red_triangle_down: **0.764 : 04 Mar 2016 -** Game doesn't start until player presses the spacebar. On gameover, the board clears, allowing another game to begin. Starting screen includes directions. Four buttons in the upper right simulate the arrow keys.
 
 :small_red_triangle_down: **0.705 : 24 Feb 2016 -** Game now displays a preview for the next tetrinimo. When one or more lines are filled, they are instantly cleared and all blocks above them move down. The Periodic Table of Elements fills in with each new tetrinimo.
 
@@ -65,13 +67,13 @@ The Minimum Viable Product must replicate Tetris, and have some educational cont
 
 :white_check_mark: Score: As player clears lines, score increases: more lines at once provide exponentially greater points.
 
+:white_check_mark: Element Details: Small display with a few facts about each element.
+
+:white_check_mark: External Links: Provide a link to an external page about each element (NOT Wikipedia!)
+
 :white_medium_small_square: Levels: As score increases, blocks drop faster.
 
 :white_medium_small_square: Difficulty options: Player can choose to begin at different drop speeds and whether level increases.
-
-:white_medium_small_square: Element Details: Small display with a few facts about each element.
-
-:white_medium_small_square: External Links: Provide a link to an external page about each element (NOT Wikipedia!)
 
 ## Stretch Goals
 
