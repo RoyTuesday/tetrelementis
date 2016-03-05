@@ -167,7 +167,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#BBA3BB',
     'border-color': '#A971A9',
     'color': 'black',
-    'descrip': "n/a"
+    'descrip': "Named after the Greek \"argos,\" meaning \"inert.\" Used to fill incandescent and fluorescent light bulbs."
   },
 
   19: {
