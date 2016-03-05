@@ -176,7 +176,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#FFDFEF',
     'border-color': '#818083',
     'color': 'black',
-    'descrip': "Commonly found in bananas and potatoes."
+    'descrip': "Named after the English \"potash,\" meaning \"pot ash\". Its symbol comes from the Latin \"kalium.\" Commonly found in bananas and potatoes."
   },
 
   20: {
