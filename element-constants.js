@@ -860,7 +860,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#818083',
     'color': 'black',
-    'descrip': "Named after the country of the United States of America."
+    'descrip': "Named after the country of the United States of America. Used in smoke detectors and as a source of gamma radiation."
   },
 
   96: {
