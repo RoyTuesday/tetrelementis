@@ -275,7 +275,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#C1C5DB',
     'border-color': '#9093A9',
     'color': 'black',
-    'descrip': "n/a"
+    'descrip': "Named after its German name, \"zink\". Used with copper to make brass in ancient times. An essential part of animal and plant diets."
   },
 
   31: {
