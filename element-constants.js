@@ -608,7 +608,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#818083',
     'color': 'black',
-    'descrip': "Named after the city of Stockholm, Sweden."
+    'descrip': "Named after the Greek for Sweden, \"Holmia.\" Used in metal alloys, and has an excellent potential for maintaining a magnetic field."
   },
 
   68: {
