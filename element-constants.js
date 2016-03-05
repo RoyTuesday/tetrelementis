@@ -1049,7 +1049,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#818083',
     'color': 'black',
-    'descrip': "n/a"
+    'descrip': "Named after the Lawrence Livermore National Laboratory. A synthetic element, too little has been produced to have any practical uses."
   },
 
   117: {
