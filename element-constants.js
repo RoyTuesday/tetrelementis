@@ -833,7 +833,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#555',
     'color': 'black',
-    'descrip': "Named after the Roman god, Uranus, often equated to the Greek Ouranos."
+    'descrip': "Named after the planet Uranus, often equated to the Greek Ouranos. Gives glass a distinct yellow green color and fluorescent glow. Useful as a fuel for nuclear fission."
   },
 
   93: {
