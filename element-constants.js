@@ -788,7 +788,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#656463',
     'color': 'black',
-    'descrip': "Named for the country of France."
+    'descrip': "Named after the country of France. Found in uranium minerals, it can be isolated by bombarding it with Thorium."
   },
 
   88: {
