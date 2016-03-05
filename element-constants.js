@@ -698,7 +698,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#818083',
     'color': 'black',
-    'descrip': "n/a"
+    'descrip': "Named after the Greek \"iris,\" meaning \"rainbow.\" Used to make the standard metre bar in Paris."
   },
 
   78: {
