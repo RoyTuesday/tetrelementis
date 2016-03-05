@@ -815,7 +815,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#555',
     'color': 'black',
-    'descrip': "Named after the Norse god, Thor."
+    'descrip': "Named after the Scandinavian god, Thor. Useful as a source of nuclear fission power."
   },
 
   91: {
