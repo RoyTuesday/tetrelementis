@@ -338,7 +338,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#E4C4DA',
     'border-color': '#505057',
     'color': 'black',
-    'descrip': "Named for it's \"ruby red\" color."
+    'descrip': "Named after the Latin \"rubidius,\" meaning \"deepest red,\" for it's ruby red color. Used in vacuum tubes and photocells."
   },
 
   38: {
