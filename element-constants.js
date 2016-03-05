@@ -95,7 +95,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFE09F',
     'border-color': '#EFB830',
     'color': 'black',
-    'descrip': "Named after the Latin word for \"new\"."
+    'descrip': "Named after the Latin word for \"new\". Though often seen in neon signs, shows great potential as a refrigerant."
   },
 
   11: {
