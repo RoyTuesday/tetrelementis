@@ -19,7 +19,7 @@ The more I learned about JavaScript, the more I realized my resulting game neede
 
 ## Version History
 
-:large_blue_diamond: **0.882 : 05 Mar 2016 -** All 118 elements have a brief description and link to a more detailed article on the element. A player can click on any element showing in the table to display its description.
+:large_blue_diamond: **0.941 : 05 Mar 2016 -** All 118 elements have a brief description and link to a more detailed article on the element. A player can click on any element showing in the table to display its description. As the player's score increases, the game level increases, increasing the tetrinimos' drop speed.
 
 :small_red_triangle_down: **0.764 : 04 Mar 2016 -** Game doesn't start until player presses the spacebar. On gameover, the board clears, allowing another game to begin. Starting screen includes directions. Four buttons in the upper right simulate the arrow keys.
 
@@ -71,7 +71,7 @@ The Minimum Viable Product must replicate Tetris, and have some educational cont
 
 :white_check_mark: External Links: Provide a link to an external page about each element (NOT Wikipedia!)
 
-:white_medium_small_square: Levels: As score increases, blocks drop faster.
+:white_check_mark: Levels: As score increases, blocks drop faster.
 
 :white_medium_small_square: Difficulty options: Player can choose to begin at different drop speeds and whether level increases.
 
