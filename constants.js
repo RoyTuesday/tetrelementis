@@ -4,7 +4,8 @@ var BLOCK_FONT = "px monospace";
 
 // Delay values in milliseconds
 var FAST_DROP = 50;
-var INPUT_DELAY = 200;
+var SLIDE_DELAY = 100;
+var ROTATE_DELAY = 200;
 var CLEAR_DELAY = 1;
 var DROP_DELAY = {
   0: 900,

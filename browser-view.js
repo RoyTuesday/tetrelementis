@@ -85,7 +85,7 @@ BrowserView.prototype.keyDown = function(event) {
         this.pressed.slide = pressedKey;
         clearInterval(this.interval.slide);
         this.gameBoard.slideBlock(this.pressed.slide);
-        this.interval.slide = setInterval(this.gameBoard.slideBlock.bind(this.gameBoard, this.pressed.slide), INPUT_DELAY);
+        this.interval.slide = setInterval(this.gameBoard.slideBlock.bind(this.gameBoard, this.pressed.slide), SLIDE_DELAY);
       }
     }
     else if(pressedKey == 'down') {
@@ -102,7 +102,7 @@ BrowserView.prototype.keyDown = function(event) {
         this.pressed.rotate = true;
         clearInterval(this.interval.rotate);
         this.gameBoard.rotateBlock('counter');
-        this.interval.rotate = setInterval(this.gameBoard.rotateBlock.bind(this.gameBoard, 'counter'), INPUT_DELAY);
+        this.interval.rotate = setInterval(this.gameBoard.rotateBlock.bind(this.gameBoard, 'counter'), ROTATE_DELAY);
       }
     }
     else if(pressedKey == 'space') {
@@ -150,7 +150,7 @@ BrowserView.prototype.buttonDown = function(event) {
         if(this.pressed.slide == false) {
           this.pressed.slide = buttonPressed;
           clearInterval(this.interval.slide);
-          this.interval.slide = setInterval(this.handleInput.bind(this), INPUT_DELAY);
+          this.interval.slide = setInterval(this.handleInput.bind(this), SLIDE_DELAY);
         }
       }
       else if(buttonPressed == 'down') {
@@ -164,7 +164,7 @@ BrowserView.prototype.buttonDown = function(event) {
         if(this.pressed.rotate == false) {
           this.pressed.rotate = true;
           clearInterval(this.interval.rotate);
-          this.interval.rotate = setInterval(this.handleInput.bind(this), INPUT_DELAY);
+          this.interval.rotate = setInterval(this.handleInput.bind(this), ROTATE_DELAY);
         }
       }
       else if(buttonPressed == 'space') {
