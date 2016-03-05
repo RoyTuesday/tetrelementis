@@ -149,7 +149,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#F5D311',
     'border-color': '#877040',
     'color': 'black',
-    'descrip': "Known as \"brimstone\" in ancient times. A key component in gunpowder."
+    'descrip': "Known as \"brimstone\" in ancient times. A key component in gunpowder, and an element essential for organic life."
   },
 
   17: {
