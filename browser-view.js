@@ -107,9 +107,15 @@ BrowserView.prototype.keyUp = function(event){
   }
 };
 BrowserView.prototype.buttonDown = function(event) {
-  if(this.isPaused === false) {
-    if(event.target.nodeName == "BUTTON") {
-      var buttonPressed = event.target.dataset.key;
+  if(event.target.nodeName == "BUTTON") {
+    var buttonPressed = event.target.dataset.key;
+    if(this.isPaused) {
+      if(buttonPressed == 'space') {
+        this.isPaused = false;
+        this.cycleDropBlock();
+      }
+    }
+    else {
       if(buttonPressed == 'left' || buttonPressed == 'right') {
         if(this.pressed.slide == false) {
           this.pressed.slide = buttonPressed;
@@ -130,6 +136,13 @@ BrowserView.prototype.buttonDown = function(event) {
           clearInterval(this.interval.rotate);
           this.interval.rotate = setInterval(this.handleInput.bind(this), INPUT_DELAY);
         }
+      }
+      else if(buttonPressed == 'space') {
+        clearTimeout(this.gameBoard.dropInterval);
+        clearTimeout(this.dropTimeout);
+        clearInterval(this.interval.rotate);
+        clearInterval(this.interval.slide);
+        this.isPaused = true;
       }
       this.handleInput();
     }
