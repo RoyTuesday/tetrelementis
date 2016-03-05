@@ -635,7 +635,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFB2',
     'border-color': '#656463',
     'color': 'black',
-    'descrip': "Named after the village of Ytterby."
+    'descrip': "Named after the Swedish village of Ytterby."
   },
 
   71: {
