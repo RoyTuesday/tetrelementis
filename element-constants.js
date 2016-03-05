@@ -437,7 +437,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#C1C5DB',
     'border-color': '#707399',
     'color': 'black',
-    'descrip': "n/a"
+    'descrip': "Named after the Greek \"kadmeia,\" meaning \"calamine.\" Used as phosphors in television tubes, and in control rods of nuclear reactors."
   },
 
   49: {
