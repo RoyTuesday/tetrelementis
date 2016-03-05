@@ -725,7 +725,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#818083',
     'color': 'black',
-    'descrip': "Also known as 'quicksilver'. Its chemical symbol derives from ."
+    'descrip': "Also known as \"quicksilver,\" its chemical symbol derives from the Latin \"hydrargyrum,\" meaning \"liquid silver.\" Mercury vapor is toxic, and no longer used in thermometers."
   },
 
   81: {
