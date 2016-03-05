@@ -419,7 +419,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#818083',
     'color': 'black',
-    'descrip': "n/a"
+    'descrip': "Named after the asteroid \"Pallas,\" named for the Greek goddess of wisdom. Used in watches, surgical instruments, and to decolorize gold into white gold."
   },
 
   47: {
