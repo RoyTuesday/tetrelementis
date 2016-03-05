@@ -1013,7 +1013,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#818083',
     'color': 'black',
-    'descrip': "Named after the philosopher, Copernicus."
+    'descrip': "Its proposed name comes from the Renaissance mathematician and astronomer, Nicolaus Copernicus. A synthetic element, too little has been produced to have any practical uses."
   },
 
   113: {
