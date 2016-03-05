@@ -626,7 +626,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#E4E4DA',
     'border-color': '#505057',
     'color': 'black',
-    'descrip': "Named after the country of Iceland."
+    'descrip': "Named after the ancient name for Scandinavia, \"Thule.\""
   },
 
   70: {
