@@ -743,7 +743,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#656463',
     'color': 'black',
-    'descrip': "n/a"
+    'descrip': "Named after the Latin for lead, \"plumbum.\" Though highly toxic, its sweet taste made it a favorite sweetener of the Romans."
   },
 
   83: {
