@@ -2,7 +2,7 @@ body {
   background-color: #F9F5FC;
 }
 
-.arrow-key {
+.control-button {
   background-color: #EEE;
   border-radius: 10px;
   color: #333;
@@ -12,6 +12,12 @@ body {
   padding: 2px;
   text-align: center;
   width: 36px;
+}
+#spacebar {
+  font-size: 14px;
+  font-weight: bold;
+  height: 28px;
+  width: 116px;
 }
 .controls-row {
   display: webkit-flex;
@@ -54,15 +60,25 @@ body {
 #level-display {
   border: 1px solid #DAD;
   display: inline-block;
-  height: 104px;
-  padding: 8px;
+  height: 120px;
   text-align: left;
   vertical-align: top;
-  width: 402px;
+  width: 418px;
 }
 #level-display p {
   margin: 0;
 }
+#level-left {
+  float: left;
+  margin: 8px;
+  width: 45%;
+}
+#level-right {
+  float: right;
+  margin: 4px;
+  width: 45%;
+}
+
 #tetris-grid {
   border: 1px solid #DAA;
 }
