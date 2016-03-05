@@ -648,12 +648,12 @@ var CHEMICAL_ELEMENTS = {
   },
 
   72: {
-    'name': 'Hafnum',
+    'name': 'Hafnium',
     'symbol': 'Hf',
     'background-color': '#E4E4DA',
     'border-color': '#505057',
     'color': 'black',
-    'descrip': "Named after the city of Copenhagen, Switzerland."
+    'descrip': "Named after the Latin name for the city of Copenhagen, \"Hafnia.\" Used in nuclear reactor control rods."
   },
 
   73: {
