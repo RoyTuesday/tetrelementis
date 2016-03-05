@@ -176,7 +176,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#FFDFEF',
     'border-color': '#818083',
     'color': 'black',
-    'descrip': "Named after the English \"potash,\" meaning \"pot ash\". Its symbol comes from the Latin \"kalium.\" Commonly found in bananas and potatoes."
+    'descrip': "Named after the English \"potash,\" meaning \"pot ash.\" Its symbol comes from the Latin \"kalium.\" Commonly found in bananas and potatoes."
   },
 
   20: {
@@ -185,7 +185,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#E4E4DA',
     'border-color': '#505057',
     'color': 'black',
-    'descrip': "Typically found in limestone, from which it gets its \"name\"."
+    'descrip': "Named after the Latin \"calx,\" meaning \"lime.\" It is typically found in limestone, and is the primary component of dental enamel."
   },
 
   21: {
