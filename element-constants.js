@@ -302,7 +302,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFDF82',
     'border-color': '#989840',
     'color': 'black',
-    'descrip': "Named for the Greek \"arsenikon,\" meaning \"yellow orpiment\". Deadly poison to humans. Used as a laser material."
+    'descrip': "Named after the Greek \"arsenikon,\" meaning \"yellow orpiment\". Deadly poison to humans. Used as a laser material."
   },
 
   34: {
@@ -311,7 +311,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EF9F9F',
     'border-color': '#EF5C30',
     'color': 'black',
-    'descrip': "n/a"
+    'descrip': "Named after the Greek \"selene,\" meaning \"moon\". Useful in photocells and transistors."
   },
 
   35: {
