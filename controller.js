@@ -31,6 +31,14 @@ var Controller = function(shape) {
       }
     }
   }.bind(this));
+  addEventListener('mousedown', function(event) {
+    if(event.target.nodeName == 'BUTTON' && this.gameState === 'gameover') {
+      var buttonPressed = event.target.dataset.key;
+      if(buttonPressed == 'space') {
+        this.startGame();
+      }
+    }
+  }.bind(this));
 }
 Controller.prototype.startGame = function() {
   this.gameState = 'inProgress';
