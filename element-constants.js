@@ -536,7 +536,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#656463',
     'color': 'black',
-    'descrip': "n/a"
+    'descrip': "Named after the Greek \"prasios didymos,\" meaning \"green twin.\" It naturally forms a green oxide unless exposed to air. Used in the film industry in carbon arc lights."
   },
 
   60: {
