@@ -923,7 +923,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#818083',
     'color': 'black',
-    'descrip': "Named after the _, Nobel."
+    'descrip': "Named after the Swedish chemist, Alfred Nobel. A synthetic element, too little has been produced to have any practical uses."
   },
 
   103: {
