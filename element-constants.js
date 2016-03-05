@@ -392,7 +392,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#656463',
     'color': 'black',
-    'descrip': "n/a"
+    'descrip': "Named after the Greek \"technikos,\" meaning \"artificial\". It's the first chemical element to be produced artificially."
   },
 
   44: {
