@@ -581,7 +581,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#818083',
     'color': 'black',
-    'descrip': "n/a"
+    'descrip': "Named after a Finnish chemist, J. Gadolin. Used in making tv tubes, enhancing MRI images, and in compact disks."
   },
 
   65: {
