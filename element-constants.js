@@ -104,7 +104,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#656463',
     'color': 'black',
-    'descrip': "Commonly found in table salt, in the compound Sodium Chloride ( NaCl )."
+    'descrip': "Named after the word \"soda\" because it was first isolated from a sample of caustic soda. Commonly found in table salt, in the compound Sodium Chloride (NaCl)."
   },
 
   12: {
