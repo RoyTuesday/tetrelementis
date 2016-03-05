@@ -554,7 +554,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFFF',
     'border-color': '#656478',
     'color': 'black',
-    'descrip': "Named after the tragic Greek hero Prometheus."
+    'descrip': "Named after the tragic Greek hero Prometheus. A radioactive element, Promethium salts glow blue or green in the dark."
   },
 
   62: {
