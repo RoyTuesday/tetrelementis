@@ -905,7 +905,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#818083',
     'color': 'black',
-    'descrip': "Named after the _, Enrico Fermi."
+    'descrip': "Named after the Italian physicist, Enrico Fermi. A synthetic element, too little has been produced to have any practical uses."
   },
 
   101: {
