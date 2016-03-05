@@ -302,7 +302,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFDF82',
     'border-color': '#989840',
     'color': 'black',
-    'descrip': "Named after the Greek \"arsenikon,\" meaning \"yellow orpiment\". Deadly poison to humans. Used as a laser material."
+    'descrip': "Named after the Greek \"arsenikon,\" meaning \"yellow orpiment.\" Deadly poison to humans. Used as a laser material."
   },
 
   34: {
@@ -311,7 +311,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EF9F9F',
     'border-color': '#EF5C30',
     'color': 'black',
-    'descrip': "Named after the Greek \"selene,\" meaning \"moon\". Useful in photocells and transistors."
+    'descrip': "Named after the Greek \"selene,\" meaning \"moon.\" Useful in photocells and transistors."
   },
 
   35: {
@@ -320,7 +320,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EF8F8F',
     'border-color': '#CF3C20',
     'color': 'black',
-    'descrip': "Named after the Greek \"bromos,\" meaning \"stench\". Gaseous Bromine is heavier than air; in an open container at room temperature the gas will pour out over the edges. Used as a flame retardant."
+    'descrip': "Named after the Greek \"bromos,\" meaning \"stench.\" Gaseous Bromine is heavier than air; in an open container at room temperature the gas will pour out over the edges. Used as a flame retardant."
   },
 
   36: {
@@ -329,7 +329,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#FFDFEF',
     'border-color': '#9093A9',
     'color': 'black',
-    'descrip': "Named after the Greek \"kryptos,\" meaning \"hidden\". Used in fluorescent lightbulbs."
+    'descrip': "Named after the Greek \"kryptos,\" meaning \"hidden.\" Used in fluorescent lightbulbs."
   },
 
   37: {
@@ -365,7 +365,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#656463',
     'color': 'black',
-    'descrip': "Named after the Arabic \"zargun,\" meaning \"gold color\". Used in the nuclear industry. Useful to protect against corrosion."
+    'descrip': "Named after the Arabic \"zargun,\" meaning \"gold color.\" Used in the nuclear industry. Useful to protect against corrosion."
   },
 
   41: {
@@ -383,7 +383,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#656463',
     'color': 'black',
-    'descrip': "Named after the Greek \"molybdos,\" meaning \"lead\". Also known as \"fool's lead\". Used as an alloying agent in steel."
+    'descrip': "Named after the Greek \"molybdos,\" meaning \"lead.\" Also known as \"fool's lead\". Used as an alloying agent in steel."
   },
 
   43: {
@@ -392,7 +392,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#656463',
     'color': 'black',
-    'descrip': "Named after the Greek \"technikos,\" meaning \"artificial\". It's the first chemical element to be produced artificially."
+    'descrip': "Named after the Greek \"technikos,\" meaning \"artificial.\" It's the first chemical element to be produced artificially."
   },
 
   44: {
@@ -401,7 +401,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#656463',
     'color': 'black',
-    'descrip': "Named after the Latin \"Ruthenia,\" meaning \"Russia\". Useful as a harder for palladium and platinum, and to prevent corrosion in titanium."
+    'descrip': "Named after the Latin \"Ruthenia,\" meaning \"Russia.\" Useful as a harder for palladium and platinum, and to prevent corrosion in titanium."
   },
 
   45: {
@@ -410,7 +410,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#FFDFEF',
     'border-color': '#616063',
     'color': 'black',
-    'descrip': "Named for its pink color."
+    'descrip': "Named after the Greek \"rhodon,\" meaning \"rose\" or \"pink.\" Used in jewelery and catalytic converters."
   },
 
   46: {
