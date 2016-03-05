@@ -68,7 +68,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#FFF',
     'border-color': '#999',
     'color': 'black',
-    'descrip': "Makes up the largest percent of air at the Earth's surface."
+    'descrip': "Named after the Latin \"nitrum,\" a native soda. Makes up the largest percent of air at the Earth's surface."
   },
 
   8: {
