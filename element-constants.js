@@ -248,7 +248,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#9EA3BB',
     'border-color': '#6871A9',
     'color': 'black',
-    'descrip': "n/a"
+    'descrip': "Named after the German \"kobold,\" meaning \"goblin.\" It is essential to vitamin-B12."
   },
 
   28: {
