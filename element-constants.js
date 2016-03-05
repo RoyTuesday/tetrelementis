@@ -680,7 +680,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#DEDEDA',
     'border-color': '#50506A',
     'color': 'black',
-    'descrip': "Named after the Rhine river."
+    'descrip': "Named after Greek name for the Rhine river, \"Rhenus.\" Useful as an alloying agent and in superconductors."
   },
 
   76: {
