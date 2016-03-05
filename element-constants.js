@@ -374,7 +374,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#C1C5DB',
     'border-color': '#707389',
     'color': 'black',
-    'descrip': "Named after the city of Niobe."
+    'descrip': "Named after the Greek character \"Niobe,\" daughter of Tantalus, because of its close relation to Tantalum. Used in arc-welding rods and superconductive magnets."
   },
 
   42: {
