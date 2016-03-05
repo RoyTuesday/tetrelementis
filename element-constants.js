@@ -914,7 +914,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#818083',
     'color': 'black',
-    'descrip': "Named after the chemist who devised what would become the modern periodic table of elements, Mendeleev."
+    'descrip': "Named after the Russian chemist who devised what would become the modern periodic table of elements, Dmitri Mendeleev. A synthetic element, too little has been produced to have any practical uses."
   },
 
   102: {
