@@ -842,7 +842,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#818083',
     'color': 'black',
-    'descrip': "Named after the Roman god, Neptune."
+    'descrip': "Named after the planet Neptune, because it follows Uranium in the periodic table. Used in neutron detection instruments."
   },
 
   94: {
