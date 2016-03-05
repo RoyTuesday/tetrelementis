@@ -401,7 +401,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#656463',
     'color': 'black',
-    'descrip': "n/a"
+    'descrip': "Named after the Latin \"Ruthenia,\" meaning \"Russia\". Useful as a harder for palladium and platinum, and to prevent corrosion in titanium."
   },
 
   45: {
