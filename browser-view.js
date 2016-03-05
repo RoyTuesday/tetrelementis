@@ -107,40 +107,44 @@ BrowserView.prototype.keyUp = function(event){
   }
 };
 BrowserView.prototype.buttonDown = function(event) {
-  if(event.target.nodeName == "BUTTON") {
-    var buttonPressed = event.target.dataset.key;
-    if(buttonPressed == 'left' || buttonPressed == 'right') {
-      if(this.pressed.slide == false) {
-        this.pressed.slide = buttonPressed;
-        clearInterval(this.interval.slide);
-        this.interval.slide = setInterval(this.handleInput.bind(this), INPUT_DELAY);
+  if(this.isPaused === false) {
+    if(event.target.nodeName == "BUTTON") {
+      var buttonPressed = event.target.dataset.key;
+      if(buttonPressed == 'left' || buttonPressed == 'right') {
+        if(this.pressed.slide == false) {
+          this.pressed.slide = buttonPressed;
+          clearInterval(this.interval.slide);
+          this.interval.slide = setInterval(this.handleInput.bind(this), INPUT_DELAY);
+        }
       }
-    }
-    else if(buttonPressed == 'down') {
-      if(this.pressed.drop == false) {
-        this.pressed.drop = true;
-        clearTimeout(this.dropTimeout);
-        this.cycleDropBlock({quickly: true});
+      else if(buttonPressed == 'down') {
+        if(this.pressed.drop == false) {
+          this.pressed.drop = true;
+          clearTimeout(this.dropTimeout);
+          this.cycleDropBlock({quickly: true});
+        }
       }
-    }
-    else if(buttonPressed == 'up') {
-      if(this.pressed.rotate == false) {
-        this.pressed.rotate = true;
-        clearInterval(this.interval.rotate);
-        this.interval.rotate = setInterval(this.handleInput.bind(this), INPUT_DELAY);
+      else if(buttonPressed == 'up') {
+        if(this.pressed.rotate == false) {
+          this.pressed.rotate = true;
+          clearInterval(this.interval.rotate);
+          this.interval.rotate = setInterval(this.handleInput.bind(this), INPUT_DELAY);
+        }
       }
+      this.handleInput();
     }
-    this.handleInput();
   }
 };
 BrowserView.prototype.buttonUp = function(event) {
-  if(this.pressed.drop) {
-    clearTimeout(this.dropTimeout);
-    this.cycleDropBlock();
+  if(this.isPaused === false) {
+    if(this.pressed.drop) {
+      clearTimeout(this.dropTimeout);
+      this.cycleDropBlock();
+    }
+    clearInterval(this.interval.slide);
+    clearInterval(this.interval.rotate);
+    this.releaseAllKeys();
   }
-  clearInterval(this.interval.slide);
-  clearInterval(this.interval.rotate);
-  this.releaseAllKeys();
 };
 BrowserView.prototype.handleInput = function() {
   if(this.pressed.slide) {
