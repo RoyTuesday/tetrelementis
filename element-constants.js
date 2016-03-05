@@ -689,7 +689,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#DEDEDA',
     'border-color': '#50508A',
     'color': 'black',
-    'descrip': "Named for its smell."
+    'descrip': "Named after the Greek \"osme,\" meaning \"smell.\" Used to make fountain pen tips, electrical contacts, and in alloys for implants such as pacemakers."
   },
 
   77: {
