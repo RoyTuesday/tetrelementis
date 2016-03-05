@@ -932,7 +932,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#818083',
     'color': 'black',
-    'descrip': "Named after the _, Lawrence."
+    'descrip': "Named after Ernest Lawrence, inventor of the cyclotron. A synthetic element, too little has been produced to have any practical uses."
   },
 
   104: {
