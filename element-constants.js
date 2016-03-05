@@ -113,7 +113,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFFF',
     'border-color': '#656478',
     'color': 'black',
-    'descrip': "n/a"
+    'descrip': "Named after the Magnesia district in Thessaly. Because it readily ignites in air, it is used in flash photography and pyrotechnics."
   },
 
   13: {
