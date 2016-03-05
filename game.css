@@ -89,3 +89,6 @@ body {
   border: 1px solid #ADA;
   display: block;
 }
+#table-overlay {
+  position: absolute;
+}
