@@ -347,7 +347,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFB2',
     'border-color': '#656463',
     'color': 'black',
-    'descrip': "Named after the Scottish village \"Strontian\". Useful in pyrotechnics for its red flame. Used in nuclear fission power plants."
+    'descrip': "Named after the Scottish village of Strontian. Useful in pyrotechnics for its red flame. Used in nuclear fission power plants."
   },
 
   39: {
@@ -356,7 +356,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#656463',
     'color': 'black',
-    'descrip': "Named after the village of Ytterby."
+    'descrip': "Named after the Swedish village of Ytterby. Used as a red phosphor in television screens. Found in moon rocks."
   },
 
   40: {
