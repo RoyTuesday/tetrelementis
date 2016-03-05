@@ -761,7 +761,7 @@ var CHEMICAL_ELEMENTS = {
     'background-color': '#EFEFEF',
     'border-color': '#818083',
     'color': 'black',
-    'descrip': "Discovered by Marie Curie, and named after her home country, Poland."
+    'descrip': "Discovered by Marie Curie, and named after her home country, Poland. Used to remove static charge in textile mills, and as thermoelectric power in man-made satellites."
   },
 
   85: {
