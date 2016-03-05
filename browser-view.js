@@ -1,7 +1,7 @@
 var BrowserView = function(args) {
   var gridCanvas = document.querySelector('canvas#tetris-grid');
   var previewCanvas = document.querySelector('canvas#tetris-preview');
-  var tableCanvas = document.querySelector('canvas#tetris-table');
+  this.tableCanvas = document.querySelector('canvas#tetris-table');
 
   BLOCK_SPACING_HEIGHT = gridCanvas.getAttribute('height') / 20;
   BLOCK_SPACING_WIDTH = gridCanvas.getAttribute('width') / 10;
@@ -16,7 +16,7 @@ var BrowserView = function(args) {
 
   this.gridContext = gridCanvas.getContext('2d');
   this.previewContext = previewCanvas.getContext('2d');
-  this.tableContext = tableCanvas.getContext('2d');
+  this.tableContext = this.tableCanvas.getContext('2d');
 
   this.gameBoard = args.gameBoard;
   this.previewBoard = new PreviewBoard();
@@ -40,11 +40,11 @@ var BrowserView = function(args) {
   document.querySelector('#level-right').addEventListener('mousedown', this.buttonDown.bind(this));
   document.querySelector('#level-right').addEventListener('mouseup', this.buttonUp.bind(this));
 
-  tableCanvas.addEventListener('mousedown', function(event) {
-    var mouseX = event.layerX - this.offsetLeft;
-    var mouseY = event.layerY - this.offsetTop;
-    console.log('mouseX', mouseX, 'mouseY', mouseY, event);
-  });
+  this.tableCanvas.addEventListener('mousedown', function(event) {
+    var mouseX = Math.floor((event.layerX - this.tableCanvas.offsetLeft) / (540 / 18));
+    var mouseY = Math.floor((event.layerY - this.tableCanvas.offsetTop) / (270 / 9));
+    console.log('mouseX', mouseX, 'mouseY', mouseY, this.tableBoard.board[mouseY][mouseX], event);
+  }.bind(this));
 }
 BrowserView.prototype.keyDown = function(event) {
   var pressedKey = KEY_CODES[event.keyCode];
