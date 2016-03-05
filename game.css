@@ -40,6 +40,12 @@ body {
   vertical-align: top;
 }
 
+#atomic-number-container {
+  display: inline-block;
+  margin: 4px 10px;
+  width: 150px;
+}
+
 #controls-container {
   margin: 2px;
 }
@@ -52,7 +58,9 @@ body {
   width: 516px;
 }
 #element-name {
+  display: inline-block;
   margin: 0;
+  width: 340px;
 }
 #element-description, #atomic-number {
   margin: 8px 0 0 0;
