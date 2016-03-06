@@ -103,6 +103,10 @@ select {
   width: 35%;
 }
 
+#periodic-table-container {
+  position: relative;
+}
+
 #tetris-grid {
   border: 5px inset #006;
 }
@@ -115,5 +119,7 @@ select {
   display: block;
 }
 #table-overlay {
+  left: 5px;
   position: absolute;
+  top: 5px;
 }
