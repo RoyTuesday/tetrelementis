@@ -308,4 +308,7 @@ BrowserView.prototype.makeModeStatic = function() {
 };
 BrowserView.prototype.resetDisplay = function() {
   this.gameModeContainer.innerHTML = GAME_MODE_MENU;
+  if(this.highScore.innerHTML < this.gameBoard.score) {
+    this.highScore.innerHTML = this.gameBoard.score;
+  }
 };
