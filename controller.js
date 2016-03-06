@@ -81,6 +81,7 @@ Controller.prototype.showGameOver = function() {
   this.gameState = 'gameover';
   this.gameView.isPaused = true;
   this.gameBoard.clearForGameover();
+  this.gameView.enableGameModeMenu();
 };
 
 var generateRandomElements = function() {
