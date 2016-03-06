@@ -15,6 +15,7 @@ var BrowserView = function(args) {
   this.atomicNumDisplay = document.getElementById('atomic-number');
   this.elementLink = document.getElementById('element-link');
   this.playerScore = document.getElementById('player-score');
+  this.highScore = document.getElementById('high-score');
   this.gameLevel = document.getElementById('game-level');
   this.gameModeContainer = document.getElementById('game-mode');
   this.gameModeDropdown;
@@ -305,6 +306,6 @@ BrowserView.prototype.makeModeStatic = function() {
   this.gameMode = GAME_MODES[modeIndex];
   this.gameModeContainer.innerHTML = GAME_MODES[modeIndex];
 };
-BrowserView.prototype.enableGameModeMenu = function() {
+BrowserView.prototype.resetDisplay = function() {
   this.gameModeContainer.innerHTML = GAME_MODE_MENU;
 };
