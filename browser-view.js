@@ -21,7 +21,7 @@ var BrowserView = function(args) {
   this.gameModeDropdown;
 
   this.gameLevel.innerHTML = genLevelMenu(0);
-  this.gameModeContainer.innerHTML = GAME_MODE_MENU;
+  this.gameModeContainer.innerHTML = genModeMenu('Marathon');
   for(var node in this.gameModeContainer.childNodes) {
     var currentNode = this.gameModeContainer.childNodes[node];
     if(currentNode.tagName == 'SELECT') {
@@ -318,7 +318,7 @@ BrowserView.prototype.disableMenus = function() {
   this.gameLevel.innerHTML = this.level;
 };
 BrowserView.prototype.resetDisplay = function() {
-  this.gameModeContainer.innerHTML = GAME_MODE_MENU;
+  this.gameModeContainer.innerHTML = genModeMenu(this.gameMode);
   if(this.highScore.innerHTML < this.gameBoard.score) {
     this.highScore.innerHTML = this.gameBoard.score;
   }
