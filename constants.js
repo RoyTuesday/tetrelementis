@@ -92,11 +92,7 @@ var TETRINIMO_TEMPLATES = {
            ' x ']
 };
 var scoreToLevel = function(score) {
-  var level = Math.floor((score - 10) / 10);
-  if(level < 0) {
-    return 0;
-  }
-  return level;
+  return Math.floor(score / 10);
 };
 
 var processTetrinimos = function() {
