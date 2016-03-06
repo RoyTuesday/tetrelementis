@@ -11,6 +11,12 @@ body {
   background-color: #F9F5FC;
 }
 
+select {
+  color: #505;
+  font-size: 14px;
+  font-weight: bold;
+}
+
 .control-button {
   background-color: #EEE;
   border-radius: 10px;
@@ -83,7 +89,7 @@ body {
   width: 418px;
 }
 #level-display p {
-  margin: 0;
+  margin: 10px 0;
 }
 #level-left {
   float: left;
