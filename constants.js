@@ -32,7 +32,8 @@ var DROP_DELAY = {
 }
 var GAME_MODES = {
   0: 'Marathon',
-  1: 'Fixed Level'
+  1: 'Fixed Level',
+  2: 'Pentathlon'
 }
 
 var genModeMenu = function(mode) {
@@ -176,6 +177,7 @@ var processTetrinimos = function(templates) {
 }
 var TETRINIMO_SHAPES = {
   'Marathon': processTetrinimos(TETRINIMO_TEMPLATES),
+  'Fixed Level': processTetrinimos(TETRINIMO_TEMPLATES),
   'Pentathlon': processTetrinimos(PENTINIMO_TEMPLATES)
 };
 
