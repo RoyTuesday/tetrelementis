@@ -30,6 +30,10 @@ var DROP_DELAY = {
   19: 83,
   20: 50
 }
+var GAME_MODES = {
+  0: 'Marathon',
+  1: 'Fixed Level'
+}
 
 var GRID_HEIGHT = 20;
 var GRID_WIDTH = 10;
