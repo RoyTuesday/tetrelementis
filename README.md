@@ -2,6 +2,8 @@
 
 ### *A Tetris clone about learning the Chemical Elements*
 
+![Marathon Mode](/imgs/marathon-ver-1_0.png)
+
 ## Setup
 
 **Easy method:** I keep my most up-to-date, stable version of the game on my personal website <a href="http://peternatewood.com" target="_blank">here!</a>
