@@ -2,10 +2,7 @@ var TetrisBoard = function(args) {
   this.score = 0;
   this.board = new Array;
   this.randElements = generateRandomElements();
-  this.tetrinimo = args.tetrinimo || new Tetrinimo({
-    element: 1,
-    shape: TETRINIMO_SHAPES.line
-  });
+  this.tetrinimo = args.tetrinimo || null;
   this.createNextTetrinimo = args.createNextTetrinimo;
   this.showGameOver = args.showGameOver;
   this.gameState = 'gameover';
