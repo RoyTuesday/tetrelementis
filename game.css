@@ -17,6 +17,10 @@ select {
   font-weight: bold;
 }
 
+.debug {
+  border: 0px solid red;
+}
+
 .control-button {
   background-color: #EEE;
   border-radius: 10px;
@@ -43,11 +47,10 @@ select {
 
 #container {
   background-color: #F1EEFA;
-  border: 0.5em solid #AAF;
+  border: 8px solid #AAF;
   box-shadow: 0.25em 0.25em 0.25em #444;
   margin: 0 auto;
   padding: 2em;
-  text-align: center;
   width: 860px;
 }
 #right-container {
@@ -66,8 +69,7 @@ select {
 }
 
 #element-description-container {
-  border: 1px solid #DDA;
-  height: 182px;
+  height: 176px;
   padding: 12px;
   text-align: left;
   width: 516px;
@@ -81,9 +83,9 @@ select {
   margin: 8px 0 0 0;
 }
 #level-display {
-  border: 1px solid #DAD;
   display: inline-block;
   height: 120px;
+  position: absolute;
   text-align: left;
   vertical-align: top;
   width: 418px;
@@ -93,23 +95,23 @@ select {
 }
 #level-left {
   float: left;
-  margin: 8px;
+  margin: 3px;
   width: 45%;
 }
 #level-right {
   float: right;
-  margin: 4px;
   width: 45%;
 }
 
 #tetris-grid {
-  border: 1px solid #DAA;
+  border: 5px inset #006;
 }
 #tetris-preview {
-  border: 1px solid #AAD;
+  border: 5px inset #006;
+  display: inline-block;
 }
 #tetris-table {
-  border: 1px solid #ADA;
+  border: 5px inset #006;
   display: block;
 }
 #table-overlay {
