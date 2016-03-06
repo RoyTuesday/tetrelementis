@@ -139,7 +139,7 @@ var PENTINIMO_TEMPLATES = {
     ' x  '],
   rightT: [
     'xxxx',
-    '  x ']
+    '  x '],
   lBlock: [
     'xx',
     ' x',
