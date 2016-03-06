@@ -34,11 +34,21 @@ var GAME_MODES = {
   0: 'Marathon',
   1: 'Fixed Level'
 }
-var GAME_MODE_MENU = '\
-  <select>\
-    <option selected>Marathon</option>\
-    <option>Fixed Index</option>\
-  </select>';
+
+var genModeMenu = function(mode) {
+  var menuString = '<select>';
+  for(var prop in GAME_MODES) {
+    if(GAME_MODES.hasOwnProperty(prop)) {
+      menuString += '<option';
+      if(GAME_MODES[prop] == mode) {
+        menuString += ' selected';
+      }
+      menuString += '>' + GAME_MODES[prop] + '</option>';
+    }
+  }
+  menuString += '</select>';
+  return menuString;
+};
 
 var genLevelMenu = function(level_num) {
   var menuString = '<select>';
