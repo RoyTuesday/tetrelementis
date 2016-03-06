@@ -79,7 +79,10 @@ The Minimum Viable Product must replicate Tetris, and have some educational cont
 
 :white_check_mark: Levels: As score increases, blocks drop faster.
 
-:white_check_mark: Game Modes: Player can choose between three game modes: Marathon uses four-block tetrominos, the level starts at zero and increases based on score up to level 20; Fixed Level uses four-block tetrominos but the level starts and stays at the selected number; and Pentathlon which is like Marathon mode but uses five-block tetrominos.
+:white_check_mark: Game Modes: Player can choose between three game modes:
+* Marathon uses four-block tetrominos, the level starts at zero and increases based on score up to level 20.
+* Fixed Level uses four-block tetrominos but the level starts and stays at the selected number.
+* Pentathlon is like Marathon mode but uses five-block tetrominos.
 
 ## Stretch Goals
 
