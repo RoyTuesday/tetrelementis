@@ -8,6 +8,7 @@ var TetrisBoard = function(args) {
   });
   this.createNextTetrinimo = args.createNextTetrinimo;
   this.showGameOver = args.showGameOver;
+  this.gameState = 'gameover';
 
   this.dropInterval = new Number;
 
@@ -126,6 +127,9 @@ TetrisBoard.prototype.clearForGameover = function() {
       randElement = 0;
       boardCoords = {x: 0, y:0};
       setTimeout(clearBoard.bind(this, boardCoords), CLEAR_DELAY);
+    }
+    else {
+      this.gameState = 'gameover';
     }
   }.bind(this);
 
