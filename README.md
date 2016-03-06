@@ -2,7 +2,7 @@
 
 ### *A Tetris clone about learning the Chemical Elements*
 
-![Marathon Mode](/imgs/marathon-ver-1_0.png)
+<img src='/imgs/marathon-ver-1_0.png' title='Marathon Mode'/>
 
 ## Setup
 
@@ -14,7 +14,7 @@
 2. Use your favorite browser to open 'index.html' in the root directory.
 3. Follow the in-game instructions to begin!
 
-![Start screen and directions]('/imgs/start-screen-ver-1_0.png')
+<img src='/imgs/start-screen-ver-1_0.png' title="Start screen and directions"/>
 
 ## Development
 While first learning JavaScript, but before learning Git workflow, I spent some extra time building a Tetris clone in the browser. Early on, I decided to distinguish my version by assigning a chemical element to each Tetris block (or 'tetromino'). After several weeks, I had a functional, if clunky, game with a twist of Chemistry.
@@ -23,7 +23,7 @@ The more I learned about JavaScript, the more I realized my resulting game neede
 
 ## Version History
 
-:large_blue_diamond: **1.0 : 06 Mar 2016 -** Add three game modes: Marathon, Fixed Level, and Pentathlon.
+:large_blue_diamond: **1.000 : 06 Mar 2016 -** Add three game modes: Marathon, Fixed Level, and Pentathlon.
 
 :small_red_triangle_down: **0.941 : 05 Mar 2016 -** All 118 elements have a brief description and link to a more detailed article on the element. A player can click on any element showing in the table to display its description. As the player's score increases, the game level increases, increasing the tetrominos' drop speed.
 
@@ -95,11 +95,11 @@ The Minimum Viable Product must replicate Tetris, and have some educational cont
 
 Version 1.0 added the extremely difficult Pentathlon mode.
 
-![version 1.0 Pentathlon Mode](/imgs/pentathlon-ver-1_0.png)
+<img src='/imgs/pentathlon-ver-1_0.png' title='Version 1.0 Pentathlon mode'/>
 
 Version 0.764 (pictured below) was the earliest version to be reasonably playable.
 
-![version 0.764](/imgs/ver-0_764.png)
+<img src='/imgs/ver-0_764.png' title='Version 0.764'/>
 
 Previous versions did not clear the board on a "Game Over." The player would have to refresh the page to play a new game.
 
@@ -107,12 +107,12 @@ Previous versions did not clear the board on a "Game Over." The player would hav
 
 Here's the old game board, using a grid made of div elements.
 
-![old game board](/imgs/old-tetris-board.png)
+<img src='/imgs/old-tetris-board.png' title='Old game board'/>
 
 The upcoming tetromino preview also used div elements, and included a brief description of the chemical element the tetromino used.
 
-![old game preview](/imgs/old-tetris-preview.png)
+<img src='/imgs/old-tetris-preview.png' title='Old game preview'/>
 
 More of the old version, here we can see the periodic table filling in with every new tetromino.
 
-![old game periodic table](/imgs/old-tetris-table.png)
+<img src='/imgs/old-tetris-table.png' title='Old game periodic table'/>
