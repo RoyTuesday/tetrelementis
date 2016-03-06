@@ -95,7 +95,10 @@ Controller.prototype.createNextTetrinimo = function() {
 };
 Controller.prototype.showGameOver = function() {
   this.gameBoard.tetrinimo = null;
+  this.gameView.previewBoard.tetrinimo = null;
+
   this.gameView.isPaused = true;
+  this.gameView.previewBoard.board = generateEmptyBoard();
   this.gameBoard.clearForGameover();
   this.gameView.resetDisplay();
 };
