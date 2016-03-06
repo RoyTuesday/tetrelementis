@@ -16,6 +16,16 @@ var BrowserView = function(args) {
   this.elementLink = document.getElementById('element-link');
   this.playerScore = document.getElementById('player-score');
   this.gameLevel = document.getElementById('game-level');
+  this.gameMode = document.getElementById('game-mode');
+  this.gameModeDropdown;
+
+  for(var node in this.gameMode.childNodes) {
+    var currentNode = this.gameMode.childNodes[node];
+    if(currentNode.tagName == 'SELECT') {
+      this.gameModeDropdown = currentNode;
+      break;
+    }
+  }
 
   this.gridContext = gridCanvas.getContext('2d');
   this.previewContext = previewCanvas.getContext('2d');
@@ -287,4 +297,8 @@ BrowserView.prototype.updateGameLevel = function() {
     clearTimeout(this.dropTimeout);
     this.cycleDropBlock();
   }
+};
+BrowserView.prototype.makeModeStatic = function() {
+  var modeIndex = this.gameModeDropdown.selectedIndex;
+  this.gameMode.innerHTML = GAME_MODES[modeIndex];
 };
