@@ -30,7 +30,7 @@ var Controller = function(shape) {
       if(keyPressed == 'space') {
         event.preventDefault();
         this.startGame();
-        this.gameView.makeModeStatic();
+        this.gameView.disableMenus();
         this.gameBoard.score = 0;
       }
     }
@@ -40,7 +40,7 @@ var Controller = function(shape) {
       var buttonPressed = event.target.dataset.key;
       if(buttonPressed == 'space') {
         this.startGame();
-        this.gameView.makeModeStatic();
+        this.gameView.disableMenus();
         this.gameBoard.score = 0;
       }
     }
