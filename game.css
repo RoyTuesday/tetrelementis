@@ -91,7 +91,7 @@ select {
   width: 418px;
 }
 #level-display p {
-  margin: 10px 0;
+  margin: 8px 0 8px 6px;
 }
 #level-left {
   float: left;
