@@ -16,7 +16,5 @@ var ready = function(fn) {
 ready(function() {
 	document.querySelector('body').innerHTML = removeExcessSpaces(document.querySelector('body').innerHTML);
 
-  // This variable is global for the purposes of development and debugging
-  // Once the game is complete, remove the variable assignment
-  window.gameControl = new Controller();
+  new Controller();
 });
