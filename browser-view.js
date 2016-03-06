@@ -292,7 +292,7 @@ BrowserView.prototype.updatePlayerScore = function(score) {
 };
 BrowserView.prototype.updateGameLevel = function() {
   var newLevel = scoreToLevel(this.gameBoard.score);
-  if(this.gameMode == 'Marathon' && this.level != newLevel) {
+  if(this.gameMode != 'Fixed Level' && this.level != newLevel) {
     this.level = newLevel;
     this.gameLevel.innerHTML = this.level;
     clearTimeout(this.dropTimeout);
@@ -318,5 +318,5 @@ BrowserView.prototype.resetDisplay = function() {
   if(this.highScore.innerHTML < this.gameBoard.score) {
     this.highScore.innerHTML = this.gameBoard.score;
   }
-  this.gameLevel.innerHTML = genLevelMenu();
+  this.gameLevel.innerHTML = genLevelMenu(this.level);
 };
