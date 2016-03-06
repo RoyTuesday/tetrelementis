@@ -49,8 +49,8 @@ select {
   background-color: #F1EEFA;
   border: 8px solid #AAF;
   box-shadow: 0.25em 0.25em 0.25em #444;
-  margin: 0 auto;
-  padding: 2em;
+  margin: 16px auto;
+  padding: 32px;
   width: 860px;
 }
 #right-container {
