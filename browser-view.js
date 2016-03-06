@@ -116,8 +116,8 @@ BrowserView.prototype.keyDown = function(event) {
       if(this.pressed.rotate == false) {
         this.pressed.rotate = true;
         clearInterval(this.interval.rotate);
-        this.gameBoard.rotateBlock('counter');
-        this.interval.rotate = setInterval(this.gameBoard.rotateBlock.bind(this.gameBoard, 'counter'), ROTATE_DELAY);
+        this.gameBoard.rotateBlock('clock');
+        this.interval.rotate = setInterval(this.gameBoard.rotateBlock.bind(this.gameBoard, 'clock'), ROTATE_DELAY);
       }
     }
     else if(pressedKey == 'space') {
@@ -209,7 +209,7 @@ BrowserView.prototype.handleInput = function() {
     this.gameBoard.slideBlock(this.pressed.slide);
   }
   else if(this.pressed.rotate) {
-    this.gameBoard.rotateBlock('counter');
+    this.gameBoard.rotateBlock('clock');
   }
 };
 BrowserView.prototype.releaseAllKeys = function() {
