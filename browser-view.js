@@ -302,7 +302,7 @@ BrowserView.prototype.updateGameLevel = function() {
     this.cycleDropBlock();
   }
 };
-BrowserView.prototype.makeModeStatic = function() {
+BrowserView.prototype.disableMenus = function() {
   var modeIndex = this.gameModeDropdown.selectedIndex;
   this.gameMode = GAME_MODES[modeIndex];
   this.gameModeContainer.innerHTML = GAME_MODES[modeIndex];
