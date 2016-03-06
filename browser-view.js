@@ -64,7 +64,11 @@ var BrowserView = function(args) {
   this.tableOverlay.addEventListener('mousedown', function(event) {
     var mouseX = Math.floor((event.layerX - this.tableOverlay.offsetLeft) / (540 / 18));
     var mouseY = Math.floor((event.layerY - this.tableOverlay.offsetTop) / (270 / 9));
-    var element = this.tableBoard.board[mouseY][mouseX];
+    var element = 0
+
+    if(mouseX > 0 && mouseY > 0) {
+      element = this.tableBoard.board[mouseY][mouseX];
+    }
 
     if(element > 0) {
       this.updateElementDescrip(element);
@@ -73,7 +77,11 @@ var BrowserView = function(args) {
   this.tableOverlay.addEventListener('mousemove', function(event) {
     var mouseX = Math.floor((event.layerX - this.tableOverlay.offsetLeft) / (540 / 18));
     var mouseY = Math.floor((event.layerY - this.tableOverlay.offsetTop) / (270 / 9));
-    var element = this.tableBoard.board[mouseY][mouseX];
+    var element = 0;
+
+    if(mouseX > 0 && mouseY > 0) {
+      element = this.tableBoard.board[mouseY][mouseX];
+    }
 
     if(element > 0) {
       this.overlayContext.clearRect(0, 0, 540, 270);
@@ -83,7 +91,7 @@ var BrowserView = function(args) {
       this.overlayContext.clearRect(0, 0, 540, 270);
     }
   }.bind(this));
-  
+
   this.tableOverlay.addEventListener('mouseout', function(event) {
     this.overlayContext.clearRect(0, 0, 540, 270);
   }.bind(this));
