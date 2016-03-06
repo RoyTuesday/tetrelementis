@@ -70,26 +70,26 @@ var BLOCK_WIDTH, BLOCK_HEIGHT;
 var BLOCK_SPACING_WIDTH, BLOCK_SPACING_HEIGHT;
 
 var TETRINIMO_TEMPLATES = {
-  jBlock: ['xx',
-           'x ',
-           'x '],
-  lBlock: ['xx',
-           ' x',
-           ' x'],
-  square: ['xx',
-           'xx'],
-  sBlock: ['x ',
-           'xx',
-           ' x'],
-  zBlock: [' x',
-           'xx',
-           'x '],
-  line:   ['x',
-           'x',
-           'x',
-           'x'],
-  tBlock: ['xxx',
-           ' x ']
+  jBlock: [
+    'xxx',
+    '  x'],
+  lBlock: [
+    'xxx',
+    'x  '],
+  square: [
+    'xx',
+    'xx'],
+  sBlock: [
+    ' xx',
+    'xx'],
+  zBlock: [
+    'xx ',
+    ' xx'],
+  line:   [
+    'xxxx'],
+  tBlock: [
+    'xxx',
+    ' x ']
 };
 var PENTINIMO_TEMPLATES = {
   wBlock: [
