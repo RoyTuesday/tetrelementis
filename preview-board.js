@@ -1,6 +1,6 @@
 var PreviewBoard = function() {
   this.board = generateEmptyBoard();
-  this.tetrinimo;
+  this.tetrinimo = null;
 }
 PreviewBoard.prototype.blit = function() {
   this.board = generateEmptyBoard();
