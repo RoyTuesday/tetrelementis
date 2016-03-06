@@ -20,6 +20,7 @@ var BrowserView = function(args) {
   this.gameModeContainer = document.getElementById('game-mode');
   this.gameModeDropdown;
 
+  this.gameLevel.innerHTML = genLevelMenu(0);
   for(var node in this.gameModeContainer.childNodes) {
     var currentNode = this.gameModeContainer.childNodes[node];
     if(currentNode.tagName == 'SELECT') {
