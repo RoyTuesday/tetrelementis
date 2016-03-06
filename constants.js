@@ -156,12 +156,12 @@ var scoreToLevel = function(score) {
   return Math.floor(score / 10);
 };
 
-var processTetrinimos = function() {
+var processTetrinimos = function(templates) {
   var tetraShape = new Object;
-  for(var shape in TETRINIMO_TEMPLATES) {
-    if( TETRINIMO_TEMPLATES.hasOwnProperty(shape)) {
+  for(var shape in templates) {
+    if( templates.hasOwnProperty(shape)) {
       tetraShape[shape] = new Array;
-      var currentShape = TETRINIMO_TEMPLATES[shape];
+      var currentShape = templates[shape];
       for(var row in currentShape) {
         for(var col in currentShape[row]) {
           if(currentShape[row][col] == 'x') {
@@ -174,7 +174,10 @@ var processTetrinimos = function() {
   }
   return tetraShape
 }
-var TETRINIMO_SHAPES = processTetrinimos();
+var TETRINIMO_SHAPES = {
+  'Marathon': processTetrinimos(TETRINIMO_TEMPLATES),
+  'Pentathlon': processTetrinimos(PENTINIMO_TEMPLATES)
+};
 
 var KEY_CODES = {
   8: 'backspace',
