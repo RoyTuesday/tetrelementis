@@ -40,6 +40,19 @@ var GAME_MODE_MENU = '\
     <option>Fixed Index</option>\
   </select>';
 
+var genLevelMenu = function(level_num) {
+  var menuString = '<select>';
+  for(var i = 0; i <= 20; i++) {
+    menuString += '<option';
+    if(i == level_num) {
+      menuString += ' selected';
+    }
+    menuString += '>' + i + '</option>';
+  }
+  menuString += '</select>';
+  return menuString;
+};
+
 var GRID_HEIGHT = 20;
 var GRID_WIDTH = 10;
 
