@@ -2,10 +2,6 @@ var Controller = function(shape) {
   this.elements = generateRandomElements();
 
   this.gameBoard = new TetrisBoard({
-    tetrinimo: new Tetrinimo({
-      element: this.elements.pop(),
-      shape: getRandomShape()
-    }),
     createNextTetrinimo: this.createNextTetrinimo.bind(this),
     showGameOver: this.showGameOver.bind(this)
   });
@@ -17,7 +13,7 @@ var Controller = function(shape) {
 
   this.gameView.previewBoard.tetrinimo = new Tetrinimo({
     element: this.elements.pop(),
-    shape: getRandomShape()
+    shape: getRandomShape(this.gameView.gameMode)
   });
   this.gameView.drawAllBoards();
   this.gameBoard.gameState = 'gameover';
@@ -48,14 +44,14 @@ Controller.prototype.startGame = function() {
   if(this.gameBoard.tetrinimo === null) {
     this.gameBoard.tetrinimo = new Tetrinimo({
       element: this.elements.pop(),
-      shape: getRandomShape()
+      shape: getRandomShape(this.gameView.gameMode)
     });
   }
 
   if(this.gameView.previewBoard.tetrinimo === null) {
     this.gameView.previewBoard.tetrinimo = new Tetrinimo({
       element: this.elements.pop(),
-      shape: getRandomShape()
+      shape: getRandomShape(this.gameView.gameMode)
     })
   }
 
@@ -87,7 +83,7 @@ Controller.prototype.createNextTetrinimo = function() {
   }
   this.gameView.previewBoard.tetrinimo = new Tetrinimo({
     element: this.elements.pop(),
-    shape: getRandomShape()
+    shape: getRandomShape(this.gameView.gameMode)
   })
   this.gameView.previewBoard.blit();
   this.gameView.tableBoard.showElement(this.gameBoard.tetrinimo.element);
@@ -123,13 +119,14 @@ var generateRandomElements = function() {
 
   return randElements;
 }
-var getRandomShape = function() {
+var getRandomShape = function(gameMode) {
   var counter = 0;
   var randNum = Math.floor(Math.random() * 7);
+  var shapes = TETRINIMO_SHAPES[gameMode];
 
-  for(var prop in TETRINIMO_SHAPES) {
-    if(TETRINIMO_SHAPES.hasOwnProperty(prop)) {
-      if(counter == randNum) return TETRINIMO_SHAPES[prop];
+  for(var prop in shapes) {
+    if(shapes.hasOwnProperty(prop)) {
+      if(counter == randNum) return shapes[prop];
       counter++;
     }
   }
