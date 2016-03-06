@@ -14,6 +14,8 @@
 2. Use your favorite browser to open 'index.html' in the root directory.
 3. Follow the in-game instructions to begin!
 
+![Start screen and directions]('/imgs/start-screen-ver-1_0.png')
+
 ## Development
 While first learning JavaScript, but before learning Git workflow, I spent some extra time building a Tetris clone in the browser. Early on, I decided to distinguish my version by assigning a chemical element to each Tetris block (or 'tetromino'). After several weeks, I had a functional, if clunky, game with a twist of Chemistry.
 
