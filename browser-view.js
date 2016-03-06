@@ -280,10 +280,6 @@ BrowserView.prototype.animateGame = function() {
   requestAnimationFrame(animate.bind(this));
 };
 BrowserView.prototype.updateElementDescrip = function(element) {
-  if(element === undefined) {
-    var element = this.previewBoard.tetrinimo.element;
-  }
-
   this.elementName.innerHTML = CHEMICAL_ELEMENTS[element].name + ' [' + CHEMICAL_ELEMENTS[element].symbol + ']';
   this.atomicNumDisplay.innerHTML = element;
   this.elementDescrip.innerHTML = CHEMICAL_ELEMENTS[element].descrip;
