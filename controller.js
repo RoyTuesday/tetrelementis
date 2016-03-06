@@ -11,10 +11,6 @@ var Controller = function(shape) {
     cycleDropBlock: this.cycleDropBlock,
   });
 
-  this.gameView.previewBoard.tetrinimo = new Tetrinimo({
-    element: this.elements.pop(),
-    shape: getRandomShape(this.gameView.gameMode)
-  });
   this.gameView.drawAllBoards();
   this.gameBoard.gameState = 'gameover';
 
@@ -41,6 +37,8 @@ Controller.prototype.startGame = function() {
     this.elements = generateRandomElements();
   }
 
+  this.gameView.disableMenus();
+
   if(this.gameBoard.tetrinimo === null) {
     this.gameBoard.tetrinimo = new Tetrinimo({
       element: this.elements.pop(),
@@ -58,7 +56,6 @@ Controller.prototype.startGame = function() {
   this.gameBoard.score = 0;
   this.gameBoard.gameState = 'inProgress';
 
-  this.gameView.disableMenus();
   this.gameView.animateGame();
   this.gameView.previewBoard.blit();
   this.gameView.tableBoard.showElement(this.gameBoard.tetrinimo.element);
@@ -120,9 +117,16 @@ var generateRandomElements = function() {
   return randElements;
 }
 var getRandomShape = function(gameMode) {
-  var counter = 0;
-  var randNum = Math.floor(Math.random() * 7);
   var shapes = TETRINIMO_SHAPES[gameMode];
+  var length = 0;
+  for(var prop in shapes) {
+    if(shapes.hasOwnProperty(prop)) {
+      length++;
+    }
+  }
+
+  var counter = 0;
+  var randNum = Math.floor(Math.random() * length);
 
   for(var prop in shapes) {
     if(shapes.hasOwnProperty(prop)) {
