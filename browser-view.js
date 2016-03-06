@@ -89,7 +89,7 @@ BrowserView.prototype.keyDown = function(event) {
     if(pressedKey == 'space') {
       event.preventDefault();
       this.isPaused = false;
-      this.cycleDropBlock();
+      this.cycleDropBlock(DROP_DELAY[this.level]);
     }
   }
   else {
@@ -107,7 +107,7 @@ BrowserView.prototype.keyDown = function(event) {
       if(this.pressed.drop == false) {
         this.pressed.drop = true;
         clearTimeout(this.dropTimeout);
-        this.cycleDropBlock({quickly: true});
+        this.cycleDropBlock(FAST_DROP);
       }
     }
     else if(pressedKey == 'up') {
@@ -141,7 +141,7 @@ BrowserView.prototype.keyUp = function(event){
       event.preventDefault();
       clearTimeout(this.dropTimeout);
       this.pressed.drop = false;
-      this.cycleDropBlock();
+      this.cycleDropBlock(DROP_DELAY[this.level]);
     }
     if(releasedKey == 'up') {
       event.preventDefault();
@@ -156,7 +156,7 @@ BrowserView.prototype.buttonDown = function(event) {
     if(this.isPaused) {
       if(buttonPressed == 'space') {
         this.isPaused = false;
-        this.cycleDropBlock();
+        this.cycleDropBlock(DROP_DELAY[this.level]);
       }
     }
     else {
@@ -171,7 +171,7 @@ BrowserView.prototype.buttonDown = function(event) {
         if(this.pressed.drop == false) {
           this.pressed.drop = true;
           clearTimeout(this.dropTimeout);
-          this.cycleDropBlock({quickly: true});
+          this.cycleDropBlock(FAST_DROP);
         }
       }
       else if(buttonPressed == 'up') {
@@ -196,7 +196,7 @@ BrowserView.prototype.buttonUp = function(event) {
   if(this.isPaused === false) {
     if(this.pressed.drop) {
       clearTimeout(this.dropTimeout);
-      this.cycleDropBlock();
+      this.cycleDropBlock(DROP_DELAY[this.level]);
     }
     clearInterval(this.interval.slide);
     clearInterval(this.interval.rotate);
@@ -295,17 +295,27 @@ BrowserView.prototype.updatePlayerScore = function(score) {
 };
 BrowserView.prototype.updateGameLevel = function() {
   var newLevel = scoreToLevel(this.gameBoard.score);
-  if(this.level != newLevel && this.gameMode == 'Marathon') {
+  if(this.gameMode == 'Marathon' && this.level != newLevel) {
     this.level = newLevel;
     this.gameLevel.innerHTML = this.level;
     clearTimeout(this.dropTimeout);
-    this.cycleDropBlock();
+    this.cycleDropBlock(DROP_DELAY[this.level]);
   }
 };
 BrowserView.prototype.disableMenus = function() {
   var modeIndex = this.gameModeDropdown.selectedIndex;
+
+  for(var node in this.gameLevel.childNodes) {
+    var currentNode = this.gameLevel.childNodes[node];
+    if(currentNode.tagName == 'SELECT') {
+      this.level = currentNode.selectedIndex;
+      console.log('selectedIndex in disableMenus', currentNode.selectedIndex, 'level in disableMenus', this.level);
+    }
+  }
+
   this.gameMode = GAME_MODES[modeIndex];
   this.gameModeContainer.innerHTML = GAME_MODES[modeIndex];
+  this.gameLevel.innerHTML = this.level;
 };
 BrowserView.prototype.resetDisplay = function() {
   this.gameModeContainer.innerHTML = GAME_MODE_MENU;

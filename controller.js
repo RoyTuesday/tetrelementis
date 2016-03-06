@@ -1,6 +1,5 @@
 var Controller = function(shape) {
   this.elements = generateRandomElements();
-  this.level = 0;
 
   this.gameBoard = new TetrisBoard({
     tetrinimo: new Tetrinimo({
@@ -16,7 +15,6 @@ var Controller = function(shape) {
     cycleDropBlock: this.cycleDropBlock,
   });
 
-  this.gameView.level = this.level;
   this.gameView.previewBoard.tetrinimo = new Tetrinimo({
     element: this.elements.pop(),
     shape: getRandomShape()
@@ -29,9 +27,9 @@ var Controller = function(shape) {
       var keyPressed = KEY_CODES[event.keyCode];
       if(keyPressed == 'space') {
         event.preventDefault();
-        this.startGame();
         this.gameView.disableMenus();
         this.gameBoard.score = 0;
+        this.startGame();
       }
     }
   }.bind(this));
@@ -39,9 +37,9 @@ var Controller = function(shape) {
     if(event.target.nodeName == 'BUTTON' && this.gameState === 'gameover') {
       var buttonPressed = event.target.dataset.key;
       if(buttonPressed == 'space') {
-        this.startGame();
         this.gameView.disableMenus();
         this.gameBoard.score = 0;
+        this.startGame();
       }
     }
   }.bind(this));
@@ -53,10 +51,9 @@ Controller.prototype.startGame = function() {
   this.gameView.tableBoard.showElement(this.gameBoard.tetrinimo.element);
   this.gameView.updateElementDescrip();
 
-  this.cycleDropBlock();
+  this.cycleDropBlock(DROP_DELAY[this.gameView.level]);
 };
-Controller.prototype.cycleDropBlock = function (args) {
-  var dropDelay = args ? FAST_DROP : DROP_DELAY[this.level];
+Controller.prototype.cycleDropBlock = function (dropDelay) {
   this.gameBoard.blit();
   if(this.gameBoard.dropInterval) {
     clearInterval(this.gameBoard.dropInterval);
