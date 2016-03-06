@@ -150,7 +150,9 @@ var PENTINIMO_TEMPLATES = {
     'xx',
     'x ',
     'x ',
-    'x ']
+    'x '],
+  line: [
+    'xxxxx']
 }
 
 var scoreToLevel = function(score) {
