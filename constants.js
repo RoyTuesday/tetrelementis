@@ -34,6 +34,11 @@ var GAME_MODES = {
   0: 'Marathon',
   1: 'Fixed Level'
 }
+var GAME_MODE_MENU = '\
+  <select>\
+    <option selected>Marathon</option>\
+    <option>Fixed Index</option>\
+  </select>';
 
 var GRID_HEIGHT = 20;
 var GRID_WIDTH = 10;
