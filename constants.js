@@ -70,7 +70,7 @@ var GRID_WIDTH = 10;
 var BLOCK_WIDTH, BLOCK_HEIGHT;
 var BLOCK_SPACING_WIDTH, BLOCK_SPACING_HEIGHT;
 
-var TETRINIMO_TEMPLATES = {
+var TETROMINO_TEMPLATES = {
   jBlock: [
     'xxx',
     '  x'],
@@ -157,7 +157,7 @@ var scoreToLevel = function(score) {
   return Math.floor(score / 10);
 };
 
-var processTetrinimos = function(templates) {
+var processTetrominos = function(templates) {
   var tetraShape = new Object;
   for(var shape in templates) {
     if( templates.hasOwnProperty(shape)) {
@@ -175,10 +175,10 @@ var processTetrinimos = function(templates) {
   }
   return tetraShape
 }
-var TETRINIMO_SHAPES = {
-  'Marathon': processTetrinimos(TETRINIMO_TEMPLATES),
-  'Fixed Level': processTetrinimos(TETRINIMO_TEMPLATES),
-  'Pentathlon': processTetrinimos(PENTINIMO_TEMPLATES)
+var TETROMINO_SHAPES = {
+  'Marathon': processTetrominos(TETROMINO_TEMPLATES),
+  'Fixed Level': processTetrominos(TETROMINO_TEMPLATES),
+  'Pentathlon': processTetrominos(PENTINIMO_TEMPLATES)
 };
 
 var KEY_CODES = {
