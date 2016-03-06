@@ -21,6 +21,7 @@ var BrowserView = function(args) {
   this.gameModeDropdown;
 
   this.gameLevel.innerHTML = genLevelMenu(0);
+  this.gameModeContainer.innerHTML = GAME_MODE_MENU;
   for(var node in this.gameModeContainer.childNodes) {
     var currentNode = this.gameModeContainer.childNodes[node];
     if(currentNode.tagName == 'SELECT') {
@@ -322,4 +323,5 @@ BrowserView.prototype.resetDisplay = function() {
   if(this.highScore.innerHTML < this.gameBoard.score) {
     this.highScore.innerHTML = this.gameBoard.score;
   }
+  this.gameLevel.innerHTML = genLevelMenu();
 };
