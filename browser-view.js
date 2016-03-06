@@ -83,6 +83,10 @@ var BrowserView = function(args) {
       this.overlayContext.clearRect(0, 0, 540, 270);
     }
   }.bind(this));
+  
+  this.tableOverlay.addEventListener('mouseout', function(event) {
+    this.overlayContext.clearRect(0, 0, 540, 270);
+  }.bind(this));
 }
 BrowserView.prototype.keyDown = function(event) {
   var pressedKey = KEY_CODES[event.keyCode];
