@@ -19,7 +19,9 @@ The more I learned about JavaScript, the more I realized my resulting game neede
 
 ## Version History
 
-:large_blue_diamond: **0.941 : 05 Mar 2016 -** All 118 elements have a brief description and link to a more detailed article on the element. A player can click on any element showing in the table to display its description. As the player's score increases, the game level increases, increasing the tetrominos' drop speed.
+:large_blue_diamond: **1.0 : 06 Mar 2016 -** Add three game modes: Marathon, Fixed Level, and Pentathlon.
+
+:small_red_triangle_down: **0.941 : 05 Mar 2016 -** All 118 elements have a brief description and link to a more detailed article on the element. A player can click on any element showing in the table to display its description. As the player's score increases, the game level increases, increasing the tetrominos' drop speed.
 
 :small_red_triangle_down: **0.764 : 04 Mar 2016 -** Game doesn't start until player presses the spacebar. On gameover, the board clears, allowing another game to begin. Starting screen includes directions. Four buttons in the upper right simulate the arrow keys.
 
@@ -73,7 +75,7 @@ The Minimum Viable Product must replicate Tetris, and have some educational cont
 
 :white_check_mark: Levels: As score increases, blocks drop faster.
 
-:white_medium_small_square: Difficulty options: Player can choose to begin at different drop speeds and whether level increases.
+:white_check_mark: Game Modes: Player can choose between three game modes: Marathon uses four-block tetrominos, the level starts at zero and increases based on score up to level 20; Fixed Level uses four-block tetrominos but the level starts and stays at the selected number; and Pentathlon which is like Marathon mode but uses five-block tetrominos.
 
 ## Stretch Goals
 
