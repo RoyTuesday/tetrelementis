@@ -310,7 +310,6 @@ BrowserView.prototype.disableMenus = function() {
     var currentNode = this.gameLevel.childNodes[node];
     if(currentNode.tagName == 'SELECT') {
       this.level = currentNode.selectedIndex;
-      console.log('selectedIndex in disableMenus', currentNode.selectedIndex, 'level in disableMenus', this.level);
     }
   }
 
