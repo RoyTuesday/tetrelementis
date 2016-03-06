@@ -31,6 +31,7 @@ var Controller = function(shape) {
         event.preventDefault();
         this.startGame();
         this.gameView.makeModeStatic();
+        this.gameBoard.score = 0;
       }
     }
   }.bind(this));
@@ -40,6 +41,7 @@ var Controller = function(shape) {
       if(buttonPressed == 'space') {
         this.startGame();
         this.gameView.makeModeStatic();
+        this.gameBoard.score = 0;
       }
     }
   }.bind(this));
@@ -81,7 +83,7 @@ Controller.prototype.showGameOver = function() {
   this.gameState = 'gameover';
   this.gameView.isPaused = true;
   this.gameBoard.clearForGameover();
-  this.gameView.enableGameModeMenu();
+  this.gameView.resetDisplay();
 };
 
 var generateRandomElements = function() {
