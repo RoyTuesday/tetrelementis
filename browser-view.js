@@ -302,3 +302,6 @@ BrowserView.prototype.makeModeStatic = function() {
   var modeIndex = this.gameModeDropdown.selectedIndex;
   this.gameMode.innerHTML = GAME_MODES[modeIndex];
 };
+BrowserView.prototype.enableGameModeMenu = function() {
+  this.gameMode.innerHTML = GAME_MODE_MENU;
+};
