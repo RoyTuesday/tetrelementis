@@ -91,6 +91,67 @@ var TETRINIMO_TEMPLATES = {
   tBlock: ['xxx',
            ' x ']
 };
+var PENTINIMO_TEMPLATES = {
+  wBlock: [
+    'xx ',
+    ' xx',
+    '  x'],
+  lowT: [
+    ' x ',
+    'xx ',
+    ' xx'],
+  kBlock: [
+    ' x ',
+    ' xx',
+    'xx '],
+  cross: [
+    ' x ',
+    'xxx',
+    ' x '],
+  uBlock: [
+    'xx',
+    'x ',
+    'xx'],
+  pBlock: [
+    'xx',
+    'xx',
+    'x '],
+  qBlock: [
+    'xx',
+    'xx',
+    ' x'],
+  capT: [
+    'x  ',
+    'xxx',
+    'x'],
+  corner: [
+    'xxx',
+    'x  ',
+    'x  '],
+  sBlock: [
+    ' xxx',
+    'xx'],
+  zBlock: [
+    'xxx ',
+    '  xx'],
+  leftT: [
+    'xxxx',
+    ' x  '],
+  rightT: [
+    'xxxx',
+    '  x ']
+  lBlock: [
+    'xx',
+    ' x',
+    ' x',
+    ' x'],
+  jBlock: [
+    'xx',
+    'x ',
+    'x ',
+    'x ']
+}
+
 var scoreToLevel = function(score) {
   return Math.floor(score / 10);
 };
