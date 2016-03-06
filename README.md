@@ -91,6 +91,10 @@ The Minimum Viable Product must replicate Tetris, and have some educational cont
 
 ## Production Screenshots
 
+Version 1.0 added the extremely difficult Pentathlon mode.
+
+![version 1.0 Pentathlon Mode](/imgs/pentathlon-ver-1_0.png)
+
 Version 0.764 (pictured below) was the earliest version to be reasonably playable.
 
 ![version 0.764](/imgs/ver-0_764.png)
