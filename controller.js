@@ -20,36 +20,53 @@ var Controller = function(shape) {
     shape: getRandomShape()
   });
   this.gameView.drawAllBoards();
-  this.gameState = 'gameover';
+  this.gameBoard.gameState = 'gameover';
 
   addEventListener('keydown', function(event) {
-    if(this.gameState === 'gameover') {
+    if(this.gameBoard.gameState == 'gameover') {
       var keyPressed = KEY_CODES[event.keyCode];
       if(keyPressed == 'space') {
         event.preventDefault();
-        this.gameView.disableMenus();
-        this.gameBoard.score = 0;
         this.startGame();
       }
     }
   }.bind(this));
   addEventListener('mousedown', function(event) {
-    if(event.target.nodeName == 'BUTTON' && this.gameState === 'gameover') {
+    if(event.target.nodeName == 'BUTTON' && this.gameBoard.gameState == 'gameover') {
       var buttonPressed = event.target.dataset.key;
       if(buttonPressed == 'space') {
-        this.gameView.disableMenus();
-        this.gameBoard.score = 0;
         this.startGame();
       }
     }
   }.bind(this));
 }
 Controller.prototype.startGame = function() {
-  this.gameState = 'inProgress';
+  if(this.elements.length < 118) {
+    this.elements = generateRandomElements();
+  }
+
+  if(this.gameBoard.tetrinimo === null) {
+    this.gameBoard.tetrinimo = new Tetrinimo({
+      element: this.elements.pop(),
+      shape: getRandomShape()
+    });
+  }
+
+  if(this.gameView.previewBoard.tetrinimo === null) {
+    this.gameView.previewBoard.tetrinimo = new Tetrinimo({
+      element: this.elements.pop(),
+      shape: getRandomShape()
+    })
+  }
+
+  this.gameBoard.score = 0;
+  this.gameBoard.gameState = 'inProgress';
+
+  this.gameView.disableMenus();
   this.gameView.animateGame();
   this.gameView.previewBoard.blit();
   this.gameView.tableBoard.showElement(this.gameBoard.tetrinimo.element);
-  this.gameView.updateElementDescrip();
+  this.gameView.updateElementDescrip(this.gameView.previewBoard.tetrinimo.element);
 
   this.cycleDropBlock(DROP_DELAY[this.gameView.level]);
 };
@@ -74,10 +91,10 @@ Controller.prototype.createNextTetrinimo = function() {
   })
   this.gameView.previewBoard.blit();
   this.gameView.tableBoard.showElement(this.gameBoard.tetrinimo.element);
-  this.gameView.updateElementDescrip();
+  this.gameView.updateElementDescrip(this.gameView.previewBoard.tetrinimo.element);
 };
 Controller.prototype.showGameOver = function() {
-  this.gameState = 'gameover';
+  this.gameBoard.tetrinimo = null;
   this.gameView.isPaused = true;
   this.gameBoard.clearForGameover();
   this.gameView.resetDisplay();
