@@ -23,7 +23,10 @@ The game has been tested and operates correctly in the following browsers:
 * FireFox: version 44
 * Chrome: version 48
 * Opera: version 35
-* Internet Explorer: version 11
+* Internet Explorer (IE): version 11
+
+Testing for Safari is pending
+Should operate normally in IE 9 and 10, but the scripts may not load correctly in IE 8 /play 56k
 
 ## Development
 While first learning JavaScript, but before learning Git workflow, I spent some extra time building a Tetris clone in the browser. Early on, I decided to distinguish my version by assigning a chemical element to each Tetris block (or 'tetromino'). After several weeks, I had a functional, if clunky, game with a twist of Chemistry.
