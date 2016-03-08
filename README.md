@@ -36,7 +36,7 @@ The game has been tested and operates correctly in the following browsers:
 
 * Testing for Safari is pending.
 * The game should operate normally in IE 9 and 10.
-* Scripts may not load correctly in IE 8. /play 56k
+* Scripts may not load correctly in IE 8.
 
 ## Version History
 
