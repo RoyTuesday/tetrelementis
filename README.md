@@ -16,6 +16,15 @@
 
 <img src='/imgs/start-screen-ver-1_0.png' title="Start screen and directions"/>
 
+## Browser Support
+
+The game has been tested and operates correctly in the following browsers:
+
+* FireFox: version 44
+* Chrome: version 48
+* Opera: version 35
+* Internet Explorer: version 11
+
 ## Development
 While first learning JavaScript, but before learning Git workflow, I spent some extra time building a Tetris clone in the browser. Early on, I decided to distinguish my version by assigning a chemical element to each Tetris block (or 'tetromino'). After several weeks, I had a functional, if clunky, game with a twist of Chemistry.
 
