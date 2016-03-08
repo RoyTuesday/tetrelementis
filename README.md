@@ -26,13 +26,14 @@ The more I learned about JavaScript, the more I realized my resulting game neede
 
 The game has been tested and operates correctly in the following browsers:
 
-* FireFox: version 44
-* Chrome: version 48
-* Opera: version 35
-* Internet Explorer (IE): version 11
+<img src='/imgs/logo-firefox.png' title='Firefox logo'/> FireFox: version 44
+<img src='/imgs/logo-chrome.png' title='Chrome logo'/> Chrome: version 48
+<img src='/imgs/logo-opera.png' title='Opera logo'/> Opera: version 35
+<img src='/imgs/logo-ie-11.png' title='Internet Explorer 11 logo'/> Internet Explorer (IE): version 11
 
-Testing for Safari is pending
-Should operate normally in IE 9 and 10, but the scripts may not load correctly in IE 8 /play 56k
+* Testing for Safari is pending.
+* The game should operate normally in IE 9 and 10.
+* Scripts may not load correctly in IE 8. /play 56k
 
 ## Version History
 
