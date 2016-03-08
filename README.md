@@ -16,6 +16,12 @@
 
 <img src='/imgs/start-screen-ver-1_0.png' title="Start screen and directions"/>
 
+## Development
+
+While first learning JavaScript, but before learning Git workflow, I spent some extra time building a Tetris clone in the browser. Early on, I decided to distinguish my version by assigning a chemical element to each Tetris block (or 'tetromino'). After several weeks, I had a functional, if clunky, game with a twist of Chemistry.
+
+The more I learned about JavaScript, the more I realized my resulting game needed a total rehaul. Rather than start a new Git repository with no history of my work (or worse, continuing to work _without_ version control) I resolved to start over!
+
 ## Browser Support
 
 The game has been tested and operates correctly in the following browsers:
@@ -27,11 +33,6 @@ The game has been tested and operates correctly in the following browsers:
 
 Testing for Safari is pending
 Should operate normally in IE 9 and 10, but the scripts may not load correctly in IE 8 /play 56k
-
-## Development
-While first learning JavaScript, but before learning Git workflow, I spent some extra time building a Tetris clone in the browser. Early on, I decided to distinguish my version by assigning a chemical element to each Tetris block (or 'tetromino'). After several weeks, I had a functional, if clunky, game with a twist of Chemistry.
-
-The more I learned about JavaScript, the more I realized my resulting game needed a total rehaul. Rather than start a new Git repository with no history of my work (or worse, continuing to work _without_ version control) I resolved to start over!
 
 ## Version History
 
