@@ -35,6 +35,7 @@ var GAME_MODES = {
   1: 'Fixed Level',
   2: 'Pentathlon'
 }
+var REPEAT_TETROMINO_LIMIT = 4;
 
 var genModeMenu = function(mode) {
   var menuString = '<select id="game-mode-dropdown">';
