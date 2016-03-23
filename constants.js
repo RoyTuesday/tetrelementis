@@ -161,22 +161,24 @@ var scoreToLevel = function(score) {
 };
 
 var processTetrominos = function(templates) {
-  var tetraShape = new Object;
+  var tetrominoShape = new Array;
+  var index = 0;
   for(var shape in templates) {
-    if( templates.hasOwnProperty(shape)) {
-      tetraShape[shape] = new Array;
+    if(templates.hasOwnProperty(shape)) {
+      tetrominoShape.push(new Array);
       var currentShape = templates[shape];
       for(var row in currentShape) {
         for(var col in currentShape[row]) {
           if(currentShape[row][col] == 'x') {
-            tetraShape[shape].push({x: parseInt(col, 10),
+            tetrominoShape[index].push({x: parseInt(col, 10),
                                     y: parseInt(row, 10)});
           }
         }
       }
     }
+    index++;
   }
-  return tetraShape
+  return tetrominoShape
 }
 var TETROMINO_SHAPES = {
   'Marathon': processTetrominos(TETROMINO_TEMPLATES),
