@@ -16,10 +16,44 @@
 
 <img src='/imgs/start-screen-ver-1_0.png' title="Start screen and directions"/>
 
+## How to Play
+
+Use the arrow keys and spacebar or the buttons in the upper right to control the game.
+* Spacebar starts a new game, and pauses/resumes a game in progress.
+* Arrow keys move the falling Tetris block (tetromino)
+* Left and Right translate the tetromino left and right
+* Up rotates the tetromino clockwise
+* Down speeds up the tetromino (for those early levels when you just can't wait)
+
+When the game starts, a tetromino of a random shape and chemical element will appear at the top of the game board and begin to fall. Once it cannot fall any further, either by hitting the bottom or another tetromino, a new random tetromino will appear at the top of the board.
+
+Each new tetromino will be of a chemical element that has not yet appeared until the entire periodic table has filled up. Then, the collection of possible elements is reset, so that further tetrominos don't have repeats, and the table left full.
+
+Your objective is to keep the board clear enough that more tetrominos can drop; if there is no more space for a tetromino to appear, the game is over. In order to keep the game going, you must fill every quadrant in a horizontal line accross the board. Once a line is filled, all its quadrants are emptied and every block above it falls one row down.
+
+Every line you clear adds to your score; the more lines cleared at once, the more points earned. You can clear as many as four lines at once, if you're clever about it.
+
 ## Development
+
 While first learning JavaScript, but before learning Git workflow, I spent some extra time building a Tetris clone in the browser. Early on, I decided to distinguish my version by assigning a chemical element to each Tetris block (or 'tetromino'). After several weeks, I had a functional, if clunky, game with a twist of Chemistry.
 
 The more I learned about JavaScript, the more I realized my resulting game needed a total rehaul. Rather than start a new Git repository with no history of my work (or worse, continuing to work _without_ version control) I resolved to start over!
+
+## Browser Support
+
+The game has been tested and operates correctly in the following browsers:
+
+<img src='/imgs/logo-firefox.png' height=16 title='Firefox logo'/> FireFox: version 44
+
+<img src='/imgs/logo-chrome.png' height=16 title='Chrome logo'/> Chrome: version 48
+
+<img src='/imgs/logo-opera.png' height=16 title='Opera logo'/> Opera: version 35
+
+<img src='/imgs/logo-ie-11.png' height=16 title='Internet Explorer 11 logo'/> Internet Explorer (IE): version 11
+
+* Testing for Safari is pending.
+* The game should operate normally in IE 9 and 10.
+* Scripts may not load correctly in IE 8.
 
 ## Version History
 
