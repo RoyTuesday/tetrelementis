@@ -1,8 +1,9 @@
-var removeExcessSpaces = function(htmlString) {
-	var processedString = htmlString.replace(/\s+</g, '<');
-	processedString = processedString.replace(/>\s+/g, '>');
-  processedString = processedString.replace(/_/g, ' ');
-	return processedString;
+var removeExcessSpaces = function(selector) {
+  var htmlString = document.querySelector(selector).innerHTML;
+	htmlString = htmlString.replace(/\s+</g, '<');
+	htmlString = htmlString.replace(/>\s+/g, '>');
+  htmlString = htmlString.replace(/_/g, ' ');
+  document.querySelector(selector).innerHTML = htmlString;
 }
 
 var ready = function(fn) {
@@ -14,7 +15,7 @@ var ready = function(fn) {
   }
 }
 ready(function() {
-	document.querySelector('body').innerHTML = removeExcessSpaces(document.querySelector('body').innerHTML);
+  removeExcessSpaces('main');
 
   new Controller();
 });
