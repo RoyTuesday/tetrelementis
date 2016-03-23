@@ -31,7 +31,12 @@ Each new tetromino will be of a chemical element that has not yet appeared until
 
 Your objective is to keep the board clear enough that more tetrominos can drop; if there is no more space for a tetromino to appear, the game is over. In order to keep the game going, you must fill every quadrant in a horizontal line accross the board. Once a line is filled, all its quadrants are emptied and every block above it falls one row down.
 
-Every line you clear adds to your score; the more lines cleared at once, the more points earned. You can clear as many as four lines at once, if you're clever about it.
+Every line you clear adds to your score; the more lines cleared at once, the more points earned. You can clear as many as four lines at once, if you're clever about it. Be wary! As your points increase, so does the Level; each level makes the tetromino drop faster, until it drops as fast as if you held the down arrow all the time!
+
+There are three game modes: **Marathon**, **Fixed Level**, and **Pentathlon**
+* **Marathon:** The classic Tetris gamemode in which tetrominos are generated forever, and the level increases with your score
+* **Fixed Level:** Like **Marathon**, but you choose at which level you want to start, and the level does not increase
+* **Pentathlon:** Like **Marathon**, but each tetromino is a permutation of _five_ blocks instead of four (not for the faint of heart)
 
 ## Development
 
@@ -118,7 +123,7 @@ The Minimum Viable Product must replicate Tetris, and have some educational cont
 * Fixed Level uses four-block tetrominos but the level starts and stays at the selected number.
 * Pentathlon is like Marathon mode but uses five-block tetrominos.
 
-## Stretch Goals
+## Planned Features
 
 :white_medium_small_square: Game responds with sound effects.
 
