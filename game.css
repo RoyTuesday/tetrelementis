@@ -78,6 +78,21 @@ select {
   top: 0px;
   width: 860px;
 }
+#directions-close-link {
+  float: right;
+}
+#directions-close-link a {
+  color: #EEE;
+}
+#directions-close-link a:hover {
+  color: #99E;
+}
+#directions-close-link a:visited {
+  color: #99E;
+}
+#directions-close-link a:visited:hover {
+  color: #99E;
+}
 #directions-transparent-layer {
   background-color: #213;
   height: 566px;
