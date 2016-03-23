@@ -16,6 +16,9 @@ select {
   font-size: 14px;
   font-weight: bold;
 }
+select:hover {
+  color: #A5A;
+}
 
 .debug {
   border: 0px solid red;
@@ -52,7 +55,7 @@ select {
   box-shadow: 0.25em 0.25em 0.25em #444;
   margin: 16px auto;
   padding: 32px;
-  width: 860px;
+  width: 876px;
 }
 #right-container {
   display: inline-block;
@@ -71,37 +74,46 @@ select {
 
 #directions {
   color: #EEE;
-  height: 566px;
-  margin: 16px auto;
   padding: 16px 32px;
   position: absolute;
   top: 0px;
-  width: 860px;
 }
-#directions-close-link {
-  float: right;
-}
-#directions-close-link a {
-  color: #EEE;
-}
-#directions-close-link a:hover {
-  color: #99E;
-}
-#directions-close-link a:visited {
-  color: #99E;
-}
-#directions-close-link a:visited:hover {
-  color: #99E;
+#directions-container {
+  display: none;
+  position: absolute;
 }
 #directions-transparent-layer {
   background-color: #213;
-  height: 566px;
-  margin: 16px auto;
   opacity: 0.95;
-  padding: 64px;
   position: absolute;
   top: 0px;
-  width: 860px;
+}
+#hide-directions {
+  float: right;
+}
+#hide-directions a {
+  color: #EEE;
+}
+#hide-directions a:hover {
+  color: #99E;
+}
+#hide-directions a:visited {
+  color: #EEE;
+}
+#hide-directions a:visited:hover {
+  color: #99E;
+}
+#show-directions a {
+  color: #505;
+}
+#show-directions a:hover {
+  color: #A5A;
+}
+#show-directions a:visited {
+  color: #505;
+}
+#show-directions a:visited:hover {
+  color: #A5A;
 }
 
 #element-description-container {
@@ -145,6 +157,7 @@ select {
 
 #tetris-grid {
   border: 5px inset #006;
+  margin-right: 16px;
 }
 #tetris-preview {
   border: 5px inset #006;
