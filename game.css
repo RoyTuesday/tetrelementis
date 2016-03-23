@@ -20,6 +20,7 @@ select {
 .debug {
   border: 0px solid red;
 }
+.fw-bold {font-weight: bold;}
 
 .control-button {
   background-color: #EEE;
@@ -66,6 +67,26 @@ select {
 
 #controls-container {
   margin: 2px;
+}
+
+#directions {
+  color: #EEE;
+  height: 566px;
+  margin: 16px auto;
+  padding: 16px 32px;
+  position: absolute;
+  top: 0px;
+  width: 860px;
+}
+#directions-transparent-layer {
+  background-color: #213;
+  height: 566px;
+  margin: 16px auto;
+  opacity: 0.95;
+  padding: 64px;
+  position: absolute;
+  top: 0px;
+  width: 860px;
 }
 
 #element-description-container {
