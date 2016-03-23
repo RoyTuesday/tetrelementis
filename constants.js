@@ -92,7 +92,7 @@ var TETROMINO_TEMPLATES = {
     'xxx',
     ' x ']
 };
-var PENTINIMO_TEMPLATES = {
+var PENTOMINO_TEMPLATES = {
   wBlock: [
     'xx ',
     ' xx',
@@ -180,7 +180,7 @@ var processTetrominos = function(templates) {
 var TETROMINO_SHAPES = {
   'Marathon': processTetrominos(TETROMINO_TEMPLATES),
   'Fixed Level': processTetrominos(TETROMINO_TEMPLATES),
-  'Pentathlon': processTetrominos(PENTINIMO_TEMPLATES)
+  'Pentathlon': processTetrominos(PENTOMINO_TEMPLATES)
 };
 
 var KEY_CODES = {
