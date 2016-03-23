@@ -15,26 +15,32 @@ ready(function() {
     document.querySelector(selector).innerHTML = htmlString;
   }
 
+  var updateDirectionsOverlay = function(container) {
+    var dirTrans = document.querySelector("#directions-transparent-layer");
+    var directions = document.querySelector("#directions");
+    var main = document.querySelector("main");
+
+    container.style["left"] = main.offsetLeft + "px";
+    container.style["top"] = main.offsetTop + "px";
+    container.style["height"] = main.offsetHeight + "px";
+    container.style["width"] = main.offsetWidth + "px";
+
+    directions.style["height"] = (main.offsetHeight - 32) + "px";
+    directions.style["width"] = (main.offsetWidth - 64) + "px";
+
+    dirTrans.style["height"] = main.offsetHeight + "px";
+    dirTrans.style["width"] = main.offsetWidth + "px";
+  }
+
   removeExcessSpaces('main');
+
+  var dirContainer = document.querySelector("#directions-container");
 
   document.querySelector("#show-directions a").addEventListener("click", function(event) {
     event.preventDefault();
-    var dirContainer = document.querySelector("#directions-container");
 
     if(dirContainer.style["display"] != "none") {
-      var dirTrans = document.querySelector("#directions-transparent-layer");
-      var directions = document.querySelector("#directions");
-      var main = document.querySelector("main");
-      dirContainer.style["left"] = main.offsetLeft + "px";
-      dirContainer.style["top"] = main.offsetTop + "px";
-      dirContainer.style["height"] = main.offsetHeight + "px";
-      dirContainer.style["width"] = main.offsetWidth + "px";
-
-      directions.style["height"] = (main.offsetHeight - 32) + "px";
-      directions.style["width"] = (main.offsetWidth - 64) + "px";
-
-      dirTrans.style["height"] = main.offsetHeight + "px";
-      dirTrans.style["width"] = main.offsetWidth + "px";
+      updateDirectionsOverlay(dirContainer);
     }
 
     dirContainer.style["display"] = "initial";
@@ -43,6 +49,10 @@ ready(function() {
   document.querySelector("#hide-directions a").addEventListener("click", function(event) {
     event.preventDefault();
     document.querySelector("#directions-container").style["display"] = "none";
+  });
+
+  window.addEventListener("resize", function(event) {
+    updateDirectionsOverlay(dirContainer);
   });
 
   new Controller();
