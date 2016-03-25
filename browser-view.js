@@ -109,7 +109,7 @@ var BrowserView = function(args) {
     dirTrans.style["height"] = main.offsetHeight + "px";
     dirTrans.style["width"] = main.offsetWidth + "px";
   }
-  
+
   this.tableOverlay.addEventListener('mouseout', function(event) {
     this.overlayContext.clearRect(0, 0, 540, 270);
   }.bind(this));
@@ -277,6 +277,10 @@ BrowserView.prototype.releaseAllKeys = function() {
 };
 BrowserView.prototype.drawBoard = function(board, context) {
   var gridContext = context;
+  var width = gridContext.canvas.width;
+  var height = gridContext.canvas.height;
+  gridContext.clearRect(0, 0, width, height);
+
   gridContext.lineWidth = 4;
 
   board.forEach(function(row, rIndex) {
