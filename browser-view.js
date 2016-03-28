@@ -231,9 +231,9 @@ BrowserView.prototype.buttonDown = function(event) {
           this.cycleDropBlock(FAST_DROP);
         }
       }
-      else if(buttonPressed == 'up') {
+      else if(buttonPressed == 'clock' || buttonPressed == 'counter') {
         if(this.pressed.rotate == false) {
-          this.pressed.rotate = true;
+          this.pressed.rotate = buttonPressed;
           clearInterval(this.interval.rotate);
           this.interval.rotate = setInterval(this.handleInput.bind(this), ROTATE_DELAY);
         }
@@ -265,7 +265,7 @@ BrowserView.prototype.handleInput = function() {
     this.gameBoard.slideBlock(this.pressed.slide);
   }
   else if(this.pressed.rotate) {
-    this.gameBoard.rotateBlock('clock');
+    this.gameBoard.rotateBlock(this.pressed.rotate);
   }
 };
 BrowserView.prototype.releaseAllKeys = function() {
