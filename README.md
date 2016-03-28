@@ -62,7 +62,9 @@ The game has been tested and operates correctly in the following browsers:
 
 ## Version History
 
-:large_blue_diamond: **1.000 : 06 Mar 2016 -** Add three game modes: Marathon, Fixed Level, and Pentathlon.
+:large_blue_diamond: **1.100 : 28 Mar 2016 -** Add controls to rotate the tetromino both clockwise and counter-clockwise. Button controls now more closely resemble keyboard keys.
+
+:small_red_triangle_down: **1.000 : 06 Mar 2016 -** Add three game modes: Marathon, Fixed Level, and Pentathlon.
 
 :small_red_triangle_down: **0.941 : 05 Mar 2016 -** All 118 elements have a brief description and link to a more detailed article on the element. A player can click on any element showing in the table to display its description. As the player's score increases, the game level increases, increasing the tetrominos' drop speed.
 
