@@ -22,7 +22,7 @@ Use the arrow keys and spacebar or the buttons in the upper right to control the
 * Spacebar starts a new game, and pauses/resumes a game in progress.
 * Arrow keys move the falling Tetris block (tetromino)
 * Left and Right translate the tetromino left and right
-* Up rotates the tetromino clockwise
+* Z rotates the tetromino counter-clockwise and X rotates it clockwise.
 * Down speeds up the tetromino (for those early levels when you just can't wait)
 
 When the game starts, a tetromino of a random shape and chemical element will appear at the top of the game board and begin to fall. Once it cannot fall any further, either by hitting the bottom or another tetromino, a new random tetromino will appear at the top of the board.
