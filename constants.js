@@ -206,3 +206,53 @@ var PERIODIC_TABLE = [
   [0,  0,  57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 0],
   [0,  0,  89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 0]
 ];
+
+var generateRandomElements = function() {
+  var randElements = new Array;
+  var orderedElements = new Array;
+
+  for(var prop in CHEMICAL_ELEMENTS) {
+    if(CHEMICAL_ELEMENTS.hasOwnProperty(prop)) {
+      if(prop != 0) orderedElements.push(prop);
+    }
+  }
+
+  var length = new Number(orderedElements.length);
+
+  for(var i = 0; i < length; i++) {
+    var randIndex = Math.floor(Math.random() * orderedElements.length);
+    randElements.push(orderedElements[randIndex]);
+    orderedElements.splice(randIndex, 1);
+  }
+
+  return randElements;
+}
+var getRandomShape = function(gameMode, limiter) {
+  var length = TETROMINO_SHAPES[gameMode].length;
+  var shapes = new Object;
+  TETROMINO_SHAPES[gameMode].forEach(function(shape, index) {
+    if(limiter.shapeIndex == index && limiter.count == REPEAT_TETROMINO_LIMIT) {
+      limiter.shapeIndex = null;
+      limiter.count = 0;
+    }
+    else {
+      shapes[index] = shape;
+    }
+  });
+
+  var randNum = Math.floor(Math.random() * length);
+
+  if(shapes[randNum] === undefined) {
+    randNum += randNum > (length / 2) ? -1 : 1;
+  }
+
+  if(limiter.shapeIndex == randNum) {
+    limiter.count++;
+  }
+  else {
+    limiter.shapeIndex = randNum;
+    limiter.count = 1;
+  }
+
+  return shapes[randNum];
+}
