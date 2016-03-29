@@ -1,9 +1,11 @@
+var CONST = require("./constants.js");
+
 var PreviewBoard = function() {
-  this.board = generateEmptyBoard();
+  this.board = CONST.generateEmptyBoard();
   this.tetromino = null;
 }
 PreviewBoard.prototype.blit = function() {
-  this.board = generateEmptyBoard();
+  this.board = CONST.generateEmptyBoard();
 
   var blockX, blockY;
   for(var block in this.tetromino.blocks) {
@@ -12,3 +14,5 @@ PreviewBoard.prototype.blit = function() {
     this.board[blockY][blockX] = this.tetromino.element;
   }
 };
+
+module.exports = PreviewBoard;

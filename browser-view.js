@@ -1,3 +1,10 @@
+var CONST = require("./constants.js");
+var CHEMICAL_ELEMENTS = require("./chemical-elements.js");
+
+var TetrisBoard = require("./tetris-board.js");
+var PreviewBoard = require("./preview-board.js");
+var PeriodicTable = require("./periodic-table.js");
+
 var BrowserView = function(args) {
   var gridCanvas = document.querySelector('canvas#tetris-grid');
   var previewCanvas = document.querySelector('canvas#tetris-preview');
@@ -23,12 +30,12 @@ var BrowserView = function(args) {
   this.playerScore = document.getElementById('player-score');
   this.highScore = document.getElementById('high-score');
   this.gameLevel = document.getElementById('game-level');
-  this.gameLevel.innerHTML = genLevelMenu(0);
+  this.gameLevel.innerHTML = CONST.genLevelMenu(0);
 
   this.gameModeContainer = document.getElementById('game-mode');
-  this.gameModeContainer.innerHTML = genModeMenu(0);
+  this.gameModeContainer.innerHTML = CONST.genModeMenu(0);
 
-  this.gameMode = GAME_MODES[document.getElementById('game-mode-dropdown').selectedIndex];
+  this.gameMode = CONST.GAME_MODES[document.getElementById('game-mode-dropdown').selectedIndex];
   this.level = 0;
 
   this.gridContext = gridCanvas.getContext('2d');
@@ -141,12 +148,12 @@ var BrowserView = function(args) {
   });
 }
 BrowserView.prototype.keyDown = function(event) {
-  var pressedKey = KEY_CODES_TO_ACTIONS[event.keyCode];
+  var pressedKey = CONST.KEY_CODES_TO_ACTIONS[event.keyCode];
   if(this.isPaused) {
     if(pressedKey == 'space') {
       event.preventDefault();
       this.isPaused = false;
-      this.cycleDropBlock(DROP_DELAY[this.level]);
+      this.cycleDropBlock(CONST.DROP_DELAY[this.level]);
     }
   }
   else {
@@ -156,7 +163,7 @@ BrowserView.prototype.keyDown = function(event) {
         this.pressed.slide = pressedKey;
         clearInterval(this.interval.slide);
         this.gameBoard.slideBlock(this.pressed.slide);
-        this.interval.slide = setInterval(this.gameBoard.slideBlock.bind(this.gameBoard, this.pressed.slide), SLIDE_DELAY);
+        this.interval.slide = setInterval(this.gameBoard.slideBlock.bind(this.gameBoard, this.pressed.slide), CONST.SLIDE_DELAY);
       }
     }
     else if(pressedKey == 'down') {
@@ -164,7 +171,7 @@ BrowserView.prototype.keyDown = function(event) {
       if(this.pressed.drop == false) {
         this.pressed.drop = true;
         clearTimeout(this.dropTimeout);
-        this.cycleDropBlock(FAST_DROP);
+        this.cycleDropBlock(CONST.FAST_DROP);
       }
     }
     else if(pressedKey == 'clock' || pressedKey == 'counter') {
@@ -173,7 +180,7 @@ BrowserView.prototype.keyDown = function(event) {
         this.pressed.rotate = pressedKey;
         clearInterval(this.interval.rotate);
         this.gameBoard.rotateBlock(pressedKey);
-        this.interval.rotate = setInterval(this.gameBoard.rotateBlock.bind(this.gameBoard, pressedKey), ROTATE_DELAY);
+        this.interval.rotate = setInterval(this.gameBoard.rotateBlock.bind(this.gameBoard, pressedKey), CONST.ROTATE_DELAY);
       }
     }
     else if(pressedKey == 'space') {
@@ -187,7 +194,7 @@ BrowserView.prototype.keyDown = function(event) {
   }
 };
 BrowserView.prototype.keyUp = function(event){
-  var releasedKey = KEY_CODES_TO_ACTIONS[event.keyCode];
+  var releasedKey = CONST.KEY_CODES_TO_ACTIONS[event.keyCode];
   if(this.isPaused === false) {
     if(releasedKey == 'left' || releasedKey == 'right') {
       event.preventDefault();
@@ -198,7 +205,7 @@ BrowserView.prototype.keyUp = function(event){
       event.preventDefault();
       clearTimeout(this.dropTimeout);
       this.pressed.drop = false;
-      this.cycleDropBlock(DROP_DELAY[this.level]);
+      this.cycleDropBlock(CONST.DROP_DELAY[this.level]);
     }
     if(releasedKey == 'counter' || releasedKey == 'clock') {
       event.preventDefault();
@@ -213,7 +220,7 @@ BrowserView.prototype.buttonDown = function(event) {
     if(this.isPaused) {
       if(buttonPressed == 'space') {
         this.isPaused = false;
-        this.cycleDropBlock(DROP_DELAY[this.level]);
+        this.cycleDropBlock(CONST.DROP_DELAY[this.level]);
       }
     }
     else {
@@ -221,21 +228,21 @@ BrowserView.prototype.buttonDown = function(event) {
         if(this.pressed.slide == false) {
           this.pressed.slide = buttonPressed;
           clearInterval(this.interval.slide);
-          this.interval.slide = setInterval(this.handleInput.bind(this), SLIDE_DELAY);
+          this.interval.slide = setInterval(this.handleInput.bind(this), CONST.SLIDE_DELAY);
         }
       }
       else if(buttonPressed == 'down') {
         if(this.pressed.drop == false) {
           this.pressed.drop = true;
           clearTimeout(this.dropTimeout);
-          this.cycleDropBlock(FAST_DROP);
+          this.cycleDropBlock(CONST.FAST_DROP);
         }
       }
       else if(buttonPressed == 'clock' || buttonPressed == 'counter') {
         if(this.pressed.rotate == false) {
           this.pressed.rotate = buttonPressed;
           clearInterval(this.interval.rotate);
-          this.interval.rotate = setInterval(this.handleInput.bind(this), ROTATE_DELAY);
+          this.interval.rotate = setInterval(this.handleInput.bind(this), CONST.ROTATE_DELAY);
         }
       }
       else if(buttonPressed == 'space') {
@@ -253,7 +260,7 @@ BrowserView.prototype.buttonUp = function(event) {
   if(this.isPaused === false) {
     if(this.pressed.drop) {
       clearTimeout(this.dropTimeout);
-      this.cycleDropBlock(DROP_DELAY[this.level]);
+      this.cycleDropBlock(CONST.DROP_DELAY[this.level]);
     }
     clearInterval(this.interval.slide);
     clearInterval(this.interval.rotate);
@@ -295,15 +302,15 @@ BrowserView.prototype.drawBoard = function(board, context) {
 
       var textLen = CHEMICAL_ELEMENTS[col].symbol.length;
       if(textLen == 1) {
-        gridContext.font = FONT_SIZE + BLOCK_FONT;
+        gridContext.font = CONST.FONT_SIZE + CONST.BLOCK_FONT;
         textX -= 3;
       }
       else if(textLen == 2) {
-        gridContext.font = FONT_SIZE + BLOCK_FONT;
+        gridContext.font = CONST.FONT_SIZE + CONST.BLOCK_FONT;
         textX -= 7;
       }
       else if(textLen == 3) {
-        gridContext.font = (FONT_SIZE - 2) + BLOCK_FONT;
+        gridContext.font = (CONST.FONT_SIZE - 2) + CONST.BLOCK_FONT;
         textX -= 7;
       }
 
@@ -344,28 +351,28 @@ BrowserView.prototype.updateElementDescrip = function(element) {
   this.atomicNumDisplay.innerHTML = element;
   this.elementDescrip.innerHTML = CHEMICAL_ELEMENTS[element].descrip;
 
-  this.elementLink.href = CHEMISTRY_URL + CHEMICAL_ELEMENTS[element].name.toLowerCase();
+  this.elementLink.href = CONST.CHEMISTRY_URL + CHEMICAL_ELEMENTS[element].name.toLowerCase();
   this.elementLink.innerHTML = 'Learn more about ' + CHEMICAL_ELEMENTS[element].name.toLowerCase();
 };
 BrowserView.prototype.updatePlayerScore = function(score) {
   this.playerScore.innerHTML = score;
 };
 BrowserView.prototype.updateGameLevel = function() {
-  var newLevel = scoreToLevel(this.gameBoard.score);
+  var newLevel = Math.floor(this.gameBoard.score) / 10;
   if(this.gameMode != 'Fixed Level' && this.level != newLevel) {
     this.level = newLevel;
     this.staticGameLevel.innerHTML = this.level + ": ";
     clearTimeout(this.dropTimeout);
-    this.cycleDropBlock(DROP_DELAY[this.level]);
+    this.cycleDropBlock(CONST.DROP_DELAY[this.level]);
   }
 };
 BrowserView.prototype.disableMenus = function() {
   var modeIndex = document.getElementById('game-mode-dropdown').selectedIndex;
   var levelIndex = document.getElementById('game-level-dropdown').selectedIndex;
 
-  this.gameMode = GAME_MODES[modeIndex];
+  this.gameMode = CONST.GAME_MODES[modeIndex];
 
-  this.staticGameMode.innerHTML = GAME_MODES[modeIndex];
+  this.staticGameMode.innerHTML = CONST.GAME_MODES[modeIndex];
 
   if(this.gameMode == 'Fixed Level') {
     this.level = levelIndex;
@@ -385,10 +392,12 @@ BrowserView.prototype.resetDisplay = function() {
   this.staticGameMode.style = 'display:none;';
 
   this.gameModeContainer.style = 'display:initial;';
-  this.gameModeContainer.innerHTML = genModeMenu(this.gameMode);
+  this.gameModeContainer.innerHTML = CONST.genModeMenu(this.gameMode);
   this.gameLevel.style = 'display:initial;';
   if(this.highScore.innerHTML < this.gameBoard.score) {
     this.highScore.innerHTML = this.gameBoard.score;
   }
-  this.gameLevel.innerHTML = genLevelMenu(this.level);
+  this.gameLevel.innerHTML = CONST.genLevelMenu(this.level);
 };
+
+module.exports = BrowserView;
