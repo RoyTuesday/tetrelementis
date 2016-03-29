@@ -256,3 +256,15 @@ var getRandomShape = function(gameMode, limiter) {
 
   return shapes[randNum];
 }
+
+var generateEmptyBoard = function() {
+  emptyBoard = new Array;
+  for(var y = 0; y < 4; y++) {
+    var row = new Array;
+    for(var x = 0; x < 4; x++) {
+      row.push(0);
+    }
+    emptyBoard.push(row);
+  }
+  return emptyBoard;
+}
