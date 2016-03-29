@@ -1,4 +1,4 @@
-var CHEMICAL_ELEMENTS = {
+module.exports = {
   0: {
     'name': 'n/a',
     'symbol': "",
