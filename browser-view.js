@@ -129,6 +129,11 @@ var BrowserView = function(args) {
 
    document.querySelector("#show-directions a").addEventListener("click", function(event) {
     event.preventDefault();
+    this.isPaused = true;
+    clearTimeout(this.gameBoard.dropInterval);
+    clearTimeout(this.dropTimeout);
+    clearInterval(this.interval.rotate);
+    clearInterval(this.interval.slide);
 
     if(dirContainer.style["display"] != "none") {
       updateDirectionsOverlay(dirContainer);
@@ -136,7 +141,7 @@ var BrowserView = function(args) {
 
     dirContainer.style["display"] = "initial";
     dirContainer.className = "stretching-container";
-  });
+  }.bind(this));
 
   document.querySelector("#hide-directions a").addEventListener("click", function(event) {
     event.preventDefault();
@@ -146,8 +151,10 @@ var BrowserView = function(args) {
   dirContainer.addEventListener("animationend", function(event) {
     if(event.animationName == "fade") {
       dirContainer.style["display"] = "none";
+      this.isPaused = false;
+      this.cycleDropBlock(CONST.DROP_DELAY[this.level]);
     }
-  });
+  }.bind(this));
 
   window.addEventListener("resize", function(event) {
     updateDirectionsOverlay(dirContainer);
