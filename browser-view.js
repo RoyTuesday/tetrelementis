@@ -49,6 +49,7 @@ var BrowserView = function(args) {
   this.previewBoard = new PreviewBoard();
   this.tableBoard = new PeriodicTable();
 
+  this.loadHighScore();
   this.cycleDropBlock = args.cycleDropBlock;
   this.isPaused = true;
   this.pressed = {
