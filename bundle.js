@@ -51,6 +51,11 @@ var BrowserView = function(args) {
   this.tableBoard = new PeriodicTable();
 
   this.loadHighScore();
+  document.getElementById('reset-high-score').addEventListener("click", function(event) {
+    event.preventDefault();
+    this.resetHighScore();
+  }.bind(this));
+
   this.cycleDropBlock = args.cycleDropBlock;
   this.isPaused = true;
   this.pressed = {
@@ -413,6 +418,10 @@ BrowserView.prototype.loadHighScore = function() {
   else {
     this.highScore.innerHTML = 0;
   }
+};
+BrowserView.prototype.resetHighScore = function() {
+  this.highScore.innerHTML = 0;
+  this.saveHighScore();
 };
 
 module.exports = BrowserView;
