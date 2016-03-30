@@ -50,6 +50,7 @@ var BrowserView = function(args) {
   this.previewBoard = new PreviewBoard();
   this.tableBoard = new PeriodicTable();
 
+  this.loadHighScore();
   this.cycleDropBlock = args.cycleDropBlock;
   this.isPaused = true;
   this.pressed = {
@@ -359,7 +360,7 @@ BrowserView.prototype.updatePlayerScore = function(score) {
   this.playerScore.innerHTML = score;
 };
 BrowserView.prototype.updateGameLevel = function() {
-  var newLevel = Math.floor(this.gameBoard.score) / 10;
+  var newLevel = Math.floor(this.gameBoard.score / 10);
   if(this.gameMode != 'Fixed Level' && this.level != newLevel) {
     this.level = newLevel;
     this.staticGameLevel.innerHTML = this.level + ": ";
@@ -397,8 +398,21 @@ BrowserView.prototype.resetDisplay = function() {
   this.gameLevel.style = 'display:initial;';
   if(this.highScore.innerHTML < this.gameBoard.score) {
     this.highScore.innerHTML = this.gameBoard.score;
+    this.saveHighScore();
   }
   this.gameLevel.innerHTML = CONST.genLevelMenu(this.level);
+};
+BrowserView.prototype.saveHighScore = function() {
+  window.localStorage.setItem("highScore", this.highScore.innerHTML);
+};
+BrowserView.prototype.loadHighScore = function() {
+  var highScore = window.localStorage.getItem("highScore");
+  if(highScore) {
+    this.highScore.innerHTML = highScore;
+  }
+  else {
+    this.highScore.innerHTML = 0;
+  }
 };
 
 module.exports = BrowserView;
