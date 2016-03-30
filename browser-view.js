@@ -413,5 +413,9 @@ BrowserView.prototype.loadHighScore = function() {
     this.highScore.innerHTML = 0;
   }
 };
+BrowserView.prototype.resetHighScore = function() {
+  this.highScore.innerHTML = 0;
+  this.saveHighScore();
+};
 
 module.exports = BrowserView;
