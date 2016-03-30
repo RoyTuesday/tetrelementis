@@ -62,7 +62,9 @@ The game has been tested and operates correctly in the following browsers:
 
 ## Version History
 
-:large_blue_diamond: **1.100 : 28 Mar 2016 -** Add controls to rotate the tetromino both clockwise and counter-clockwise. Button controls now more closely resemble keyboard keys.
+:large_blue_diamond: **1.150 : 30 Mar 2016 -** High score is now saved in local storage, and returning users will find their high score is loaded into the page. Players can also reset their high score, if desired.
+
+:small_red_triangle_down: **1.100 : 28 Mar 2016 -** Add controls to rotate the tetromino both clockwise and counter-clockwise. Button controls now more closely resemble keyboard keys.
 
 :small_red_triangle_down: **1.000 : 06 Mar 2016 -** Add three game modes: Marathon, Fixed Level, and Pentathlon.
 
@@ -125,6 +127,10 @@ The Minimum Viable Product must replicate Tetris, and have some educational cont
 * Fixed Level uses four-block tetrominos but the level starts and stays at the selected number.
 * Pentathlon is like Marathon mode but uses five-block tetrominos.
 
+:white_check_mark: Opera compatibility
+
+:white_check_mark: IE 11 compatibility
+
 ## Planned Features
 
 :white_medium_small_square: Game responds with sound effects.
@@ -133,7 +139,7 @@ The Minimum Viable Product must replicate Tetris, and have some educational cont
 
 :white_medium_small_square: Provide alternate control scheme for mobile users.
 
-:white_medium_small_square: Ensure compatibility on more browsers: Opera, Internet Explorer.
+:white_medium_small_square: Ensure compatibility on more browsers: Safari.
 
 ## Production Screenshots
 
