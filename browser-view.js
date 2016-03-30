@@ -399,5 +399,8 @@ BrowserView.prototype.resetDisplay = function() {
   }
   this.gameLevel.innerHTML = CONST.genLevelMenu(this.level);
 };
+BrowserView.prototype.saveHighScore = function() {
+  window.localStorage.setItem("highScore", this.highScore.innerHTML);
+};
 
 module.exports = BrowserView;
