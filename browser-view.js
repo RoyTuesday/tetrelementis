@@ -358,7 +358,7 @@ BrowserView.prototype.updatePlayerScore = function(score) {
   this.playerScore.innerHTML = score;
 };
 BrowserView.prototype.updateGameLevel = function() {
-  var newLevel = Math.floor(this.gameBoard.score) / 10;
+  var newLevel = Math.floor(this.gameBoard.score / 10);
   if(this.gameMode != 'Fixed Level' && this.level != newLevel) {
     this.level = newLevel;
     this.staticGameLevel.innerHTML = this.level + ": ";
