@@ -402,5 +402,14 @@ BrowserView.prototype.resetDisplay = function() {
 BrowserView.prototype.saveHighScore = function() {
   window.localStorage.setItem("highScore", this.highScore.innerHTML);
 };
+BrowserView.prototype.loadHighScore = function() {
+  var highScore = window.localStorage.getItem("highScore");
+  if(highScore) {
+    this.highScore.innerHTML = highScore;
+  }
+  else {
+    this.highScore.innerHTML = 0;
+  }
+};
 
 module.exports = BrowserView;
