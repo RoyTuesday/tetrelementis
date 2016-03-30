@@ -144,16 +144,16 @@ select:hover {
 #hide-directions a:visited:hover {
   color: #99E;
 }
-#show-directions a {
+#show-directions a, a#reset-high-score {
   color: #505;
 }
-#show-directions a:hover {
+#show-directions a:hover, a#reset-high-score:hover {
   color: #A5A;
 }
-#show-directions a:visited {
+#show-directions a:visited, a#reset-high-score:visited {
   color: #505;
 }
-#show-directions a:visited:hover {
+#show-directions a:visited:hover, a#reset-high-score:visited:hover {
   color: #A5A;
 }
 
