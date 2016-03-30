@@ -397,6 +397,7 @@ BrowserView.prototype.resetDisplay = function() {
   this.gameLevel.style = 'display:initial;';
   if(this.highScore.innerHTML < this.gameBoard.score) {
     this.highScore.innerHTML = this.gameBoard.score;
+    this.saveHighScore();
   }
   this.gameLevel.innerHTML = CONST.genLevelMenu(this.level);
 };
