@@ -324,11 +324,13 @@ BrowserView.prototype.resetDisplay = function(level, gameMode) {
   this.gameModeContainer.style = 'display:initial;';
   this.gameModeContainer.innerHTML = CONST.genModeMenu(gameMode);
   this.gameLevel.style = 'display:initial;';
-  if(this.highScore.innerHTML < this.gameBoard.score) {
-    this.highScore.innerHTML = this.gameBoard.score;
+  this.gameLevel.innerHTML = CONST.genLevelMenu(level);
+};
+BrowserView.prototype.updateHighScore = function(score) {
+  if(this.highScore.innerHTML < score) {
+    this.highScore.innerHTML = score;
     this.saveHighScore();
   }
-  this.gameLevel.innerHTML = CONST.genLevelMenu(level);
 };
 BrowserView.prototype.saveHighScore = function() {
   window.localStorage.setItem("highScore", this.highScore.innerHTML);

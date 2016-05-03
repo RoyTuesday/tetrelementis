@@ -102,7 +102,6 @@ Controller.prototype.startGame = function() {
   this.cycleDropBlock(CONST.DROP_DELAY[this.level]);
 };
 Controller.prototype.cycleDropBlock = function(dropDelay) {
-  console.log("dropDelay", dropDelay);
   this.gameBoard.blit();
   if(this.gameBoard.dropInterval) {
     clearInterval(this.gameBoard.dropInterval);
@@ -180,6 +179,7 @@ Controller.prototype.showGameOver = function() {
   this.gameView.previewBoard.board = CONST.generateEmptyBoard();
   this.gameBoard.clearForGameover();
   this.gameView.resetDisplay(this.level, this.gameMode);
+  this.gameView.updateHighScore(this.gameBoard.score);
 };
 
 module.exports = Controller;
