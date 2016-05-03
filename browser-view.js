@@ -35,9 +35,6 @@ var BrowserView = function(args) {
   this.gameModeContainer = document.getElementById('game-mode');
   this.gameModeContainer.innerHTML = CONST.genModeMenu(0);
 
-  this.gameMode = CONST.GAME_MODES[document.getElementById('game-mode-dropdown').selectedIndex];
-  this.level = 0;
-
   this.gridContext = gridCanvas.getContext('2d');
   this.previewContext = previewCanvas.getContext('2d');
   this.tableContext = this.tableCanvas.getContext('2d');
@@ -358,39 +355,36 @@ BrowserView.prototype.updatePlayerScore = function(score) {
 BrowserView.prototype.updateGameLevel = function(level) {
   this.staticGameLevel.innerHTML = level + ": ";
 };
-BrowserView.prototype.disableMenus = function() {
-  var modeIndex = document.getElementById('game-mode-dropdown').selectedIndex;
+BrowserView.prototype.getGameSettings = function() {
   var levelIndex = document.getElementById('game-level-dropdown').selectedIndex;
+  var modeIndex = document.getElementById('game-mode-dropdown').selectedIndex;
 
-  this.gameMode = CONST.GAME_MODES[modeIndex];
-
-  this.staticGameMode.innerHTML = CONST.GAME_MODES[modeIndex];
-
-  if(this.gameMode == 'Fixed Level') {
-    this.level = levelIndex;
+  return {
+    level: levelIndex,
+    gameMode: CONST.GAME_MODES[modeIndex]
   }
-  else {
-    this.level = 0;
-  }
-  this.staticGameLevel.innerHTML = this.level + ": ";
+};
+BrowserView.prototype.disableMenus = function(level, gameMode) {
+  this.staticGameMode.innerHTML = gameMode;
+  this.staticGameLevel.innerHTML = level + ": ";
 
   this.gameLevel.style = 'display:none;';
   this.gameModeContainer.style = 'display:none;';
   this.staticGameLevel.style = 'display:initial;';
   this.staticGameMode.style = 'display:initial;';
 };
-BrowserView.prototype.resetDisplay = function() {
+BrowserView.prototype.resetDisplay = function(level, gameMode) {
   this.staticGameLevel.style = 'display:none;';
   this.staticGameMode.style = 'display:none;';
 
   this.gameModeContainer.style = 'display:initial;';
-  this.gameModeContainer.innerHTML = CONST.genModeMenu(this.gameMode);
+  this.gameModeContainer.innerHTML = CONST.genModeMenu(gameMode);
   this.gameLevel.style = 'display:initial;';
   if(this.highScore.innerHTML < this.gameBoard.score) {
     this.highScore.innerHTML = this.gameBoard.score;
     this.saveHighScore();
   }
-  this.gameLevel.innerHTML = CONST.genLevelMenu(this.level);
+  this.gameLevel.innerHTML = CONST.genLevelMenu(level);
 };
 BrowserView.prototype.saveHighScore = function() {
   window.localStorage.setItem("highScore", this.highScore.innerHTML);

@@ -6,6 +6,7 @@ var BrowserView = require("./browser-view.js");
 
 var Controller = function(shape) {
   this.level = 0;
+  this.gameMode = "Marathon";
   this.elements = CONST.generateRandomElements();
   this.limiter = {
     shapeIndex: null,
@@ -50,32 +51,39 @@ Controller.prototype.startGame = function() {
   if(this.elements.length < 118) {
     this.elements = CONST.generateRandomElements();
   }
-
-  this.gameView.disableMenus();
+  var settings = this.gameView.getGameSettings();
+  this.gameMode = settings.gameMode;
+  if(this.gameMode == 'Fixed Level') {
+    this.level = settings.level;
+  }
+  else {
+    this.level = 0;
+  }
+  this.gameView.disableMenus(this.level, this.gameMode);
 
   if(this.gameBoard.tetromino) {
     this.gameBoard.tetromino.set({
       element: this.elements.pop(),
-      shape: CONST.getRandomShape(this.gameView.gameMode, this.limiter)
+      shape: CONST.getRandomShape(this.gameMode, this.limiter)
     });
   }
   else {
     this.gameBoard.tetromino = new Tetromino({
       element: this.elements.pop(),
-      shape: CONST.getRandomShape(this.gameView.gameMode, this.limiter)
+      shape: CONST.getRandomShape(this.gameMode, this.limiter)
     });
   }
 
   if(this.gameView.previewBoard.tetromino) {
     this.gameView.previewBoard.tetromino.set({
       element: this.elements.pop(),
-      shape: CONST.getRandomShape(this.gameView.gameMode, this.limiter)
+      shape: CONST.getRandomShape(this.gameMode, this.limiter)
     });
   }
   else {
     this.gameView.previewBoard.tetromino = new Tetromino({
       element: this.elements.pop(),
-      shape: CONST.getRandomShape(this.gameView.gameMode, this.limiter)
+      shape: CONST.getRandomShape(this.gameMode, this.limiter)
     });
   }
 
@@ -109,7 +117,7 @@ Controller.prototype.createNextTetromino = function() {
   }
   this.gameView.previewBoard.tetromino.set({
     element: this.elements.pop(),
-    shape: CONST.getRandomShape(this.gameView.gameMode, this.limiter)
+    shape: CONST.getRandomShape(this.gameMode, this.limiter)
   })
   this.gameView.previewBoard.blit();
   this.gameView.tableBoard.showElement(this.gameBoard.tetromino.element);
@@ -166,7 +174,7 @@ Controller.prototype.showGameOver = function() {
   this.gameView.isPaused = true;
   this.gameView.previewBoard.board = CONST.generateEmptyBoard();
   this.gameBoard.clearForGameover();
-  this.gameView.resetDisplay();
+  this.gameView.resetDisplay(this.level, this.gameMode);
 };
 
 module.exports = Controller;

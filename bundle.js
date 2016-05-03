@@ -36,9 +36,6 @@ var BrowserView = function(args) {
   this.gameModeContainer = document.getElementById('game-mode');
   this.gameModeContainer.innerHTML = CONST.genModeMenu(0);
 
-  this.gameMode = CONST.GAME_MODES[document.getElementById('game-mode-dropdown').selectedIndex];
-  this.level = 0;
-
   this.gridContext = gridCanvas.getContext('2d');
   this.previewContext = previewCanvas.getContext('2d');
   this.tableContext = this.tableCanvas.getContext('2d');
@@ -359,39 +356,36 @@ BrowserView.prototype.updatePlayerScore = function(score) {
 BrowserView.prototype.updateGameLevel = function(level) {
   this.staticGameLevel.innerHTML = level + ": ";
 };
-BrowserView.prototype.disableMenus = function() {
-  var modeIndex = document.getElementById('game-mode-dropdown').selectedIndex;
+BrowserView.prototype.getGameSettings = function() {
   var levelIndex = document.getElementById('game-level-dropdown').selectedIndex;
+  var modeIndex = document.getElementById('game-mode-dropdown').selectedIndex;
 
-  this.gameMode = CONST.GAME_MODES[modeIndex];
-
-  this.staticGameMode.innerHTML = CONST.GAME_MODES[modeIndex];
-
-  if(this.gameMode == 'Fixed Level') {
-    this.level = levelIndex;
+  return {
+    level: levelIndex,
+    gameMode: CONST.GAME_MODES[modeIndex]
   }
-  else {
-    this.level = 0;
-  }
-  this.staticGameLevel.innerHTML = this.level + ": ";
+};
+BrowserView.prototype.disableMenus = function(level, gameMode) {
+  this.staticGameMode.innerHTML = gameMode;
+  this.staticGameLevel.innerHTML = level + ": ";
 
   this.gameLevel.style = 'display:none;';
   this.gameModeContainer.style = 'display:none;';
   this.staticGameLevel.style = 'display:initial;';
   this.staticGameMode.style = 'display:initial;';
 };
-BrowserView.prototype.resetDisplay = function() {
+BrowserView.prototype.resetDisplay = function(level, gameMode) {
   this.staticGameLevel.style = 'display:none;';
   this.staticGameMode.style = 'display:none;';
 
   this.gameModeContainer.style = 'display:initial;';
-  this.gameModeContainer.innerHTML = CONST.genModeMenu(this.gameMode);
+  this.gameModeContainer.innerHTML = CONST.genModeMenu(gameMode);
   this.gameLevel.style = 'display:initial;';
   if(this.highScore.innerHTML < this.gameBoard.score) {
     this.highScore.innerHTML = this.gameBoard.score;
     this.saveHighScore();
   }
-  this.gameLevel.innerHTML = CONST.genLevelMenu(this.level);
+  this.gameLevel.innerHTML = CONST.genLevelMenu(level);
 };
 BrowserView.prototype.saveHighScore = function() {
   window.localStorage.setItem("highScore", this.highScore.innerHTML);
@@ -1768,6 +1762,7 @@ var BrowserView = require("./browser-view.js");
 
 var Controller = function(shape) {
   this.level = 0;
+  this.gameMode = "Marathon";
   this.elements = CONST.generateRandomElements();
   this.limiter = {
     shapeIndex: null,
@@ -1812,32 +1807,39 @@ Controller.prototype.startGame = function() {
   if(this.elements.length < 118) {
     this.elements = CONST.generateRandomElements();
   }
-
-  this.gameView.disableMenus();
+  var settings = this.gameView.getGameSettings();
+  this.gameMode = settings.gameMode;
+  if(this.gameMode == 'Fixed Level') {
+    this.level = settings.level;
+  }
+  else {
+    this.level = 0;
+  }
+  this.gameView.disableMenus(this.level, this.gameMode);
 
   if(this.gameBoard.tetromino) {
     this.gameBoard.tetromino.set({
       element: this.elements.pop(),
-      shape: CONST.getRandomShape(this.gameView.gameMode, this.limiter)
+      shape: CONST.getRandomShape(this.gameMode, this.limiter)
     });
   }
   else {
     this.gameBoard.tetromino = new Tetromino({
       element: this.elements.pop(),
-      shape: CONST.getRandomShape(this.gameView.gameMode, this.limiter)
+      shape: CONST.getRandomShape(this.gameMode, this.limiter)
     });
   }
 
   if(this.gameView.previewBoard.tetromino) {
     this.gameView.previewBoard.tetromino.set({
       element: this.elements.pop(),
-      shape: CONST.getRandomShape(this.gameView.gameMode, this.limiter)
+      shape: CONST.getRandomShape(this.gameMode, this.limiter)
     });
   }
   else {
     this.gameView.previewBoard.tetromino = new Tetromino({
       element: this.elements.pop(),
-      shape: CONST.getRandomShape(this.gameView.gameMode, this.limiter)
+      shape: CONST.getRandomShape(this.gameMode, this.limiter)
     });
   }
 
@@ -1871,7 +1873,7 @@ Controller.prototype.createNextTetromino = function() {
   }
   this.gameView.previewBoard.tetromino.set({
     element: this.elements.pop(),
-    shape: CONST.getRandomShape(this.gameView.gameMode, this.limiter)
+    shape: CONST.getRandomShape(this.gameMode, this.limiter)
   })
   this.gameView.previewBoard.blit();
   this.gameView.tableBoard.showElement(this.gameBoard.tetromino.element);
@@ -1928,7 +1930,7 @@ Controller.prototype.showGameOver = function() {
   this.gameView.isPaused = true;
   this.gameView.previewBoard.board = CONST.generateEmptyBoard();
   this.gameBoard.clearForGameover();
-  this.gameView.resetDisplay();
+  this.gameView.resetDisplay(this.level, this.gameMode);
 };
 
 module.exports = Controller;
