@@ -160,7 +160,6 @@ var BrowserView = function(args) {
   });
 }
 BrowserView.prototype.keyDown = function(event) {
-  console.log("this in keyDown", this);
   var pressedKey = CONST.KEY_CODES_TO_ACTIONS[event.keyCode];
   if(this.isPaused) {
     if(pressedKey == 'space') {
@@ -200,20 +199,17 @@ BrowserView.prototype.keyUp = function(event){
   if(this.isPaused === false) {
     if(releasedKey == 'left' || releasedKey == 'right') {
       event.preventDefault();
-      clearInterval(this.gameBoard.slideInterval);
       this.pressed.slide = false;
     }
     if(releasedKey == 'down') {
       event.preventDefault();
-      clearTimeout(this.dropTimeout);
       this.pressed.drop = false;
-      this.cycleDropBlock(CONST.DROP_DELAY[this.level]);
     }
     if(releasedKey == 'counter' || releasedKey == 'clock') {
       event.preventDefault();
-      clearInterval(this.gameBoard.rotateInterval);
       this.pressed.rotate = false;
     }
+    return releasedKey;
   }
 };
 BrowserView.prototype.buttonDown = function(event) {
