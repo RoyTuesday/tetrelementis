@@ -3,7 +3,6 @@ var CONST = require("./constants.js");
 var CHEMICAL_ELEMENTS = require("./chemical-elements.js");
 
 var TetrisBoard = require("./tetris-board.js");
-var PreviewBoard = require("./preview-board.js");
 var PeriodicTable = require("./periodic-table.js");
 
 var BrowserView = function(args) {
@@ -52,7 +51,6 @@ var BrowserView = function(args) {
   this.overlayContext.fillStyle = 'rgba(255, 255, 255, 0.5)';
 
   this.gameBoard = args.gameBoard;
-  this.previewBoard = new PreviewBoard();
   this.tableBoard = new PeriodicTable();
 
   this.loadHighScore();
@@ -224,7 +222,7 @@ BrowserView.prototype.releaseAllKeys = function() {
   };
 };
 BrowserView.prototype.drawBoard = function(board, context) {
-  var gridContext = context;
+  var gridContext = this[context];
   var width = gridContext.canvas.width;
   var height = gridContext.canvas.height;
   gridContext.clearRect(0, 0, width, height);
@@ -261,11 +259,6 @@ BrowserView.prototype.drawBoard = function(board, context) {
       gridContext.fillText(CHEMICAL_ELEMENTS[col].symbol, textX, textY);
     });
   });
-};
-BrowserView.prototype.drawAllBoards = function() {
-  this.drawBoard(this.gameBoard.board, this.gridContext);
-  this.drawBoard(this.previewBoard.board, this.previewContext);
-  this.drawBoard(this.tableBoard.board, this.tableContext);
 };
 BrowserView.prototype.updateElementDescrip = function(element) {
   this.elementName.innerHTML = CHEMICAL_ELEMENTS[element].name + ' [' + CHEMICAL_ELEMENTS[element].symbol + ']';
@@ -333,7 +326,7 @@ BrowserView.prototype.resetHighScore = function() {
 
 module.exports = BrowserView;
 
-},{"./chemical-elements.js":2,"./constants.js":3,"./periodic-table.js":5,"./preview-board.js":6,"./tetris-board.js":7}],2:[function(require,module,exports){
+},{"./chemical-elements.js":2,"./constants.js":3,"./periodic-table.js":5,"./tetris-board.js":7}],2:[function(require,module,exports){
 module.exports = {
   0: {
     'name': 'n/a',
@@ -1684,6 +1677,7 @@ module.exports = CONST;
 var CONST = require("./constants.js");
 
 var Tetromino = require("./tetromino.js")
+var PreviewBoard = require("./preview-board.js");
 var TetrisBoard = require("./tetris-board.js");
 var BrowserView = require("./browser-view.js");
 
@@ -1696,6 +1690,7 @@ var Controller = function(shape) {
     count: 0
   }
 
+  this.previewBoard = new PreviewBoard();
   this.gameBoard = new TetrisBoard({
     createNextTetromino: this.createNextTetromino.bind(this),
     showGameOver: this.showGameOver.bind(this)
@@ -1706,7 +1701,9 @@ var Controller = function(shape) {
     cycleDropBlock: this.cycleDropBlock,
   });
 
-  this.gameView.drawAllBoards();
+  this.gameView.drawBoard(this.gameBoard.board, "gridContext");
+  this.gameView.drawBoard(this.previewBoard.board, "previewContext");
+  this.gameView.drawBoard(this.gameView.tableBoard.board, "tableContext");
   this.gameBoard.gameState = 'gameover';
 
   addEventListener('keydown', function(event) {
@@ -1718,14 +1715,14 @@ var Controller = function(shape) {
       }
     }
   }.bind(this));
-  // addEventListener('mousedown', function(event) {
-  //   if(event.target.nodeName == 'BUTTON' && this.gameBoard.gameState == 'gameover') {
-  //     var buttonPressed = event.target.dataset.key;
-  //     if(buttonPressed == 'space') {
-  //       this.startGame();
-  //     }
-  //   }
-  // }.bind(this));
+  addEventListener('mousedown', function(event) {
+    if(event.target.nodeName == 'BUTTON' && this.gameBoard.gameState == 'gameover') {
+      var buttonPressed = event.target.dataset.key;
+      if(buttonPressed == 'space') {
+        this.startGame();
+      }
+    }
+  }.bind(this));
 
   addEventListener('keydown', this.handleKeyDown.bind(this));
   addEventListener('keyup', this.handleKeyUp.bind(this));
@@ -1761,14 +1758,14 @@ Controller.prototype.startGame = function() {
     });
   }
 
-  if(this.gameView.previewBoard.tetromino) {
-    this.gameView.previewBoard.tetromino.set({
+  if(this.previewBoard.tetromino) {
+    this.previewBoard.tetromino.set({
       element: this.elements.pop(),
       shape: CONST.getRandomShape(this.gameMode, this.limiter)
     });
   }
   else {
-    this.gameView.previewBoard.tetromino = new Tetromino({
+    this.previewBoard.tetromino = new Tetromino({
       element: this.elements.pop(),
       shape: CONST.getRandomShape(this.gameMode, this.limiter)
     });
@@ -1788,16 +1785,18 @@ Controller.prototype.startGame = function() {
     lastTime = time;
 
     if(progress) {
-      this.gameView.drawAllBoards();
+      this.gameView.drawBoard(this.gameBoard.board, "gridContext");
+      this.gameView.drawBoard(this.previewBoard.board, "previewContext");
+      this.gameView.drawBoard(this.gameView.tableBoard.board, "tableContext");
       this.gameView.updatePlayerScore(this.gameBoard.score);
       requestAnimationFrame(animate.bind(this));
     }
   }
   requestAnimationFrame(animate.bind(this));
 
-  this.gameView.previewBoard.blit();
+  this.previewBoard.blit();
   this.gameView.tableBoard.showElement(this.gameBoard.tetromino.element);
-  this.gameView.updateElementDescrip(this.gameView.previewBoard.tetromino.element);
+  this.gameView.updateElementDescrip(this.previewBoard.tetromino.element);
 
   this.cycleDropBlock(CONST.DROP_DELAY[this.level]);
 };
@@ -1813,19 +1812,19 @@ Controller.prototype.cycleDropBlock = function(dropDelay) {
 };
 Controller.prototype.createNextTetromino = function() {
   this.gameBoard.tetromino.set({
-    element: this.gameView.previewBoard.tetromino.element,
-    shape: this.gameView.previewBoard.tetromino.shape
+    element: this.previewBoard.tetromino.element,
+    shape: this.previewBoard.tetromino.shape
   });
   if(this.elements.length <= 0) {
     this.elements = CONST.generateRandomElements();
   }
-  this.gameView.previewBoard.tetromino.set({
+  this.previewBoard.tetromino.set({
     element: this.elements.pop(),
     shape: CONST.getRandomShape(this.gameMode, this.limiter)
   })
-  this.gameView.previewBoard.blit();
+  this.previewBoard.blit();
   this.gameView.tableBoard.showElement(this.gameBoard.tetromino.element);
-  this.gameView.updateElementDescrip(this.gameView.previewBoard.tetromino.element);
+  this.gameView.updateElementDescrip(this.previewBoard.tetromino.element);
   this.updateGameLevel();
 };
 Controller.prototype.handleKeyDown = function(event) {
@@ -1873,10 +1872,10 @@ Controller.prototype.updateGameLevel = function() {
 };
 Controller.prototype.showGameOver = function() {
   this.gameBoard.tetromino = null;
-  this.gameView.previewBoard.tetromino = null;
+  this.previewBoard.tetromino = null;
 
   this.gameView.isPaused = true;
-  this.gameView.previewBoard.board = CONST.generateEmptyBoard();
+  this.previewBoard.board = CONST.generateEmptyBoard();
   this.gameBoard.clearForGameover();
   this.gameView.resetDisplay(this.level, this.gameMode);
   this.gameView.updateHighScore(this.gameBoard.score);
@@ -1884,7 +1883,7 @@ Controller.prototype.showGameOver = function() {
 
 module.exports = Controller;
 
-},{"./browser-view.js":1,"./constants.js":3,"./tetris-board.js":7,"./tetromino.js":9}],5:[function(require,module,exports){
+},{"./browser-view.js":1,"./constants.js":3,"./preview-board.js":6,"./tetris-board.js":7,"./tetromino.js":9}],5:[function(require,module,exports){
 var CONST = require("./constants.js");
 
 var PeriodicTable = function() {

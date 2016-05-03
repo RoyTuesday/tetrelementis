@@ -2,7 +2,6 @@ var CONST = require("./constants.js");
 var CHEMICAL_ELEMENTS = require("./chemical-elements.js");
 
 var TetrisBoard = require("./tetris-board.js");
-var PreviewBoard = require("./preview-board.js");
 var PeriodicTable = require("./periodic-table.js");
 
 var BrowserView = function(args) {
@@ -51,7 +50,6 @@ var BrowserView = function(args) {
   this.overlayContext.fillStyle = 'rgba(255, 255, 255, 0.5)';
 
   this.gameBoard = args.gameBoard;
-  this.previewBoard = new PreviewBoard();
   this.tableBoard = new PeriodicTable();
 
   this.loadHighScore();
@@ -223,7 +221,7 @@ BrowserView.prototype.releaseAllKeys = function() {
   };
 };
 BrowserView.prototype.drawBoard = function(board, context) {
-  var gridContext = context;
+  var gridContext = this[context];
   var width = gridContext.canvas.width;
   var height = gridContext.canvas.height;
   gridContext.clearRect(0, 0, width, height);
@@ -260,11 +258,6 @@ BrowserView.prototype.drawBoard = function(board, context) {
       gridContext.fillText(CHEMICAL_ELEMENTS[col].symbol, textX, textY);
     });
   });
-};
-BrowserView.prototype.drawAllBoards = function() {
-  this.drawBoard(this.gameBoard.board, this.gridContext);
-  this.drawBoard(this.previewBoard.board, this.previewContext);
-  this.drawBoard(this.tableBoard.board, this.tableContext);
 };
 BrowserView.prototype.updateElementDescrip = function(element) {
   this.elementName.innerHTML = CHEMICAL_ELEMENTS[element].name + ' [' + CHEMICAL_ELEMENTS[element].symbol + ']';
