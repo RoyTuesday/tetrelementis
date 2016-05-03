@@ -68,8 +68,6 @@ var BrowserView = function(args) {
     rotate: null
   };
 
-  addEventListener('keyup', this.keyUp.bind(this));
-
   document.querySelector('#level-right').addEventListener('mousedown', this.buttonDown.bind(this));
   document.querySelector('#level-right').addEventListener('mouseup', this.buttonUp.bind(this));
 
@@ -192,6 +190,7 @@ BrowserView.prototype.keyDown = function(event) {
       }
     }
     else if(pressedKey == 'space') {
+      this.isPaused = true;
       event.preventDefault();
       return "pause";
     }
