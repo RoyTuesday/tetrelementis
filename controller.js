@@ -43,19 +43,7 @@ var Controller = function(shape) {
   }.bind(this));
 
   addEventListener('keydown', this.handleKeyDown.bind(this));
-  addEventListener('keyup', function(event) {
-    var action = this.gameView.keyUp.bind(this.gameView, event).call();
-    if(action == "left" || action == "right") {
-      clearInterval(this.gameBoard.slideInterval);
-    }
-    else if(action == "counter" || action == "clock") {
-      clearInterval(this.gameBoard.rotateInterval);
-    }
-    else if(action == "down") {
-      clearInterval(this.gameBoard.dropInterval);
-      this.cycleDropBlock(CONST.DROP_DELAY[this.gameView.level]);
-    }
-  }.bind(this));
+  addEventListener('keyup', this.handleKeyUp.bind(this));
 }
 Controller.prototype.startGame = function() {
   if(this.elements.length < 118) {
@@ -150,6 +138,19 @@ Controller.prototype.handleKeyDown = function(event) {
   else if(action == "down") {
     clearInterval(this.gameBoard.dropInterval);
     this.cycleDropBlock(CONST.FAST_DROP);
+  }
+};
+Controller.prototype.handleKeyUp = function(event) {
+  var action = this.gameView.keyUp.bind(this.gameView, event).call();
+  if(action == "left" || action == "right") {
+    clearInterval(this.gameBoard.slideInterval);
+  }
+  else if(action == "counter" || action == "clock") {
+    clearInterval(this.gameBoard.rotateInterval);
+  }
+  else if(action == "down") {
+    clearInterval(this.gameBoard.dropInterval);
+    this.cycleDropBlock(CONST.DROP_DELAY[this.gameView.level]);
   }
 };
 Controller.prototype.showGameOver = function() {

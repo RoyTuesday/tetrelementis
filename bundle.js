@@ -1812,46 +1812,8 @@ var Controller = function(shape) {
     }
   }.bind(this));
 
-  addEventListener('keydown', function(event) {
-    var action = this.gameView.keyDown.bind(this.gameView, event).call();
-    if(action == "pause") {
-      clearTimeout(this.gameBoard.dropInterval);
-      clearTimeout(this.gameBoard.dropTimeout);
-      clearInterval(this.gameBoard.rotateInterval);
-      clearInterval(this.gameBoard.slideInterval);
-    }
-    else if(action == "unpause") {
-      this.cycleDropBlock(CONST.DROP_DELAY[this.gameView.level]);
-    }
-    else if(action == "left" || action == "right") {
-      clearInterval(this.gameBoard.slideInterval);
-      this.gameBoard.slideBlock(this.gameView.pressed.slide);
-      this.gameBoard.slideInterval = setInterval(this.gameBoard.slideBlock.bind(this.gameBoard, this.gameView.pressed.slide), CONST.SLIDE_DELAY);
-    }
-    else if(action == "clock" || action == "counter") {
-      clearInterval(this.gameBoard.rotateInterval);
-      this.gameBoard.rotateBlock(this.gameView.pressed.rotate);
-      this.gameBoard.rotateInterval = setInterval(this.gameBoard.rotateBlock.bind(this.gameBoard, this.gameView.pressed.rotate), CONST.ROTATE_DELAY);
-    }
-    else if(action == "down") {
-      clearInterval(this.gameBoard.dropInterval);
-      this.cycleDropBlock(CONST.FAST_DROP);
-    }
-  }.bind(this));
-
-  addEventListener('keyup', function(event) {
-    var action = this.gameView.keyUp.bind(this.gameView, event).call();
-    if(action == "left" || action == "right") {
-      clearInterval(this.gameBoard.slideInterval);
-    }
-    else if(action == "counter" || action == "clock") {
-      clearInterval(this.gameBoard.rotateInterval);
-    }
-    else if(action == "down") {
-      clearInterval(this.gameBoard.dropInterval);
-      this.cycleDropBlock(CONST.DROP_DELAY[this.gameView.level]);
-    }
-  }.bind(this));
+  addEventListener('keydown', this.handleKeyDown.bind(this));
+  addEventListener('keyup', this.handleKeyUp.bind(this));
 }
 Controller.prototype.startGame = function() {
   if(this.elements.length < 118) {
@@ -1921,6 +1883,45 @@ Controller.prototype.createNextTetromino = function() {
   this.gameView.previewBoard.blit();
   this.gameView.tableBoard.showElement(this.gameBoard.tetromino.element);
   this.gameView.updateElementDescrip(this.gameView.previewBoard.tetromino.element);
+};
+Controller.prototype.handleKeyDown = function(event) {
+  var action = this.gameView.keyDown.bind(this.gameView, event).call();
+  if(action == "pause") {
+    clearTimeout(this.gameBoard.dropInterval);
+    clearTimeout(this.gameBoard.dropTimeout);
+    clearInterval(this.gameBoard.rotateInterval);
+    clearInterval(this.gameBoard.slideInterval);
+  }
+  else if(action == "unpause") {
+    this.cycleDropBlock(CONST.DROP_DELAY[this.gameView.level]);
+  }
+  else if(action == "left" || action == "right") {
+    clearInterval(this.gameBoard.slideInterval);
+    this.gameBoard.slideBlock(this.gameView.pressed.slide);
+    this.gameBoard.slideInterval = setInterval(this.gameBoard.slideBlock.bind(this.gameBoard, this.gameView.pressed.slide), CONST.SLIDE_DELAY);
+  }
+  else if(action == "clock" || action == "counter") {
+    clearInterval(this.gameBoard.rotateInterval);
+    this.gameBoard.rotateBlock(this.gameView.pressed.rotate);
+    this.gameBoard.rotateInterval = setInterval(this.gameBoard.rotateBlock.bind(this.gameBoard, this.gameView.pressed.rotate), CONST.ROTATE_DELAY);
+  }
+  else if(action == "down") {
+    clearInterval(this.gameBoard.dropInterval);
+    this.cycleDropBlock(CONST.FAST_DROP);
+  }
+};
+Controller.prototype.handleKeyUp = function(event) {
+  var action = this.gameView.keyUp.bind(this.gameView, event).call();
+  if(action == "left" || action == "right") {
+    clearInterval(this.gameBoard.slideInterval);
+  }
+  else if(action == "counter" || action == "clock") {
+    clearInterval(this.gameBoard.rotateInterval);
+  }
+  else if(action == "down") {
+    clearInterval(this.gameBoard.dropInterval);
+    this.cycleDropBlock(CONST.DROP_DELAY[this.gameView.level]);
+  }
 };
 Controller.prototype.showGameOver = function() {
   this.gameBoard.tetromino = null;
