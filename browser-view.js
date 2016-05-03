@@ -215,65 +215,6 @@ BrowserView.prototype.keyUp = function(event){
     return releasedKey;
   }
 };
-BrowserView.prototype.buttonDown = function(event) {
-  var buttonPressed = event.target.dataset.key;
-  if(this.isPaused) {
-    if(buttonPressed == 'space') {
-      this.isPaused = false;
-      this.cycleDropBlock(CONST.DROP_DELAY[this.level]);
-    }
-  }
-  else {
-    if(buttonPressed == 'left' || buttonPressed == 'right') {
-      if(this.pressed.slide == false) {
-        this.pressed.slide = buttonPressed;
-        clearInterval(this.interval.slide);
-        this.interval.slide = setInterval(this.handleInput.bind(this), CONST.SLIDE_DELAY);
-      }
-    }
-    else if(buttonPressed == 'down') {
-      if(this.pressed.drop == false) {
-        this.pressed.drop = true;
-        clearTimeout(this.dropTimeout);
-        this.cycleDropBlock(CONST.FAST_DROP);
-      }
-    }
-    else if(buttonPressed == 'clock' || buttonPressed == 'counter') {
-      if(this.pressed.rotate == false) {
-        this.pressed.rotate = buttonPressed;
-        clearInterval(this.interval.rotate);
-        this.interval.rotate = setInterval(this.handleInput.bind(this), CONST.ROTATE_DELAY);
-      }
-    }
-    else if(buttonPressed == 'space') {
-      clearTimeout(this.gameBoard.dropInterval);
-      clearTimeout(this.dropTimeout);
-      clearInterval(this.interval.rotate);
-      clearInterval(this.interval.slide);
-      this.isPaused = true;
-    }
-    this.handleInput();
-  }
-};
-BrowserView.prototype.buttonUp = function(event) {
-  if(this.isPaused === false) {
-    if(this.pressed.drop) {
-      clearTimeout(this.dropTimeout);
-      this.cycleDropBlock(CONST.DROP_DELAY[this.level]);
-    }
-    clearInterval(this.interval.slide);
-    clearInterval(this.interval.rotate);
-    this.releaseAllKeys();
-  }
-};
-BrowserView.prototype.handleInput = function() {
-  if(this.pressed.slide) {
-    this.gameBoard.slideBlock(this.pressed.slide);
-  }
-  else if(this.pressed.rotate) {
-    this.gameBoard.rotateBlock(this.pressed.rotate);
-  }
-};
 BrowserView.prototype.releaseAllKeys = function() {
   this.pressed = {
     slide: false,
