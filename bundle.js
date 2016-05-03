@@ -9,6 +9,14 @@ var PeriodicTable = require("./periodic-table.js");
 var BrowserView = function(args) {
   var gridCanvas = document.querySelector('canvas#tetris-grid');
   var previewCanvas = document.querySelector('canvas#tetris-preview');
+  var buttons = document.querySelectorAll("button.control-button");
+
+  this.controlButtons = new Array;
+  for(var i in buttons) {
+    if(buttons.hasOwnProperty(i)) {
+      this.controlButtons.push(buttons[i]);
+    }
+  }
 
   this.tableOverlay = document.querySelector('canvas#table-overlay');
   this.tableCanvas = document.querySelector('canvas#tetris-table');
@@ -64,9 +72,6 @@ var BrowserView = function(args) {
     slide: null,
     rotate: null
   };
-
-  document.querySelector('#level-right').addEventListener('mousedown', this.buttonDown.bind(this));
-  document.querySelector('#level-right').addEventListener('mouseup', this.buttonUp.bind(this));
 
   this.tableOverlay.addEventListener('mousedown', function(event) {
     var mouseX = Math.floor((event.layerX - this.tableOverlay.offsetLeft) / (540 / 18));
@@ -156,7 +161,7 @@ var BrowserView = function(args) {
   });
 }
 BrowserView.prototype.keyDown = function(event) {
-  var pressedKey = CONST.KEY_CODES_TO_ACTIONS[event.keyCode];
+  var pressedKey = event.keyCode ? CONST.KEY_CODES_TO_ACTIONS[event.keyCode] : event.target.dataset.key;
   if(this.isPaused) {
     if(pressedKey == 'space') {
       event.preventDefault();
@@ -194,7 +199,7 @@ BrowserView.prototype.keyDown = function(event) {
   }
 };
 BrowserView.prototype.keyUp = function(event){
-  var releasedKey = CONST.KEY_CODES_TO_ACTIONS[event.keyCode];
+  var releasedKey = event.keyCode ? CONST.KEY_CODES_TO_ACTIONS[event.keyCode] : event.target.dataset.key;
   if(this.isPaused === false) {
     if(releasedKey == 'left' || releasedKey == 'right') {
       event.preventDefault();
@@ -212,45 +217,43 @@ BrowserView.prototype.keyUp = function(event){
   }
 };
 BrowserView.prototype.buttonDown = function(event) {
-  if(event.target.nodeName == "BUTTON") {
-    var buttonPressed = event.target.dataset.key;
-    if(this.isPaused) {
-      if(buttonPressed == 'space') {
-        this.isPaused = false;
-        this.cycleDropBlock(CONST.DROP_DELAY[this.level]);
-      }
+  var buttonPressed = event.target.dataset.key;
+  if(this.isPaused) {
+    if(buttonPressed == 'space') {
+      this.isPaused = false;
+      this.cycleDropBlock(CONST.DROP_DELAY[this.level]);
     }
-    else {
-      if(buttonPressed == 'left' || buttonPressed == 'right') {
-        if(this.pressed.slide == false) {
-          this.pressed.slide = buttonPressed;
-          clearInterval(this.interval.slide);
-          this.interval.slide = setInterval(this.handleInput.bind(this), CONST.SLIDE_DELAY);
-        }
-      }
-      else if(buttonPressed == 'down') {
-        if(this.pressed.drop == false) {
-          this.pressed.drop = true;
-          clearTimeout(this.dropTimeout);
-          this.cycleDropBlock(CONST.FAST_DROP);
-        }
-      }
-      else if(buttonPressed == 'clock' || buttonPressed == 'counter') {
-        if(this.pressed.rotate == false) {
-          this.pressed.rotate = buttonPressed;
-          clearInterval(this.interval.rotate);
-          this.interval.rotate = setInterval(this.handleInput.bind(this), CONST.ROTATE_DELAY);
-        }
-      }
-      else if(buttonPressed == 'space') {
-        clearTimeout(this.gameBoard.dropInterval);
-        clearTimeout(this.dropTimeout);
-        clearInterval(this.interval.rotate);
+  }
+  else {
+    if(buttonPressed == 'left' || buttonPressed == 'right') {
+      if(this.pressed.slide == false) {
+        this.pressed.slide = buttonPressed;
         clearInterval(this.interval.slide);
-        this.isPaused = true;
+        this.interval.slide = setInterval(this.handleInput.bind(this), CONST.SLIDE_DELAY);
       }
-      this.handleInput();
     }
+    else if(buttonPressed == 'down') {
+      if(this.pressed.drop == false) {
+        this.pressed.drop = true;
+        clearTimeout(this.dropTimeout);
+        this.cycleDropBlock(CONST.FAST_DROP);
+      }
+    }
+    else if(buttonPressed == 'clock' || buttonPressed == 'counter') {
+      if(this.pressed.rotate == false) {
+        this.pressed.rotate = buttonPressed;
+        clearInterval(this.interval.rotate);
+        this.interval.rotate = setInterval(this.handleInput.bind(this), CONST.ROTATE_DELAY);
+      }
+    }
+    else if(buttonPressed == 'space') {
+      clearTimeout(this.gameBoard.dropInterval);
+      clearTimeout(this.dropTimeout);
+      clearInterval(this.interval.rotate);
+      clearInterval(this.interval.slide);
+      this.isPaused = true;
+    }
+    this.handleInput();
   }
 };
 BrowserView.prototype.buttonUp = function(event) {
@@ -1791,17 +1794,21 @@ var Controller = function(shape) {
       }
     }
   }.bind(this));
-  addEventListener('mousedown', function(event) {
-    if(event.target.nodeName == 'BUTTON' && this.gameBoard.gameState == 'gameover') {
-      var buttonPressed = event.target.dataset.key;
-      if(buttonPressed == 'space') {
-        this.startGame();
-      }
-    }
-  }.bind(this));
+  // addEventListener('mousedown', function(event) {
+  //   if(event.target.nodeName == 'BUTTON' && this.gameBoard.gameState == 'gameover') {
+  //     var buttonPressed = event.target.dataset.key;
+  //     if(buttonPressed == 'space') {
+  //       this.startGame();
+  //     }
+  //   }
+  // }.bind(this));
 
   addEventListener('keydown', this.handleKeyDown.bind(this));
   addEventListener('keyup', this.handleKeyUp.bind(this));
+  this.gameView.controlButtons.forEach(function(button) {
+    button.addEventListener("mousedown", this.handleKeyDown.bind(this));
+    button.addEventListener("mouseup", this.handleKeyUp.bind(this));
+  }.bind(this));
 }
 Controller.prototype.startGame = function() {
   if(this.elements.length < 118) {
@@ -1851,9 +1858,10 @@ Controller.prototype.startGame = function() {
   this.gameView.tableBoard.showElement(this.gameBoard.tetromino.element);
   this.gameView.updateElementDescrip(this.gameView.previewBoard.tetromino.element);
 
-  this.cycleDropBlock(CONST.DROP_DELAY[this.gameView.level]);
+  this.cycleDropBlock(CONST.DROP_DELAY[this.level]);
 };
-Controller.prototype.cycleDropBlock = function (dropDelay) {
+Controller.prototype.cycleDropBlock = function(dropDelay) {
+  console.log("dropDelay", dropDelay);
   this.gameBoard.blit();
   if(this.gameBoard.dropInterval) {
     clearInterval(this.gameBoard.dropInterval);
@@ -1889,7 +1897,7 @@ Controller.prototype.handleKeyDown = function(event) {
     clearInterval(this.gameBoard.slideInterval);
   }
   else if(action == "unpause") {
-    this.cycleDropBlock(CONST.DROP_DELAY[this.gameView.level]);
+    this.cycleDropBlock(CONST.DROP_DELAY[this.level]);
   }
   else if(action == "left" || action == "right") {
     clearInterval(this.gameBoard.slideInterval);
@@ -1916,7 +1924,7 @@ Controller.prototype.handleKeyUp = function(event) {
   }
   else if(action == "down") {
     clearInterval(this.gameBoard.dropInterval);
-    this.cycleDropBlock(CONST.DROP_DELAY[this.gameView.level]);
+    this.cycleDropBlock(CONST.DROP_DELAY[this.level]);
   }
 };
 Controller.prototype.updateGameLevel = function() {

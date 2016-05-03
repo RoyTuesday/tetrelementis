@@ -35,17 +35,21 @@ var Controller = function(shape) {
       }
     }
   }.bind(this));
-  addEventListener('mousedown', function(event) {
-    if(event.target.nodeName == 'BUTTON' && this.gameBoard.gameState == 'gameover') {
-      var buttonPressed = event.target.dataset.key;
-      if(buttonPressed == 'space') {
-        this.startGame();
-      }
-    }
-  }.bind(this));
+  // addEventListener('mousedown', function(event) {
+  //   if(event.target.nodeName == 'BUTTON' && this.gameBoard.gameState == 'gameover') {
+  //     var buttonPressed = event.target.dataset.key;
+  //     if(buttonPressed == 'space') {
+  //       this.startGame();
+  //     }
+  //   }
+  // }.bind(this));
 
   addEventListener('keydown', this.handleKeyDown.bind(this));
   addEventListener('keyup', this.handleKeyUp.bind(this));
+  this.gameView.controlButtons.forEach(function(button) {
+    button.addEventListener("mousedown", this.handleKeyDown.bind(this));
+    button.addEventListener("mouseup", this.handleKeyUp.bind(this));
+  }.bind(this));
 }
 Controller.prototype.startGame = function() {
   if(this.elements.length < 118) {
@@ -95,9 +99,10 @@ Controller.prototype.startGame = function() {
   this.gameView.tableBoard.showElement(this.gameBoard.tetromino.element);
   this.gameView.updateElementDescrip(this.gameView.previewBoard.tetromino.element);
 
-  this.cycleDropBlock(CONST.DROP_DELAY[this.gameView.level]);
+  this.cycleDropBlock(CONST.DROP_DELAY[this.level]);
 };
-Controller.prototype.cycleDropBlock = function (dropDelay) {
+Controller.prototype.cycleDropBlock = function(dropDelay) {
+  console.log("dropDelay", dropDelay);
   this.gameBoard.blit();
   if(this.gameBoard.dropInterval) {
     clearInterval(this.gameBoard.dropInterval);
@@ -133,7 +138,7 @@ Controller.prototype.handleKeyDown = function(event) {
     clearInterval(this.gameBoard.slideInterval);
   }
   else if(action == "unpause") {
-    this.cycleDropBlock(CONST.DROP_DELAY[this.gameView.level]);
+    this.cycleDropBlock(CONST.DROP_DELAY[this.level]);
   }
   else if(action == "left" || action == "right") {
     clearInterval(this.gameBoard.slideInterval);
@@ -160,7 +165,7 @@ Controller.prototype.handleKeyUp = function(event) {
   }
   else if(action == "down") {
     clearInterval(this.gameBoard.dropInterval);
-    this.cycleDropBlock(CONST.DROP_DELAY[this.gameView.level]);
+    this.cycleDropBlock(CONST.DROP_DELAY[this.level]);
   }
 };
 Controller.prototype.updateGameLevel = function() {
