@@ -266,25 +266,6 @@ BrowserView.prototype.drawAllBoards = function() {
   this.drawBoard(this.previewBoard.board, this.previewContext);
   this.drawBoard(this.tableBoard.board, this.tableContext);
 };
-BrowserView.prototype.animateGame = function() {
-  var lastTime = null;
-  var progress = true;
-
-  var animate = function(time) {
-    if(lastTime) {
-      var timeStep = Math.min(time - lastTime, 100) / 1000;
-      progress = timeStep < 1000;
-    }
-    lastTime = time;
-
-    if(progress) {
-      this.drawAllBoards();
-      this.updatePlayerScore(this.gameBoard.score);
-      requestAnimationFrame(animate.bind(this));
-    }
-  }
-  requestAnimationFrame(animate.bind(this));
-};
 BrowserView.prototype.updateElementDescrip = function(element) {
   this.elementName.innerHTML = CHEMICAL_ELEMENTS[element].name + ' [' + CHEMICAL_ELEMENTS[element].symbol + ']';
   this.atomicNumDisplay.innerHTML = element;

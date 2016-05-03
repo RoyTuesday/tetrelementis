@@ -267,25 +267,6 @@ BrowserView.prototype.drawAllBoards = function() {
   this.drawBoard(this.previewBoard.board, this.previewContext);
   this.drawBoard(this.tableBoard.board, this.tableContext);
 };
-BrowserView.prototype.animateGame = function() {
-  var lastTime = null;
-  var progress = true;
-
-  var animate = function(time) {
-    if(lastTime) {
-      var timeStep = Math.min(time - lastTime, 100) / 1000;
-      progress = timeStep < 1000;
-    }
-    lastTime = time;
-
-    if(progress) {
-      this.drawAllBoards();
-      this.updatePlayerScore(this.gameBoard.score);
-      requestAnimationFrame(animate.bind(this));
-    }
-  }
-  requestAnimationFrame(animate.bind(this));
-};
 BrowserView.prototype.updateElementDescrip = function(element) {
   this.elementName.innerHTML = CHEMICAL_ELEMENTS[element].name + ' [' + CHEMICAL_ELEMENTS[element].symbol + ']';
   this.atomicNumDisplay.innerHTML = element;
@@ -1796,7 +1777,24 @@ Controller.prototype.startGame = function() {
   this.gameBoard.score = 0;
   this.gameBoard.gameState = 'inProgress';
 
-  this.gameView.animateGame();
+  var lastTime = null;
+  var progress = true;
+
+  var animate = function(time) {
+    if(lastTime) {
+      var timeStep = Math.min(time - lastTime, 100) / 1000;
+      progress = timeStep < 1000;
+    }
+    lastTime = time;
+
+    if(progress) {
+      this.gameView.drawAllBoards();
+      this.gameView.updatePlayerScore(this.gameBoard.score);
+      requestAnimationFrame(animate.bind(this));
+    }
+  }
+  requestAnimationFrame(animate.bind(this));
+
   this.gameView.previewBoard.blit();
   this.gameView.tableBoard.showElement(this.gameBoard.tetromino.element);
   this.gameView.updateElementDescrip(this.gameView.previewBoard.tetromino.element);
