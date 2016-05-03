@@ -2,6 +2,7 @@ var CONST = require("./constants.js");
 
 var Tetromino = require("./tetromino.js")
 var PreviewBoard = require("./preview-board.js");
+var PeriodicTable = require("./periodic-table.js");
 var TetrisBoard = require("./tetris-board.js");
 var BrowserView = require("./browser-view.js");
 
@@ -15,6 +16,7 @@ var Controller = function(shape) {
   }
 
   this.previewBoard = new PreviewBoard();
+  this.tableBoard = new PeriodicTable();
   this.gameBoard = new TetrisBoard({
     createNextTetromino: this.createNextTetromino.bind(this),
     showGameOver: this.showGameOver.bind(this)
@@ -27,8 +29,32 @@ var Controller = function(shape) {
 
   this.gameView.drawBoard(this.gameBoard.board, "gridContext");
   this.gameView.drawBoard(this.previewBoard.board, "previewContext");
-  this.gameView.drawBoard(this.gameView.tableBoard.board, "tableContext");
+  this.gameView.drawBoard(this.tableBoard.board, "tableContext");
   this.gameBoard.gameState = 'gameover';
+
+  this.gameView.tableOverlay.addEventListener('mousedown', function(event) {
+    var mouseX = Math.floor((event.layerX - this.gameView.tableOverlay.offsetLeft) / (540 / 18));
+    var mouseY = Math.floor((event.layerY - this.gameView.tableOverlay.offsetTop) / (270 / 9));
+    var element = 0
+
+    if(mouseX >= 0 && mouseY >= 0) {
+      element = this.tableBoard.board[mouseY][mouseX];
+    }
+
+    if(element > 0) {
+      this.gameView.updateElementDescrip(element);
+    }
+  }.bind(this));
+  this.gameView.tableOverlay.addEventListener('mousemove', function(event) {
+    var mouseX = Math.floor((event.layerX - this.gameView.tableOverlay.offsetLeft) / (540 / 18));
+    var mouseY = Math.floor((event.layerY - this.gameView.tableOverlay.offsetTop) / (270 / 9));
+    var element = 0;
+
+    if(mouseX >= 0 && mouseY >= 0) {
+      element = this.tableBoard.board[mouseY][mouseX];
+    }
+    this.gameView.drawElementOverlay(mouseX, mouseY, element);
+  }.bind(this));
 
   addEventListener('keydown', function(event) {
     if(this.gameBoard.gameState == 'gameover') {
@@ -111,7 +137,7 @@ Controller.prototype.startGame = function() {
     if(progress) {
       this.gameView.drawBoard(this.gameBoard.board, "gridContext");
       this.gameView.drawBoard(this.previewBoard.board, "previewContext");
-      this.gameView.drawBoard(this.gameView.tableBoard.board, "tableContext");
+      this.gameView.drawBoard(this.tableBoard.board, "tableContext");
       this.gameView.updatePlayerScore(this.gameBoard.score);
       requestAnimationFrame(animate.bind(this));
     }
@@ -119,7 +145,7 @@ Controller.prototype.startGame = function() {
   requestAnimationFrame(animate.bind(this));
 
   this.previewBoard.blit();
-  this.gameView.tableBoard.showElement(this.gameBoard.tetromino.element);
+  this.tableBoard.showElement(this.gameBoard.tetromino.element);
   this.gameView.updateElementDescrip(this.previewBoard.tetromino.element);
 
   this.cycleDropBlock(CONST.DROP_DELAY[this.level]);
@@ -147,7 +173,7 @@ Controller.prototype.createNextTetromino = function() {
     shape: CONST.getRandomShape(this.gameMode, this.limiter)
   })
   this.previewBoard.blit();
-  this.gameView.tableBoard.showElement(this.gameBoard.tetromino.element);
+  this.tableBoard.showElement(this.gameBoard.tetromino.element);
   this.gameView.updateElementDescrip(this.previewBoard.tetromino.element);
   this.updateGameLevel();
 };

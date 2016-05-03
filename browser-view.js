@@ -2,7 +2,6 @@ var CONST = require("./constants.js");
 var CHEMICAL_ELEMENTS = require("./chemical-elements.js");
 
 var TetrisBoard = require("./tetris-board.js");
-var PeriodicTable = require("./periodic-table.js");
 
 var BrowserView = function(args) {
   var gridCanvas = document.querySelector('canvas#tetris-grid');
@@ -50,7 +49,6 @@ var BrowserView = function(args) {
   this.overlayContext.fillStyle = 'rgba(255, 255, 255, 0.5)';
 
   this.gameBoard = args.gameBoard;
-  this.tableBoard = new PeriodicTable();
 
   this.loadHighScore();
   document.getElementById('reset-high-score').addEventListener("click", function(event) {
@@ -69,37 +67,6 @@ var BrowserView = function(args) {
     slide: null,
     rotate: null
   };
-
-  this.tableOverlay.addEventListener('mousedown', function(event) {
-    var mouseX = Math.floor((event.layerX - this.tableOverlay.offsetLeft) / (540 / 18));
-    var mouseY = Math.floor((event.layerY - this.tableOverlay.offsetTop) / (270 / 9));
-    var element = 0
-
-    if(mouseX >= 0 && mouseY >= 0) {
-      element = this.tableBoard.board[mouseY][mouseX];
-    }
-
-    if(element > 0) {
-      this.updateElementDescrip(element);
-    }
-  }.bind(this));
-  this.tableOverlay.addEventListener('mousemove', function(event) {
-    var mouseX = Math.floor((event.layerX - this.tableOverlay.offsetLeft) / (540 / 18));
-    var mouseY = Math.floor((event.layerY - this.tableOverlay.offsetTop) / (270 / 9));
-    var element = 0;
-
-    if(mouseX >= 0 && mouseY >= 0) {
-      element = this.tableBoard.board[mouseY][mouseX];
-    }
-
-    if(element > 0) {
-      this.overlayContext.clearRect(0, 0, 540, 270);
-      this.overlayContext.fillRect((mouseX * BLOCK_SPACING_WIDTH) + 5, (mouseY * BLOCK_SPACING_HEIGHT) + 5, BLOCK_WIDTH, BLOCK_HEIGHT);
-    }
-    else {
-      this.overlayContext.clearRect(0, 0, 540, 270);
-    }
-  }.bind(this));
 
   var dirContainer = document.querySelector("#directions-container");
 
@@ -258,6 +225,15 @@ BrowserView.prototype.drawBoard = function(board, context) {
       gridContext.fillText(CHEMICAL_ELEMENTS[col].symbol, textX, textY);
     });
   });
+};
+BrowserView.prototype.drawElementOverlay = function(mouseX, mouseY, element) {
+  if(element > 0) {
+    this.overlayContext.clearRect(0, 0, 540, 270);
+    this.overlayContext.fillRect((mouseX * BLOCK_SPACING_WIDTH) + 5, (mouseY * BLOCK_SPACING_HEIGHT) + 5, BLOCK_WIDTH, BLOCK_HEIGHT);
+  }
+  else {
+    this.overlayContext.clearRect(0, 0, 540, 270);
+  }
 };
 BrowserView.prototype.updateElementDescrip = function(element) {
   this.elementName.innerHTML = CHEMICAL_ELEMENTS[element].name + ' [' + CHEMICAL_ELEMENTS[element].symbol + ']';

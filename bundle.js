@@ -3,7 +3,6 @@ var CONST = require("./constants.js");
 var CHEMICAL_ELEMENTS = require("./chemical-elements.js");
 
 var TetrisBoard = require("./tetris-board.js");
-var PeriodicTable = require("./periodic-table.js");
 
 var BrowserView = function(args) {
   var gridCanvas = document.querySelector('canvas#tetris-grid');
@@ -51,7 +50,7 @@ var BrowserView = function(args) {
   this.overlayContext.fillStyle = 'rgba(255, 255, 255, 0.5)';
 
   this.gameBoard = args.gameBoard;
-  this.tableBoard = new PeriodicTable();
+  // this.tableBoard = new PeriodicTable();
 
   this.loadHighScore();
   document.getElementById('reset-high-score').addEventListener("click", function(event) {
@@ -71,36 +70,36 @@ var BrowserView = function(args) {
     rotate: null
   };
 
-  this.tableOverlay.addEventListener('mousedown', function(event) {
-    var mouseX = Math.floor((event.layerX - this.tableOverlay.offsetLeft) / (540 / 18));
-    var mouseY = Math.floor((event.layerY - this.tableOverlay.offsetTop) / (270 / 9));
-    var element = 0
+  // this.tableOverlay.addEventListener('mousedown', function(event) {
+  //   var mouseX = Math.floor((event.layerX - this.tableOverlay.offsetLeft) / (540 / 18));
+  //   var mouseY = Math.floor((event.layerY - this.tableOverlay.offsetTop) / (270 / 9));
+  //   var element = 0
 
-    if(mouseX >= 0 && mouseY >= 0) {
-      element = this.tableBoard.board[mouseY][mouseX];
-    }
+  //   if(mouseX >= 0 && mouseY >= 0) {
+  //     element = this.tableBoard.board[mouseY][mouseX];
+  //   }
 
-    if(element > 0) {
-      this.updateElementDescrip(element);
-    }
-  }.bind(this));
-  this.tableOverlay.addEventListener('mousemove', function(event) {
-    var mouseX = Math.floor((event.layerX - this.tableOverlay.offsetLeft) / (540 / 18));
-    var mouseY = Math.floor((event.layerY - this.tableOverlay.offsetTop) / (270 / 9));
-    var element = 0;
+  //   if(element > 0) {
+  //     this.updateElementDescrip(element);
+  //   }
+  // }.bind(this));
+  // this.tableOverlay.addEventListener('mousemove', function(event) {
+  //   var mouseX = Math.floor((event.layerX - this.tableOverlay.offsetLeft) / (540 / 18));
+  //   var mouseY = Math.floor((event.layerY - this.tableOverlay.offsetTop) / (270 / 9));
+  //   var element = 0;
 
-    if(mouseX >= 0 && mouseY >= 0) {
-      element = this.tableBoard.board[mouseY][mouseX];
-    }
+  //   if(mouseX >= 0 && mouseY >= 0) {
+  //     element = this.tableBoard.board[mouseY][mouseX];
+  //   }
 
-    if(element > 0) {
-      this.overlayContext.clearRect(0, 0, 540, 270);
-      this.overlayContext.fillRect((mouseX * BLOCK_SPACING_WIDTH) + 5, (mouseY * BLOCK_SPACING_HEIGHT) + 5, BLOCK_WIDTH, BLOCK_HEIGHT);
-    }
-    else {
-      this.overlayContext.clearRect(0, 0, 540, 270);
-    }
-  }.bind(this));
+  //   if(element > 0) {
+  //     this.overlayContext.clearRect(0, 0, 540, 270);
+  //     this.overlayContext.fillRect((mouseX * BLOCK_SPACING_WIDTH) + 5, (mouseY * BLOCK_SPACING_HEIGHT) + 5, BLOCK_WIDTH, BLOCK_HEIGHT);
+  //   }
+  //   else {
+  //     this.overlayContext.clearRect(0, 0, 540, 270);
+  //   }
+  // }.bind(this));
 
   var dirContainer = document.querySelector("#directions-container");
 
@@ -260,6 +259,15 @@ BrowserView.prototype.drawBoard = function(board, context) {
     });
   });
 };
+BrowserView.prototype.drawElementOverlay = function(mouseX, mouseY, element) {
+  if(element > 0) {
+    this.overlayContext.clearRect(0, 0, 540, 270);
+    this.overlayContext.fillRect((mouseX * BLOCK_SPACING_WIDTH) + 5, (mouseY * BLOCK_SPACING_HEIGHT) + 5, BLOCK_WIDTH, BLOCK_HEIGHT);
+  }
+  else {
+    this.overlayContext.clearRect(0, 0, 540, 270);
+  }
+};
 BrowserView.prototype.updateElementDescrip = function(element) {
   this.elementName.innerHTML = CHEMICAL_ELEMENTS[element].name + ' [' + CHEMICAL_ELEMENTS[element].symbol + ']';
   this.atomicNumDisplay.innerHTML = element;
@@ -326,7 +334,7 @@ BrowserView.prototype.resetHighScore = function() {
 
 module.exports = BrowserView;
 
-},{"./chemical-elements.js":2,"./constants.js":3,"./periodic-table.js":5,"./tetris-board.js":7}],2:[function(require,module,exports){
+},{"./chemical-elements.js":2,"./constants.js":3,"./tetris-board.js":7}],2:[function(require,module,exports){
 module.exports = {
   0: {
     'name': 'n/a',
@@ -1678,6 +1686,7 @@ var CONST = require("./constants.js");
 
 var Tetromino = require("./tetromino.js")
 var PreviewBoard = require("./preview-board.js");
+var PeriodicTable = require("./periodic-table.js");
 var TetrisBoard = require("./tetris-board.js");
 var BrowserView = require("./browser-view.js");
 
@@ -1691,6 +1700,7 @@ var Controller = function(shape) {
   }
 
   this.previewBoard = new PreviewBoard();
+  this.tableBoard = new PeriodicTable();
   this.gameBoard = new TetrisBoard({
     createNextTetromino: this.createNextTetromino.bind(this),
     showGameOver: this.showGameOver.bind(this)
@@ -1703,8 +1713,32 @@ var Controller = function(shape) {
 
   this.gameView.drawBoard(this.gameBoard.board, "gridContext");
   this.gameView.drawBoard(this.previewBoard.board, "previewContext");
-  this.gameView.drawBoard(this.gameView.tableBoard.board, "tableContext");
+  this.gameView.drawBoard(this.tableBoard.board, "tableContext");
   this.gameBoard.gameState = 'gameover';
+
+  this.gameView.tableOverlay.addEventListener('mousedown', function(event) {
+    var mouseX = Math.floor((event.layerX - this.gameView.tableOverlay.offsetLeft) / (540 / 18));
+    var mouseY = Math.floor((event.layerY - this.gameView.tableOverlay.offsetTop) / (270 / 9));
+    var element = 0
+
+    if(mouseX >= 0 && mouseY >= 0) {
+      element = this.tableBoard.board[mouseY][mouseX];
+    }
+
+    if(element > 0) {
+      this.gameView.updateElementDescrip(element);
+    }
+  }.bind(this));
+  this.gameView.tableOverlay.addEventListener('mousemove', function(event) {
+    var mouseX = Math.floor((event.layerX - this.gameView.tableOverlay.offsetLeft) / (540 / 18));
+    var mouseY = Math.floor((event.layerY - this.gameView.tableOverlay.offsetTop) / (270 / 9));
+    var element = 0;
+
+    if(mouseX >= 0 && mouseY >= 0) {
+      element = this.tableBoard.board[mouseY][mouseX];
+    }
+    this.gameView.drawElementOverlay(mouseX, mouseY, element);
+  }.bind(this));
 
   addEventListener('keydown', function(event) {
     if(this.gameBoard.gameState == 'gameover') {
@@ -1787,7 +1821,7 @@ Controller.prototype.startGame = function() {
     if(progress) {
       this.gameView.drawBoard(this.gameBoard.board, "gridContext");
       this.gameView.drawBoard(this.previewBoard.board, "previewContext");
-      this.gameView.drawBoard(this.gameView.tableBoard.board, "tableContext");
+      this.gameView.drawBoard(this.tableBoard.board, "tableContext");
       this.gameView.updatePlayerScore(this.gameBoard.score);
       requestAnimationFrame(animate.bind(this));
     }
@@ -1795,7 +1829,7 @@ Controller.prototype.startGame = function() {
   requestAnimationFrame(animate.bind(this));
 
   this.previewBoard.blit();
-  this.gameView.tableBoard.showElement(this.gameBoard.tetromino.element);
+  this.tableBoard.showElement(this.gameBoard.tetromino.element);
   this.gameView.updateElementDescrip(this.previewBoard.tetromino.element);
 
   this.cycleDropBlock(CONST.DROP_DELAY[this.level]);
@@ -1823,7 +1857,7 @@ Controller.prototype.createNextTetromino = function() {
     shape: CONST.getRandomShape(this.gameMode, this.limiter)
   })
   this.previewBoard.blit();
-  this.gameView.tableBoard.showElement(this.gameBoard.tetromino.element);
+  this.tableBoard.showElement(this.gameBoard.tetromino.element);
   this.gameView.updateElementDescrip(this.previewBoard.tetromino.element);
   this.updateGameLevel();
 };
@@ -1883,7 +1917,7 @@ Controller.prototype.showGameOver = function() {
 
 module.exports = Controller;
 
-},{"./browser-view.js":1,"./constants.js":3,"./preview-board.js":6,"./tetris-board.js":7,"./tetromino.js":9}],5:[function(require,module,exports){
+},{"./browser-view.js":1,"./constants.js":3,"./periodic-table.js":5,"./preview-board.js":6,"./tetris-board.js":7,"./tetromino.js":9}],5:[function(require,module,exports){
 var CONST = require("./constants.js");
 
 var PeriodicTable = function() {
