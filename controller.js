@@ -5,6 +5,7 @@ var TetrisBoard = require("./tetris-board.js");
 var BrowserView = require("./browser-view.js");
 
 var Controller = function(shape) {
+  this.level = 0;
   this.elements = CONST.generateRandomElements();
   this.limiter = {
     shapeIndex: null,
@@ -113,6 +114,7 @@ Controller.prototype.createNextTetromino = function() {
   this.gameView.previewBoard.blit();
   this.gameView.tableBoard.showElement(this.gameBoard.tetromino.element);
   this.gameView.updateElementDescrip(this.gameView.previewBoard.tetromino.element);
+  this.updateGameLevel();
 };
 Controller.prototype.handleKeyDown = function(event) {
   var action = this.gameView.keyDown.bind(this.gameView, event).call();
@@ -152,6 +154,10 @@ Controller.prototype.handleKeyUp = function(event) {
     clearInterval(this.gameBoard.dropInterval);
     this.cycleDropBlock(CONST.DROP_DELAY[this.gameView.level]);
   }
+};
+Controller.prototype.updateGameLevel = function() {
+  this.level = Math.floor(this.gameBoard.score / 10);
+  this.gameView.updateGameLevel(this.level);
 };
 Controller.prototype.showGameOver = function() {
   this.gameBoard.tetromino = null;
