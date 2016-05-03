@@ -119,13 +119,6 @@ BrowserView.prototype.keyUp = function(event){
     return releasedKey;
   }
 };
-BrowserView.prototype.releaseAllKeys = function() {
-  this.pressed = {
-    slide: false,
-    drop: false,
-    rotate: false
-  };
-};
 BrowserView.prototype.drawBoard = function(board, context) {
   var gridContext = this[context];
   var width = gridContext.canvas.width;

@@ -51,58 +51,18 @@ var BrowserView = function(args) {
 
   this.overlayContext.fillStyle = 'rgba(255, 255, 255, 0.5)';
 
-  this.gameBoard = args.gameBoard;
-
   this.loadHighScore();
   document.getElementById('reset-high-score').addEventListener("click", function(event) {
     event.preventDefault();
     this.resetHighScore();
   }.bind(this));
 
-  this.cycleDropBlock = args.cycleDropBlock;
   this.isPaused = true;
   this.pressed = {
     slide: false,
     drop: false,
     rotate: false
   };
-  this.interval = {
-    slide: null,
-    rotate: null
-  };
-
-//    document.querySelector("#show-directions a").addEventListener("click", function(event) {
-//     event.preventDefault();
-//     this.isPaused = true;
-//     clearTimeout(this.gameBoard.dropInterval);
-//     clearTimeout(this.dropTimeout);
-//     clearInterval(this.interval.rotate);
-//     clearInterval(this.interval.slide);
-
-//     if(dirContainer.style["display"] != "none") {
-//       updateDirectionsOverlay(dirContainer);
-//     }
-
-//     dirContainer.style["display"] = "initial";
-//     dirContainer.className = "stretching-container";
-//   }.bind(this));
-
-//   document.querySelector("#hide-directions a").addEventListener("click", function(event) {
-//     event.preventDefault();
-//     dirContainer.className = "fading-container";
-//   });
-
-//   dirContainer.addEventListener("animationend", function(event) {
-//     if(event.animationName == "fade") {
-//       dirContainer.style["display"] = "none";
-//       this.isPaused = false;
-//       this.cycleDropBlock(CONST.DROP_DELAY[this.level]);
-//     }
-//   }.bind(this));
-
-//   window.addEventListener("resize", function(event) {
-//     updateDirectionsOverlay(dirContainer);
-//   });
 }
 BrowserView.prototype.keyDown = function(event) {
   var pressedKey = event.keyCode ? CONST.KEY_CODES_TO_ACTIONS[event.keyCode] : event.target.dataset.key;
@@ -159,13 +119,6 @@ BrowserView.prototype.keyUp = function(event){
     }
     return releasedKey;
   }
-};
-BrowserView.prototype.releaseAllKeys = function() {
-  this.pressed = {
-    slide: false,
-    drop: false,
-    rotate: false
-  };
 };
 BrowserView.prototype.drawBoard = function(board, context) {
   var gridContext = this[context];
