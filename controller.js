@@ -64,8 +64,22 @@ var Controller = function(shape) {
       this.gameBoard.rotateInterval = setInterval(this.gameBoard.rotateBlock.bind(this.gameBoard, this.gameView.pressed.rotate), CONST.ROTATE_DELAY);
     }
     else if(action == "down") {
-      clearTimeout(this.gameBoard.dropInterval);
+      clearInterval(this.gameBoard.dropInterval);
       this.cycleDropBlock(CONST.FAST_DROP);
+    }
+  }.bind(this));
+
+  addEventListener('keyup', function(event) {
+    var action = this.gameView.keyUp.bind(this.gameView, event).call();
+    if(action == "left" || action == "right") {
+      clearInterval(this.gameBoard.slideInterval);
+    }
+    else if(action == "counter" || action == "clock") {
+      clearInterval(this.gameBoard.rotateInterval);
+    }
+    else if(action == "down") {
+      clearInterval(this.gameBoard.dropInterval);
+      this.cycleDropBlock(CONST.DROP_DELAY[this.gameView.level]);
     }
   }.bind(this));
 }

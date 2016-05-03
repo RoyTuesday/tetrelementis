@@ -161,13 +161,11 @@ var BrowserView = function(args) {
   });
 }
 BrowserView.prototype.keyDown = function(event) {
-  console.log("this in keyDown", this);
   var pressedKey = CONST.KEY_CODES_TO_ACTIONS[event.keyCode];
   if(this.isPaused) {
     if(pressedKey == 'space') {
       event.preventDefault();
       this.isPaused = false;
-      // this.cycleDropBlock(CONST.DROP_DELAY[this.level]);
       return "unpause";
     }
   }
@@ -176,35 +174,22 @@ BrowserView.prototype.keyDown = function(event) {
       event.preventDefault();
       if(this.pressed.slide == false) {
         this.pressed.slide = pressedKey;
-        // clearInterval(this.interval.slide);
-        // this.gameBoard.slideBlock(this.pressed.slide);
-        // this.interval.slide = setInterval(this.gameBoard.slideBlock.bind(this.gameBoard, this.pressed.slide), CONST.SLIDE_DELAY);
       }
     }
     else if(pressedKey == 'down') {
       event.preventDefault();
       if(this.pressed.drop == false) {
         this.pressed.drop = true;
-        // clearTimeout(this.dropTimeout);
-        // this.cycleDropBlock(CONST.FAST_DROP);
       }
     }
     else if(pressedKey == 'clock' || pressedKey == 'counter') {
       event.preventDefault();
       if(this.pressed.rotate == false) {
         this.pressed.rotate = pressedKey;
-        // clearInterval(this.interval.rotate);
-        // this.gameBoard.rotateBlock(pressedKey);
-        // this.interval.rotate = setInterval(this.gameBoard.rotateBlock.bind(this.gameBoard, pressedKey), CONST.ROTATE_DELAY);
       }
     }
     else if(pressedKey == 'space') {
       event.preventDefault();
-      // clearTimeout(this.gameBoard.dropInterval);
-      // clearTimeout(this.dropTimeout);
-      // clearInterval(this.interval.rotate);
-      // clearInterval(this.interval.slide);
-      // this.isPaused = true;
       return "pause";
     }
     return pressedKey;
@@ -215,20 +200,17 @@ BrowserView.prototype.keyUp = function(event){
   if(this.isPaused === false) {
     if(releasedKey == 'left' || releasedKey == 'right') {
       event.preventDefault();
-      clearInterval(this.gameBoard.slideInterval);
       this.pressed.slide = false;
     }
     if(releasedKey == 'down') {
       event.preventDefault();
-      clearTimeout(this.dropTimeout);
       this.pressed.drop = false;
-      this.cycleDropBlock(CONST.DROP_DELAY[this.level]);
     }
     if(releasedKey == 'counter' || releasedKey == 'clock') {
       event.preventDefault();
-      clearInterval(this.gameBoard.rotateInterval);
       this.pressed.rotate = false;
     }
+    return releasedKey;
   }
 };
 BrowserView.prototype.buttonDown = function(event) {
@@ -1850,8 +1832,22 @@ var Controller = function(shape) {
       this.gameBoard.rotateInterval = setInterval(this.gameBoard.rotateBlock.bind(this.gameBoard, this.gameView.pressed.rotate), CONST.ROTATE_DELAY);
     }
     else if(action == "down") {
-      clearTimeout(this.gameBoard.dropInterval);
+      clearInterval(this.gameBoard.dropInterval);
       this.cycleDropBlock(CONST.FAST_DROP);
+    }
+  }.bind(this));
+
+  addEventListener('keyup', function(event) {
+    var action = this.gameView.keyUp.bind(this.gameView, event).call();
+    if(action == "left" || action == "right") {
+      clearInterval(this.gameBoard.slideInterval);
+    }
+    else if(action == "counter" || action == "clock") {
+      clearInterval(this.gameBoard.rotateInterval);
+    }
+    else if(action == "down") {
+      clearInterval(this.gameBoard.dropInterval);
+      this.cycleDropBlock(CONST.DROP_DELAY[this.gameView.level]);
     }
   }.bind(this));
 }
