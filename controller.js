@@ -41,6 +41,33 @@ var Controller = function(shape) {
       }
     }
   }.bind(this));
+
+  addEventListener('keydown', function(event) {
+    var action = this.gameView.keyDown.bind(this.gameView, event).call();
+    if(action == "pause") {
+      clearTimeout(this.gameBoard.dropInterval);
+      clearTimeout(this.gameBoard.dropTimeout);
+      clearInterval(this.gameBoard.rotateInterval);
+      clearInterval(this.gameBoard.slideInterval);
+    }
+    else if(action == "unpause") {
+      this.cycleDropBlock(CONST.DROP_DELAY[this.gameView.level]);
+    }
+    else if(action == "left" || action == "right") {
+      clearInterval(this.gameBoard.slideInterval);
+      this.gameBoard.slideBlock(this.gameView.pressed.slide);
+      this.gameBoard.slideInterval = setInterval(this.gameBoard.slideBlock.bind(this.gameBoard, this.gameView.pressed.slide), CONST.SLIDE_DELAY);
+    }
+    else if(action == "clock" || action == "counter") {
+      clearInterval(this.gameBoard.rotateInterval);
+      this.gameBoard.rotateBlock(this.gameView.pressed.rotate);
+      this.gameBoard.rotateInterval = setInterval(this.gameBoard.rotateBlock.bind(this.gameBoard, this.gameView.pressed.rotate), CONST.ROTATE_DELAY);
+    }
+    else if(action == "down") {
+      clearTimeout(this.gameBoard.dropInterval);
+      this.cycleDropBlock(CONST.FAST_DROP);
+    }
+  }.bind(this));
 }
 Controller.prototype.startGame = function() {
   if(this.elements.length < 118) {
