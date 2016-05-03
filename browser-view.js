@@ -173,25 +173,27 @@ BrowserView.prototype.keyDown = function(event) {
       event.preventDefault();
       if(this.pressed.slide == false) {
         this.pressed.slide = pressedKey;
+        return pressedKey;
       }
     }
     else if(pressedKey == 'down') {
       event.preventDefault();
       if(this.pressed.drop == false) {
         this.pressed.drop = true;
+        return pressedKey;
       }
     }
     else if(pressedKey == 'clock' || pressedKey == 'counter') {
       event.preventDefault();
       if(this.pressed.rotate == false) {
         this.pressed.rotate = pressedKey;
+        return pressedKey;
       }
     }
     else if(pressedKey == 'space') {
       event.preventDefault();
       return "pause";
     }
-    return pressedKey;
   }
 };
 BrowserView.prototype.keyUp = function(event){
