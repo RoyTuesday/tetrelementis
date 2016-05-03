@@ -2,8 +2,6 @@
 var CONST = require("./constants.js");
 var CHEMICAL_ELEMENTS = require("./chemical-elements.js");
 
-var TetrisBoard = require("./tetris-board.js");
-
 var BrowserView = function(args) {
   var gridCanvas = document.querySelector('canvas#tetris-grid');
   var previewCanvas = document.querySelector('canvas#tetris-preview');
@@ -232,14 +230,14 @@ BrowserView.prototype.resetDisplay = function(level, gameMode) {
   this.gameLevel.innerHTML = CONST.genLevelMenu(level);
 };
 BrowserView.prototype.updateHighScore = function(score) {
-  if(this.highScore.innerHTML < score) {
+  if(score == 0 || this.highScore.innerHTML < score) {
     this.highScore.innerHTML = score;
   }
 };
 
 module.exports = BrowserView;
 
-},{"./chemical-elements.js":2,"./constants.js":3,"./tetris-board.js":7}],2:[function(require,module,exports){
+},{"./chemical-elements.js":2,"./constants.js":3}],2:[function(require,module,exports){
 module.exports = {
   0: {
     'name': 'n/a',

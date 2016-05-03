@@ -1,8 +1,6 @@
 var CONST = require("./constants.js");
 var CHEMICAL_ELEMENTS = require("./chemical-elements.js");
 
-var TetrisBoard = require("./tetris-board.js");
-
 var BrowserView = function(args) {
   var gridCanvas = document.querySelector('canvas#tetris-grid');
   var previewCanvas = document.querySelector('canvas#tetris-preview');
