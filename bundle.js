@@ -42,6 +42,8 @@ var BrowserView = function(args) {
   this.gameModeContainer = document.getElementById('game-mode');
   this.gameModeContainer.innerHTML = CONST.genModeMenu(0);
 
+  this.dirContainer = document.getElementById("directions-container");
+
   this.gridContext = gridCanvas.getContext('2d');
   this.previewContext = previewCanvas.getContext('2d');
   this.tableContext = this.tableCanvas.getContext('2d');
@@ -50,7 +52,6 @@ var BrowserView = function(args) {
   this.overlayContext.fillStyle = 'rgba(255, 255, 255, 0.5)';
 
   this.gameBoard = args.gameBoard;
-  // this.tableBoard = new PeriodicTable();
 
   this.loadHighScore();
   document.getElementById('reset-high-score').addEventListener("click", function(event) {
@@ -70,92 +71,38 @@ var BrowserView = function(args) {
     rotate: null
   };
 
-  // this.tableOverlay.addEventListener('mousedown', function(event) {
-  //   var mouseX = Math.floor((event.layerX - this.tableOverlay.offsetLeft) / (540 / 18));
-  //   var mouseY = Math.floor((event.layerY - this.tableOverlay.offsetTop) / (270 / 9));
-  //   var element = 0
+//    document.querySelector("#show-directions a").addEventListener("click", function(event) {
+//     event.preventDefault();
+//     this.isPaused = true;
+//     clearTimeout(this.gameBoard.dropInterval);
+//     clearTimeout(this.dropTimeout);
+//     clearInterval(this.interval.rotate);
+//     clearInterval(this.interval.slide);
 
-  //   if(mouseX >= 0 && mouseY >= 0) {
-  //     element = this.tableBoard.board[mouseY][mouseX];
-  //   }
+//     if(dirContainer.style["display"] != "none") {
+//       updateDirectionsOverlay(dirContainer);
+//     }
 
-  //   if(element > 0) {
-  //     this.updateElementDescrip(element);
-  //   }
-  // }.bind(this));
-  // this.tableOverlay.addEventListener('mousemove', function(event) {
-  //   var mouseX = Math.floor((event.layerX - this.tableOverlay.offsetLeft) / (540 / 18));
-  //   var mouseY = Math.floor((event.layerY - this.tableOverlay.offsetTop) / (270 / 9));
-  //   var element = 0;
+//     dirContainer.style["display"] = "initial";
+//     dirContainer.className = "stretching-container";
+//   }.bind(this));
 
-  //   if(mouseX >= 0 && mouseY >= 0) {
-  //     element = this.tableBoard.board[mouseY][mouseX];
-  //   }
+//   document.querySelector("#hide-directions a").addEventListener("click", function(event) {
+//     event.preventDefault();
+//     dirContainer.className = "fading-container";
+//   });
 
-  //   if(element > 0) {
-  //     this.overlayContext.clearRect(0, 0, 540, 270);
-  //     this.overlayContext.fillRect((mouseX * BLOCK_SPACING_WIDTH) + 5, (mouseY * BLOCK_SPACING_HEIGHT) + 5, BLOCK_WIDTH, BLOCK_HEIGHT);
-  //   }
-  //   else {
-  //     this.overlayContext.clearRect(0, 0, 540, 270);
-  //   }
-  // }.bind(this));
+//   dirContainer.addEventListener("animationend", function(event) {
+//     if(event.animationName == "fade") {
+//       dirContainer.style["display"] = "none";
+//       this.isPaused = false;
+//       this.cycleDropBlock(CONST.DROP_DELAY[this.level]);
+//     }
+//   }.bind(this));
 
-  var dirContainer = document.querySelector("#directions-container");
-
-  var updateDirectionsOverlay = function(container) {
-    var dirTrans = document.querySelector("#directions-transparent-layer");
-    var directions = document.querySelector("#directions");
-    var main = document.querySelector("main");
-
-    container.style["left"] = main.offsetLeft + "px";
-    container.style["top"] = main.offsetTop + "px";
-    container.style["height"] = main.offsetHeight + "px";
-    container.style["width"] = main.offsetWidth + "px";
-
-    directions.style["height"] = (main.offsetHeight - 32) + "px";
-    directions.style["width"] = (main.offsetWidth - 64) + "px";
-
-    dirTrans.style["height"] = main.offsetHeight + "px";
-    dirTrans.style["width"] = main.offsetWidth + "px";
-  }
-
-  this.tableOverlay.addEventListener('mouseout', function(event) {
-    this.overlayContext.clearRect(0, 0, 540, 270);
-  }.bind(this));
-
-   document.querySelector("#show-directions a").addEventListener("click", function(event) {
-    event.preventDefault();
-    this.isPaused = true;
-    clearTimeout(this.gameBoard.dropInterval);
-    clearTimeout(this.dropTimeout);
-    clearInterval(this.interval.rotate);
-    clearInterval(this.interval.slide);
-
-    if(dirContainer.style["display"] != "none") {
-      updateDirectionsOverlay(dirContainer);
-    }
-
-    dirContainer.style["display"] = "initial";
-    dirContainer.className = "stretching-container";
-  }.bind(this));
-
-  document.querySelector("#hide-directions a").addEventListener("click", function(event) {
-    event.preventDefault();
-    dirContainer.className = "fading-container";
-  });
-
-  dirContainer.addEventListener("animationend", function(event) {
-    if(event.animationName == "fade") {
-      dirContainer.style["display"] = "none";
-      this.isPaused = false;
-      this.cycleDropBlock(CONST.DROP_DELAY[this.level]);
-    }
-  }.bind(this));
-
-  window.addEventListener("resize", function(event) {
-    updateDirectionsOverlay(dirContainer);
-  });
+//   window.addEventListener("resize", function(event) {
+//     updateDirectionsOverlay(dirContainer);
+//   });
 }
 BrowserView.prototype.keyDown = function(event) {
   var pressedKey = event.keyCode ? CONST.KEY_CODES_TO_ACTIONS[event.keyCode] : event.target.dataset.key;
@@ -266,6 +213,34 @@ BrowserView.prototype.drawElementOverlay = function(mouseX, mouseY, element) {
   }
   else {
     this.overlayContext.clearRect(0, 0, 540, 270);
+  }
+};
+BrowserView.prototype.showDirections = function() {
+  this.dirContainer.style["display"] = "initial";
+  this.dirContainer.className = "stretching-container";
+};
+BrowserView.prototype.fadeDirections = function() {
+  this.dirContainer.className = "fading-container";
+};
+BrowserView.prototype.hideDirections = function() {
+  this.dirContainer.style["display"] = "none";
+};
+BrowserView.prototype.updateDirectionsOverlay = function() {
+  if(this.dirContainer.style["display"] != "none") {
+    var dirTrans = document.getElementById("directions-transparent-layer");
+    var directions = document.getElementById("directions");
+    var main = document.querySelector("main");
+
+    this.dirContainer.style["left"] = main.offsetLeft + "px";
+    this.dirContainer.style["top"] = main.offsetTop + "px";
+    this.dirContainer.style["height"] = main.offsetHeight + "px";
+    this.dirContainer.style["width"] = main.offsetWidth + "px";
+
+    directions.style["height"] = (main.offsetHeight - 32) + "px";
+    directions.style["width"] = (main.offsetWidth - 64) + "px";
+
+    dirTrans.style["height"] = main.offsetHeight + "px";
+    dirTrans.style["width"] = main.offsetWidth + "px";
   }
 };
 BrowserView.prototype.updateElementDescrip = function(element) {
@@ -1764,6 +1739,34 @@ var Controller = function(shape) {
     button.addEventListener("mousedown", this.handleKeyDown.bind(this));
     button.addEventListener("mouseup", this.handleKeyUp.bind(this));
   }.bind(this));
+
+  document.getElementById("show-directions").addEventListener("click", function(event) {
+    event.preventDefault();
+    this.gameView.isPaused = true;
+    clearInterval(this.gameBoard.dropInterval);
+    clearInterval(this.gameBoard.rotateInterval);
+    clearInterval(this.gameBoard.slideInterval);
+
+    this.gameView.updateDirectionsOverlay();
+    this.gameView.showDirections();
+  }.bind(this));
+
+  document.getElementById("hide-directions").addEventListener("click", function(event) {
+    event.preventDefault();
+    this.gameView.fadeDirections();
+  }.bind(this));
+
+  addEventListener("animationend", function(event) {
+    if(event.animationName == "fade") {
+      this.gameView.hideDirections();
+      this.gameView.isPaused = false;
+      this.cycleDropBlock(CONST.DROP_DELAY[this.level]);
+    }
+  }.bind(this));
+
+  window.addEventListener("resize", function(event) {
+    this.gameView.updateDirectionsOverlay();
+  }.bind(this));
 }
 Controller.prototype.startGame = function() {
   if(this.elements.length < 118) {
@@ -1865,7 +1868,6 @@ Controller.prototype.handleKeyDown = function(event) {
   var action = this.gameView.keyDown.bind(this.gameView, event).call();
   if(action == "pause") {
     clearTimeout(this.gameBoard.dropInterval);
-    clearTimeout(this.gameBoard.dropTimeout);
     clearInterval(this.gameBoard.rotateInterval);
     clearInterval(this.gameBoard.slideInterval);
   }

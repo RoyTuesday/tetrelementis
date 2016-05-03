@@ -80,6 +80,34 @@ var Controller = function(shape) {
     button.addEventListener("mousedown", this.handleKeyDown.bind(this));
     button.addEventListener("mouseup", this.handleKeyUp.bind(this));
   }.bind(this));
+
+  document.getElementById("show-directions").addEventListener("click", function(event) {
+    event.preventDefault();
+    this.gameView.isPaused = true;
+    clearInterval(this.gameBoard.dropInterval);
+    clearInterval(this.gameBoard.rotateInterval);
+    clearInterval(this.gameBoard.slideInterval);
+
+    this.gameView.updateDirectionsOverlay();
+    this.gameView.showDirections();
+  }.bind(this));
+
+  document.getElementById("hide-directions").addEventListener("click", function(event) {
+    event.preventDefault();
+    this.gameView.fadeDirections();
+  }.bind(this));
+
+  addEventListener("animationend", function(event) {
+    if(event.animationName == "fade") {
+      this.gameView.hideDirections();
+      this.gameView.isPaused = false;
+      this.cycleDropBlock(CONST.DROP_DELAY[this.level]);
+    }
+  }.bind(this));
+
+  window.addEventListener("resize", function(event) {
+    this.gameView.updateDirectionsOverlay();
+  }.bind(this));
 }
 Controller.prototype.startGame = function() {
   if(this.elements.length < 118) {
@@ -181,7 +209,6 @@ Controller.prototype.handleKeyDown = function(event) {
   var action = this.gameView.keyDown.bind(this.gameView, event).call();
   if(action == "pause") {
     clearTimeout(this.gameBoard.dropInterval);
-    clearTimeout(this.gameBoard.dropTimeout);
     clearInterval(this.gameBoard.rotateInterval);
     clearInterval(this.gameBoard.slideInterval);
   }

@@ -41,6 +41,8 @@ var BrowserView = function(args) {
   this.gameModeContainer = document.getElementById('game-mode');
   this.gameModeContainer.innerHTML = CONST.genModeMenu(0);
 
+  this.dirContainer = document.getElementById("directions-container");
+
   this.gridContext = gridCanvas.getContext('2d');
   this.previewContext = previewCanvas.getContext('2d');
   this.tableContext = this.tableCanvas.getContext('2d');
@@ -68,61 +70,38 @@ var BrowserView = function(args) {
     rotate: null
   };
 
-  var dirContainer = document.querySelector("#directions-container");
+//    document.querySelector("#show-directions a").addEventListener("click", function(event) {
+//     event.preventDefault();
+//     this.isPaused = true;
+//     clearTimeout(this.gameBoard.dropInterval);
+//     clearTimeout(this.dropTimeout);
+//     clearInterval(this.interval.rotate);
+//     clearInterval(this.interval.slide);
 
-  var updateDirectionsOverlay = function(container) {
-    var dirTrans = document.querySelector("#directions-transparent-layer");
-    var directions = document.querySelector("#directions");
-    var main = document.querySelector("main");
+//     if(dirContainer.style["display"] != "none") {
+//       updateDirectionsOverlay(dirContainer);
+//     }
 
-    container.style["left"] = main.offsetLeft + "px";
-    container.style["top"] = main.offsetTop + "px";
-    container.style["height"] = main.offsetHeight + "px";
-    container.style["width"] = main.offsetWidth + "px";
+//     dirContainer.style["display"] = "initial";
+//     dirContainer.className = "stretching-container";
+//   }.bind(this));
 
-    directions.style["height"] = (main.offsetHeight - 32) + "px";
-    directions.style["width"] = (main.offsetWidth - 64) + "px";
+//   document.querySelector("#hide-directions a").addEventListener("click", function(event) {
+//     event.preventDefault();
+//     dirContainer.className = "fading-container";
+//   });
 
-    dirTrans.style["height"] = main.offsetHeight + "px";
-    dirTrans.style["width"] = main.offsetWidth + "px";
-  }
+//   dirContainer.addEventListener("animationend", function(event) {
+//     if(event.animationName == "fade") {
+//       dirContainer.style["display"] = "none";
+//       this.isPaused = false;
+//       this.cycleDropBlock(CONST.DROP_DELAY[this.level]);
+//     }
+//   }.bind(this));
 
-  this.tableOverlay.addEventListener('mouseout', function(event) {
-    this.overlayContext.clearRect(0, 0, 540, 270);
-  }.bind(this));
-
-   document.querySelector("#show-directions a").addEventListener("click", function(event) {
-    event.preventDefault();
-    this.isPaused = true;
-    clearTimeout(this.gameBoard.dropInterval);
-    clearTimeout(this.dropTimeout);
-    clearInterval(this.interval.rotate);
-    clearInterval(this.interval.slide);
-
-    if(dirContainer.style["display"] != "none") {
-      updateDirectionsOverlay(dirContainer);
-    }
-
-    dirContainer.style["display"] = "initial";
-    dirContainer.className = "stretching-container";
-  }.bind(this));
-
-  document.querySelector("#hide-directions a").addEventListener("click", function(event) {
-    event.preventDefault();
-    dirContainer.className = "fading-container";
-  });
-
-  dirContainer.addEventListener("animationend", function(event) {
-    if(event.animationName == "fade") {
-      dirContainer.style["display"] = "none";
-      this.isPaused = false;
-      this.cycleDropBlock(CONST.DROP_DELAY[this.level]);
-    }
-  }.bind(this));
-
-  window.addEventListener("resize", function(event) {
-    updateDirectionsOverlay(dirContainer);
-  });
+//   window.addEventListener("resize", function(event) {
+//     updateDirectionsOverlay(dirContainer);
+//   });
 }
 BrowserView.prototype.keyDown = function(event) {
   var pressedKey = event.keyCode ? CONST.KEY_CODES_TO_ACTIONS[event.keyCode] : event.target.dataset.key;
@@ -233,6 +212,34 @@ BrowserView.prototype.drawElementOverlay = function(mouseX, mouseY, element) {
   }
   else {
     this.overlayContext.clearRect(0, 0, 540, 270);
+  }
+};
+BrowserView.prototype.showDirections = function() {
+  this.dirContainer.style["display"] = "initial";
+  this.dirContainer.className = "stretching-container";
+};
+BrowserView.prototype.fadeDirections = function() {
+  this.dirContainer.className = "fading-container";
+};
+BrowserView.prototype.hideDirections = function() {
+  this.dirContainer.style["display"] = "none";
+};
+BrowserView.prototype.updateDirectionsOverlay = function() {
+  if(this.dirContainer.style["display"] != "none") {
+    var dirTrans = document.getElementById("directions-transparent-layer");
+    var directions = document.getElementById("directions");
+    var main = document.querySelector("main");
+
+    this.dirContainer.style["left"] = main.offsetLeft + "px";
+    this.dirContainer.style["top"] = main.offsetTop + "px";
+    this.dirContainer.style["height"] = main.offsetHeight + "px";
+    this.dirContainer.style["width"] = main.offsetWidth + "px";
+
+    directions.style["height"] = (main.offsetHeight - 32) + "px";
+    directions.style["width"] = (main.offsetWidth - 64) + "px";
+
+    dirTrans.style["height"] = main.offsetHeight + "px";
+    dirTrans.style["width"] = main.offsetWidth + "px";
   }
 };
 BrowserView.prototype.updateElementDescrip = function(element) {
