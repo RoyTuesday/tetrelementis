@@ -50,24 +50,17 @@ var BrowserView = function(args) {
 
   this.overlayContext.fillStyle = 'rgba(255, 255, 255, 0.5)';
 
-  this.gameBoard = args.gameBoard;
-
   this.loadHighScore();
   document.getElementById('reset-high-score').addEventListener("click", function(event) {
     event.preventDefault();
     this.resetHighScore();
   }.bind(this));
 
-  this.cycleDropBlock = args.cycleDropBlock;
   this.isPaused = true;
   this.pressed = {
     slide: false,
     drop: false,
     rotate: false
-  };
-  this.interval = {
-    slide: null,
-    rotate: null
   };
 }
 BrowserView.prototype.keyDown = function(event) {
