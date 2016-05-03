@@ -339,7 +339,6 @@ BrowserView.prototype.animateGame = function() {
     if(progress) {
       this.drawAllBoards();
       this.updatePlayerScore(this.gameBoard.score);
-      this.updateGameLevel();
       requestAnimationFrame(animate.bind(this));
     }
   }
@@ -356,14 +355,8 @@ BrowserView.prototype.updateElementDescrip = function(element) {
 BrowserView.prototype.updatePlayerScore = function(score) {
   this.playerScore.innerHTML = score;
 };
-BrowserView.prototype.updateGameLevel = function() {
-  var newLevel = Math.floor(this.gameBoard.score / 10);
-  if(this.gameMode != 'Fixed Level' && this.level != newLevel) {
-    this.level = newLevel;
-    this.staticGameLevel.innerHTML = this.level + ": ";
-    clearTimeout(this.dropTimeout);
-    this.cycleDropBlock(CONST.DROP_DELAY[this.level]);
-  }
+BrowserView.prototype.updateGameLevel = function(level) {
+  this.staticGameLevel.innerHTML = level + ": ";
 };
 BrowserView.prototype.disableMenus = function() {
   var modeIndex = document.getElementById('game-mode-dropdown').selectedIndex;
