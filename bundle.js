@@ -51,12 +51,6 @@ var BrowserView = function(args) {
 
   this.overlayContext.fillStyle = 'rgba(255, 255, 255, 0.5)';
 
-  this.loadHighScore();
-  document.getElementById('reset-high-score').addEventListener("click", function(event) {
-    event.preventDefault();
-    this.resetHighScore();
-  }.bind(this));
-
   this.isPaused = true;
   this.pressed = {
     slide: false,
@@ -240,24 +234,7 @@ BrowserView.prototype.resetDisplay = function(level, gameMode) {
 BrowserView.prototype.updateHighScore = function(score) {
   if(this.highScore.innerHTML < score) {
     this.highScore.innerHTML = score;
-    this.saveHighScore();
   }
-};
-BrowserView.prototype.saveHighScore = function() {
-  window.localStorage.setItem("highScore", this.highScore.innerHTML);
-};
-BrowserView.prototype.loadHighScore = function() {
-  var highScore = window.localStorage.getItem("highScore");
-  if(highScore) {
-    this.highScore.innerHTML = highScore;
-  }
-  else {
-    this.highScore.innerHTML = 0;
-  }
-};
-BrowserView.prototype.resetHighScore = function() {
-  this.highScore.innerHTML = 0;
-  this.saveHighScore();
 };
 
 module.exports = BrowserView;
@@ -1638,6 +1615,7 @@ var Controller = function(shape) {
     gameBoard: this.gameBoard,
     cycleDropBlock: this.cycleDropBlock,
   });
+  this.highScore = this.loadHighScore();
 
   this.gameView.drawBoard(this.gameBoard.board, "gridContext");
   this.gameView.drawBoard(this.previewBoard.board, "previewContext");
@@ -1686,6 +1664,11 @@ var Controller = function(shape) {
     }
   }.bind(this));
 
+  document.getElementById('reset-high-score').addEventListener("click", function(event) {
+    event.preventDefault();
+    this.resetHighScore();
+  }.bind(this));
+
   addEventListener('keydown', this.handleKeyDown.bind(this));
   addEventListener('keyup', this.handleKeyUp.bind(this));
   this.gameView.controlButtons.forEach(function(button) {
@@ -1721,6 +1704,24 @@ var Controller = function(shape) {
     this.gameView.updateDirectionsOverlay();
   }.bind(this));
 }
+Controller.prototype.saveHighScore = function() {
+  window.localStorage.setItem("highScore", this.highScore);
+};
+Controller.prototype.loadHighScore = function() {
+  var highScore = window.localStorage.getItem("highScore");
+  if(highScore) {
+    this.highScore = highScore;
+  }
+  else {
+    this.highScore = 0;
+  }
+  this.gameView.updateHighScore(this.highScore);
+};
+Controller.prototype.resetHighScore = function() {
+  this.highScore = 0;
+  this.saveHighScore();
+  this.gameView.updateHighScore(this.highScore);
+};
 Controller.prototype.startGame = function() {
   if(this.elements.length < 118) {
     this.elements = CONST.generateRandomElements();
@@ -1867,6 +1868,7 @@ Controller.prototype.showGameOver = function() {
   this.previewBoard.board = CONST.generateEmptyBoard();
   this.gameBoard.clearForGameover();
   this.gameView.resetDisplay(this.level, this.gameMode);
+  this.saveHighScore();
   this.gameView.updateHighScore(this.gameBoard.score);
 };
 

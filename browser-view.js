@@ -50,12 +50,6 @@ var BrowserView = function(args) {
 
   this.overlayContext.fillStyle = 'rgba(255, 255, 255, 0.5)';
 
-  this.loadHighScore();
-  document.getElementById('reset-high-score').addEventListener("click", function(event) {
-    event.preventDefault();
-    this.resetHighScore();
-  }.bind(this));
-
   this.isPaused = true;
   this.pressed = {
     slide: false,
@@ -237,26 +231,9 @@ BrowserView.prototype.resetDisplay = function(level, gameMode) {
   this.gameLevel.innerHTML = CONST.genLevelMenu(level);
 };
 BrowserView.prototype.updateHighScore = function(score) {
-  if(this.highScore.innerHTML < score) {
+  if(score == 0 || this.highScore.innerHTML < score) {
     this.highScore.innerHTML = score;
-    this.saveHighScore();
   }
-};
-BrowserView.prototype.saveHighScore = function() {
-  window.localStorage.setItem("highScore", this.highScore.innerHTML);
-};
-BrowserView.prototype.loadHighScore = function() {
-  var highScore = window.localStorage.getItem("highScore");
-  if(highScore) {
-    this.highScore.innerHTML = highScore;
-  }
-  else {
-    this.highScore.innerHTML = 0;
-  }
-};
-BrowserView.prototype.resetHighScore = function() {
-  this.highScore.innerHTML = 0;
-  this.saveHighScore();
 };
 
 module.exports = BrowserView;
