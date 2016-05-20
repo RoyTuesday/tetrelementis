@@ -8,11 +8,13 @@ a:hover, a:visited:hover {
 }
 
 body {
-  background-color: #211833;
+  background-color: #8A4358;
+  color: #222;
 }
 canvas {
+  background-color: #E1DEEA;
   border: 5px solid;
-  border-color: #579;
+  border-color: #2868B8;
 }
 select {
   color: #505;
@@ -95,6 +97,7 @@ select:hover {
 #container {
   background-color: #F1EEFA;
   border-radius: 10px;
+  box-shadow: 0 0 2px 4px #2868B8;
   margin: 16px auto;
   padding: 32px;
   width: 876px;
@@ -205,6 +208,7 @@ select:hover {
   display: block;
 }
 #table-overlay {
+  background-color: transparent;
   border: none;
   left: 5px;
   position: absolute;
