@@ -1,5 +1,3 @@
-var CHEMICAL_ELEMENTS = require("./chemical-elements.js");
-
 var CONST = {};
 CONST.CHEMISTRY_URL = "http://www.webelements.com/";
 CONST.FONT_SIZE = 11;
@@ -267,5 +265,3 @@ CONST.genLevelMenu = function(level_num) {
   menuString += '</select>';
   return menuString;
 }
-
-module.exports = CONST;

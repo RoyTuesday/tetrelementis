@@ -1,5 +1,3 @@
-var CONST = require("./constants.js");
-
 var PeriodicTable = function() {
   this.board = new Array;
 
@@ -23,5 +21,3 @@ PeriodicTable.prototype.showElement = function(atomicNum) {
   this.elements[atomicNum].show = true;
   this.board[this.elements[atomicNum].y][this.elements[atomicNum].x] = atomicNum;
 }
-
-module.exports = PeriodicTable;

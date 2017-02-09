@@ -1,7 +1,3 @@
-var CONST = require("./constants.js");
-
-var Tetromino = require("./tetromino.js");
-
 var TetrisBoard = function(args) {
   this.score = 0;
   this.board = new Array;
@@ -135,5 +131,3 @@ TetrisBoard.prototype.clearForGameover = function() {
 
   clearBoard(boardCoords);
 };
-
-module.exports = TetrisBoard;

@@ -1,11 +1,3 @@
-var CONST = require("./constants.js");
-
-var Tetromino = require("./tetromino.js")
-var PreviewBoard = require("./preview-board.js");
-var PeriodicTable = require("./periodic-table.js");
-var TetrisBoard = require("./tetris-board.js");
-var BrowserView = require("./browser-view.js");
-
 var Controller = function(shape) {
   this.level = 0;
   this.gameMode = "Marathon";
@@ -282,5 +274,3 @@ Controller.prototype.showGameOver = function() {
   this.saveHighScore();
   this.gameView.updateHighScore(this.gameBoard.score);
 };
-
-module.exports = Controller;

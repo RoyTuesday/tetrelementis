@@ -1,6 +1,3 @@
-var CONST = require("./constants.js");
-var CHEMICAL_ELEMENTS = require("./chemical-elements.js");
-
 var BrowserView = function(args) {
   var gridCanvas = document.querySelector('canvas#tetris-grid');
   var previewCanvas = document.querySelector('canvas#tetris-preview');
@@ -233,5 +230,3 @@ BrowserView.prototype.updateHighScore = function(score) {
     this.highScore.innerHTML = score;
   }
 };
-
-module.exports = BrowserView;

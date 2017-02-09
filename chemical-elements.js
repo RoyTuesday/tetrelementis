@@ -1,4 +1,4 @@
-module.exports = {
+const CHEMICAL_ELEMENTS = {
   0: {
     'name': 'n/a',
     'symbol': "",

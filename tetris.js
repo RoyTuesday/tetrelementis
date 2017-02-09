@@ -1,5 +1,3 @@
-var Controller = require("./controller.js");
-
 var ready = function(fn) {
   if(document.readyState != 'loading') {
     fn();
