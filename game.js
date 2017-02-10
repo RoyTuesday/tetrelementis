@@ -6,12 +6,20 @@ BLOCK_SPACING_WIDTH = tetrisCxt.canvas.width / 10;
 BLOCK_HEIGHT = BLOCK_SPACING_HEIGHT - 10;
 BLOCK_WIDTH = BLOCK_SPACING_WIDTH - 10;
 
+var playerScore = document.getElementById('player-score');
+function setScore(lines) {
+  var score = parseInt(playerScore.innerHTML);
+  playerScore.innerHTML = score + lines;
+}
+
 function update() {
-  if (!tetrisGrid.drop()) {
+  var drop = tetrisGrid.drop();
+  if (drop < 0) {
     clearInterval(tetrisGrid.dropInterval);
     tetrisGrid = new TetrisBoard;
     tetrisGrid.dropInterval = setInterval(update, DROP_DELAY[0]);
   }
+  else setScore(drop);
 }
 tetrisGrid.dropInterval = setInterval(update, DROP_DELAY[0]);
 

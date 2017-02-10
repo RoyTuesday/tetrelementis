@@ -48,18 +48,19 @@ TetrisBoard.prototype.raise = function() {
 TetrisBoard.prototype.drop = function() {
   var board = this.board;
   var blocks = this.tetromino.drop();
+  var lines = 0;
 
   if (blocks.some(function(b) { return b > 199 || board[b] !== 0 })) {
     var element = this.tetromino.element;
     this.tetromino.blocks.forEach(function(b) { this.board[b] = element; }, this);
     this.tetromino = new Tetromino(Math.ceil(Math.random() * (CHEMICAL_ELEMENTS.length - 1)), 'line');
     // If any of the new tetromino's blocks collide with filled blocks in the board, it's game over
-    if (this.tetromino.blocks.some(function(b) { return board[b] !== 0 })) return false;
-    this.handleFullLines();
+    if (this.tetromino.blocks.some(function(b) { return board[b] !== 0 })) return -1;
+    lines = this.handleFullLines();
   }
   else this.tetromino.blocks = blocks;
-  // Return true if the first line is clear for new blocks
-  return true;
+  // If the number of lines is greater than 0, we'll update the score
+  return lines;
 };
 TetrisBoard.prototype.handleFullLines = function() {
   var board = [];
@@ -73,6 +74,7 @@ TetrisBoard.prototype.handleFullLines = function() {
     else board = board.concat(slice);
   }
   if (lines > 0) this.board = board;
+  return lines;
 };
 TetrisBoard.prototype.render = function(context) {
   this.board.forEach(function(b, i) { renderBlock(context, b, i, 10) });
