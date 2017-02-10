@@ -48,7 +48,8 @@ TetrisBoard.prototype.rotate = function(direction) {
     }
     if (!adjacent) return;
   }
-  this.tetromino.blocks = blocks;
+  var board = this.board;
+  if (blocks.every(function(b) { return board[b] === 0 })) this.tetromino.blocks = blocks;
 };
 TetrisBoard.prototype.drop = function() {
   var board = this.board;
