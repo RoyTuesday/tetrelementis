@@ -34,19 +34,6 @@ TetrisBoard.prototype.rotate = function(direction) {
     var dist = Math.sqrt(Math.pow(xA - xB, 2) + Math.pow(yA - yB, 2));
     if (dist > 4 || dist < -4) return false;
   }
-  // for (var i = 0; i < blocks.length; i++) {
-  //   var b = blocks[i];
-  //   if (b < 0) return;
-  //   var adjacent = i == blocks.length - 1;
-  //   for (var a = 0; a < blocks.length; a++) {
-  //     var adjB = blocks[a];
-  //     if (adjB !== b && (b % 10 == adjB % 10 || (b / 10) >> 0 == (adjB / 10) >> 0)) {
-  //       adjacent = true;
-  //       break;
-  //     }
-  //   }
-  //   if (!adjacent) return;
-  // }
   var board = this.board;
   if (blocks.every(function(b) { return board[b] === 0 })) this.tetromino.blocks = blocks;
 };
@@ -64,6 +51,7 @@ TetrisBoard.prototype.drop = function() {
   if (blocks.some(function(b) { return b > 199 || board[b] !== 0 })) {
     var element = this.tetromino.element;
     this.tetromino.blocks.forEach(function(b) { this.board[b] = element; }, this);
+    tableGrid.showElement(element);
     this.tetromino = previewGrid.tetromino.convertForBoard();
     previewGrid.tetromino = new Tetromino;
     // If any of the new tetromino's blocks collide with filled blocks in the board, it's game over
