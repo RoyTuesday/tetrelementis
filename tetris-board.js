@@ -2,9 +2,13 @@ var TetrisBoard = function() {
   var board = [];
   for (var i = 0; i < 200; i++) board.push(0);
   this.board = board;
-  this.tetromino = new Tetromino(Math.ceil(Math.random() * (CHEMICAL_ELEMENTS.length - 1)), 'line');
+  this.setTetromino(new Tetromino(Math.ceil(Math.random() * (CHEMICAL_ELEMENTS.length - 1)), 'line'));
 }
 TetrisBoard.prototype.dropInterval = 0;
+TetrisBoard.prototype.setTetromino = function(tetromino) {
+  tetromino.blocks = tetromino.blocks.map(function(b) { return b + 3 });
+  this.tetromino = tetromino;
+};
 TetrisBoard.prototype.slide = function(direction) {
   var board = this.board;
   var blocks = this.tetromino.blocks;
@@ -53,7 +57,8 @@ TetrisBoard.prototype.drop = function() {
   if (blocks.some(function(b) { return b > 199 || board[b] !== 0 })) {
     var element = this.tetromino.element;
     this.tetromino.blocks.forEach(function(b) { this.board[b] = element; }, this);
-    this.tetromino = new Tetromino(Math.ceil(Math.random() * (CHEMICAL_ELEMENTS.length - 1)), 'line');
+    this.setTetromino(previewGrid.tetromino);
+    previewGrid.tetromino = new Tetromino(Math.ceil(Math.random() * (CHEMICAL_ELEMENTS.length - 1)), 'line');
     // If any of the new tetromino's blocks collide with filled blocks in the board, it's game over
     if (this.tetromino.blocks.some(function(b) { return board[b] !== 0 })) return -1;
     lines = this.handleFullLines();

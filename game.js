@@ -64,9 +64,9 @@ function render() {
   tableCxt.clearRect(0, 0, tableCxt.canvas.width, tableCxt.canvas.height);
 
   for (var i = 0; i < 200; i++) {
-    renderBlock(previewCxt, previewGrid[i], i, 4);
     renderBlock(tableCxt, tableGrid[i], i, 18);
   }
+  previewGrid.render(previewCxt);
   tetrisGrid.render(tetrisCxt);
 }
 

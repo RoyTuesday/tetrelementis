@@ -156,24 +156,24 @@ var processTetrominos = function(templates) {
 //   'Pentathlon': processTetrominos(PENTOMINO_TEMPLATES)
 // };
 var TETROMINO_SHAPES = {
-  jBlock: [ 3, 4, 5,15],
+  jBlock: [ 0, 1, 2,12],
   // xxx
   //   x
-  lBlock: [ 3, 4, 5,13],
+  lBlock: [ 0, 1, 2,10],
   // xxx
   // x
-  square: [ 4, 5,14,15],
+  square: [ 1, 2,11,12],
   // xx
   // xx
-  sBlock: [ 4, 5,13,14],
+  sBlock: [ 1, 2,10,11],
   //  xx
   // xx
-  zBlock: [ 3, 4,14,15],
+  zBlock: [ 0, 1,11,12],
   // xx
   //  xx
-  line:   [ 3, 4, 5, 6],
+  line:   [ 0, 1, 2, 3],
   // xxxx
-  tBlock: [ 3, 4, 5,14],
+  tBlock: [ 0, 1, 2,11],
   // xxx
   // x
 }
