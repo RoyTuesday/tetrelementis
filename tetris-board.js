@@ -5,14 +5,6 @@ var TetrisBoard = function() {
   this.tetromino = new Tetromino(Math.ceil(Math.random() * (CHEMICAL_ELEMENTS.length - 1)), 'line');
 }
 TetrisBoard.prototype.dropInterval = 0;
-TetrisBoard.prototype.raise = function() {
-  var blocks = this.tetromino.blocks;
-  for (var i = 0; i < blocks.length; i++) {
-    if (blocks[i] / 10 < 1) return;
-  }
-
-  this.tetromino.raise();
-};
 TetrisBoard.prototype.slide = function(direction) {
   var board = this.board;
   var blocks = this.tetromino.blocks;
@@ -27,11 +19,7 @@ TetrisBoard.prototype.slide = function(direction) {
       wall = 9;
       break;
   }
-  for (var i = 0; i < blocks.length; i++) {
-    if (blocks[i] % 10 === wall || board[blocks[i] + xMod] !== 0) return;
-  }
-
-  this.tetromino.slide(xMod);
+  if (blocks.every(function(b) { return b % 10 !== wall && board[b + xMod] === 0 })) this.tetromino.slide(xMod);
 };
 TetrisBoard.prototype.rotate = function(direction) {
   var blocks = this.tetromino.rotate(direction);
@@ -50,6 +38,12 @@ TetrisBoard.prototype.rotate = function(direction) {
   }
   var board = this.board;
   if (blocks.every(function(b) { return board[b] === 0 })) this.tetromino.blocks = blocks;
+};
+TetrisBoard.prototype.raise = function() {
+  var board = this.board;
+  var blocks = this.tetromino.raise();
+
+  if (blocks.every(function(b) { return b > 0 && board[b] === 0 })) this.tetromino.blocks = blocks;
 };
 TetrisBoard.prototype.drop = function() {
   var board = this.board;

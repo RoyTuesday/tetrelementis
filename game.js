@@ -77,6 +77,7 @@ function handleKeyDown(event) {
     switch (event.key.toLowerCase()) {
       case 'arrowleft': tetrisGrid.slide('left'); break;
       case 'arrowright': tetrisGrid.slide('right'); break;
+      case 'arrowup': tetrisGrid.raise(); break;
       case 'z': tetrisGrid.rotate('clock'); break;
       case 'a': tetrisGrid.rotate('count'); break;
       case 'arrowdown':

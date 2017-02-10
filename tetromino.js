@@ -4,7 +4,7 @@ var Tetromino = function(element, shape) {
   this.blocks = TETROMINO_SHAPES[shape];
 };
 Tetromino.prototype.raise = function() {
-  this.blocks = this.blocks.map(function(b) { return b -= 10 });
+  return this.blocks.map(function(b) { return b -= 10 });
 };
 Tetromino.prototype.drop = function() {
   return this.blocks.map(function(b) { return b += 10 });
