@@ -209,10 +209,3 @@ select:hover {
 #tetris-table {
   display: block;
 }
-#table-overlay {
-  background-color: transparent;
-  border: none;
-  left: 5px;
-  position: absolute;
-  top: 5px;
-}
