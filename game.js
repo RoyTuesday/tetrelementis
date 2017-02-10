@@ -9,7 +9,7 @@ BLOCK_WIDTH = BLOCK_SPACING_WIDTH - 10;
 function update() {
   tetrisGrid.drop();
 }
-setInterval(update, DROP_DELAY[0]);
+tetrisGrid.dropInterval = setInterval(update, DROP_DELAY[0]);
 
 function renderBlock(context, num, i, width) {
   if (typeof num !== 'number') return;
@@ -69,14 +69,26 @@ window.requestAnimationFrame(step);
 
 function handleKeyDown(event) {
   // if (!event.repeat) {
-    if (!event.ctrlKey && !event.altKey) event.preventDefault();
+    if (!event.ctrlKey && !event.altKey && !event.metaKey) event.preventDefault();
     switch (event.key.toLowerCase()) {
-      // case 'arrowdown': tetrisGrid.drop(); break;
       case 'arrowleft': tetrisGrid.slide('left'); break;
       case 'arrowright': tetrisGrid.slide('right'); break;
       case 'z': tetrisGrid.rotate('clock'); break;
       case 'a': tetrisGrid.rotate('count'); break;
+      case 'arrowdown':
+        clearInterval(tetrisGrid.dropInterval);
+        tetrisGrid.dropInterval = setInterval(update, FAST_DROP);
+        break;
     }
   // }
 }
+function handleKeyUp(event) {
+  switch(event.key.toLowerCase()) {
+    case 'arrowdown':
+      clearInterval(tetrisGrid.dropInterval);
+      tetrisGrid.dropInterval = setInterval(update, DROP_DELAY[0]);
+      break;
+  }
+}
 document.addEventListener('keydown', handleKeyDown);
+document.addEventListener('keyup', handleKeyUp);

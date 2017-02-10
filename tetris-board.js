@@ -3,6 +3,7 @@ var TetrisBoard = function() {
   for (var i = 0; i < 200; i++) board.push(0);
   this.board = board;
 }
+TetrisBoard.prototype.dropInterval = 0;
 TetrisBoard.prototype.tetromino = new Tetromino(Math.ceil(Math.random() * (CHEMICAL_ELEMENTS.length - 1)), 'line');
 TetrisBoard.prototype.raise = function() {
   var blocks = this.tetromino.blocks;
