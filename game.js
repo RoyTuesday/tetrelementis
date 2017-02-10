@@ -7,7 +7,11 @@ BLOCK_HEIGHT = BLOCK_SPACING_HEIGHT - 10;
 BLOCK_WIDTH = BLOCK_SPACING_WIDTH - 10;
 
 function update() {
-  tetrisGrid.drop();
+  if (!tetrisGrid.drop()) {
+    clearInterval(tetrisGrid.dropInterval);
+    tetrisGrid = new TetrisBoard;
+    tetrisGrid.dropInterval = setInterval(update, DROP_DELAY[0]);
+  }
 }
 tetrisGrid.dropInterval = setInterval(update, DROP_DELAY[0]);
 
