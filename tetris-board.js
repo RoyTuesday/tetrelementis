@@ -48,12 +48,8 @@ TetrisBoard.prototype.raise = function() {
 TetrisBoard.prototype.drop = function() {
   var board = this.board;
   var blocks = this.tetromino.drop();
-  var land = false;
-  for (var i = 0; i < blocks.length; i++) {
-    if (blocks[i] / 10 > 20 || board[blocks[i]] !== 0) land = true;
-  }
 
-  if (land) {
+  if (blocks.some(function(b) { return b > 199 || board[b] !== 0 })) {
     var element = this.tetromino.element;
     this.tetromino.blocks.forEach(function(b) { this.board[b] = element; }, this);
     this.tetromino = new Tetromino(Math.ceil(Math.random() * (CHEMICAL_ELEMENTS.length - 1)), 'line');
@@ -62,6 +58,7 @@ TetrisBoard.prototype.drop = function() {
     this.handleFullLines();
   }
   else this.tetromino.blocks = blocks;
+  // Return true if the first line is clear for new blocks
   return true;
 };
 TetrisBoard.prototype.handleFullLines = function() {
