@@ -21,3 +21,6 @@ PeriodicTable.prototype.showElement = function(atomicNum) {
   this.elements[atomicNum].show = true;
   this.board[this.elements[atomicNum].y][this.elements[atomicNum].x] = atomicNum;
 }
+
+var tableGrid = [];
+for (var i = 0; i < 162; i++) tableGrid.push(0);

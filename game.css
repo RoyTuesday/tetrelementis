@@ -104,7 +104,7 @@ select:hover {
 }
 #right-container {
   display: inline-block;
-  vertical-align: top;
+  float: right;
 }
 
 #atomic-number-container {

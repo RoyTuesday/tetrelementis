@@ -12,3 +12,6 @@ PreviewBoard.prototype.blit = function() {
     this.board[blockY][blockX] = this.tetromino.element;
   }
 };
+
+var previewGrid = [];
+for (var i = 0; i < 16; i++) previewGrid.push(0);

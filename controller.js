@@ -139,31 +139,9 @@ Controller.prototype.startGame = function() {
   }
   this.gameView.disableMenus(this.level, this.gameMode);
 
-  if(this.gameBoard.tetromino) {
-    this.gameBoard.tetromino.set({
-      element: this.elements.pop(),
-      shape: CONST.getRandomShape(this.gameMode, this.limiter)
-    });
-  }
-  else {
-    this.gameBoard.tetromino = new Tetromino({
-      element: this.elements.pop(),
-      shape: CONST.getRandomShape(this.gameMode, this.limiter)
-    });
-  }
+  this.gameBoard.tetromino = new Tetromino(this.elements.pop(), CONST.getRandomShape(this.gameMode, this.limiter));
 
-  if(this.previewBoard.tetromino) {
-    this.previewBoard.tetromino.set({
-      element: this.elements.pop(),
-      shape: CONST.getRandomShape(this.gameMode, this.limiter)
-    });
-  }
-  else {
-    this.previewBoard.tetromino = new Tetromino({
-      element: this.elements.pop(),
-      shape: CONST.getRandomShape(this.gameMode, this.limiter)
-    });
-  }
+  this.previewBoard.tetromino = new Tetromino(this.elements.pop(), CONST.getRandomShape(this.gameMode, this.limiter));
 
   this.gameBoard.score = 0;
   this.gameBoard.gameState = 'inProgress';

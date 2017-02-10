@@ -1,77 +1,33 @@
-var Tetromino = function(args) {
-  this.element;
-  this.blocks;
-  this.shape;
-
-  this.set(args);
-}
-Tetromino.prototype.set = function(args) {
-  this.element = args.element;
-  this.shape = args.shape;
-
-  this.blocks = this.shape.map(function(block) {
-    return {x: new Number(block.x), y: new Number(block.y)};
-  });
-
-  this.row = 0;
-  this.col = 4;
-
-  for(var block in this.blocks) {
-    this.blocks[block].y += this.row;
-    this.blocks[block].x += this.col;
-  }
-
-  var width = 0;
-  var height = 0;
-  this.shape.forEach(function(block) {
-    if(block.x > width) width = block.x;
-    if(block.y > height) height = block.y;
-  });
-
-  this.center = {
-    x: Math.floor(width / 2) + this.col,
-    y: Math.floor(height / 2) + this.row
-  }
+var Tetromino = function(element, shape) {
+  this.element = element;
+  this.shape = shape;
+  this.blocks = TETROMINO_SHAPES[shape];
 };
 Tetromino.prototype.raise = function() {
-  this.row--;
-  for(var block in this.blocks) {
-    this.blocks[block].y--;
-  }
-  this.center.y--;
+  this.blocks = this.blocks.map(function(b) { return b -= 10 });
 };
 Tetromino.prototype.drop = function() {
-  this.row++;
-  for(var block in this.blocks) {
-    this.blocks[block].y++;
-  }
-  this.center.y++;
+  return this.blocks.map(function(b) { return b += 10 });
 };
-var directToInt = {
-  'left': -1,
-  'right': 1
-};
-Tetromino.prototype.slide = function(direction) {
-  this.blocks.forEach(function(block) {
-    block.x += directToInt[direction];
-  });
-  this.center.x += directToInt[direction];
+Tetromino.prototype.slide = function(xMod) {
+  this.blocks = this.blocks.map(function(b) { return b += xMod });
 };
 Tetromino.prototype.rotate = function(direction) {
-  var modX, modY;
-  var center = this.center;
+  if (this.shape == 'square') return false;
+  var blocks = this.blocks;
+  var center = blocks[1];
+  var multX = direction == 'clock' ? -1 : 1;
+  var multY = direction == 'count' ? -1 : 1;
+  var transCenter = ((center % 10) * 10 * multY) + ((multX * center / 10) >> 0);
+  var transX = ((center % 10) - (transCenter % 10)) >> 0;
+  var transY = ((center / 10) >> 0) - ((transCenter / 10) >> 0);
 
-  this.blocks.forEach(function(block) {
-    modX = block.y - center.y;
-    modY = block.x - center.x;
-    if(direction == 'counter') {
-      if(modY !== 0) modY *= -1;
-    }
+  return blocks.map(function(b, i) {
+    if (i === 1) return b;
     else {
-      if(modX !== 0) modX *= -1;
+      var x = ((b / 10) >> 0) * multX;
+      var y = (b % 10) * multY;
+      return (x + transX) + ((y + transY) * 10);
     }
-
-    block.x = center.x + modX;
-    block.y = center.y + modY;
   });
 };

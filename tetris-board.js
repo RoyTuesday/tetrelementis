@@ -1,108 +1,90 @@
-var TetrisBoard = function(args) {
-  this.score = 0;
-  this.board = new Array;
-  this.randElements = CONST.generateRandomElements();
-  this.tetromino = args.tetromino || null;
-  this.createNextTetromino = args.createNextTetromino;
-  this.showGameOver = args.showGameOver;
-  this.gameState = 'gameover';
-
-  this.dropInterval = new Number;
-
-  for(var row = 0; row < 20; row++) {
-    this.board[row] = new Array;
-    for(var col = 0; col < 10; col++) {
-      this.board[row][col] = 0;
-    }
-  };
+var TetrisBoard = function() {
+  var board = [];
+  for (var i = 0; i < 200; i++) board.push(0);
+  this.board = board;
 }
-TetrisBoard.prototype.blit = function(clear) {
-  var element = this.tetromino.element;
-
-  if(clear) {
-    element = 0;
+TetrisBoard.prototype.tetromino = new Tetromino(Math.ceil(Math.random() * (CHEMICAL_ELEMENTS.length - 1)), 'line');
+TetrisBoard.prototype.raise = function() {
+  var blocks = this.tetromino.blocks;
+  for (var i = 0; i < blocks.length; i++) {
+    if (blocks[i] / 10 < 1) return;
   }
 
-  for(var block in this.tetromino.blocks) {
-    var currentBlock = this.tetromino.blocks[block];
-    this.board[currentBlock.y][currentBlock.x] = element;
-  }
+  this.tetromino.raise();
 };
-TetrisBoard.prototype.detectCollision = function() {
-  for(var block in this.tetromino.blocks) {
-    currentBlock = this.tetromino.blocks[block];
-    if(currentBlock.y >= CONST.GRID_HEIGHT) {
-      return 'floor';
-    }
-    else if(currentBlock.y < 0) {
-      return 'ceiling';
-    }
-    else if(currentBlock.x < 0 || currentBlock.x >= CONST.GRID_WIDTH) {
-      return 'wall';
-    }
-    else if(this.board[currentBlock.y][currentBlock.x] !== 0) {
-      return 'block';
-    }
+TetrisBoard.prototype.slide = function(direction) {
+  var board = this.board;
+  var blocks = this.tetromino.blocks;
+  var xMod, wall;
+  switch (direction) {
+    case 'left' :
+      xMod = -1;
+      wall = 0;
+      break;
+    case 'right':
+      xMod = 1;
+      wall = 9;
+      break;
   }
-  return 'clear';
+  for (var i = 0; i < blocks.length; i++) {
+    if (blocks[i] % 10 === wall || board[blocks[i] + xMod] !== 0) return;
+  }
+
+  this.tetromino.slide(xMod);
 };
-TetrisBoard.prototype.dropBlock = function() {
-  this.blit(true);
-  this.tetromino.drop();
-  var collision = this.detectCollision();
-  if(collision == 'floor' || collision == 'block') {
-    this.tetromino.raise();
-    this.blit();
-    this.createNextTetromino();
-    if(this.detectCollision() != 'clear') {
-      clearInterval(this.dropInterval);
-      this.blit();
-      this.showGameOver();
-      return;
+TetrisBoard.prototype.rotate = function(direction) {
+  var blocks = this.tetromino.rotate(direction);
+  for (var i = 0; i < blocks.length; i++) {
+    var b = blocks[i];
+    if (b < 0) return;
+    var adjacent = i == blocks.length - 1;
+    for (var a = i + 1; a < blocks.length; a++) {
+      var adjB = blocks[a];
+      if (b % 10 == adjB % 10 || (b / 10) >> 0 == (adjB / 10) >> 0) {
+        adjacent = true;
+        break;
+      }
     }
+    if (!adjacent) return;
+  }
+  this.tetromino.blocks = blocks;
+};
+TetrisBoard.prototype.drop = function() {
+  var board = this.board;
+  var blocks = this.tetromino.drop();
+  var land = false;
+  for (var i = 0; i < blocks.length; i++) {
+    if (blocks[i] / 10 > 20 || board[blocks[i]] !== 0) land = true;
+  }
+
+  if (land) {
+    var element = this.tetromino.element;
+    this.tetromino.blocks.forEach(function(b) { this.board[b] = element; }, this);
+    this.tetromino = new Tetromino(Math.ceil(Math.random() * (CHEMICAL_ELEMENTS.length - 1)), 'line');
     this.handleFullLines();
   }
-  this.blit();
-};
-TetrisBoard.prototype.slideBlock = function(direction) {
-  this.blit(true);
-  this.tetromino.slide(direction);
-  var collision = this.detectCollision();
-  if(collision == 'wall' || collision == 'block') {
-    var reverseDirection = direction == 'left' ? 'right' : 'left';
-    this.tetromino.slide(reverseDirection);
-  }
-  this.blit();
-};
-TetrisBoard.prototype.rotateBlock = function(direction) {
-  this.blit(true);
-  this.tetromino.rotate(direction);
-  var collision = this.detectCollision();
-  if(collision != 'clear') {
-    var reverseDirection = direction == 'clock' ? 'counter' : 'clock';
-    this.tetromino.rotate(reverseDirection);
-  }
-  this.blit();
+  else this.tetromino.blocks = blocks;
 };
 TetrisBoard.prototype.handleFullLines = function() {
+  var board = [];
   var lines = 0;
-  this.board.forEach(function(row, rIndex, board) {
-    var filled = true;
-    row.forEach(function(block) {
-      if(block == 0) filled = false;
-    });
-    if(filled) {
+  for (var i = 0; i < this.board.length; i += 10) {
+    var slice = this.board.slice(i, i + 10);
+    if (slice.every(function(cell) { return cell > 0 })) {
       lines++;
-      for(var i = rIndex; i > 0; i--) {
-        board[i] = board[i - 1].map(function(col) {
-          return col;
-        });
-      }
-      board[0] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+      board = [0,0,0,0,0,0,0,0,0,0].concat(board);
     }
-  });
-  if(lines > 0) this.score += Math.pow(2, lines) / 2;
+    else board = board.concat(slice);
+  }
+  if (lines > 0) this.board = board;
 };
+TetrisBoard.prototype.render = function(context) {
+  this.board.forEach(function(b, i) { renderBlock(context, b, i, 10) });
+  var tetromino = this.tetromino;
+  var element = tetromino.element;
+  tetromino.blocks.forEach(function(b, i) { if (b >= 0) renderBlock(context, element, b, 10) });
+};
+
 TetrisBoard.prototype.clearForGameover = function() {
   var randElement = Math.ceil(Math.random() * 118);
   var boardCoords = {x: 0, y: 0};
@@ -131,3 +113,5 @@ TetrisBoard.prototype.clearForGameover = function() {
 
   clearBoard(boardCoords);
 };
+
+var tetrisGrid = new TetrisBoard();
