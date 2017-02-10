@@ -2,7 +2,7 @@ var TetrisBoard = function() {
   var board = [];
   for (var i = 0; i < 200; i++) board.push(0);
   this.board = board;
-  this.setTetromino(new Tetromino(Math.ceil(Math.random() * (CHEMICAL_ELEMENTS.length - 1)), 'line'));
+  this.tetromino = new Tetromino().convertForBoard();
 }
 TetrisBoard.prototype.dropInterval = 0;
 TetrisBoard.prototype.setTetromino = function(tetromino) {
@@ -27,19 +27,26 @@ TetrisBoard.prototype.slide = function(direction) {
 };
 TetrisBoard.prototype.rotate = function(direction) {
   var blocks = this.tetromino.rotate(direction);
-  for (var i = 0; i < blocks.length; i++) {
-    var b = blocks[i];
-    if (b < 0) return;
-    var adjacent = i == blocks.length - 1;
-    for (var a = i + 1; a < blocks.length; a++) {
-      var adjB = blocks[a];
-      if (b % 10 == adjB % 10 || (b / 10) >> 0 == (adjB / 10) >> 0) {
-        adjacent = true;
-        break;
-      }
-    }
-    if (!adjacent) return;
+  if (!blocks) return;
+  for (var a = 0, b = 1; b < blocks.length; a++, b++) {
+    var xA = blocks[a] % 10, xB = blocks[b] % 10;
+    var yA = (blocks[a] / 10) >> 0, yB = (blocks[b] / 10) >> 0;
+    var dist = Math.sqrt(Math.pow(xA - xB, 2) + Math.pow(yA - yB, 2));
+    if (dist > 4 || dist < -4) return false;
   }
+  // for (var i = 0; i < blocks.length; i++) {
+  //   var b = blocks[i];
+  //   if (b < 0) return;
+  //   var adjacent = i == blocks.length - 1;
+  //   for (var a = 0; a < blocks.length; a++) {
+  //     var adjB = blocks[a];
+  //     if (adjB !== b && (b % 10 == adjB % 10 || (b / 10) >> 0 == (adjB / 10) >> 0)) {
+  //       adjacent = true;
+  //       break;
+  //     }
+  //   }
+  //   if (!adjacent) return;
+  // }
   var board = this.board;
   if (blocks.every(function(b) { return board[b] === 0 })) this.tetromino.blocks = blocks;
 };
@@ -57,8 +64,8 @@ TetrisBoard.prototype.drop = function() {
   if (blocks.some(function(b) { return b > 199 || board[b] !== 0 })) {
     var element = this.tetromino.element;
     this.tetromino.blocks.forEach(function(b) { this.board[b] = element; }, this);
-    this.setTetromino(previewGrid.tetromino);
-    previewGrid.tetromino = new Tetromino(Math.ceil(Math.random() * (CHEMICAL_ELEMENTS.length - 1)), 'line');
+    this.tetromino = previewGrid.tetromino.convertForBoard();
+    previewGrid.tetromino = new Tetromino;
     // If any of the new tetromino's blocks collide with filled blocks in the board, it's game over
     if (this.tetromino.blocks.some(function(b) { return board[b] !== 0 })) return -1;
     lines = this.handleFullLines();

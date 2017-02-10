@@ -1,8 +1,23 @@
-var Tetromino = function(element, shape) {
-  this.element = element;
-  this.shape = shape;
-  this.blocks = TETROMINO_SHAPES[shape];
+var Tetromino = function() {
+  if (elementsQueue.length === 0) elementsQueue = generateRandomElements(CHEMICAL_ELEMENTS);
+  this.element = elementsQueue.pop();
+
+  var shapes = TETROMINO_SHAPES;
+  if (shapesQueue.length === 0) shapesQueue = generateRandomShapes(shapes);
+  this.shape = shapesQueue.pop();
+  this.blocks = shapes[this.shape];
 };
+Tetromino.prototype.convertForBoard = function(width) {
+  blocks = [];
+  for (var i = 0; i < this.blocks.length; i++) {
+    var b = this.blocks[i];
+    if (b > 3) blocks.push(b + 9);
+    else blocks.push(b + 3);
+  }
+  this.blocks = blocks;
+
+  return this;
+}
 Tetromino.prototype.raise = function() {
   return this.blocks.map(function(b) { return b -= 10 });
 };
@@ -24,10 +39,6 @@ Tetromino.prototype.rotate = function(direction) {
 
   return blocks.map(function(b, i) {
     if (i === 1) return b;
-    else {
-      var x = ((b / 10) >> 0) * multX;
-      var y = (b % 10) * multY;
-      return (x + transX) + ((y + transY) * 10);
-    }
+    else return ((((b / 10) >> 0) * multX) + transX) + ((((b % 10) * multY) + transY) * 10);
   });
 };

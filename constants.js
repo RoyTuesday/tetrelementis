@@ -156,26 +156,26 @@ var processTetrominos = function(templates) {
 //   'Pentathlon': processTetrominos(PENTOMINO_TEMPLATES)
 // };
 var TETROMINO_SHAPES = {
-  jBlock: [ 0, 1, 2,12],
+  jBlock: [0,1,2,6], // 3, 4, 5,15
   // xxx
   //   x
-  lBlock: [ 0, 1, 2,10],
+  lBlock: [0,1,2,4], // 3, 4, 5,13
   // xxx
   // x
-  square: [ 1, 2,11,12],
+  square: [1,2,5,6], // 4, 5,14,15
   // xx
   // xx
-  sBlock: [ 1, 2,10,11],
+  sBlock: [1,2,4,5], // 4, 5,13,14
   //  xx
   // xx
-  zBlock: [ 0, 1,11,12],
+  zBlock: [0,1,5,6], // 3, 4,14,15
   // xx
   //  xx
-  line:   [ 0, 1, 2, 3],
+  line:   [0,1,2,3], // 3, 4, 5, 6
   // xxxx
-  tBlock: [ 0, 1, 2,11],
+  tBlock: [0,1,2,5], // 3, 4, 5,14
   // xxx
-  // x
+  //  x
 }
 
 var KEY_CODES_TO_ACTIONS = {
@@ -195,30 +195,33 @@ var PERIODIC_TABLE = [
   [37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54],
   [55, 56,  0, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86],
   [87, 88,  0,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118],
-  [ 0,  0,  57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 0],
-  [ 0,  0,  89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99,100,101,102,103, 0]
+  [ 0,  0, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71,  0],
+  [ 0,  0, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99,100,101,102,103,  0]
 ];
 
-var generateRandomElements = function() {
-  var randElements = new Array;
-  var orderedElements = new Array;
+function generateRandomElements(elements) {
+  var random = [];
+  var aNums = [];
+  for (var i = 1; i < elements.length; i++) aNums.push(i);
 
-  for(var prop in CHEMICAL_ELEMENTS) {
-    if(CHEMICAL_ELEMENTS.hasOwnProperty(prop)) {
-      if(prop != 0) orderedElements.push(prop);
-    }
-  }
+  while (aNums.length > 0) random.push(aNums.splice((Math.random() * aNums.length) >> 0, 1)[0]);
 
-  var length = new Number(orderedElements.length);
-
-  for(var i = 0; i < length; i++) {
-    var randIndex = Math.floor(Math.random() * orderedElements.length);
-    randElements.push(orderedElements[randIndex]);
-    orderedElements.splice(randIndex, 1);
-  }
-
-  return randElements;
+  return random;
 }
+var elementsQueue = generateRandomElements(CHEMICAL_ELEMENTS);
+
+function generateRandomShapes(template) {
+  var random = [];
+  var triple = [];
+
+  for (var shape in template) if (template.hasOwnProperty(shape)) triple = triple.concat([shape, shape, shape]);
+
+  while (triple.length > 0) random.push(triple.splice((Math.random() * triple.length) >> 0, 1)[0]);
+
+  return random;
+}
+var shapesQueue = generateRandomShapes(TETROMINO_SHAPES);
+
 var getRandomShape = function(gameMode, limiter) {
   var length = TETROMINO_SHAPES[gameMode].length;
   var shapes = new Object;
