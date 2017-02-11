@@ -18,45 +18,27 @@
           <canvas id="tetris-preview" height="120" width="120">
             Block Preview
           </canvas>
-          <div id="level-display">
-            <div id="level-left">
-              <p>
-                Score:_<span id="player-score">0</span>
-              </p>
-              <p>
-                High Score:_<span id="high-score">0</span>
-                _<a id="reset-high-score" href="#" title="Reset your high score to 0">Reset score</a>
-              </p>
-              <p>
-                Level:_<span id="game-level">0</span>
-                <span id="game-level-static" style="display:none">0</span>
-                <span id="game-mode">Marathon</span>
-                <span id="game-mode-static" style="display:none">Marathon</span>
-              </p>
-              <p id="show-directions">
-                <a href="#">Directions</a>
-              </p>
-            </div>
-            <div id="level-right">
-              <div class="controls-row">
-                <button class="control-button" data-key="counter" title="Z Key: Rotate Block Counter-Clockwise">&#8634;</button>
-                <button class="control-button" data-key="clock" title="X Key: Rotate Block Clockwise">&#8635;</button>
-              </div>
-              <div class="controls-row">
-                <button class="control-button" data-key="left" title="Arrow Key Left: Move Block Left">&#8592;</button>
-                <button class="control-button" data-key="down" title="Arrow Key Down: Drop Block Faster">&#8595;</button>
-                <button class="control-button" data-key="right" title="Arrow Key Right: Move Block Right">&#8594;</button>
-              </div>
-              <div class="controls-row">
-                <button class="control-button" data-key="space" id="spacebar" title="Spacebar: Start or Pause">start / pause</button>
-              </div>
-            </div>
-          </div>
+          <table id="level-display">
+            <tbody>
+              <tr>
+                <td>Score:</td><td id="player-score">0</td>
+              </tr>
+              <tr>
+                <td>High Score:</td><td id="high-score">0</td>
+              </tr>
+              <tr>
+                <td>Level:</td><td><span id="game-level">0</span> <span id="game-mode">Marathon</span></td>
+              </tr>
+              <tr>
+                <td col="2"><a href="#" id="show-directions">Directions</a></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
         <div id="element-description-container">
           <div>
             <h2 id="element-name">Chemical Element</h2>
-            <p id="atomic-number-container">Atomic Number:_<span id="atomic-number">#</span></p>
+            <p id="atomic-number-container">Atomic Number: <span id="atomic-number">#</span></p>
           </div>
           <p id="element-description">
             Click the "Directions" link above to learn how to play.

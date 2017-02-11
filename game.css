@@ -30,37 +30,6 @@ select:hover {
 }
 .fw-bold {font-weight: bold;}
 
-.control-button {
-  background-color: #EEE;
-  border-radius: 4px;
-  border-width: 3px 4px 7px 5px;
-  box-shadow: 0 0 0 0.0625em black;
-  color: #333;
-  font-size: 20px;
-  height: 36px;
-  margin: 2px;
-  padding: 2px;
-  text-align: center;
-  width: 36px;
-}
-.control-button:active {
-  box-shadow: 0 0 0 3px black;
-  border-color: white;
-  border-style: outset;
-  transform: scale(0.9);
-}
-#spacebar {
-  font-size: 14px;
-  font-weight: bold;
-  width: 116px;
-}
-.controls-row {
-  display: webkit-flex;
-  -webkit-justify-content: center;
-  display: flex;
-  justify-content: center;
-}
-
 @keyframes stretch {
   0% {
     opacity: 0;
@@ -112,10 +81,6 @@ select:hover {
   float: right;
 }
 
-#controls-container {
-  margin: 2px;
-}
-
 #directions {
   color: #EEE;
   padding: 16px 32px;
@@ -149,16 +114,20 @@ select:hover {
 #hide-directions a:visited:hover {
   color: #99E;
 }
-#show-directions a, a#reset-high-score {
+#show-directions a,
+a#reset-high-score {
   color: #505;
 }
-#show-directions a:hover, a#reset-high-score:hover {
+#show-directions a:hover,
+a#reset-high-score:hover {
   color: #A5A;
 }
-#show-directions a:visited, a#reset-high-score:visited {
+#show-directions a:visited,
+a#reset-high-score:visited {
   color: #505;
 }
-#show-directions a:visited:hover, a#reset-high-score:visited:hover {
+#show-directions a:visited:hover,
+a#reset-high-score:visited:hover {
   color: #A5A;
 }
 
@@ -172,28 +141,24 @@ select:hover {
   display: inline-block;
   margin: 0;
 }
-#element-description, #atomic-number {
+#element-description,
+#atomic-number {
   margin: 8px 0 0 0;
 }
 #level-display {
   display: inline-block;
   height: 120px;
-  position: absolute;
-  text-align: left;
   vertical-align: top;
-  width: 418px;
+  margin: 8px 16px;
 }
 #level-display p {
   margin: 8px 0 8px 6px;
 }
-#level-left {
-  float: left;
-  margin: 3px;
-  width: 60%;
+#level-display td {
+  padding: 4px 2px;
 }
-#level-right {
-  float: right;
-  width: 35%;
+#level-display td:first-child {
+  text-align: right;
 }
 
 #periodic-table-container {
