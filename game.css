@@ -10,6 +10,10 @@ a:hover, a:visited:hover {
 body {
   background-color: #8A4358;
   color: #222;
+  font-family: Helvetica, arial, sans-serif;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
 canvas {
   background-color: #E1DEEA;
