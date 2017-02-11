@@ -5,10 +5,10 @@ var PreviewBoard = function() {
 }
 PreviewBoard.prototype.tetromino = new Tetromino;
 PreviewBoard.prototype.render = function(context) {
-  this.board.forEach(function(b, i) { renderBlock(context, b, i, 4) });
+  this.board.forEach(function(b, i) { renderBlock(b, i, 4, 330, 0) });
   var tetromino = this.tetromino;
   var element = tetromino.element;
-  tetromino.blocks.forEach(function(b, i) { if (b >= 0) renderBlock(context, element, b, 4) });
+  tetromino.blocks.forEach(function(b, i) { if (b >= 0) renderBlock(element, b, 4, 330, 0) });
 };
 
 var previewGrid = new PreviewBoard();

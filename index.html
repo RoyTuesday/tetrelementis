@@ -2,58 +2,31 @@
 <html>
   <head>
     <meta charset="UTF-8"/>
-    <link href="./game.css" rel="stylesheet" type="text/css"/>
+    <style media="screen">
+      body {
+        background-color: #8A4358;
+        color: #222;
+        margin: 0;
+        padding: 18px 0;
+        text-align: center;
+      }
+      main {
+        position: relative;
+        margin: 0 auto;
+        width: 870px;
+      }
+      canvas {
+        background-color: #E1DEEA;
+        /*max-height: 600px;
+        height: 100%;*/
+      }
+    </style>
 
     <title>Tetrelementis</title>
   </head>
   <body>
-    <main id="container">
-      <canvas id="tetris-grid" height="600" width="300">
-        Main Game View
-      </canvas>
-      <div id="right-container">
-        <div style="height:130px;">
-          <canvas id="tetris-preview" height="120" width="120">
-            Block Preview
-          </canvas>
-          <table id="level-display">
-            <tbody>
-              <tr>
-                <td>Score:</td><td id="player-score">0</td>
-              </tr>
-              <tr>
-                <td>High Score:</td><td id="high-score">0</td>
-              </tr>
-              <tr>
-                <td>Level:</td><td><span id="game-level">0</span> <span id="game-mode">Marathon</span></td>
-              </tr>
-              <tr>
-                <td col="2"><a href="#" id="show-directions">Directions</a></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div id="element-description-container">
-          <div>
-            <h2 id="element-name">Chemical Element</h2>
-            <p id="atomic-number-container">Atomic Number: <span id="atomic-number">#</span></p>
-          </div>
-          <p id="element-description">
-            Click the "Directions" link above to learn how to play.
-            <br/>
-            <br/>
-            Press the spacebar or click the start button to start.
-          </p>
-          <p>
-            <a href="" id="element-link" target="_blank"></a>
-          </p>
-        </div>
-        <div id="periodic-table-container">
-          <canvas id="tetris-table" height="270" width="540">
-            Table of Elements
-          </canvas>
-        </div>
-      </div>
+    <main>
+      <canvas id="canvas" width="870" height="600"></canvas>
     </main>
   </body>
   <script type="text/javascript" src="chemical-elements.js"></script>

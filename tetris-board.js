@@ -77,10 +77,10 @@ TetrisBoard.prototype.handleFullLines = function() {
   return lines;
 };
 TetrisBoard.prototype.render = function(context) {
-  this.board.forEach(function(b, i) { renderBlock(context, b, i, 10) });
+  this.board.forEach(function(b, i) { renderBlock(b, i, 10, 0, 0) });
   var tetromino = this.tetromino;
   var element = tetromino.element;
-  tetromino.blocks.forEach(function(b, i) { if (b >= 0) renderBlock(context, element, b, 10) });
+  tetromino.blocks.forEach(function(b) { if (b >= 0) renderBlock(element, b, 10, 0, 0) });
 };
 
 TetrisBoard.prototype.clearForGameover = function() {
