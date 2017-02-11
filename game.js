@@ -22,7 +22,6 @@ function update() {
   }
   else setScore(drop);
 }
-tetrisGrid.dropInterval = setInterval(update, DROP_DELAY[0]);
 
 function renderBlock(context, num, i, width) {
   if (typeof num !== 'number') return;
@@ -87,25 +86,34 @@ window.requestAnimationFrame(step);
 function handleKeyDown(event) {
   if (!event.repeat) {
     if (!event.ctrlKey && !event.altKey && !event.metaKey) event.preventDefault();
-    switch (event.key.toLowerCase()) {
-      case 'arrowleft': tetrisGrid.slide('left'); break;
-      case 'arrowright': tetrisGrid.slide('right'); break;
-      case 'arrowup': tetrisGrid.raise(); break;
-      case 'z': tetrisGrid.rotate('clock'); break;
-      case 'a': tetrisGrid.rotate('count'); break;
-      case 'arrowdown':
-        clearInterval(tetrisGrid.dropInterval);
-        tetrisGrid.dropInterval = setInterval(update, FAST_DROP);
-        break;
+    if (tetrisGrid.dropInterval > 0) {
+      switch (event.key.toLowerCase()) {
+        case 'arrowleft': tetrisGrid.slide('left'); break;
+        case 'arrowright': tetrisGrid.slide('right'); break;
+        case 'arrowup': tetrisGrid.raise(); break;
+        case 'z': tetrisGrid.rotate('clock'); break;
+        case 'a': tetrisGrid.rotate('count'); break;
+        case 'arrowdown':
+          clearInterval(tetrisGrid.dropInterval);
+          tetrisGrid.dropInterval = setInterval(update, FAST_DROP);
+          break;
+        case ' ':
+          clearInterval(tetrisGrid.dropInterval);
+          tetrisGrid.dropInterval = 0;
+          break;
+      }
     }
+    else if (event.key.toLowerCase() == ' ') tetrisGrid.dropInterval = setInterval(update, DROP_DELAY[0]);
   }
 }
 function handleKeyUp(event) {
-  switch(event.key.toLowerCase()) {
-    case 'arrowdown':
-      clearInterval(tetrisGrid.dropInterval);
-      tetrisGrid.dropInterval = setInterval(update, DROP_DELAY[0]);
-      break;
+  if (tetrisGrid.dropInterval > 0) {
+    switch(event.key.toLowerCase()) {
+      case 'arrowdown':
+        clearInterval(tetrisGrid.dropInterval);
+        tetrisGrid.dropInterval = setInterval(update, DROP_DELAY[0]);
+        break;
+    }
   }
 }
 document.addEventListener('keydown', handleKeyDown);
