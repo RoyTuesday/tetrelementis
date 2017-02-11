@@ -70,6 +70,7 @@ select:hover {
   margin: 16px auto;
   padding: 32px;
   width: 876px;
+  position: relative;
 }
 #right-container {
   display: inline-block;
@@ -79,56 +80,6 @@ select:hover {
 #atomic-number-container {
   margin: 4px 10px;
   float: right;
-}
-
-#directions {
-  color: #EEE;
-  padding: 16px 32px;
-  position: absolute;
-  top: 0px;
-}
-#directions-container {
-  display: none;
-  position: absolute;
-}
-#directions-transparent-layer {
-  background-color: #213;
-  border-radius: 10px;
-  box-shadow: 0 0 4px 4px #EEE;
-  opacity: 0.95;
-  position: absolute;
-  top: 0px;
-}
-#hide-directions {
-  float: right;
-}
-#hide-directions a {
-  color: #EEE;
-}
-#hide-directions a:hover {
-  color: #99E;
-}
-#hide-directions a:visited {
-  color: #EEE;
-}
-#hide-directions a:visited:hover {
-  color: #99E;
-}
-#show-directions a,
-a#reset-high-score {
-  color: #505;
-}
-#show-directions a:hover,
-a#reset-high-score:hover {
-  color: #A5A;
-}
-#show-directions a:visited,
-a#reset-high-score:visited {
-  color: #505;
-}
-#show-directions a:visited:hover,
-a#reset-high-score:visited:hover {
-  color: #A5A;
 }
 
 #element-description-container {
