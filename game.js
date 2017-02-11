@@ -1,11 +1,20 @@
 var tetrisCxt = document.getElementById('tetris-grid').getContext('2d');
+tetrisCxt.textAlign = 'center';
+tetrisCxt.textBaseline = 'middle';
 var previewCxt = document.getElementById('tetris-preview').getContext('2d');
+previewCxt.textAlign = 'center';
+previewCxt.textBaseline = 'middle';
 var table = document.getElementById('tetris-table');
 var tableCxt = table.getContext('2d');
+tableCxt.textAlign = 'center';
+tableCxt.textBaseline = 'middle';
 BLOCK_SPACING_HEIGHT = tetrisCxt.canvas.height / 20;
 BLOCK_SPACING_WIDTH = tetrisCxt.canvas.width / 10;
 BLOCK_HEIGHT = BLOCK_SPACING_HEIGHT - 10;
 BLOCK_WIDTH = BLOCK_SPACING_WIDTH - 10;
+
+
+var scene = 0;
 
 var playerScore = document.getElementById('player-score');
 function setScore(lines) {
@@ -31,21 +40,10 @@ function renderBlock(context, num, i, width) {
   var xPos = x + 5;
   var yPos = y + 5;
   var textX = x + (BLOCK_SPACING_WIDTH / 2);
-  var textY = y + (BLOCK_SPACING_HEIGHT / 2) + 4;
+  var textY = y + (BLOCK_SPACING_HEIGHT / 2) + 2;
 
   var fontSize = FONT_SIZE;
-  switch (chem.symbol.length) {
-    case 1:
-      textX -= 3;
-      break;
-    case 2:
-      textX -= 7;
-      break;
-    case 3:
-      fontSize -= 2;
-      textX -= 7;
-      break;
-  }
+  if (chem.symbol.length === 3) fontSize -= 2;
   context.font = fontSize + BLOCK_FONT;
 
   context.lineWidth = 4;
@@ -71,6 +69,14 @@ function render() {
   if (active >= 0) {
     tableCxt.fillStyle = '#FFF7';
     tableCxt.fillRect(1 + (active % 18) * BLOCK_SPACING_WIDTH, 1 + (active / 18 >> 0) * BLOCK_SPACING_HEIGHT, BLOCK_SPACING_WIDTH - 2, BLOCK_SPACING_HEIGHT - 2);
+  }
+
+  if (tetrisGrid.dropInterval === 0) {
+    tetrisCxt.fillStyle = '#FFF7';
+    tetrisCxt.fillRect(0, 0, tetrisCxt.canvas.width, tetrisCxt.canvas.height);
+    tetrisCxt.font = (FONT_SIZE * 2) + BLOCK_FONT;
+    tetrisCxt.fillStyle = '#111';
+    tetrisCxt.fillText('Paused', tetrisCxt.canvas.width / 2, tetrisCxt.canvas.height / 2);
   }
 }
 
@@ -124,6 +130,6 @@ function handleTableMouseMove(event) {
   var y = (event.layerY / BLOCK_SPACING_HEIGHT) >> 0;
   var i = x + (18 * y);
   if (tableGrid.board[i] > 0) tableGrid.activeIndex = i;
-  else if (tableGrid.activeIndex > 0) tableGrid.activeIndex = -1;
+  else if (tableGrid.activeIndex >= 0) tableGrid.activeIndex = -1;
 }
 table.addEventListener('mousemove', handleTableMouseMove);
