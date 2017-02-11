@@ -10,6 +10,7 @@ const CANVAS_HEIGHT = canvas.height;
 
 var scene = 0;
 var playerScore = 0;
+var highScore = 0;
 
 function update() {
   var lines = tetrisGrid.drop();
@@ -17,6 +18,8 @@ function update() {
     clearInterval(tetrisGrid.dropInterval);
     tetrisGrid = new TetrisBoard;
     tetrisGrid.dropInterval = setInterval(update, DROP_DELAY[0]);
+    highScore = playerScore;
+    playerScore = 0;
   }
   else if (lines > 0) playerScore += Math.pow(2, lines) / 2;
 }
@@ -65,6 +68,7 @@ function render() {
   context.fillStyle = '#111';
   context.font = (FONT_SIZE * 2) + BLOCK_FONT;
   context.fillText('Score: ' + playerScore, 480, 30);
+  context.fillText('Hi Score: ' + highScore, 480, 60);
   context.textAlign = 'center';
   // Pause overlay
   if (tetrisGrid.dropInterval === 0) {
