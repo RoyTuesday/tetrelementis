@@ -8,7 +8,7 @@ PeriodicTable.prototype.showElement = function(aNum) {
   this.board[PERIODIC_TABLE.indexOf(aNum)] = aNum;
 }
 PeriodicTable.prototype.render = function(context) {
-  this.board.forEach(function(b, i) { renderBlock(b, i, 18, 330, 360) });
+  this.board.forEach(function(b, i) { renderBlock(b, i, 18, 330, 330) });
 };
 
 var tableGrid = new PeriodicTable;
