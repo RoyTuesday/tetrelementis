@@ -3,6 +3,7 @@ var PeriodicTable = function() {
   for (var i = 0; i < 162; i++) board.push(0);
   this.board = board;
 }
+PeriodicTable.prototype.activeIndex = -1;
 PeriodicTable.prototype.showElement = function(aNum) {
   this.board[PERIODIC_TABLE.indexOf(aNum)] = aNum;
 }

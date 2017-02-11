@@ -1,6 +1,7 @@
 var tetrisCxt = document.getElementById('tetris-grid').getContext('2d');
 var previewCxt = document.getElementById('tetris-preview').getContext('2d');
-var tableCxt = document.getElementById('tetris-table').getContext('2d');
+var table = document.getElementById('tetris-table');
+var tableCxt = table.getContext('2d');
 BLOCK_SPACING_HEIGHT = tetrisCxt.canvas.height / 20;
 BLOCK_SPACING_WIDTH = tetrisCxt.canvas.width / 10;
 BLOCK_HEIGHT = BLOCK_SPACING_HEIGHT - 10;
@@ -66,6 +67,12 @@ function render() {
   tableGrid.render(tableCxt);
   previewGrid.render(previewCxt);
   tetrisGrid.render(tetrisCxt);
+
+  var active = tableGrid.activeIndex;
+  if (active >= 0) {
+    tableCxt.fillStyle = '#FFF7';
+    tableCxt.fillRect(1 + (active % 18) * BLOCK_SPACING_WIDTH, 1 + (active / 18 >> 0) * BLOCK_SPACING_HEIGHT, BLOCK_SPACING_WIDTH - 2, BLOCK_SPACING_HEIGHT - 2);
+  }
 }
 
 function step(timestamp) {
@@ -78,7 +85,7 @@ function step(timestamp) {
 window.requestAnimationFrame(step);
 
 function handleKeyDown(event) {
-  // if (!event.repeat) {
+  if (!event.repeat) {
     if (!event.ctrlKey && !event.altKey && !event.metaKey) event.preventDefault();
     switch (event.key.toLowerCase()) {
       case 'arrowleft': tetrisGrid.slide('left'); break;
@@ -91,7 +98,7 @@ function handleKeyDown(event) {
         tetrisGrid.dropInterval = setInterval(update, FAST_DROP);
         break;
     }
-  // }
+  }
 }
 function handleKeyUp(event) {
   switch(event.key.toLowerCase()) {
@@ -103,3 +110,12 @@ function handleKeyUp(event) {
 }
 document.addEventListener('keydown', handleKeyDown);
 document.addEventListener('keyup', handleKeyUp);
+
+function handleTableMouseMove(event) {
+  var x = (event.layerX / BLOCK_SPACING_WIDTH) >> 0;
+  var y = (event.layerY / BLOCK_SPACING_HEIGHT) >> 0;
+  var i = x + (18 * y);
+  if (tableGrid.board[i] > 0) tableGrid.activeIndex = i;
+  else if (tableGrid.activeIndex > 0) tableGrid.activeIndex = -1;
+}
+table.addEventListener('mousemove', handleTableMouseMove);
