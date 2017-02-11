@@ -12,17 +12,31 @@ var scene = 0;
 var playerScore = 0;
 var highScore = 0;
 
-function update() {
+function drop() {
   var lines = tetrisGrid.drop();
   if (lines < 0) {
     clearInterval(tetrisGrid.dropInterval);
     tetrisGrid = new TetrisBoard;
-    tetrisGrid.dropInterval = setInterval(update, DROP_DELAY[0]);
+    tetrisGrid.dropInterval = setInterval(drop, DROP_DELAY[0]);
     highScore = playerScore;
     playerScore = 0;
   }
   else if (lines > 0) playerScore += Math.pow(2, lines) / 2;
 }
+function slide() {
+  switch (tetrisGrid.slideDirection) {
+    case -1: tetrisGrid.slide('left'); break;
+    case  1: tetrisGrid.slide('right'); break;
+  }
+}
+function rotate() {
+  switch (tetrisGrid.rotateDirection) {
+    case -1: tetrisGrid.rotate('counter'); break;
+    case  1: tetrisGrid.rotate('clock'); break;
+  }
+}
+setInterval(slide, FAST_DROP);
+setInterval(rotate, FAST_DROP * 4);
 
 function renderBlock(num, i, width, xOff, yOff) {
   if (typeof num !== 'number') return;
@@ -93,14 +107,14 @@ function handleKeyDown(event) {
     if (!event.ctrlKey && !event.altKey && !event.metaKey) event.preventDefault();
     if (tetrisGrid.dropInterval > 0) {
       switch (event.key.toLowerCase()) {
-        case 'arrowleft': tetrisGrid.slide('left'); break;
-        case 'arrowright': tetrisGrid.slide('right'); break;
+        case 'arrowleft' : tetrisGrid.slideDirection--; break;
+        case 'arrowright': tetrisGrid.slideDirection++; break;
         case 'arrowup': tetrisGrid.raise(); break;
-        case 'z': tetrisGrid.rotate('clock'); break;
-        case 'a': tetrisGrid.rotate('count'); break;
+        case 'x': tetrisGrid.rotateDirection--; break;
+        case 'z': tetrisGrid.rotateDirection++; break;
         case 'arrowdown':
           clearInterval(tetrisGrid.dropInterval);
-          tetrisGrid.dropInterval = setInterval(update, FAST_DROP);
+          tetrisGrid.dropInterval = setInterval(drop, FAST_DROP);
           break;
         case ' ':
           clearInterval(tetrisGrid.dropInterval);
@@ -108,17 +122,21 @@ function handleKeyDown(event) {
           break;
       }
     }
-    else if (event.key.toLowerCase() == ' ') tetrisGrid.dropInterval = setInterval(update, DROP_DELAY[0]);
+    else if (event.key.toLowerCase() == ' ') tetrisGrid.dropInterval = setInterval(drop, DROP_DELAY[0]);
   }
 }
 function handleKeyUp(event) {
-  if (tetrisGrid.dropInterval > 0) {
-    switch(event.key.toLowerCase()) {
-      case 'arrowdown':
-        clearInterval(tetrisGrid.dropInterval);
-        tetrisGrid.dropInterval = setInterval(update, DROP_DELAY[0]);
-        break;
-    }
+  var key = event.key.toLowerCase();
+  if (tetrisGrid.dropInterval > 0 && key == 'arrowdown') {
+    clearInterval(tetrisGrid.dropInterval);
+    tetrisGrid.dropInterval = setInterval(drop, DROP_DELAY[0]);
+  }
+
+  switch (key) {
+    case 'arrowleft' : tetrisGrid.slideDirection++; break;
+    case 'arrowright': tetrisGrid.slideDirection--; break;
+    case 'x': tetrisGrid.rotateDirection++; break;
+    case 'z': tetrisGrid.rotateDirection--; break;
   }
 }
 document.addEventListener('keydown', handleKeyDown);

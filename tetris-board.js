@@ -5,6 +5,8 @@ var TetrisBoard = function() {
   this.tetromino = new Tetromino().convertForBoard();
 }
 TetrisBoard.prototype.dropInterval = 0;
+TetrisBoard.prototype.slideDirection = 0;
+TetrisBoard.prototype.rotateDirection = 0;
 TetrisBoard.prototype.setTetromino = function(tetromino) {
   tetromino.blocks = tetromino.blocks.map(function(b) { return b + 3 });
   this.tetromino = tetromino;
