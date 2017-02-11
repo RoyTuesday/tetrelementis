@@ -18,7 +18,7 @@ function update() {
     tetrisGrid = new TetrisBoard;
     tetrisGrid.dropInterval = setInterval(update, DROP_DELAY[0]);
   }
-  else playerScore += lines;
+  else if (lines > 0) playerScore += Math.pow(2, lines) / 2;
 }
 
 function renderBlock(num, i, width, xOff, yOff) {
@@ -43,28 +43,33 @@ function renderBlock(num, i, width, xOff, yOff) {
   context.fillStyle = chem.color;
   context.fillText(chem.symbol, textX, textY);
 }
-function renderTetrisBlocks(b, i) { renderBlock(b, i, 10, 0, 0) }
-function renderPreviewBlocks(b, i) { renderBlock(b, i, 4, 330, 0) }
-function renderTableBlocks(b, i) { renderBlock(b, i, 18, 330, 330) }
+// function renderTetrisBlocks(b, i) { renderBlock(b, i, 10, 0, 0) }
+// function renderPreviewBlocks(b, i) { renderBlock(b, i, 4, 330, 0) }
+// function renderTableBlocks(b, i) { renderBlock(b, i, 18, 330, 300) }
 
 function render() {
   context.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
   context.lineWidth = 4;
-  tableGrid.render(context);
   previewGrid.render(context);
   tetrisGrid.render(context);
-
+  tableGrid.render(context);
+  // Periodic Table element highlight
   var active = tableGrid.activeIndex;
   if (active >= 0) {
     context.fillStyle = '#FFF7';
-    context.fillRect(330 + (active % 18) * BLOCK_SPACING, 360 + (active / 18 >> 0) * BLOCK_SPACING, BLOCK_SPACING, BLOCK_SPACING);
+    context.fillRect(330 + (active % 18) * BLOCK_SPACING, 330 + (active / 18 >> 0) * BLOCK_SPACING, BLOCK_SPACING, BLOCK_SPACING);
   }
-
+  // Player score
+  context.textAlign = 'left';
+  context.fillStyle = '#111';
+  context.font = (FONT_SIZE * 2) + BLOCK_FONT;
+  context.fillText('Score: ' + playerScore, 480, 30);
+  context.textAlign = 'center';
+  // Pause overlay
   if (tetrisGrid.dropInterval === 0) {
     context.fillStyle = '#FFF7';
     context.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-    context.font = (FONT_SIZE * 2) + BLOCK_FONT;
     context.fillStyle = '#111';
     context.fillText('Paused', CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2);
   }
