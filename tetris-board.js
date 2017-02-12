@@ -71,9 +71,17 @@ TetrisBoard.prototype.handleFullLines = function() {
 };
 TetrisBoard.prototype.render = function(context) {
   this.board.forEach(function(b, i) { renderBlock(b, i, 10, 0, 0) });
-  var tetromino = this.tetromino;
-  var element = tetromino.element;
-  tetromino.blocks.forEach(function(b) { if (b >= 0) renderBlock(element, b, 10, 0, 0) });
+  if (scene !== 2) {
+    var tetromino = this.tetromino;
+    var element = tetromino.element;
+    tetromino.blocks.forEach(function(b) { if (b >= 0) renderBlock(element, b, 10, 0, 0) });
+  }
+};
+TetrisBoard.prototype.clearMovement = function() {
+  clearInterval(this.dropInterval);
+  this.dropInterval = 0;
+  this.slideDirection = 0;
+  this.rotateDirection = 0;
 };
 
 TetrisBoard.prototype.clearForGameover = function() {

@@ -12,15 +12,15 @@ const CANVAS_HEIGHT = canvas.height;
 var scene = 0;
 var playerScore = 0;
 var highScore = 0;
+var resetBoard = 0;
+var gameoverElement = 0;
 
 function drop() {
   var lines = tetrisGrid.drop();
   if (lines < 0) {
-    clearInterval(tetrisGrid.dropInterval);
-    tetrisGrid = new TetrisBoard;
-    tetrisGrid.dropInterval = setInterval(drop, DROP_DELAY[0]);
-    highScore = playerScore;
-    playerScore = 0;
+    tetrisGrid.clearMovement();
+    scene = 2;
+    gameoverElement = (Math.random() * (CHEMICAL_ELEMENTS.length - 1) >> 0) + 1;
   }
   else if (lines > 0) playerScore += Math.pow(2, lines) / 2;
 }
@@ -29,6 +29,21 @@ function allowSlide() { canSlide = true }
 canRotate = true;
 function allowRotate() { canRotate = true }
 function update() {
+  if (scene === 2) {
+    tetrisGrid.board[resetBoard] = gameoverElement;
+    if (resetBoard < 199) resetBoard++;
+    else {
+      if (gameoverElement === 0) {
+        scene = 0;
+        tetrisGrid = new TetrisBoard;
+        highScore = playerScore;
+        playerScore = 0;
+      }
+      else gameoverElement = 0;
+      resetBoard = 0;
+    }
+  }
+
   if (canSlide && tetrisGrid.slideDirection !== 0) {
     tetrisGrid.slide();
     canSlide = false;
@@ -89,7 +104,7 @@ function render() {
   context.fillText('Hi Score: ' + highScore, 480, 60);
   context.textAlign = 'center';
   // Pause overlay
-  if (tetrisGrid.dropInterval === 0) {
+  if (scene === 0) {
     context.fillStyle = '#FFF7';
     context.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
     context.fillStyle = '#111';
@@ -110,7 +125,13 @@ window.requestAnimationFrame(step);
 function handleKeyDown(event) {
   if (!event.ctrlKey && !event.altKey && !event.metaKey) event.preventDefault();
   if (!event.repeat) {
-    if (tetrisGrid.dropInterval > 0) {
+    if (scene === 0) {
+      if (event.key.toLowerCase() == ' ') {
+        tetrisGrid.dropInterval = setInterval(drop, DROP_DELAY[0]);
+        scene = 1;
+      }
+    }
+    else if (scene === 1) {
       switch (event.key.toLowerCase()) {
         case 'arrowleft' : tetrisGrid.slideDirection--; break;
         case 'arrowright': tetrisGrid.slideDirection++; break;
@@ -124,10 +145,10 @@ function handleKeyDown(event) {
         case ' ':
           clearInterval(tetrisGrid.dropInterval);
           tetrisGrid.dropInterval = 0;
+          scene = 0;
           break;
       }
     }
-    else if (event.key.toLowerCase() == ' ') tetrisGrid.dropInterval = setInterval(drop, DROP_DELAY[0]);
   }
 }
 function handleKeyUp(event) {
