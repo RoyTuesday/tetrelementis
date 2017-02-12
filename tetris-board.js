@@ -15,11 +15,7 @@ TetrisBoard.prototype.slide = function() {
   var board = this.board;
   var blocks = this.tetromino.blocks;
   var direction = this.slideDirection;
-  var wall;
-  switch (direction) {
-    case -1: wall = 0; break;
-    case  1: wall = 9; break;
-  }
+  var wall = 4.5 + (direction * 4.5);
   if (blocks.every(function(b) { return b % 10 !== wall && board[b + direction] === 0 })) this.tetromino.slide(direction);
 };
 TetrisBoard.prototype.rotate = function() {

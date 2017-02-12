@@ -30,13 +30,13 @@ Tetromino.prototype.slide = function(xMod) {
 Tetromino.prototype.rotate = function(direction) {
   if (this.shape == 'square') return false;
   var blocks = this.blocks;
-  var center = blocks[1];
+  var center = blocks[0];
   var transCenter = ((center % 10) * 10 * direction) + ((direction * center / -10) >> 0);
   var transX = ((center % 10) - (transCenter % 10)) >> 0;
   var transY = ((center / 10) >> 0) - ((transCenter / 10) >> 0);
 
   return blocks.map(function(b, i) {
-    if (i === 1) return b;
+    if (i === 0) return b;
     else return ((((b / -10) >> 0) * direction) + transX) + ((((b % 10) * direction) + transY) * 10);
   });
 };
