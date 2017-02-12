@@ -1,3 +1,67 @@
+var KEY_CODES = [,,,,,,,,
+  'backspace',
+  'tab',,,,
+  'enter',,,
+  'shift',
+  'control',
+  'alt',,
+  'capslock',,,,,,,,,,,,
+  ' ',
+  'pageup',
+  'pagedown',
+  'end',
+  'home',,,,,,,,,
+  'insert',
+  'delete',,
+  '0',
+  '1',
+  '2',
+  '3',
+  '4',
+  '5',
+  '6',
+  '7',
+  '8',
+  '9',,
+  ';',,
+  '=',,,,
+  'a',
+  'b',
+  'c',
+  'd',
+  'e',
+  'f',
+  'g',
+  'h',
+  'i',
+  'j',
+  'k',
+  'l',
+  'm',
+  'n',
+  'o',
+  'p',
+  'q',
+  'r',
+  's',
+  't',
+  'u',
+  'v',
+  'w',
+  'x',
+  'y',
+  'z',,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+  '-',,,,,,,,,,,,,,,
+  ',',,
+  '.',
+  '/',
+  '`',,,,,,,,,,,,,,,,,,,,,,,,,,,
+  '[',
+  '\\',
+  ']',
+  '\'',,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+];
+
 const CHEMISTRY_URL = "http://www.webelements.com/";
 const FONT_SIZE = 11;
 const BLOCK_FONT = "px monospace";
@@ -97,11 +161,6 @@ var PENTOMINO_TEMPLATES = {
   line: [
     'xxxxx']
 }
-// var TETROMINO_SHAPES = {
-//   'Marathon': processTetrominos(TETROMINO_TEMPLATES),
-//   'Fixed Level': processTetrominos(TETROMINO_TEMPLATES),
-//   'Pentathlon': processTetrominos(PENTOMINO_TEMPLATES)
-// };
 var TETROMINO_SHAPES = {
   jBlock: [1,0,2,6], // 3, 4, 5,15
   // xxx
@@ -123,15 +182,6 @@ var TETROMINO_SHAPES = {
   tBlock: [1,0,2,5], // 3, 4, 5,14
   // xxx
   //  x
-}
-
-var KEY_CODES_TO_ACTIONS = {
-  32: 'space',
-  37: 'left',
-  39: 'right',
-  40: 'down',
-  88: 'counter',
-  90: 'clock'
 }
 
 var PERIODIC_TABLE = [

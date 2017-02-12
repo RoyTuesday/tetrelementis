@@ -122,28 +122,43 @@ function step(timestamp) {
 }
 window.requestAnimationFrame(step);
 
+keyBinds = {
+  ' ': 'pause',
+  'z': 'counter', 'Z': 'counter',
+  'x': 'clock',   'X': 'clock',
+  'ArrowLeft' : 'left',
+  'ArrowRight': 'right',
+  'ArrowUp'   : 'up',
+  'ArrowDown' : 'down'
+};
+function getAction(event) {
+  var key = event.key;
+  return keyBinds[key ? key : KEY_CODES[event.keyCode]];
+}
+
 function handleKeyDown(event) {
+  var action = getAction(event);
   if (!event.ctrlKey && !event.altKey && !event.metaKey) event.preventDefault();
   if (!event.repeat) {
     if (scene === 0) {
-      if (event.key.toLowerCase() == ' ') {
+      if (action == 'pause') {
         tetrisGrid.clearMovement();
         tetrisGrid.dropInterval = setInterval(drop, DROP_DELAY[0]);
         scene = 1;
       }
     }
     else if (scene === 1) {
-      switch (event.key.toLowerCase()) {
-        case 'arrowleft' : tetrisGrid.slideDirection--; break;
-        case 'arrowright': tetrisGrid.slideDirection++; break;
-        case 'arrowup': tetrisGrid.raise(); break;
-        case 'z': tetrisGrid.rotateDirection--; break;
-        case 'x': tetrisGrid.rotateDirection++; break;
-        case 'arrowdown':
+      switch (action) {
+        case 'up'     : tetrisGrid.raise();           break;
+        case 'left'   : tetrisGrid.slideDirection--;  break;
+        case 'right'  : tetrisGrid.slideDirection++;  break;
+        case 'counter': tetrisGrid.rotateDirection--; break;
+        case 'clock'  : tetrisGrid.rotateDirection++; break;
+        case 'down':
           clearInterval(tetrisGrid.dropInterval);
           tetrisGrid.dropInterval = setInterval(drop, FAST_DROP);
           break;
-        case ' ':
+        case 'pause':
           clearInterval(tetrisGrid.dropInterval);
           tetrisGrid.dropInterval = 0;
           scene = 0;
@@ -153,17 +168,17 @@ function handleKeyDown(event) {
   }
 }
 function handleKeyUp(event) {
-  var key = event.key.toLowerCase();
-  if (tetrisGrid.dropInterval > 0 && key == 'arrowdown') {
+  var action = getAction(event);
+  if (scene === 1 && action == 'down') {
     clearInterval(tetrisGrid.dropInterval);
     tetrisGrid.dropInterval = setInterval(drop, DROP_DELAY[0]);
   }
 
-  switch (key) {
-    case 'arrowleft' : tetrisGrid.slideDirection++; break;
-    case 'arrowright': tetrisGrid.slideDirection--; break;
-    case 'z': tetrisGrid.rotateDirection++; break;
-    case 'x': tetrisGrid.rotateDirection--; break;
+  switch (action) {
+    case 'left'   : tetrisGrid.slideDirection++;  break;
+    case 'right'  : tetrisGrid.slideDirection--;  break;
+    case 'counter': tetrisGrid.rotateDirection++; break;
+    case 'clock'  : tetrisGrid.rotateDirection--; break;
   }
 }
 document.addEventListener('keydown', handleKeyDown);
