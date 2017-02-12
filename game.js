@@ -3,8 +3,9 @@ var context = canvas.getContext('2d');
 context.textAlign = 'center';
 context.textBaseline = 'middle';
 
-const BLOCK_SPACING = canvas.height / 20;
-const BLOCK_SIZE = BLOCK_SPACING - 10;
+const BLOCK_SPACING = 30;
+const BLOCK_PADDING = 5;
+const BLOCK_SIZE = BLOCK_SPACING - (BLOCK_PADDING * 2);
 const CANVAS_WIDTH = canvas.width;
 const CANVAS_HEIGHT = canvas.height;
 
@@ -40,10 +41,10 @@ setInterval(rotate, FAST_DROP * 4);
 function renderBlock(num, i, width, xOff, yOff) {
   if (typeof num !== 'number') return;
   var chem = CHEMICAL_ELEMENTS[num];
-  var x = xOff + (i % width) * BLOCK_SPACING;
-  var y = yOff + Math.floor(i / width) * BLOCK_SPACING;
-  var xPos = x + 5;
-  var yPos = y + 5;
+  var x = 15 + xOff + (i % width) * BLOCK_SPACING;
+  var y = 15 + yOff + Math.floor(i / width) * BLOCK_SPACING;
+  var xPos = x + BLOCK_PADDING;
+  var yPos = y + BLOCK_PADDING;
   var textX = x + (BLOCK_SPACING / 2);
   var textY = y + (BLOCK_SPACING / 2) + 2;
 
@@ -63,6 +64,8 @@ function renderBlock(num, i, width, xOff, yOff) {
 var frame = 0;
 function render() {
   context.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+  context.fillStyle = '#E1DEEA';
+  context.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
   context.lineWidth = 4;
   previewGrid.render(context);
@@ -72,7 +75,7 @@ function render() {
   var active = tableGrid.activeIndex;
   if (active >= 0) {
     context.fillStyle = '#FFF7';
-    context.fillRect(330 + (active % 18) * BLOCK_SPACING, 330 + (active / 18 >> 0) * BLOCK_SPACING, BLOCK_SPACING, BLOCK_SPACING);
+    context.fillRect(345 + (active % 18) * BLOCK_SPACING, 345 + (active / 18 >> 0) * BLOCK_SPACING, BLOCK_SPACING, BLOCK_SPACING);
   }
   // Player score
   context.textAlign = 'left';
@@ -146,8 +149,8 @@ function handleResize() {
 window.addEventListener('resize', handleResize);
 
 function handleMouseMove(event) {
-  var x = (((event.layerX * canvasScale) - 330) / BLOCK_SPACING) >> 0;
-  var y = (((event.layerY * canvasScale) - 330) / BLOCK_SPACING) >> 0;
+  var x = (((event.layerX * canvasScale) - 345) / BLOCK_SPACING) >> 0;
+  var y = (((event.layerY * canvasScale) - 345) / BLOCK_SPACING) >> 0;
   var i = x + (18 * y);
   if (i >= 0 && tableGrid.board[i] > 0) tableGrid.activeIndex = i;
   else if (tableGrid.activeIndex >= 0) tableGrid.activeIndex = -1;
