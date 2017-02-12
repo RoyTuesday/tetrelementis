@@ -127,6 +127,7 @@ function handleKeyDown(event) {
   if (!event.repeat) {
     if (scene === 0) {
       if (event.key.toLowerCase() == ' ') {
+        tetrisGrid.clearMovement();
         tetrisGrid.dropInterval = setInterval(drop, DROP_DELAY[0]);
         scene = 1;
       }
