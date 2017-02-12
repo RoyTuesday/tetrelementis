@@ -11,32 +11,19 @@ TetrisBoard.prototype.setTetromino = function(tetromino) {
   tetromino.blocks = tetromino.blocks.map(function(b) { return b + 3 });
   this.tetromino = tetromino;
 };
-TetrisBoard.prototype.startSlide = function(direction) {
-  this.slideDirection += direction;
-  if (!this.slideInterval) this.slideInterval = setInterval(slide, FAST_DROP);
-};
-TetrisBoard.prototype.stopSlide = function(direction) {
-  this.slideDirection -= direction;
-  if (this.slideDirection === 0) clearInterval(slide);
-};
-TetrisBoard.prototype.slide = function(direction) {
+TetrisBoard.prototype.slide = function() {
   var board = this.board;
   var blocks = this.tetromino.blocks;
-  var xMod, wall;
+  var direction = this.slideDirection;
+  var wall;
   switch (direction) {
-    case 'left' :
-      xMod = -1;
-      wall = 0;
-      break;
-    case 'right':
-      xMod = 1;
-      wall = 9;
-      break;
+    case -1: wall = 0; break;
+    case  1: wall = 9; break;
   }
-  if (blocks.every(function(b) { return b % 10 !== wall && board[b + xMod] === 0 })) this.tetromino.slide(xMod);
+  if (blocks.every(function(b) { return b % 10 !== wall && board[b + direction] === 0 })) this.tetromino.slide(direction);
 };
-TetrisBoard.prototype.rotate = function(direction) {
-  var blocks = this.tetromino.rotate(direction);
+TetrisBoard.prototype.rotate = function() {
+  var blocks = this.tetromino.rotate(this.rotateDirection);
   if (!blocks) return;
   for (var a = 0, b = 1; b < blocks.length; a++, b++) {
     var xA = blocks[a] % 10, xB = blocks[b] % 10;

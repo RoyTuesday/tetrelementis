@@ -31,14 +31,12 @@ Tetromino.prototype.rotate = function(direction) {
   if (this.shape == 'square') return false;
   var blocks = this.blocks;
   var center = blocks[1];
-  var multX = direction == 'clock' ? -1 : 1;
-  var multY = direction == 'count' ? -1 : 1;
-  var transCenter = ((center % 10) * 10 * multY) + ((multX * center / 10) >> 0);
+  var transCenter = ((center % 10) * 10 * direction) + ((direction * center / -10) >> 0);
   var transX = ((center % 10) - (transCenter % 10)) >> 0;
   var transY = ((center / 10) >> 0) - ((transCenter / 10) >> 0);
 
   return blocks.map(function(b, i) {
     if (i === 1) return b;
-    else return ((((b / 10) >> 0) * multX) + transX) + ((((b % 10) * multY) + transY) * 10);
+    else return ((((b / -10) >> 0) * direction) + transX) + ((((b % 10) * direction) + transY) * 10);
   });
 };

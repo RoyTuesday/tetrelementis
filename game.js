@@ -24,19 +24,23 @@ function drop() {
   }
   else if (lines > 0) playerScore += Math.pow(2, lines) / 2;
 }
-function slide() {
-  switch (tetrisGrid.slideDirection) {
-    case -1: tetrisGrid.slide('left'); break;
-    case  1: tetrisGrid.slide('right'); break;
+canSlide = true;
+function allowSlide() { canSlide = true }
+canRotate = true;
+function allowRotate() { canRotate = true }
+function update() {
+  if (canSlide && tetrisGrid.slideDirection !== 0) {
+    tetrisGrid.slide();
+    canSlide = false;
+    setTimeout(allowSlide, FAST_DROP);
+  }
+
+  if (canRotate && tetrisGrid.rotateDirection !== 0) {
+    tetrisGrid.rotate();
+    canRotate = false;
+    setTimeout(allowRotate, FAST_DROP * 5);
   }
 }
-function rotate() {
-  switch (tetrisGrid.rotateDirection) {
-    case -1: tetrisGrid.rotate('counter'); break;
-    case  1: tetrisGrid.rotate('clock'); break;
-  }
-}
-setInterval(rotate, FAST_DROP * 4);
 
 function renderBlock(num, i, width, xOff, yOff) {
   if (typeof num !== 'number') return;
@@ -94,6 +98,7 @@ function render() {
 }
 
 function step(timestamp) {
+  update();
   render();
 
   if (!start) var start = timestamp;
@@ -107,11 +112,11 @@ function handleKeyDown(event) {
   if (!event.repeat) {
     if (tetrisGrid.dropInterval > 0) {
       switch (event.key.toLowerCase()) {
-        case 'arrowleft' : tetrisGrid.startSlide(-1); break;
-        case 'arrowright': tetrisGrid.startSlide(1); break;
+        case 'arrowleft' : tetrisGrid.slideDirection--; break;
+        case 'arrowright': tetrisGrid.slideDirection++; break;
         case 'arrowup': tetrisGrid.raise(); break;
-        case 'x': tetrisGrid.rotateDirection--; break;
-        case 'z': tetrisGrid.rotateDirection++; break;
+        case 'z': tetrisGrid.rotateDirection--; break;
+        case 'x': tetrisGrid.rotateDirection++; break;
         case 'arrowdown':
           clearInterval(tetrisGrid.dropInterval);
           tetrisGrid.dropInterval = setInterval(drop, FAST_DROP);
@@ -133,10 +138,10 @@ function handleKeyUp(event) {
   }
 
   switch (key) {
-    case 'arrowleft' : tetrisGrid.stopSlide(-1); break;
-    case 'arrowright': tetrisGrid.stopSlide(1); break;
-    case 'x': tetrisGrid.rotateDirection++; break;
-    case 'z': tetrisGrid.rotateDirection--; break;
+    case 'arrowleft' : tetrisGrid.slideDirection++; break;
+    case 'arrowright': tetrisGrid.slideDirection--; break;
+    case 'z': tetrisGrid.rotateDirection++; break;
+    case 'x': tetrisGrid.rotateDirection--; break;
   }
 }
 document.addEventListener('keydown', handleKeyDown);
