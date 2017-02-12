@@ -60,9 +60,6 @@ function renderBlock(num, i, width, xOff, yOff) {
   context.fillStyle = chem.color;
   context.fillText(chem.symbol, textX, textY);
 }
-// function renderTetrisBlocks(b, i) { renderBlock(b, i, 10, 0, 0) }
-// function renderPreviewBlocks(b, i) { renderBlock(b, i, 4, 330, 0) }
-// function renderTableBlocks(b, i) { renderBlock(b, i, 18, 330, 300) }
 
 function render() {
   context.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -103,8 +100,8 @@ function step(timestamp) {
 window.requestAnimationFrame(step);
 
 function handleKeyDown(event) {
+  if (!event.ctrlKey && !event.altKey && !event.metaKey) event.preventDefault();
   if (!event.repeat) {
-    if (!event.ctrlKey && !event.altKey && !event.metaKey) event.preventDefault();
     if (tetrisGrid.dropInterval > 0) {
       switch (event.key.toLowerCase()) {
         case 'arrowleft' : tetrisGrid.slideDirection--; break;
@@ -142,9 +139,15 @@ function handleKeyUp(event) {
 document.addEventListener('keydown', handleKeyDown);
 document.addEventListener('keyup', handleKeyUp);
 
+var canvasScale = canvas.width / canvas.offsetWidth;
+function handleResize() {
+  canvasScale = canvas.width / canvas.offsetWidth;
+}
+window.addEventListener('resize', handleResize);
+
 function handleMouseMove(event) {
-  var x = ((event.layerX - 330) / BLOCK_SPACING) >> 0;
-  var y = ((event.layerY - 360) / BLOCK_SPACING) >> 0;
+  var x = (((event.layerX * canvasScale) - 330) / BLOCK_SPACING) >> 0;
+  var y = (((event.layerY * canvasScale) - 330) / BLOCK_SPACING) >> 0;
   var i = x + (18 * y);
   if (i >= 0 && tableGrid.board[i] > 0) tableGrid.activeIndex = i;
   else if (tableGrid.activeIndex >= 0) tableGrid.activeIndex = -1;
