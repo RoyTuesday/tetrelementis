@@ -71,8 +71,8 @@ function renderBlock(num, i, width, xOff, yOff) {
   if (chem.symbol.length === 3) fontSize -= 2;
   context.font = fontSize + BLOCK_FONT;
 
-  context.fillStyle = chem['background-color'];
-  context.strokeStyle = chem['border-color'];
+  context.fillStyle = chem.background;
+  context.strokeStyle = chem.border;
 
   context.fillRect(xPos, yPos, BLOCK_SIZE, BLOCK_SIZE);
   context.strokeRect(xPos, yPos, BLOCK_SIZE, BLOCK_SIZE);
@@ -191,10 +191,16 @@ function handleResize() {
 window.addEventListener('resize', handleResize);
 
 function handleMouseMove(event) {
-  var x = (((event.layerX * canvasScale) - 345) / BLOCK_SPACING) >> 0;
-  var y = (((event.layerY * canvasScale) - 345) / BLOCK_SPACING) >> 0;
-  var i = x + (18 * y);
-  if (i >= 0 && tableGrid.board[i] > 0) tableGrid.activeIndex = i;
+  var x = (event.layerX * canvasScale) - 345;
+  var y = (event.layerY * canvasScale) - 345;
+  var i = ((x / BLOCK_SPACING) >> 0) + (18 * ((y / BLOCK_SPACING) >> 0));
+  if (x >= 0 && x <= 540 && y >= 0 && y <= 270 && i >= 0 && tableGrid.board[i] > 0) tableGrid.activeIndex = i;
   else if (tableGrid.activeIndex >= 0) tableGrid.activeIndex = -1;
 }
 canvas.addEventListener('mousemove', handleMouseMove);
+
+function handleMouseDown(event) {
+  var aNum = tableGrid.board[tableGrid.activeIndex];
+  if (aNum > 0) tableGrid.setElement(aNum);
+}
+canvas.addEventListener('mousedown', handleMouseDown);

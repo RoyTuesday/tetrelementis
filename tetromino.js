@@ -6,6 +6,8 @@ var Tetromino = function() {
   if (shapesQueue.length === 0) shapesQueue = generateRandomShapes(shapes);
   this.shape = shapesQueue.pop();
   this.blocks = shapes[this.shape];
+
+  tableGrid.setElement(this.element);
 };
 Tetromino.prototype.convertForBoard = function(width) {
   blocks = [];
