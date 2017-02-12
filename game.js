@@ -35,7 +35,6 @@ function rotate() {
     case  1: tetrisGrid.rotate('clock'); break;
   }
 }
-setInterval(slide, FAST_DROP);
 setInterval(rotate, FAST_DROP * 4);
 
 function renderBlock(num, i, width, xOff, yOff) {
@@ -61,6 +60,7 @@ function renderBlock(num, i, width, xOff, yOff) {
   context.fillText(chem.symbol, textX, textY);
 }
 
+var frame = 0;
 function render() {
   context.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
@@ -104,8 +104,8 @@ function handleKeyDown(event) {
   if (!event.repeat) {
     if (tetrisGrid.dropInterval > 0) {
       switch (event.key.toLowerCase()) {
-        case 'arrowleft' : tetrisGrid.slideDirection--; break;
-        case 'arrowright': tetrisGrid.slideDirection++; break;
+        case 'arrowleft' : tetrisGrid.startSlide(-1); break;
+        case 'arrowright': tetrisGrid.startSlide(1); break;
         case 'arrowup': tetrisGrid.raise(); break;
         case 'x': tetrisGrid.rotateDirection--; break;
         case 'z': tetrisGrid.rotateDirection++; break;
@@ -130,8 +130,8 @@ function handleKeyUp(event) {
   }
 
   switch (key) {
-    case 'arrowleft' : tetrisGrid.slideDirection++; break;
-    case 'arrowright': tetrisGrid.slideDirection--; break;
+    case 'arrowleft' : tetrisGrid.stopSlide(-1); break;
+    case 'arrowright': tetrisGrid.stopSlide(1); break;
     case 'x': tetrisGrid.rotateDirection++; break;
     case 'z': tetrisGrid.rotateDirection--; break;
   }

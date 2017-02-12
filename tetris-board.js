@@ -11,6 +11,14 @@ TetrisBoard.prototype.setTetromino = function(tetromino) {
   tetromino.blocks = tetromino.blocks.map(function(b) { return b + 3 });
   this.tetromino = tetromino;
 };
+TetrisBoard.prototype.startSlide = function(direction) {
+  this.slideDirection += direction;
+  if (!this.slideInterval) this.slideInterval = setInterval(slide, FAST_DROP);
+};
+TetrisBoard.prototype.stopSlide = function(direction) {
+  this.slideDirection -= direction;
+  if (this.slideDirection === 0) clearInterval(slide);
+};
 TetrisBoard.prototype.slide = function(direction) {
   var board = this.board;
   var blocks = this.tetromino.blocks;
