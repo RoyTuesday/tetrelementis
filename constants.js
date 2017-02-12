@@ -6,7 +6,6 @@ const BLOCK_FONT = "px monospace";
 const FAST_DROP = 50;
 const SLIDE_DELAY = 100;
 const ROTATE_DELAY = 200;
-const CLEAR_DELAY = 1;
 var DROP_DELAY = [
   900,
   848,
@@ -35,38 +34,7 @@ var GAME_MODES = [
   'Fixed Level',
   'Pentathlon'
 ]
-const REPEAT_TETROMINO_LIMIT = 4;
 
-const GRID_HEIGHT = 20;
-const GRID_WIDTH = 10;
-
-var BLOCK_WIDTH;
-var BLOCK_HEIGHT;
-var BLOCK_SPACING_WIDTH;
-var BLOCK_SPACING_HEIGHT;
-
-var TETROMINO_TEMPLATES = {
-  jBlock: [
-    'xxx', // 3,4,5,15
-    '  x'],
-  lBlock: [
-    'xxx', // 3,4,5,13
-    'x  '],
-  square: [
-    'xx', // 4,5,14,15
-    'xx'],
-  sBlock: [
-    ' xx', // 4,5,13,14
-    'xx'],
-  zBlock: [
-    'xx ', // 3,4,14,15
-    ' xx'],
-  line:   [
-    'xxxx'],// 3,4,5,6
-  tBlock: [
-    'xxx', // 3,4,5,14
-    ' x ']
-};
 var PENTOMINO_TEMPLATES = {
   wBlock: [
     'xx ',
@@ -128,27 +96,6 @@ var PENTOMINO_TEMPLATES = {
     'x '],
   line: [
     'xxxxx']
-}
-
-var processTetrominos = function(templates) {
-  var tetrominoShape = new Array;
-  var index = 0;
-  for(var shape in templates) {
-    if(templates.hasOwnProperty(shape)) {
-      tetrominoShape.push(new Array);
-      var currentShape = templates[shape];
-      for(var row in currentShape) {
-        for(var col in currentShape[row]) {
-          if(currentShape[row][col] == 'x') {
-            tetrominoShape[index].push({x: parseInt(col, 10),
-                                    y: parseInt(row, 10)});
-          }
-        }
-      }
-    }
-    index++;
-  }
-  return tetrominoShape
 }
 // var TETROMINO_SHAPES = {
 //   'Marathon': processTetrominos(TETROMINO_TEMPLATES),
@@ -221,71 +168,3 @@ function generateRandomShapes(template) {
   return random;
 }
 var shapesQueue = generateRandomShapes(TETROMINO_SHAPES);
-
-var getRandomShape = function(gameMode, limiter) {
-  var length = TETROMINO_SHAPES[gameMode].length;
-  var shapes = new Object;
-  TETROMINO_SHAPES[gameMode].forEach(function(shape, index) {
-    if(limiter.shapeIndex == index && limiter.count == REPEAT_TETROMINO_LIMIT) {
-      limiter.shapeIndex = null;
-      limiter.count = 0;
-    }
-    else {
-      shapes[index] = shape;
-    }
-  });
-
-  var randNum = Math.floor(Math.random() * length);
-
-  if(shapes[randNum] === undefined) {
-    randNum += randNum > (length / 2) ? -1 : 1;
-  }
-
-  if(limiter.shapeIndex == randNum) {
-    limiter.count++;
-  }
-  else {
-    limiter.shapeIndex = randNum;
-    limiter.count = 1;
-  }
-
-  return shapes[randNum];
-}
-
-var generateEmptyBoard = function() {
-  emptyBoard = new Array;
-  for(var y = 0; y < 4; y++) {
-    var row = new Array;
-    for(var x = 0; x < 4; x++) {
-      row.push(0);
-    }
-    emptyBoard.push(row);
-  }
-  return emptyBoard;
-}
-var genModeMenu = function(mode) {
-  var menuString = '<select id="game-mode-dropdown">';
-  for (var prop in GAME_MODES) {
-    if (GAME_MODES.hasOwnProperty(prop)) {
-      menuString += '<option';
-      if (GAME_MODES[prop] == mode) {
-        menuString += ' selected';
-      }
-      menuString += '>' + GAME_MODES[prop] + '</option>';
-    }
-  }
-  menuString += '</select>';
-  return menuString;
-}
-var genLevelMenu = function(level_num) {
-  var menuString = '<select id="game-level-dropdown">';
-  for(var i = 0; i <= 20; i++) {
-    menuString += '<option';
-    if(i == level_num) {
-      menuString += ' selected';
-    }
-    menuString += '>' + i + '</option>';
-  }
-  menuString += '</select>';
-  return menuString;
-}
