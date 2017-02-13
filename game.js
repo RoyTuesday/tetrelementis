@@ -89,15 +89,13 @@ function update() {
   }
 }
 
-function renderBlock(num, i, width, xOff, yOff) {
+function renderBlock(num, x, y) {
   if (typeof num !== 'number') return;
   var spacing = BLOCK_SPACING;
   var padding = BLOCK_PADDING;
   var chem = CHEMICAL_ELEMENTS[num];
   var size = BLOCK_SIZE;
 
-  var x = 15 + xOff + (i % width) * spacing;
-  var y = 15 + yOff + Math.floor(i / width) * spacing;
   var xPos = x + padding;
   var yPos = y + padding;
   var textX = x + (spacing / 2);

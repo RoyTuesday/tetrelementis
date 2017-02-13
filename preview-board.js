@@ -18,4 +18,18 @@ setPreviewBoard = function(tetromino) {
 }
 var gPreviewBoard = setPreviewBoard(nextTetromino);
 
-renderPreview = function(context, board) { for (var i = 0; i < 16; i++) renderBlock(board[i], i, 4, 330, 0) };
+renderPreview = function(context, board) {
+  var x = 345;
+  var y = 15;
+  var spacing = BLOCK_SPACING;
+  var right = x + (spacing * 4);
+
+  for (var i = 0; i < 16; i++) {
+    renderBlock(board[i], x, y);
+    x += spacing;
+    if (x == right) {
+      x = 345;
+      y += spacing;
+    }
+  }
+};

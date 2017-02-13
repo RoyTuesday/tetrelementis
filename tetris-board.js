@@ -74,13 +74,27 @@ function setTetrisBoard() {
   return board;
 }
 function renderTetrisBoard(context, board) {
-  for (var i = 0; i < 200; i++) renderBlock(board.board[i], i, 10, 0, 0);
+  var x = 15;
+  var y = 15;
+  var spacing = BLOCK_SPACING;
+  var right = x + (spacing * 10);
+
+  for (var i = 0; i < 200; i++) {
+    renderBlock(board.board[i], x, y);
+    x += spacing;
+    if (x == right) {
+      x = 15;
+      y += spacing;
+    }
+  }
+
   if (!gameover) {
     var blocks = board.tetromino.blocks;
     var element = board.tetromino.element;
     for (var i = 0; i < 4; i++) {
-      var b = blocks[i];
-      if (b >= 0) renderBlock(element, b, 10, 0, 0);
+      x = 15 + ((blocks[i] % 10) * spacing);
+      y = 15 + ((blocks[i] / 10 >> 0) * spacing);
+      renderBlock(element, x, y);
     }
   }
 }

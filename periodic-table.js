@@ -15,7 +15,20 @@ function setTableElement(table, aNum) {
   table.descrip = element.descrip;
 }
 function renderPeriodicTable(context, table) {
-  for (var i = 0; i < 162; i++) renderBlock(table.board[i], i, 18, 330, 330);
+  var x = 345;
+  var y = 345;
+  var spacing = BLOCK_SPACING;
+  var right = x + (spacing * 18);
+
+  for (var i = 0; i < 162; i++) {
+    renderBlock(table.board[i], x, y);
+    x += spacing;
+    if (x == right) {
+      x = 345;
+      y += spacing;
+    }
+  }
+
   // Chemical Element Description
   if (table.element > 0) {
     context.textAlign = 'left';
