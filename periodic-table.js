@@ -1,5 +1,3 @@
-function renderTableBlocks(b, i) { renderBlock(b, i, 18, 330, 330) }
-
 var PeriodicTable = function() {
   var board = []
   for (var i = 0; i < 162; i++) board.push(0);
@@ -17,7 +15,7 @@ PeriodicTable.prototype.setElement = function(aNum) {
   this.descrip = element.descrip;
 };
 PeriodicTable.prototype.render = function(context) {
-  this.board.forEach(renderTableBlocks);
+  for (var i = 0; i < 162; i++) renderBlock(this.board[i], i, 18, 330, 330);
   // Chemical Element Description
   if (this.element > 0) {
     context.textAlign = 'left';

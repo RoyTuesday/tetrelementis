@@ -262,7 +262,7 @@ function renderKeys(context, keyActions, activeKeys) {
 }
 
 var frame = 0;
-function render() {
+function render(context) {
   context.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
   context.fillStyle = '#E1DEEA';
   context.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -307,10 +307,11 @@ function render() {
 }
 
 function step(timestamp) {
-  update();
-  render();
-
   if (!start) var start = timestamp;
+
+  update();
+  render(context);
+
   var progress = timestamp - start;
   if (progress < 2000) window.requestAnimationFrame(step);
 }

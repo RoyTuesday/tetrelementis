@@ -70,11 +70,14 @@ TetrisBoard.prototype.handleFullLines = function() {
   return lines;
 };
 TetrisBoard.prototype.render = function(context) {
-  this.board.forEach(function(b, i) { renderBlock(b, i, 10, 0, 0) });
+  for (var i = 0; i < 200; i++) renderBlock(this.board[i], i, 10, 0, 0);
   if (!gameover) {
-    var tetromino = this.tetromino;
-    var element = tetromino.element;
-    tetromino.blocks.forEach(function(b) { if (b >= 0) renderBlock(element, b, 10, 0, 0) });
+    var blocks = this.tetromino.blocks;
+    var element = this.tetromino.element;
+    for (var i = 0; i < 4; i++) {
+      var b = blocks[i];
+      if (b >= 0) renderBlock(element, b, 10, 0, 0);
+    }
   }
 };
 TetrisBoard.prototype.clearMovement = function() {
