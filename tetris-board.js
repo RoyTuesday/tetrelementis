@@ -1,3 +1,8 @@
+function addThree(num) { return num + 3 }
+function checkBoardIndexIsEmpty(b) { return tetrisGrid.board[b] === 0 }
+function checkBoardIndexIsNotEmpty(b) { return tetrisGrid.board[b] !== 0 }
+function checkGreaterThanZero(num) { return num > 0 }
+
 var TetrisBoard = function() {
   var board = [];
   for (var i = 0; i < 200; i++) board.push(0);
@@ -8,7 +13,7 @@ TetrisBoard.prototype.dropInterval = 0;
 TetrisBoard.prototype.slideDirection = 0;
 TetrisBoard.prototype.rotateDirection = 0;
 TetrisBoard.prototype.setTetromino = function(tetromino) {
-  tetromino.blocks = tetromino.blocks.map(function(b) { return b + 3 });
+  tetromino.blocks = tetromino.blocks.map(addThree);
   this.tetromino = tetromino;
 };
 TetrisBoard.prototype.slide = function() {
@@ -28,7 +33,7 @@ TetrisBoard.prototype.rotate = function() {
     if (dist > 4 || dist < -4) return false;
   }
   var board = this.board;
-  if (blocks.every(function(b) { return board[b] === 0 })) this.tetromino.blocks = blocks;
+  if (blocks.every(checkBoardIndexIsEmpty)) this.tetromino.blocks = blocks;
 };
 TetrisBoard.prototype.raise = function() {
   var board = this.board;
@@ -45,10 +50,11 @@ TetrisBoard.prototype.drop = function() {
     var element = this.tetromino.element;
     this.tetromino.blocks.forEach(function(b) { this.board[b] = element; }, this);
     tableGrid.showElement(element);
-    this.tetromino = previewGrid.tetromino.convertForBoard();
-    previewGrid.tetromino = new Tetromino;
+    this.tetromino = nextTetromino;
+    nextTetromino = new Tetromino;
+    setPreviewBoard(nextTetromino);
     // If any of the new tetromino's blocks collide with filled blocks in the board, it's game over
-    if (this.tetromino.blocks.some(function(b) { return board[b] !== 0 })) return -1;
+    if (this.tetromino.blocks.some(checkBoardIndexIsNotEmpty)) return -1;
     lines = this.handleFullLines();
   }
   else this.tetromino.blocks = blocks;
@@ -60,7 +66,7 @@ TetrisBoard.prototype.handleFullLines = function() {
   var lines = 0;
   for (var i = 0; i < this.board.length; i += 10) {
     var slice = this.board.slice(i, i + 10);
-    if (slice.every(function(cell) { return cell > 0 })) {
+    if (slice.every(checkGreaterThanZero)) {
       lines++;
       board = [0,0,0,0,0,0,0,0,0,0].concat(board);
     }

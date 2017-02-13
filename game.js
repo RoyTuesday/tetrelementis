@@ -268,7 +268,7 @@ function render(context) {
   context.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
   context.lineWidth = 4;
-  previewGrid.render(context);
+  renderPreview(context, previewBoard);
   tetrisGrid.render(context);
   tableGrid.render(context);
   // Periodic Table element highlight

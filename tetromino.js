@@ -1,3 +1,6 @@
+function decreaseByTen(num) { return num -= 10 }
+function increaseByTen(num) { return num += 10 }
+
 var Tetromino = function() {
   if (elementsQueue.length === 0) elementsQueue = generateRandomElements(CHEMICAL_ELEMENTS);
   this.element = elementsQueue.pop();
@@ -21,10 +24,10 @@ Tetromino.prototype.convertForBoard = function(width) {
   return this;
 }
 Tetromino.prototype.raise = function() {
-  return this.blocks.map(function(b) { return b -= 10 });
+  return this.blocks.map(decreaseByTen);
 };
 Tetromino.prototype.drop = function() {
-  return this.blocks.map(function(b) { return b += 10 });
+  return this.blocks.map(increaseByTen);
 };
 Tetromino.prototype.slide = function(xMod) {
   this.blocks = this.blocks.map(function(b) { return b += xMod });

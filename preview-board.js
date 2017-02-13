@@ -1,13 +1,21 @@
-var PreviewBoard = function() {
-  var board = [];
-  for (var i = 0; i < 16; i++) board.push(0);
-  this.board = board;
-}
-PreviewBoard.prototype.tetromino = new Tetromino;
-PreviewBoard.prototype.render = function(context) {
-  for (var i = 0; i < 16; i++) renderBlock(this.board[i], i, 4, 330, 0);
-  var element = this.tetromino.element;
-  this.tetromino.blocks.forEach(function(b, i) { if (b >= 0) renderBlock(element, b, 4, 330, 0) });
-};
+var nextTetromino = new Tetromino;
 
-var previewGrid = new PreviewBoard();
+setPreviewBoard = function(tetromino) {
+  var tetrominoPos = [];
+  switch (tetromino.shape) {
+    case 'jBlock' : tetrominoPos = [4,5,6,10]; break;
+    case 'lBlock' : tetrominoPos = [5,6,7,9]; break;
+    case 'square' : tetrominoPos = [5,6,9,10]; break;
+    case 'sBlock' : tetrominoPos = [5,6,8,9]; break;
+    case 'zBlock' : tetrominoPos = [4,5,9,10]; break;
+    case 'line'   : tetrominoPos = [4,5,6,7]; break;
+    case 'tBlock' : tetrominoPos = [4,5,6,9]; break;
+  }
+  var board = new Array(16);
+  for (var i = 0; i < 4; i++) board[tetrominoPos[i]] = tetromino.element;
+  for (var i = 0; i < 16; i++) if (!board[i]) board[i] = 0;
+  return board;
+}
+var previewBoard = setPreviewBoard(nextTetromino);
+
+renderPreview = function(context, board) { for (var i = 0; i < 16; i++) renderBlock(board[i], i, 4, 330, 0) };
