@@ -2,18 +2,18 @@ var gPeriodicTable = {
   board: [],
   activeIndex: -1,
   element: 0,
-  showElement: function(aNum) {
-    this.board[PERIODIC_TABLE.indexOf(aNum)] = aNum;
-  },
-  setElement: function(aNum) {
-    this.element = aNum;
-    var element = CHEMICAL_ELEMENTS[aNum];
-    this.title = element.title;
-    this.descrip = element.descrip;
-  },
 }
 for (var i = 0; i < 162; i++) gPeriodicTable.board.push(0);
 
+function showTableElement(table, aNum) {
+  table.board[PERIODIC_TABLE.indexOf(aNum)] = aNum;
+}
+function setTableElement(table, aNum) {
+  table.element = aNum;
+  var element = CHEMICAL_ELEMENTS[aNum];
+  table.title = element.title;
+  table.descrip = element.descrip;
+}
 function renderPeriodicTable(context, table) {
   for (var i = 0; i < 162; i++) renderBlock(table.board[i], i, 18, 330, 330);
   // Chemical Element Description

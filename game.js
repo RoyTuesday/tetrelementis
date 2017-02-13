@@ -32,7 +32,7 @@ function drop() {
   if (lines < 0) {
     clearMovement(gTetrisBoard);
     gameover = true;
-    gameoverElement = (Math.random() * (CHEMICAL_ELEMENTS.length - 1) >> 0) + 1;
+    gameoverElement = nextTetromino.element;
   }
   else if (lines > 0) {
     playerScore += Math.pow(2, lines) / 2;
@@ -91,13 +91,17 @@ function update() {
 
 function renderBlock(num, i, width, xOff, yOff) {
   if (typeof num !== 'number') return;
+  var spacing = BLOCK_SPACING;
+  var padding = BLOCK_PADDING;
   var chem = CHEMICAL_ELEMENTS[num];
-  var x = 15 + xOff + (i % width) * BLOCK_SPACING;
-  var y = 15 + yOff + Math.floor(i / width) * BLOCK_SPACING;
-  var xPos = x + BLOCK_PADDING;
-  var yPos = y + BLOCK_PADDING;
-  var textX = x + (BLOCK_SPACING / 2);
-  var textY = y + (BLOCK_SPACING / 2) + 2;
+  var size = BLOCK_SIZE;
+
+  var x = 15 + xOff + (i % width) * spacing;
+  var y = 15 + yOff + Math.floor(i / width) * spacing;
+  var xPos = x + padding;
+  var yPos = y + padding;
+  var textX = x + (spacing / 2);
+  var textY = y + (spacing / 2) + 2;
 
   var fontSize = FONT_SIZE;
   if (chem.symbol.length === 3) fontSize -= 2;
@@ -106,8 +110,8 @@ function renderBlock(num, i, width, xOff, yOff) {
   context.fillStyle = chem.background;
   context.strokeStyle = chem.border;
 
-  context.fillRect(xPos, yPos, BLOCK_SIZE, BLOCK_SIZE);
-  context.strokeRect(xPos, yPos, BLOCK_SIZE, BLOCK_SIZE);
+  context.fillRect(xPos, yPos, size, size);
+  context.strokeRect(xPos, yPos, size, size);
   if (chem.symbol) {
     context.fillStyle = chem.color;
     context.fillText(chem.symbol, textX, textY);
@@ -263,9 +267,13 @@ function renderKeys(context, keyActions, activeKeys) {
 
 var frame = 0;
 function render(context) {
-  context.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+  var width = CANVAS_WIDTH;
+  var height = CANVAS_HEIGHT;
+  var spacing = BLOCK_SPACING;
+
+  context.clearRect(0, 0, width, height);
   context.fillStyle = '#E1DEEA';
-  context.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+  context.fillRect(0, 0, width, height);
 
   context.lineWidth = 4;
 
@@ -277,7 +285,7 @@ function render(context) {
   var active = gPeriodicTable.activeIndex;
   if (active >= 0) {
     context.fillStyle = '#FFF7';
-    context.fillRect(345 + (active % 18) * BLOCK_SPACING, 345 + (active / 18 >> 0) * BLOCK_SPACING, BLOCK_SPACING, BLOCK_SPACING);
+    context.fillRect(345 + (active % 18) * spacing, 345 + (active / 18 >> 0) * spacing, spacing, spacing);
   }
 
   renderKeys(context, keyActions, activeKeys);
@@ -297,10 +305,10 @@ function render(context) {
   context.textAlign = 'center';
   // Pause overlay
   if (paused) {
-    var halfW = CANVAS_WIDTH / 2;
-    var halfH = CANVAS_HEIGHT / 2;
+    var halfW = width / 2;
+    var halfH = height / 2;
     context.fillStyle = '#FFF7';
-    context.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+    context.fillRect(0, 0, width, height);
     context.fillStyle = '#FFFC';
     context.fillRect(halfW - 52, halfH - 18, 104, 36);
     context.fillStyle = '#111';
@@ -387,6 +395,6 @@ canvas.addEventListener('mousemove', handleMouseMove);
 
 function handleMouseDown(event) {
   var aNum = gPeriodicTable.board[gPeriodicTable.activeIndex];
-  if (aNum > 0) gPeriodicTable.setElement(aNum);
+  if (aNum > 0) setTableElement(gPeriodicTable, aNum);
 }
 canvas.addEventListener('mousedown', handleMouseDown);

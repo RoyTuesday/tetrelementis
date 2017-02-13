@@ -36,7 +36,7 @@ function dropTetromino(tetrisBoard) {
   if (blocks.some(checkBlocksAreNotFull, tetrisBoard)) {
     var element = tetrisBoard.tetromino.element;
     tetrisBoard.tetromino.blocks.forEach(function(b) { board[b] = element; });
-    gPeriodicTable.showElement(element);
+    showTableElement(gPeriodicTable, element);
     tetrisBoard.tetromino = nextTetromino;
     nextTetromino = new Tetromino;
     gPreviewBoard = setPreviewBoard(nextTetromino);

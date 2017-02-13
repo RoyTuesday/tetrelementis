@@ -11,7 +11,7 @@ var Tetromino = function() {
   this.shape = shapesQueue.pop();
   this.blocks = shapes[this.shape];
 
-  gPeriodicTable.setElement(this.element);
+  setTableElement(gPeriodicTable, this.element);
 };
 Tetromino.prototype.raise = function() {
   return this.blocks.map(decreaseByTen);
