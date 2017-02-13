@@ -28,9 +28,9 @@ var resetBoard = 0;
 var gameoverElement = 0;
 
 function drop() {
-  var lines = tetrisGrid.drop();
+  var lines = dropTetromino(gTetrisBoard);
   if (lines < 0) {
-    tetrisGrid.clearMovement();
+    clearMovement(gTetrisBoard);
     gameover = true;
     gameoverElement = (Math.random() * (CHEMICAL_ELEMENTS.length - 1) >> 0) + 1;
   }
@@ -45,7 +45,7 @@ canRotate = true;
 function allowRotate() { canRotate = true }
 function update() {
   if (gameover) {
-    tetrisGrid.board.splice(
+    gTetrisBoard.board.splice(
       resetBoard * 10,
       10,
       gameoverElement,
@@ -64,26 +64,26 @@ function update() {
       if (gameoverElement === 0) {
         gameover = false;
         paused = true;
-        tetrisGrid = new TetrisBoard;
         highScore = playerScore;
         playerScore = 0;
         level = 0;
         saveData.highScore = highScore;
         window.localStorage.setItem('tetrelementis', JSON.stringify(saveData));
+        gTetrisBoard.board = setTetrisBoard();
       }
       else gameoverElement = 0;
       resetBoard = 0;
     }
   }
 
-  if (canSlide && tetrisGrid.slideDirection !== 0) {
-    tetrisGrid.slide();
+  if (canSlide && gTetrisBoard.slideDirection !== 0) {
+    slideTetromino(gTetrisBoard);
     canSlide = false;
     setTimeout(allowSlide, FAST_DROP);
   }
 
-  if (canRotate && tetrisGrid.rotateDirection !== 0) {
-    tetrisGrid.rotate();
+  if (canRotate && gTetrisBoard.rotateDirection !== 0) {
+    rotateTetromino(gTetrisBoard);
     canRotate = false;
     setTimeout(allowRotate, FAST_DROP * 5);
   }
@@ -268,9 +268,11 @@ function render(context) {
   context.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
   context.lineWidth = 4;
+
   renderPreview(context, gPreviewBoard);
-  tetrisGrid.render(context);
+  renderTetrisBoard(context, gTetrisBoard);
   renderPeriodicTable(context, gPeriodicTable);
+
   // Periodic Table element highlight
   var active = gPeriodicTable.activeIndex;
   if (active >= 0) {
@@ -319,30 +321,30 @@ window.requestAnimationFrame(step);
 
 function handleKeyDown(event) {
   var action = getAction(event);
+  var board = gTetrisBoard;
   if (!event.ctrlKey && !event.altKey && !event.metaKey) event.preventDefault();
   if (!event.repeat) {
     if (paused) {
       if (action == 'pause') {
-        tetrisGrid.clearMovement();
-        tetrisGrid.dropInterval = setInterval(drop, DROP_DELAY[level]);
+        clearMovement(board);
+        board.dropInterval = setInterval(drop, DROP_DELAY[level]);
         paused = false;
       }
     }
     else if (! gameover) {
       activeKeys[action] = true;
       switch (action) {
-        case 'up'     : tetrisGrid.raise();           break;
-        case 'left'   : tetrisGrid.slideDirection--;  break;
-        case 'right'  : tetrisGrid.slideDirection++;  break;
-        case 'counter': tetrisGrid.rotateDirection--; break;
-        case 'clock'  : tetrisGrid.rotateDirection++; break;
+        case 'left'   : board.slideDirection--;  break;
+        case 'right'  : board.slideDirection++;  break;
+        case 'counter': board.rotateDirection--; break;
+        case 'clock'  : board.rotateDirection++; break;
         case 'down':
-          clearInterval(tetrisGrid.dropInterval);
-          tetrisGrid.dropInterval = setInterval(drop, FAST_DROP);
+          clearInterval(board.dropInterval);
+          board.dropInterval = setInterval(drop, FAST_DROP);
           break;
         case 'pause':
-          clearInterval(tetrisGrid.dropInterval);
-          tetrisGrid.dropInterval = 0;
+          clearInterval(board.dropInterval);
+          board.dropInterval = 0;
           paused = true;
           break;
       }
@@ -351,17 +353,18 @@ function handleKeyDown(event) {
 }
 function handleKeyUp(event) {
   var action = getAction(event);
+  var board = gTetrisBoard;
   if (!gameover && !paused && action == 'down') {
-    clearInterval(tetrisGrid.dropInterval);
-    tetrisGrid.dropInterval = setInterval(drop, DROP_DELAY[level]);
+    clearInterval(board.dropInterval);
+    board.dropInterval = setInterval(drop, DROP_DELAY[level]);
   }
 
   activeKeys[action] = false;
   switch (action) {
-    case 'left'   : tetrisGrid.slideDirection++;  break;
-    case 'right'  : tetrisGrid.slideDirection--;  break;
-    case 'counter': tetrisGrid.rotateDirection++; break;
-    case 'clock'  : tetrisGrid.rotateDirection--; break;
+    case 'left'   : board.slideDirection++;  break;
+    case 'right'  : board.slideDirection--;  break;
+    case 'counter': board.rotateDirection++; break;
+    case 'clock'  : board.rotateDirection--; break;
   }
 }
 document.addEventListener('keydown', handleKeyDown);
