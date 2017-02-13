@@ -1,5 +1,4 @@
 function renderTableBlocks(b, i) { renderBlock(b, i, 18, 330, 330) }
-function renderDescription(row, i) { context.fillText(row, 350, 188 + (i * (2 + FONT_SIZE * 1.5))) }
 
 var PeriodicTable = function() {
   var board = []
@@ -31,7 +30,7 @@ PeriodicTable.prototype.render = function(context) {
     context.strokeText(this.title, 350, 155);
     context.font = (FONT_SIZE * 1.5) + BLOCK_FONT;
     context.fillText('Atomic Number: ' + this.element, 700, 155);
-    this.descrip.forEach(renderDescription);
+    for (var i = 0; i < 5; i++) context.fillText(this.descrip[i], 350, 188 + (i * (2 + FONT_SIZE * 1.5)));
   }
 };
 
