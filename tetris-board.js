@@ -1,5 +1,6 @@
 function checkBoardIndexIsEmpty(b) { return this.board[b] === 0 }
 function checkBoardIndexIsNotEmpty(b) { return this.board[b] !== 0 }
+function checkBlocksAreNotFull(b) { return b > 199 || this.board[b] !== 0 }
 function checkGreaterThanZero(num) { return num > 0 }
 
 function slideTetromino(tetrisBoard) {
@@ -32,9 +33,9 @@ function dropTetromino(tetrisBoard) {
   var blocks = tetrisBoard.tetromino.drop();
   var lines = 0;
 
-  if (blocks.some(function(b) { return b > 199 || board[b] !== 0 })) {
+  if (blocks.some(checkBlocksAreNotFull, tetrisBoard)) {
     var element = tetrisBoard.tetromino.element;
-    tetrisBoard.tetromino.blocks.forEach(function(b) { tetrisBoard.board[b] = element; }, tetrisBoard);
+    tetrisBoard.tetromino.blocks.forEach(function(b) { board[b] = element; });
     gPeriodicTable.showElement(element);
     tetrisBoard.tetromino = nextTetromino;
     nextTetromino = new Tetromino;
