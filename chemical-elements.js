@@ -1,6 +1,6 @@
 const CHEMICAL_ELEMENTS = [
   {
-    symbol: 'n/a',
+    symbol: false,
     title: '',
     background: '#0000',
     border: '#0003',

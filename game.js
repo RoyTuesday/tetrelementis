@@ -108,8 +108,10 @@ function renderBlock(num, i, width, xOff, yOff) {
 
   context.fillRect(xPos, yPos, BLOCK_SIZE, BLOCK_SIZE);
   context.strokeRect(xPos, yPos, BLOCK_SIZE, BLOCK_SIZE);
-  context.fillStyle = chem.color;
-  context.fillText(chem.symbol, textX, textY);
+  if (chem.symbol) {
+    context.fillStyle = chem.color;
+    context.fillText(chem.symbol, textX, textY);
+  }
 }
 
 var activeKeys = {
