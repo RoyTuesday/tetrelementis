@@ -12,6 +12,7 @@ const CANVAS_HEIGHT = canvas.height;
 var scene = 0;
 var playerScore = 0;
 var highScore = 0;
+var level = 0;
 var resetBoard = 0;
 var gameoverElement = 0;
 
@@ -22,7 +23,10 @@ function drop() {
     scene = 2;
     gameoverElement = (Math.random() * (CHEMICAL_ELEMENTS.length - 1) >> 0) + 1;
   }
-  else if (lines > 0) playerScore += Math.pow(2, lines) / 2;
+  else if (lines > 0) {
+    playerScore += Math.pow(2, lines) / 2;
+    level = Math.min(20, playerScore / 10 >> 0);
+  }
 }
 canSlide = true;
 function allowSlide() { canSlide = true }
@@ -38,6 +42,7 @@ function update() {
         tetrisGrid = new TetrisBoard;
         highScore = playerScore;
         playerScore = 0;
+        level = 0;
       }
       else gameoverElement = 0;
       resetBoard = 0;
@@ -97,11 +102,17 @@ function render() {
     context.fillRect(345 + (active % 18) * BLOCK_SPACING, 345 + (active / 18 >> 0) * BLOCK_SPACING, BLOCK_SPACING, BLOCK_SPACING);
   }
   // Player score
-  context.textAlign = 'left';
+  context.textAlign = 'right';
   context.fillStyle = '#111';
   context.font = (FONT_SIZE * 2) + BLOCK_FONT;
-  context.fillText('Score: ' + playerScore, 480, 30);
-  context.fillText('Hi Score: ' + highScore, 480, 60);
+  context.fillText('Score:', 600, 30);
+  context.fillText('Hi Score:', 600, 60);
+  context.fillText('Level:', 600, 90);
+
+  context.textAlign = 'left';
+  context.fillText(playerScore, 610, 30);
+  context.fillText(highScore, 610, 60);
+  context.fillText(level, 610, 90);
   context.textAlign = 'center';
   // Pause overlay
   if (scene === 0) {
@@ -143,7 +154,7 @@ function handleKeyDown(event) {
     if (scene === 0) {
       if (action == 'pause') {
         tetrisGrid.clearMovement();
-        tetrisGrid.dropInterval = setInterval(drop, DROP_DELAY[0]);
+        tetrisGrid.dropInterval = setInterval(drop, DROP_DELAY[level]);
         scene = 1;
       }
     }
@@ -171,7 +182,7 @@ function handleKeyUp(event) {
   var action = getAction(event);
   if (scene === 1 && action == 'down') {
     clearInterval(tetrisGrid.dropInterval);
-    tetrisGrid.dropInterval = setInterval(drop, DROP_DELAY[0]);
+    tetrisGrid.dropInterval = setInterval(drop, DROP_DELAY[level]);
   }
 
   switch (action) {
