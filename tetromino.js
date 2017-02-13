@@ -10,19 +10,8 @@ var Tetromino = function() {
   this.shape = shapesQueue.pop();
   this.blocks = shapes[this.shape];
 
-  tableGrid.setElement(this.element);
+  gPeriodicTable.setElement(this.element);
 };
-Tetromino.prototype.convertForBoard = function(width) {
-  blocks = [];
-  for (var i = 0; i < this.blocks.length; i++) {
-    var b = this.blocks[i];
-    if (b > 3) blocks.push(b + 9);
-    else blocks.push(b + 3);
-  }
-  this.blocks = blocks;
-
-  return this;
-}
 Tetromino.prototype.raise = function() {
   return this.blocks.map(decreaseByTen);
 };

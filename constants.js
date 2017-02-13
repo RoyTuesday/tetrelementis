@@ -173,24 +173,24 @@ var PENTOMINO_TEMPLATES = {
     'xxxxx']
 }
 var TETROMINO_SHAPES = {
-  jBlock: [1,0,2,6], // 3, 4, 5,15
+  jBlock: [4, 3, 5,15],
   // xxx
   //   x
-  lBlock: [1,0,2,4], // 3, 4, 5,13
+  lBlock: [4, 3, 5,13],
   // xxx
   // x
-  square: [1,2,5,6], // 4, 5,14,15
+  square: [4, 5,14,15],
   // xx
   // xx
-  sBlock: [1,2,4,5], // 4, 5,13,14
+  sBlock: [4, 5,13,14],
   //  xx
   // xx
-  zBlock: [1,0,5,6], // 3, 4,14,15
+  zBlock: [4, 3,14,15],
   // xx
   //  xx
-  line:   [1,0,2,3], // 3, 4, 5, 6
+  line  : [4, 3, 5, 6],
   // xxxx
-  tBlock: [1,0,2,5], // 3, 4, 5,14
+  tBlock: [4, 3, 5,14],
   // xxx
   //  x
 }

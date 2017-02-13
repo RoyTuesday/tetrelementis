@@ -7,7 +7,7 @@ var TetrisBoard = function() {
   var board = [];
   for (var i = 0; i < 200; i++) board.push(0);
   this.board = board;
-  this.tetromino = new Tetromino().convertForBoard();
+  this.tetromino = new Tetromino();
 }
 TetrisBoard.prototype.dropInterval = 0;
 TetrisBoard.prototype.slideDirection = 0;
@@ -49,7 +49,7 @@ TetrisBoard.prototype.drop = function() {
   if (blocks.some(function(b) { return b > 199 || board[b] !== 0 })) {
     var element = this.tetromino.element;
     this.tetromino.blocks.forEach(function(b) { this.board[b] = element; }, this);
-    tableGrid.showElement(element);
+    gPeriodicTable.showElement(element);
     this.tetromino = nextTetromino;
     nextTetromino = new Tetromino;
     setPreviewBoard(nextTetromino);

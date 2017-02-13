@@ -270,9 +270,10 @@ function render(context) {
   context.lineWidth = 4;
   renderPreview(context, previewBoard);
   tetrisGrid.render(context);
-  tableGrid.render(context);
+  renderPeriodicTable(context, gPeriodicTable);
+  // gPeriodicTable.render(context);
   // Periodic Table element highlight
-  var active = tableGrid.activeIndex;
+  var active = gPeriodicTable.activeIndex;
   if (active >= 0) {
     context.fillStyle = '#FFF7';
     context.fillRect(345 + (active % 18) * BLOCK_SPACING, 345 + (active / 18 >> 0) * BLOCK_SPACING, BLOCK_SPACING, BLOCK_SPACING);
@@ -377,13 +378,13 @@ function handleMouseMove(event) {
   var x = (event.layerX * canvasScale) - 345;
   var y = (event.layerY * canvasScale) - 345;
   var i = ((x / BLOCK_SPACING) >> 0) + (18 * ((y / BLOCK_SPACING) >> 0));
-  if (x >= 0 && x <= 540 && y >= 0 && y <= 270 && i >= 0 && tableGrid.board[i] > 0) tableGrid.activeIndex = i;
-  else if (tableGrid.activeIndex >= 0) tableGrid.activeIndex = -1;
+  if (x >= 0 && x <= 540 && y >= 0 && y <= 270 && i >= 0 && gPeriodicTable.board[i] > 0) gPeriodicTable.activeIndex = i;
+  else if (gPeriodicTable.activeIndex >= 0) gPeriodicTable.activeIndex = -1;
 }
 canvas.addEventListener('mousemove', handleMouseMove);
 
 function handleMouseDown(event) {
-  var aNum = tableGrid.board[tableGrid.activeIndex];
-  if (aNum > 0) tableGrid.setElement(aNum);
+  var aNum = gPeriodicTable.board[gPeriodicTable.activeIndex];
+  if (aNum > 0) gPeriodicTable.setElement(aNum);
 }
 canvas.addEventListener('mousedown', handleMouseDown);
