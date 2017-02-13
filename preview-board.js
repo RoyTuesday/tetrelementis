@@ -16,6 +16,6 @@ setPreviewBoard = function(tetromino) {
   for (var i = 0; i < 16; i++) if (!board[i]) board[i] = 0;
   return board;
 }
-var previewBoard = setPreviewBoard(nextTetromino);
+var gPreviewBoard = setPreviewBoard(nextTetromino);
 
 renderPreview = function(context, board) { for (var i = 0; i < 16; i++) renderBlock(board[i], i, 4, 330, 0) };

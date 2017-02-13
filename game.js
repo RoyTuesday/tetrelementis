@@ -268,10 +268,9 @@ function render(context) {
   context.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
   context.lineWidth = 4;
-  renderPreview(context, previewBoard);
+  renderPreview(context, gPreviewBoard);
   tetrisGrid.render(context);
   renderPeriodicTable(context, gPeriodicTable);
-  // gPeriodicTable.render(context);
   // Periodic Table element highlight
   var active = gPeriodicTable.activeIndex;
   if (active >= 0) {

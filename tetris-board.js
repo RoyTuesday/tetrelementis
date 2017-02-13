@@ -52,7 +52,7 @@ TetrisBoard.prototype.drop = function() {
     gPeriodicTable.showElement(element);
     this.tetromino = nextTetromino;
     nextTetromino = new Tetromino;
-    setPreviewBoard(nextTetromino);
+    gPreviewBoard = setPreviewBoard(nextTetromino);
     // If any of the new tetromino's blocks collide with filled blocks in the board, it's game over
     if (this.tetromino.blocks.some(checkBoardIndexIsNotEmpty)) return -1;
     lines = this.handleFullLines();
