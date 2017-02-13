@@ -97,7 +97,18 @@ var GAME_MODES = [
   'Marathon',
   'Fixed Level',
   'Pentathlon'
-]
+];
+
+function convertToDisplayKey(key) {
+  switch (key) {
+    case ' '          : return 'space';
+    case 'ArrowLeft'  : return '←';
+    case 'ArrowRight' : return '→';
+    case 'ArrowDown'  : return '↓';
+    case 'ArrowUp'    : return '↑';
+    default: return key.toUpperCase();
+  }
+}
 
 var PENTOMINO_TEMPLATES = {
   wBlock: [

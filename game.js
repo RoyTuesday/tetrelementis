@@ -112,6 +112,153 @@ function renderBlock(num, i, width, xOff, yOff) {
   context.fillText(chem.symbol, textX, textY);
 }
 
+var activeKeys = {
+  pause   : false,
+  counter : false,
+  clock   : false,
+  left    : false,
+  right   : false,
+  up      : false,
+  down    : false
+}
+var keyActions = {
+  pause   : ' ',
+  counter : 'z',
+  clock   : 'x',
+  left    : 'ArrowLeft',
+  right   : 'ArrowRight',
+  up      : 'ArrowUp',
+  down    : 'ArrowDown'
+};
+var keyBinds = {
+  ' ': 'pause',
+  'z': 'counter', 'Z': 'counter',
+  'x': 'clock',   'X': 'clock',
+  'ArrowLeft' : 'left',
+  'ArrowRight': 'right',
+  'ArrowUp'   : 'up',
+  'ArrowDown' : 'down'
+};
+function getAction(event) {
+  var key = event.key;
+  return keyBinds[key ? key : KEY_CODES[event.keyCode]];
+}
+
+function renderKeys(context, keyActions, activeKeys) {
+  var x = 475;
+  var y = 40;
+  var size = FONT_SIZE;
+  context.lineWidth = 3;
+  context.strokeStyle = '#333';
+  context.font = size + BLOCK_FONT;
+
+  // Pause
+  context.textAlign = 'left';
+  context.fillStyle = '#111';
+  context.fillText('Pause', x, y);
+  context.fillStyle = activeKeys.pause ? '#555' : '#DDD';
+  x += 9 * size;
+  context.textAlign = 'center';
+  switch (keyActions.pause) {
+    case ' ':
+      context.fillRect(x - (3 * size), y - size, 6 * size, 2 * size);
+      context.strokeRect(x - (3 * size), y - size, 6 * size, 2 * size);
+      break;
+    default:
+      context.fillRect(x - (2 * size), y - size, 2 * size, 2 * size);
+      context.strokeRect(x - (2 * size), y - size, 2 * size, 2 * size);
+      break;
+  }
+  context.fillStyle = activeKeys.pause ? '#EEE' : '#111';
+  context.fillText(convertToDisplayKey(keyActions.pause), x, y);
+  x = 475;
+  y += 3 * size;
+  // Move
+  context.textAlign = 'left';
+  context.fillStyle = '#111';
+  context.fillText('Move', x, y);
+  x += 9 * size;
+  context.textAlign = 'center';
+  // Left
+  context.fillStyle = activeKeys.left ? '#555' : '#DDD';
+  switch (keyActions.left) {
+    case ' ':
+      context.fillRect(x - (6 * size), y - size, 6 * size, 2 * size);
+      context.strokeRect(x - (6 * size), y - size, 6 * size, 2 * size);
+      break;
+    default:
+      context.fillRect(x - (4 * size), y - size, 2 * size, 2 * size);
+      context.strokeRect(x - (4 * size), y - size, 2 * size, 2 * size);
+      break;
+  }
+  context.fillStyle = activeKeys.left ? '#EEE' : '#111';
+  context.fillText(convertToDisplayKey(keyActions.left), x - (3 * size), y);
+  // Down
+  context.fillStyle = activeKeys.down ? '#555' : '#DDD';
+  switch (keyActions.down) {
+    case ' ':
+      context.fillRect(x - (3 * size), y - size, 6 * size, 2 * size);
+      context.strokeRect(x - (3 * size), y - size, 6 * size, 2 * size);
+      break;
+    default:
+      context.fillRect(x - size, y - size, 2 * size, 2 * size);
+      context.strokeRect(x - size, y - size, 2 * size, 2 * size);
+      break;
+  }
+  context.fillStyle = activeKeys.down ? '#EEE' : '#111';
+  context.fillText(convertToDisplayKey(keyActions.down), x, y);
+  // Right
+  context.fillStyle = activeKeys.right ? '#555' : '#DDD';
+  switch (keyActions.right) {
+    case ' ':
+      context.fillRect(x - size, y - size, 6 * size, 2 * size);
+      context.strokeRect(x - size, y - size, 6 * size, 2 * size);
+      break;
+    default:
+      context.fillRect(x + (2 * size), y - size, 2 * size, 2 * size);
+      context.strokeRect(x + (2 * size), y - size, 2 * size, 2 * size);
+      break;
+  }
+  context.fillStyle = activeKeys.right ? '#EEE' : '#111';
+  context.fillText(convertToDisplayKey(keyActions.right), x + (3 * size), y);
+  x = 475;
+  y += 3 * size;
+  // Rotate
+  context.textAlign = 'left';
+  context.fillStyle = '#111';
+  context.fillText('Rotate', x, y);
+  x += 9 * size;
+  context.textAlign = 'center';
+  // Counter
+  context.fillStyle = activeKeys.counter ? '#555' : '#DDD';
+  switch (keyActions.counter) {
+    case ' ':
+      context.fillRect(x - (3 * size), y - size, 6 * size, 2 * size);
+      context.strokeRect(x - (3 * size), y - size, 6 * size, 2 * size);
+      break;
+    default:
+      context.fillRect(x - (2.5 * size), y - size, 2 * size, 2 * size);
+      context.strokeRect(x - (2.5 * size), y - size, 2 * size, 2 * size);
+      break;
+  }
+  context.fillStyle = activeKeys.counter ? '#EEE' : '#111';
+  context.fillText(convertToDisplayKey(keyActions.counter), x - (1.5 * size), y);
+  // Clock
+  context.fillStyle = activeKeys.clock ? '#555' : '#DDD';
+  switch (keyActions.clock) {
+    case ' ':
+      context.fillRect(x + (3 * size), y - size, 6 * size, 2 * size);
+      context.strokeRect(x + (3 * size), y - size, 6 * size, 2 * size);
+      break;
+    default:
+      context.fillRect(x + (0.5 * size), y - size, 2 * size, 2 * size);
+      context.strokeRect(x + (0.5 * size), y - size, 2 * size, 2 * size);
+      break;
+  }
+  context.fillStyle = activeKeys.clock ? '#EEE' : '#111';
+  context.fillText(convertToDisplayKey(keyActions.clock), x + (1.5 * size), y);
+}
+
 var frame = 0;
 function render() {
   context.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -128,25 +275,32 @@ function render() {
     context.fillStyle = '#FFF7';
     context.fillRect(345 + (active % 18) * BLOCK_SPACING, 345 + (active / 18 >> 0) * BLOCK_SPACING, BLOCK_SPACING, BLOCK_SPACING);
   }
+
+  renderKeys(context, keyActions, activeKeys);
+
   // Player score
   context.textAlign = 'right';
   context.fillStyle = '#111';
   context.font = (FONT_SIZE * 1.5) + BLOCK_FONT;
-  context.fillText('Score:', 590, 30);
-  context.fillText('Hi Score:', 590, 55);
-  context.fillText('Level:', 590, 80);
+  context.fillText('Score:', 830, 30);
+  context.fillText('Hi Score:', 830, 55);
+  context.fillText('Level:', 830, 80);
 
   context.textAlign = 'left';
-  context.fillText(playerScore, 600, 30);
-  context.fillText(highScore, 600, 55);
-  context.fillText(level, 600, 80);
+  context.fillText(playerScore, 840, 30);
+  context.fillText(highScore, 840, 55);
+  context.fillText(level, 840, 80);
   context.textAlign = 'center';
   // Pause overlay
   if (paused) {
+    var halfW = CANVAS_WIDTH / 2;
+    var halfH = CANVAS_HEIGHT / 2;
     context.fillStyle = '#FFF7';
     context.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+    context.fillStyle = '#FFFC';
+    context.fillRect(halfW - 52, halfH - 18, 104, 36);
     context.fillStyle = '#111';
-    context.fillText('Paused', CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2);
+    context.fillText('Paused', halfW, halfH);
   }
 }
 
@@ -160,20 +314,6 @@ function step(timestamp) {
 }
 window.requestAnimationFrame(step);
 
-keyBinds = {
-  ' ': 'pause',
-  'z': 'counter', 'Z': 'counter',
-  'x': 'clock',   'X': 'clock',
-  'ArrowLeft' : 'left',
-  'ArrowRight': 'right',
-  'ArrowUp'   : 'up',
-  'ArrowDown' : 'down'
-};
-function getAction(event) {
-  var key = event.key;
-  return keyBinds[key ? key : KEY_CODES[event.keyCode]];
-}
-
 function handleKeyDown(event) {
   var action = getAction(event);
   if (!event.ctrlKey && !event.altKey && !event.metaKey) event.preventDefault();
@@ -186,6 +326,7 @@ function handleKeyDown(event) {
       }
     }
     else if (! gameover) {
+      activeKeys[action] = true;
       switch (action) {
         case 'up'     : tetrisGrid.raise();           break;
         case 'left'   : tetrisGrid.slideDirection--;  break;
@@ -212,6 +353,7 @@ function handleKeyUp(event) {
     tetrisGrid.dropInterval = setInterval(drop, DROP_DELAY[level]);
   }
 
+  activeKeys[action] = false;
   switch (action) {
     case 'left'   : tetrisGrid.slideDirection++;  break;
     case 'right'  : tetrisGrid.slideDirection--;  break;
