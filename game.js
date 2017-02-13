@@ -9,9 +9,20 @@ const BLOCK_SIZE = BLOCK_SPACING - (BLOCK_PADDING * 2);
 const CANVAS_WIDTH = canvas.width;
 const CANVAS_HEIGHT = canvas.height;
 
+var saveData;
+var storedData = window.localStorage.getItem('tetrelementis');
+if (!storedData) {
+  saveData = {
+    highScore: 0
+  }
+}
+else saveData = JSON.parse(storedData);
+
+var paused = true;
+var gameover = false;
 var scene = 0;
 var playerScore = 0;
-var highScore = 0;
+var highScore = saveData.highScore;
 var level = 0;
 var resetBoard = 0;
 var gameoverElement = 0;
@@ -20,7 +31,7 @@ function drop() {
   var lines = tetrisGrid.drop();
   if (lines < 0) {
     tetrisGrid.clearMovement();
-    scene = 2;
+    gameover = true;
     gameoverElement = (Math.random() * (CHEMICAL_ELEMENTS.length - 1) >> 0) + 1;
   }
   else if (lines > 0) {
@@ -33,16 +44,32 @@ function allowSlide() { canSlide = true }
 canRotate = true;
 function allowRotate() { canRotate = true }
 function update() {
-  if (scene === 2) {
-    tetrisGrid.board[resetBoard] = gameoverElement;
-    if (resetBoard < 199) resetBoard++;
+  if (gameover) {
+    tetrisGrid.board.splice(
+      resetBoard * 10,
+      10,
+      gameoverElement,
+      gameoverElement,
+      gameoverElement,
+      gameoverElement,
+      gameoverElement,
+      gameoverElement,
+      gameoverElement,
+      gameoverElement,
+      gameoverElement,
+      gameoverElement
+    );
+    if (resetBoard < 19) resetBoard++;
     else {
       if (gameoverElement === 0) {
-        scene = 0;
+        gameover = false;
+        paused = true;
         tetrisGrid = new TetrisBoard;
         highScore = playerScore;
         playerScore = 0;
         level = 0;
+        saveData.highScore = highScore;
+        window.localStorage.setItem('tetrelementis', JSON.stringify(saveData));
       }
       else gameoverElement = 0;
       resetBoard = 0;
@@ -104,18 +131,18 @@ function render() {
   // Player score
   context.textAlign = 'right';
   context.fillStyle = '#111';
-  context.font = (FONT_SIZE * 2) + BLOCK_FONT;
-  context.fillText('Score:', 600, 30);
-  context.fillText('Hi Score:', 600, 60);
-  context.fillText('Level:', 600, 90);
+  context.font = (FONT_SIZE * 1.5) + BLOCK_FONT;
+  context.fillText('Score:', 590, 30);
+  context.fillText('Hi Score:', 590, 55);
+  context.fillText('Level:', 590, 80);
 
   context.textAlign = 'left';
-  context.fillText(playerScore, 610, 30);
-  context.fillText(highScore, 610, 60);
-  context.fillText(level, 610, 90);
+  context.fillText(playerScore, 600, 30);
+  context.fillText(highScore, 600, 55);
+  context.fillText(level, 600, 80);
   context.textAlign = 'center';
   // Pause overlay
-  if (scene === 0) {
+  if (paused) {
     context.fillStyle = '#FFF7';
     context.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
     context.fillStyle = '#111';
@@ -151,14 +178,14 @@ function handleKeyDown(event) {
   var action = getAction(event);
   if (!event.ctrlKey && !event.altKey && !event.metaKey) event.preventDefault();
   if (!event.repeat) {
-    if (scene === 0) {
+    if (paused) {
       if (action == 'pause') {
         tetrisGrid.clearMovement();
         tetrisGrid.dropInterval = setInterval(drop, DROP_DELAY[level]);
-        scene = 1;
+        paused = false;
       }
     }
-    else if (scene === 1) {
+    else if (! gameover) {
       switch (action) {
         case 'up'     : tetrisGrid.raise();           break;
         case 'left'   : tetrisGrid.slideDirection--;  break;
@@ -172,7 +199,7 @@ function handleKeyDown(event) {
         case 'pause':
           clearInterval(tetrisGrid.dropInterval);
           tetrisGrid.dropInterval = 0;
-          scene = 0;
+          paused = true;
           break;
       }
     }
@@ -180,7 +207,7 @@ function handleKeyDown(event) {
 }
 function handleKeyUp(event) {
   var action = getAction(event);
-  if (scene === 1 && action == 'down') {
+  if (!gameover && !paused && action == 'down') {
     clearInterval(tetrisGrid.dropInterval);
     tetrisGrid.dropInterval = setInterval(drop, DROP_DELAY[level]);
   }

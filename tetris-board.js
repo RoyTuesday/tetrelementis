@@ -71,7 +71,7 @@ TetrisBoard.prototype.handleFullLines = function() {
 };
 TetrisBoard.prototype.render = function(context) {
   this.board.forEach(function(b, i) { renderBlock(b, i, 10, 0, 0) });
-  if (scene !== 2) {
+  if (!gameover) {
     var tetromino = this.tetromino;
     var element = tetromino.element;
     tetromino.blocks.forEach(function(b) { if (b >= 0) renderBlock(element, b, 10, 0, 0) });
