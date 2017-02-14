@@ -21,7 +21,7 @@ function renderPeriodicTable(context, table) {
   var right = x + (spacing * 18);
 
   for (var i = 0; i < 162; i++) {
-    renderBlock(table.board[i], x, y);
+    renderBlock(context, table.board[i], x, y);
     x += spacing;
     if (x == right) {
       x = 345;

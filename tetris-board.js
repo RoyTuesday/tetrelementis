@@ -80,7 +80,7 @@ function renderTetrisBoard(context, board) {
   var right = x + (spacing * 10);
 
   for (var i = 0; i < 200; i++) {
-    renderBlock(board.board[i], x, y);
+    renderBlock(context, board.board[i], x, y);
     x += spacing;
     if (x == right) {
       x = 15;
@@ -94,7 +94,7 @@ function renderTetrisBoard(context, board) {
     for (var i = 0; i < 4; i++) {
       x = 15 + ((blocks[i] % 10) * spacing);
       y = 15 + ((blocks[i] / 10 >> 0) * spacing);
-      renderBlock(element, x, y);
+      renderBlock(context, element, x, y);
     }
   }
 }

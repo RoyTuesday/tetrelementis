@@ -43,49 +43,54 @@ canSlide = true;
 function allowSlide() { canSlide = true }
 canRotate = true;
 function allowRotate() { canRotate = true }
+
 function update() {
-  if (gameover) {
-    gTetrisBoard.board.splice(
-      resetBoard * 10,
-      10,
-      gameoverElement,
-      gameoverElement,
-      gameoverElement,
-      gameoverElement,
-      gameoverElement,
-      gameoverElement,
-      gameoverElement,
-      gameoverElement,
-      gameoverElement,
-      gameoverElement
-    );
-    if (resetBoard < 19) resetBoard++;
-    else {
-      if (gameoverElement === 0) {
-        gameover = false;
-        paused = true;
-        highScore = playerScore;
-        playerScore = 0;
-        level = 0;
-        saveData.highScore = highScore;
-        window.localStorage.setItem('tetrelementis', JSON.stringify(saveData));
-        gTetrisBoard.board = setTetrisBoard();
+  switch (scene) {
+    case 1:
+      if (gameover) {
+        gTetrisBoard.board.splice(
+          resetBoard * 10,
+          10,
+          gameoverElement,
+          gameoverElement,
+          gameoverElement,
+          gameoverElement,
+          gameoverElement,
+          gameoverElement,
+          gameoverElement,
+          gameoverElement,
+          gameoverElement,
+          gameoverElement
+        );
+        if (resetBoard < 19) resetBoard++;
+        else {
+          if (gameoverElement === 0) {
+            gameover = false;
+            paused = true;
+            highScore = playerScore;
+            playerScore = 0;
+            level = 0;
+            saveData.highScore = highScore;
+            window.localStorage.setItem('tetrelementis', JSON.stringify(saveData));
+            gTetrisBoard.board = setTetrisBoard();
+          }
+          else gameoverElement = 0;
+          resetBoard = 0;
+        }
       }
-      else gameoverElement = 0;
-      resetBoard = 0;
-    }
-  }
 
-  if (canSlide && gTetrisBoard.slideDirection !== 0) {
-    slideTetromino(gTetrisBoard);
-    canSlide = false;
-    setTimeout(allowSlide, FAST_DROP);
-  }
+      if (canSlide && gTetrisBoard.slideDirection !== 0) {
+        slideTetromino(gTetrisBoard);
+        canSlide = false;
+        setTimeout(allowSlide, FAST_DROP);
+      }
 
-  if (canRotate && gTetrisBoard.rotateDirection !== 0) {
-    rotateTetromino(gTetrisBoard);
-    canRotate = false;
-    setTimeout(allowRotate, FAST_DROP * 5);
+      if (canRotate && gTetrisBoard.rotateDirection !== 0) {
+        rotateTetromino(gTetrisBoard);
+        canRotate = false;
+        setTimeout(allowRotate, FAST_DROP * 5);
+      }
+      break;
   }
 }
 
@@ -125,7 +130,7 @@ function step(timestamp) {
   if (!start) var start = timestamp;
 
   update();
-  render(context);
+  render(context, scene);
 
   var progress = timestamp - start;
   if (progress < 2000) window.requestAnimationFrame(step);
@@ -134,50 +139,61 @@ window.requestAnimationFrame(step);
 
 function handleKeyDown(event) {
   var action = getAction(event);
-  var board = gTetrisBoard;
   if (!event.ctrlKey && !event.altKey && !event.metaKey) event.preventDefault();
   if (!event.repeat) {
-    if (paused) {
-      if (action == 'pause') {
-        clearMovement(board);
-        board.dropInterval = setInterval(drop, DROP_DELAY[level]);
-        paused = false;
+  switch (scene) {
+    case 0:
+      if (action == 'pause') scene = 1;
+      break;
+    case 1:
+      var board = gTetrisBoard;
+        if (paused) {
+          if (action == 'pause') {
+            clearMovement(board);
+            board.dropInterval = setInterval(drop, DROP_DELAY[level]);
+            paused = false;
+          }
+        }
+        else if (! gameover) {
+          activeKeys[action] = true;
+          switch (action) {
+            case 'left'   : board.slideDirection--;  break;
+            case 'right'  : board.slideDirection++;  break;
+            case 'counter': board.rotateDirection--; break;
+            case 'clock'  : board.rotateDirection++; break;
+            case 'down':
+            clearInterval(board.dropInterval);
+            board.dropInterval = setInterval(drop, FAST_DROP);
+            break;
+            case 'pause':
+            clearInterval(board.dropInterval);
+            board.dropInterval = 0;
+            paused = true;
+            break;
+          }
       }
-    }
-    else if (! gameover) {
-      activeKeys[action] = true;
-      switch (action) {
-        case 'left'   : board.slideDirection--;  break;
-        case 'right'  : board.slideDirection++;  break;
-        case 'counter': board.rotateDirection--; break;
-        case 'clock'  : board.rotateDirection++; break;
-        case 'down':
-          clearInterval(board.dropInterval);
-          board.dropInterval = setInterval(drop, FAST_DROP);
-          break;
-        case 'pause':
-          clearInterval(board.dropInterval);
-          board.dropInterval = 0;
-          paused = true;
-          break;
-      }
+      break;
     }
   }
 }
 function handleKeyUp(event) {
   var action = getAction(event);
-  var board = gTetrisBoard;
-  if (!gameover && !paused && action == 'down') {
-    clearInterval(board.dropInterval);
-    board.dropInterval = setInterval(drop, DROP_DELAY[level]);
-  }
+  switch (scene) {
+    case 1:
+      var board = gTetrisBoard;
+      if (!gameover && !paused && action == 'down') {
+        clearInterval(board.dropInterval);
+        board.dropInterval = setInterval(drop, DROP_DELAY[level]);
+      }
 
-  activeKeys[action] = false;
-  switch (action) {
-    case 'left'   : board.slideDirection++;  break;
-    case 'right'  : board.slideDirection--;  break;
-    case 'counter': board.rotateDirection++; break;
-    case 'clock'  : board.rotateDirection--; break;
+      activeKeys[action] = false;
+      switch (action) {
+        case 'left'   : board.slideDirection++;  break;
+        case 'right'  : board.slideDirection--;  break;
+        case 'counter': board.rotateDirection++; break;
+        case 'clock'  : board.rotateDirection--; break;
+      }
+      break;
   }
 }
 document.addEventListener('keydown', handleKeyDown);

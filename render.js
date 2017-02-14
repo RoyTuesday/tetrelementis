@@ -1,4 +1,4 @@
-function renderBlock(num, x, y) {
+function renderBlock(context, num, x, y) {
   if (typeof num !== 'number') return;
   var spacing = BLOCK_SPACING;
   var padding = BLOCK_PADDING;
@@ -140,8 +140,59 @@ function renderKeys(context, keyActions, activeKeys) {
   context.fillText(convertToDisplayKey(keyActions.clock), x + (1.5 * size), y);
 }
 
+function numToANum(num) {
+  switch (num) {
+    case '2': return 27;
+    case '3': return 2;
+    case '4': return 35;
+    case '5': return 10;
+    case '7': return 79;
+    case '8': return 53;
+    default: return num;
+  }
+}
+var TITLE = [
+  '11111 22222 11111 3333  22222 4     22222 5   5 22222 6   6 11111 77777  8888',
+  '  1   2       1   3   3 2     4     2     55 55 2     66  6   1     7   88   ',
+  '  1   222     1   3   3 222   4     222   5 5 5 222   6 6 6   1     7   8    ',
+  '  1   2       1   3333  2     4     2     5   5 2     6  66   1     7    888 ',
+  '  1   2       1   3 3   2     4     2     5   5 2     6   6   1     7      88',
+  '  1   2       1   3  3  2     4     2     5   5 2     6   6   1     7       8',
+  '  1   22222   1   3   3 22222 44444 22222 5   5 22222 6   6   1   77777 8888 '
+].join('').split('').map(numToANum);
+
+function renderTitle(context) {
+  var size = BLOCK_SIZE / 2;
+  var title = TITLE;
+
+  var startX = size * 5;
+  var x = startX;
+  var y = 275 - (size * 3.5);
+  var elements = CHEMICAL_ELEMENTS;
+  context.lineWidth = 3;
+  for (var i = 0; i < 539; i++) {
+    if (title[i] > 0) {
+      var chem = elements[title[i]];
+      context.fillStyle = chem.background;
+      context.strokeStyle = chem.border;
+      context.fillRect(x, y, size, size);
+      context.strokeRect(x + 0.5, y + 0.5, size - 1, size - 1);
+    }
+    x += size;
+    if (i > 0 && i % 77 == 0) {
+      x = startX + size;
+      y += size;
+    }
+  }
+  // Subtitle
+  context.font = '26px Courier, monospace';
+  context.textAlign = 'center';
+  context.fillStyle = '#111';
+  context.fillText('Press space to start', 450, 370);
+}
+
 var frame = 0;
-function render(context) {
+function render(context, scene) {
   var width = CANVAS_WIDTH;
   var height = CANVAS_HEIGHT;
   var spacing = BLOCK_SPACING;
@@ -149,44 +200,50 @@ function render(context) {
   context.clearRect(0, 0, width, height);
   context.fillStyle = '#E1DEEA';
   context.fillRect(0, 0, width, height);
-
   context.lineWidth = 4;
 
-  renderPreview(context, gPreviewBoard);
-  renderTetrisBoard(context, gTetrisBoard);
-  renderPeriodicTable(context, gPeriodicTable);
+  switch (scene) {
+    case 0:
+      renderTitle(context);
+      break;
+    case 1:
+      renderPreview(context, gPreviewBoard);
+      renderTetrisBoard(context, gTetrisBoard);
+      renderPeriodicTable(context, gPeriodicTable);
 
-  // Periodic Table element highlight
-  var active = gPeriodicTable.activeIndex;
-  if (active >= 0) {
-    context.fillStyle = '#FFF7';
-    context.fillRect(345 + (active % 18) * spacing, 345 + (active / 18 >> 0) * spacing, spacing, spacing);
-  }
+      // Periodic Table element highlight
+      var active = gPeriodicTable.activeIndex;
+      if (active >= 0) {
+        context.fillStyle = '#FFF7';
+        context.fillRect(345 + (active % 18) * spacing, 345 + (active / 18 >> 0) * spacing, spacing, spacing);
+      }
 
-  renderKeys(context, keyActions, activeKeys);
+      renderKeys(context, keyActions, activeKeys);
 
-  // Player score
-  context.textAlign = 'right';
-  context.fillStyle = '#111';
-  context.font = (FONT_SIZE * 1.5) + BLOCK_FONT;
-  context.fillText('Score:', 830, 30);
-  context.fillText('Hi Score:', 830, 55);
-  context.fillText('Level:', 830, 80);
+      // Player score
+      context.textAlign = 'right';
+      context.fillStyle = '#111';
+      context.font = (FONT_SIZE * 1.5) + BLOCK_FONT;
+      context.fillText('Score:', 830, 30);
+      context.fillText('Hi Score:', 830, 55);
+      context.fillText('Level:', 830, 80);
 
-  context.textAlign = 'left';
-  context.fillText(playerScore, 840, 30);
-  context.fillText(highScore, 840, 55);
-  context.fillText(level, 840, 80);
-  context.textAlign = 'center';
-  // Pause overlay
-  if (paused) {
-    var halfW = width / 2;
-    var halfH = height / 2;
-    context.fillStyle = '#FFF7';
-    context.fillRect(0, 0, width, height);
-    context.fillStyle = '#FFFC';
-    context.fillRect(halfW - 52, halfH - 18, 104, 36);
-    context.fillStyle = '#111';
-    context.fillText('Paused', halfW, halfH);
+      context.textAlign = 'left';
+      context.fillText(playerScore, 840, 30);
+      context.fillText(highScore, 840, 55);
+      context.fillText(level, 840, 80);
+      context.textAlign = 'center';
+      // Pause overlay
+      if (paused) {
+        var halfW = width / 2;
+        var halfH = height / 2;
+        context.fillStyle = '#FFF7';
+        context.fillRect(0, 0, width, height);
+        context.fillStyle = '#FFFC';
+        context.fillRect(halfW - 52, halfH - 18, 104, 36);
+        context.fillStyle = '#111';
+        context.fillText('Paused', halfW, halfH);
+      }
+      break;
   }
 }

@@ -25,7 +25,7 @@ renderPreview = function(context, board) {
   var right = x + (spacing * 4);
 
   for (var i = 0; i < 16; i++) {
-    renderBlock(board[i], x, y);
+    renderBlock(context, board[i], x, y);
     x += spacing;
     if (x == right) {
       x = 345;
