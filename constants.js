@@ -1,3 +1,9 @@
+const BLOCK_SPACING = 30;
+const BLOCK_PADDING = 5;
+const BLOCK_SIZE = BLOCK_SPACING - (BLOCK_PADDING * 2);
+const CANVAS_WIDTH = 900;
+const CANVAS_HEIGHT = 630;
+
 var KEY_CODES = [,,,,,,,,
   'backspace',
   'tab',,,,
