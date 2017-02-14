@@ -13,6 +13,7 @@ var scene = 0;
 var playerScore = 0;
 var highScore = saveData.highScore;
 var level = 0;
+var gameMode = 'Marathon';
 var resetBoard = 0;
 var gameoverElement = 0;
 

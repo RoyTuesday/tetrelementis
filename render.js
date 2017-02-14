@@ -224,14 +224,16 @@ function render(context, scene) {
       context.textAlign = 'right';
       context.fillStyle = '#111';
       context.font = (FONT_SIZE * 1.5) + BLOCK_FONT;
-      context.fillText('Score:', 830, 30);
-      context.fillText('Hi Score:', 830, 55);
-      context.fillText('Level:', 830, 80);
+      context.fillText('Score:', 740, 37);
+      context.fillText('Hi Score:', 740, 62);
+      context.fillText('Level:', 740, 87);
+      context.fillText('Mode:', 740, 112);
 
       context.textAlign = 'left';
-      context.fillText(playerScore, 840, 30);
-      context.fillText(highScore, 840, 55);
-      context.fillText(level, 840, 80);
+      context.fillText(playerScore, 750, 37);
+      context.fillText(highScore, 750, 62);
+      context.fillText(level, 750, 87);
+      context.fillText(gameMode, 750, 112);
       context.textAlign = 'center';
       // Pause overlay
       if (paused) {
