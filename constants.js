@@ -107,12 +107,20 @@ var GAME_MODES = [
 
 function convertToDisplayKey(key) {
   switch (key) {
-    case ' '          : return 'space';
+    case ' '          : return 'Space';
     case 'ArrowLeft'  : return '←';
     case 'ArrowRight' : return '→';
     case 'ArrowDown'  : return '↓';
     case 'ArrowUp'    : return '↑';
-    default: return key.toUpperCase();
+    default:
+      var capital = key;
+      if (/^[a-z]$/.test(key)) capital = key.toUpperCase();
+      else if (key.length > 1) {
+        var chars = key.split('');
+        chars[0] = chars[0].toUpperCase();
+        capital = chars.join('');
+      }
+      return capital;
   }
 }
 

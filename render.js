@@ -41,7 +41,7 @@ function renderKeys(context, keyActions, activeKeys) {
   x += 9 * size;
   context.textAlign = 'center';
   switch (keyActions.pause) {
-    case ' ':
+    case 'Space':
       context.fillRect(x - (3 * size), y - size, 6 * size, 2 * size);
       context.strokeRect(x - (3 * size), y - size, 6 * size, 2 * size);
       break;
@@ -51,7 +51,7 @@ function renderKeys(context, keyActions, activeKeys) {
       break;
   }
   context.fillStyle = activeKeys.pause ? '#EEE' : '#111';
-  context.fillText(convertToDisplayKey(keyActions.pause), x, y);
+  context.fillText(keyActions.pause, x, y);
   x = 475;
   y += 3 * size;
   // Move
@@ -63,7 +63,7 @@ function renderKeys(context, keyActions, activeKeys) {
   // Left
   context.fillStyle = activeKeys.left ? '#555' : '#DDD';
   switch (keyActions.left) {
-    case ' ':
+    case 'Space':
       context.fillRect(x - (6 * size), y - size, 6 * size, 2 * size);
       context.strokeRect(x - (6 * size), y - size, 6 * size, 2 * size);
       break;
@@ -73,11 +73,11 @@ function renderKeys(context, keyActions, activeKeys) {
       break;
   }
   context.fillStyle = activeKeys.left ? '#EEE' : '#111';
-  context.fillText(convertToDisplayKey(keyActions.left), x - (3 * size), y);
+  context.fillText(keyActions.left, x - (3 * size), y);
   // Down
   context.fillStyle = activeKeys.down ? '#555' : '#DDD';
   switch (keyActions.down) {
-    case ' ':
+    case 'Space':
       context.fillRect(x - (3 * size), y - size, 6 * size, 2 * size);
       context.strokeRect(x - (3 * size), y - size, 6 * size, 2 * size);
       break;
@@ -87,11 +87,11 @@ function renderKeys(context, keyActions, activeKeys) {
       break;
   }
   context.fillStyle = activeKeys.down ? '#EEE' : '#111';
-  context.fillText(convertToDisplayKey(keyActions.down), x, y);
+  context.fillText(keyActions.down, x, y);
   // Right
   context.fillStyle = activeKeys.right ? '#555' : '#DDD';
   switch (keyActions.right) {
-    case ' ':
+    case 'Space':
       context.fillRect(x - size, y - size, 6 * size, 2 * size);
       context.strokeRect(x - size, y - size, 6 * size, 2 * size);
       break;
@@ -101,7 +101,7 @@ function renderKeys(context, keyActions, activeKeys) {
       break;
   }
   context.fillStyle = activeKeys.right ? '#EEE' : '#111';
-  context.fillText(convertToDisplayKey(keyActions.right), x + (3 * size), y);
+  context.fillText(keyActions.right, x + (3 * size), y);
   x = 475;
   y += 3 * size;
   // Rotate
@@ -113,7 +113,7 @@ function renderKeys(context, keyActions, activeKeys) {
   // Counter
   context.fillStyle = activeKeys.counter ? '#555' : '#DDD';
   switch (keyActions.counter) {
-    case ' ':
+    case 'Space':
       context.fillRect(x - (3 * size), y - size, 6 * size, 2 * size);
       context.strokeRect(x - (3 * size), y - size, 6 * size, 2 * size);
       break;
@@ -123,11 +123,11 @@ function renderKeys(context, keyActions, activeKeys) {
       break;
   }
   context.fillStyle = activeKeys.counter ? '#EEE' : '#111';
-  context.fillText(convertToDisplayKey(keyActions.counter), x - (1.5 * size), y);
+  context.fillText(keyActions.counter, x - (1.5 * size), y);
   // Clock
   context.fillStyle = activeKeys.clock ? '#555' : '#DDD';
   switch (keyActions.clock) {
-    case ' ':
+    case 'Space':
       context.fillRect(x + (3 * size), y - size, 6 * size, 2 * size);
       context.strokeRect(x + (3 * size), y - size, 6 * size, 2 * size);
       break;
@@ -137,7 +137,7 @@ function renderKeys(context, keyActions, activeKeys) {
       break;
   }
   context.fillStyle = activeKeys.clock ? '#EEE' : '#111';
-  context.fillText(convertToDisplayKey(keyActions.clock), x + (1.5 * size), y);
+  context.fillText(keyActions.clock, x + (1.5 * size), y);
 }
 
 function numToANum(num) {

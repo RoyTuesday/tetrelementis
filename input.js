@@ -44,13 +44,13 @@ var activeKeys = {
   down    : false
 }
 var keyActions = {
-  pause   : ' ',
-  counter : 'z',
-  clock   : 'x',
-  left    : 'ArrowLeft',
-  right   : 'ArrowRight',
-  up      : 'ArrowUp',
-  down    : 'ArrowDown'
+  pause   : 'Space',
+  counter : 'Z',
+  clock   : 'X',
+  left    : '←',
+  right   : '→',
+  up      : '↑',
+  down    : '↓'
 }
 var keyBinds = {
   ' ': 'pause',
@@ -74,15 +74,13 @@ function setKeybind(keyBinds, keyActions, action, key) {
   newKeys[key] = action;
   if (/^[a-z]$/.test(key)) {
     newKeys[key.toUpperCase()] = action;
-    keyActions[action] = key;
+    // keyActions[action] = key;
   }
   else if (/^[A-Z]$/.test(key)) {
     newKeys[key.toLowerCase()] = action;
-    keyActions[action] = key.toLowerCase();
+    // keyActions[action] = key.toLowerCase();
   }
-  else {
-    keyActions[action] = key;
-  }
+  keyActions[action] = convertToDisplayKey(key);
 
   return newKeys;
 }
