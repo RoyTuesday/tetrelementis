@@ -65,6 +65,27 @@ function getAction(event) {
   var key = event.key;
   return keyBinds[key ? key : KEY_CODES[event.keyCode]];
 }
+function setKeybind(keyBinds, keyActions, action, key) {
+  var newKeys = {}
+  for (var k in keyBinds) {
+    if (keyBinds.hasOwnProperty(k) && keyBinds[k] !== action) newKeys[k] = keyBinds[k];
+  }
+
+  newKeys[key] = action;
+  if (/^[a-z]$/.test(key)) {
+    newKeys[key.toUpperCase()] = action;
+    keyActions[action] = key;
+  }
+  else if (/^[A-Z]$/.test(key)) {
+    newKeys[key.toLowerCase()] = action;
+    keyActions[action] = key.toLowerCase();
+  }
+  else {
+    keyActions[action] = key;
+  }
+
+  return newKeys;
+}
 
 function handleKeyDown(event) {
   var action = getAction(event);
