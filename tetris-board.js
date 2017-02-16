@@ -59,7 +59,11 @@ function handleFullLines(tetrisBoard) {
     }
     else board = board.concat(slice);
   }
-  if (lines > 0) tetrisBoard.board = board;
+  if (lines > 0) {
+    tetrisBoard.board = board;
+    tetrisBoard.cheerOpacity = 50;
+    tetrisBoard.cheer = CHEERS[lines][Math.random() * 2 >> 0];
+  }
   return lines;
 }
 function clearMovement(tetrisBoard) {
@@ -88,6 +92,20 @@ function renderTetrisBoard(context, board) {
     }
   }
 
+  if (board.cheerOpacity > 0) {
+    var opacity = board.cheerOpacity / 50;
+    context.textAlign = 'center';
+    context.lineWidth = 3;
+    context.font = (FONT_SIZE * 2) + BLOCK_FONT;
+    context.fillStyle = 'rgba(0,0,0,' + opacity + ')';
+    context.strokeStyle = 'rgba(141,225,240,' + opacity + ')';
+
+    context.strokeText(board.cheer, 157, 330);
+    context.fillText(board.cheer, 157, 330);
+
+    board.cheerOpacity--;
+  }
+
   if (!gameover) {
     var blocks = board.tetromino.blocks;
     var element = board.tetromino.element;
@@ -105,4 +123,6 @@ var gTetrisBoard = {
   dropInterval: 0,
   slideDirection: 0,
   rotateDirection: 0,
+  cheerOpacity: 0,
+  cheer: ''
 }

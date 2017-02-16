@@ -20,6 +20,7 @@ function renderPeriodicTable(context, table) {
   var spacing = BLOCK_SPACING;
   var right = x + (spacing * 18);
 
+  context.lineWidth = 4;
   for (var i = 0; i < 162; i++) {
     renderBlock(context, table.board[i], x, y);
     x += spacing;

@@ -16,6 +16,7 @@ var level = 0;
 var gameMode = 'Marathon';
 var resetBoard = 0;
 var gameoverElement = 0;
+var comboQueue = [];
 
 function drop() {
   var lines = dropTetromino(gTetrisBoard);

@@ -68,6 +68,26 @@ var KEY_CODES = [,,,,,,,,
   '\'',,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ];
 
+var CHEERS = [
+  'Spell me!',
+  [
+    'One!',
+    'Cleared one!'
+  ],
+  [
+    "Two!",
+    'Two for the show!'
+  ],
+  [
+    'Three!',
+    "Three's charmed!"
+  ],
+  [
+    'Four!',
+    'Awesome!'
+  ]
+];
+
 const CHEMISTRY_URL = "http://www.webelements.com/";
 const FONT_SIZE = 11;
 const BLOCK_FONT = "px monospace";
