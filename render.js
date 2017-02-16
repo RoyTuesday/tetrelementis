@@ -25,6 +25,21 @@ function renderBlock(context, num, x, y) {
   }
 }
 
+function renderMouse(context, mouse) {
+  context.beginPath();
+  context.moveTo(mouse.x, mouse.y);
+  context.lineTo(mouse.x + 12, mouse.y + 12);
+  context.lineTo(mouse.x + 6, mouse.y + 12);
+  context.lineTo(mouse.x + 0, mouse.y + 17);
+  context.closePath();
+
+  context.fillStyle = '#000';
+  context.strokeStyle = '#9EE';
+  context.lineWidth = 2;
+  context.fill();
+  context.stroke();
+}
+
 function renderKeys(context, keyActions, activeKeys) {
   var x = 475;
   var y = 40;
@@ -248,4 +263,6 @@ function render(context, scene) {
       }
       break;
   }
+
+  renderMouse(context, gMouse);
 }

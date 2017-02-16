@@ -18,6 +18,8 @@ var resetBoard = 0;
 var gameoverElement = 0;
 var comboQueue = [];
 
+var gMouse = { x: 0, y: 0 }
+
 function drop() {
   var lines = dropTetromino(gTetrisBoard);
   if (lines < 0) {
@@ -155,8 +157,11 @@ function handleResize() {
 window.addEventListener('resize', handleResize);
 
 function handleMouseMove(event) {
-  var x = (event.layerX * canvasScale) - 345;
-  var y = (event.layerY * canvasScale) - 345;
+  gMouse.x = event.layerX * canvasScale;
+  gMouse.y = event.layerY * canvasScale;
+
+  var x = mouse.x - 345;
+  var y = mouse.y - 345;
   var i = ((x / BLOCK_SPACING) >> 0) + (18 * ((y / BLOCK_SPACING) >> 0));
   if (x >= 0 && x <= 540 && y >= 0 && y <= 270 && i >= 0 && gPeriodicTable.board[i] > 0) gPeriodicTable.activeIndex = i;
   else if (gPeriodicTable.activeIndex >= 0) gPeriodicTable.activeIndex = -1;
