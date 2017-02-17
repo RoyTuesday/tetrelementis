@@ -8,6 +8,7 @@ if (!storedData) {
 else saveData = JSON.parse(storedData);
 
 var paused = true;
+var optionsMenu = false;
 var gameover = false;
 var scene = 0;
 var playerScore = 0;
@@ -104,6 +105,7 @@ function handleKeyDown(event) {
         activeKeys[action] = true;
         if (paused) {
           if (action == 'pause') {
+            if (optionsMenu) optionsMenu = false;
             clearMovement(board);
             board.dropInterval = setInterval(drop, DROP_DELAY[level]);
             paused = false;

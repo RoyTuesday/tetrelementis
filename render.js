@@ -262,7 +262,17 @@ function render(context, scene) {
         context.fillText('Paused', 165, 315);
       }
 
-      if (gMouse.isOverOptions) {
+      if (optionsMenu) {
+        context.fillStyle = '#0003';
+        context.fillRect(330, 0, 570, 630);
+        context.fillStyle = '#FFFD';
+        context.fillRect(360, 30, 510, 570);
+
+        context.textAlign = 'left';
+        context.fillStyle = '#111';
+        context.fillText('Options Menu', 390, 60);
+      }
+      else if (gMouse.isOverOptions) {
         context.fillStyle = "#0003";
         context.fillRect(330, 0, 570, 150);
         context.fillStyle = '#FFFD';
