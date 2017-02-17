@@ -182,5 +182,11 @@ canvas.addEventListener('mousemove', handleMouseMove);
 function handleMouseDown(event) {
   var aNum = gPeriodicTable.board[gPeriodicTable.activeIndex];
   if (aNum > 0) setTableElement(gPeriodicTable, aNum);
+  else if (gMouse.isOverOptions) {
+    optionsMenu = true;
+    clearInterval(gTetrisBoard.dropInterval);
+    gTetrisBoard.dropInterval = 0;
+    paused = true;
+  }
 }
 canvas.addEventListener('mousedown', handleMouseDown);
