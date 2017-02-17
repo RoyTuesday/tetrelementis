@@ -252,14 +252,14 @@ function render(context, scene) {
       context.textAlign = 'center';
       // Pause overlay
       if (paused) {
-        var halfW = width / 2;
-        var halfH = height / 2;
+        // var halfW = width / 2;
+        // var halfH = height / 2;
         context.fillStyle = '#FFF7';
-        context.fillRect(0, 0, width, height);
+        context.fillRect(0, 0, 330, 630);
         context.fillStyle = '#FFFC';
-        context.fillRect(halfW - 52, halfH - 18, 104, 36);
+        context.fillRect(113, 297, 104, 36);
         context.fillStyle = '#111';
-        context.fillText('Paused', halfW, halfH);
+        context.fillText('Paused', 165, 315);
       }
       break;
   }
