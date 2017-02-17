@@ -18,7 +18,10 @@ var resetBoard = 0;
 var gameoverElement = 0;
 var comboQueue = [];
 
-var gMouse = { x: 0, y: 0 }
+var gMouse = { x: 0, y: 0, isOverOptions: false }
+function isMouseOverOptions(mouse) {
+  return mouse.x > 330 && mouse.x < 900 && mouse.y > 0 && mouse.y < 150;
+}
 
 function drop() {
   var lines = dropTetromino(gTetrisBoard);
@@ -162,6 +165,11 @@ window.addEventListener('resize', handleResize);
 function handleMouseMove(event) {
   gMouse.x = event.layerX * canvasScale;
   gMouse.y = event.layerY * canvasScale;
+
+  if (isMouseOverOptions(gMouse)) {
+    if (!gMouse.isOverOptions) gMouse.isOverOptions = true;
+  }
+  else if (gMouse.isOverOptions) gMouse.isOverOptions = false;
 
   var x = gMouse.x - 345;
   var y = gMouse.y - 345;

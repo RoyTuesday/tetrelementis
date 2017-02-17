@@ -42,7 +42,7 @@ function renderMouse(context, mouse) {
 
 function renderKeys(context, keyActions, activeKeys) {
   var x = 475;
-  var y = 40;
+  var y = 36;
   var size = 13;
   context.lineWidth = 3;
   context.strokeStyle = '#333';
@@ -256,10 +256,19 @@ function render(context, scene) {
         // var halfH = height / 2;
         context.fillStyle = '#FFF7';
         context.fillRect(0, 0, 330, 630);
-        context.fillStyle = '#FFFC';
+        context.fillStyle = '#FFFD';
         context.fillRect(113, 297, 104, 36);
         context.fillStyle = '#111';
         context.fillText('Paused', 165, 315);
+      }
+
+      if (gMouse.isOverOptions) {
+        context.fillStyle = "#0003";
+        context.fillRect(330, 0, 570, 150);
+        context.fillStyle = '#FFFD';
+        context.fillRect(563, 58, 104, 36);
+        context.fillStyle = '#111';
+        context.fillText('Options', 615, 78);
       }
       break;
   }

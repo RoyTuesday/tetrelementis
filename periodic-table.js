@@ -38,10 +38,10 @@ function renderPeriodicTable(context, table) {
     context.font = (FONT_SIZE * 2) + BLOCK_FONT;
     context.lineWidth = 1;
 
-    context.fillText(table.title, 350, 155);
-    context.strokeText(table.title, 350, 155);
+    context.fillText(table.title, 350, 175);
+    context.strokeText(table.title, 350, 175);
     context.font = (FONT_SIZE * 1.5) + BLOCK_FONT;
-    context.fillText('Atomic Number: ' + table.element, 700, 155);
-    for (var i = 0; i < 5; i++) if (table.descrip[i]) context.fillText(table.descrip[i], 350, 188 + (i * (2 + FONT_SIZE * 1.5)));
+    context.fillText('Atomic Number: ' + table.element, 700, 175);
+    for (var i = 0; i < 5; i++) if (table.descrip[i]) context.fillText(table.descrip[i], 350, 204 + (i * (2 + FONT_SIZE * 1.5)));
   }
 }
