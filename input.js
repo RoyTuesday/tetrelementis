@@ -92,12 +92,13 @@ function handleKeyDown(event) {
   var action = getAction(event);
   if (!event.ctrlKey && !event.altKey && !event.metaKey) event.preventDefault();
   if (!event.repeat) {
-  switch (scene) {
-    case 0:
-      if (action == 'pause') scene = 1;
-      break;
-    case 1:
-      var board = gTetrisBoard;
+    switch (scene) {
+      case 0:
+        if (action == 'pause') scene = 1;
+        break;
+      case 1:
+        var board = gTetrisBoard;
+        activeKeys[action] = true;
         if (paused) {
           if (action == 'pause') {
             clearMovement(board);
@@ -106,7 +107,6 @@ function handleKeyDown(event) {
           }
         }
         else if (! gameover) {
-          activeKeys[action] = true;
           switch (action) {
             case 'left'   : board.slideDirection--;  break;
             case 'right'  : board.slideDirection++;  break;
@@ -122,27 +122,30 @@ function handleKeyDown(event) {
             paused = true;
             break;
           }
+        }
+        break;
       }
-      break;
-    }
   }
 }
 function handleKeyUp(event) {
   var action = getAction(event);
   switch (scene) {
     case 1:
-      var board = gTetrisBoard;
-      if (!gameover && !paused && action == 'down') {
-        clearInterval(board.dropInterval);
-        board.dropInterval = setInterval(drop, DROP_DELAY[level]);
-      }
-
       activeKeys[action] = false;
-      switch (action) {
-        case 'left'   : board.slideDirection++;  break;
-        case 'right'  : board.slideDirection--;  break;
-        case 'counter': board.rotateDirection++; break;
-        case 'clock'  : board.rotateDirection--; break;
+
+      if (!paused) {
+        var board = gTetrisBoard;
+        if (!gameover && !paused && action == 'down') {
+          clearInterval(board.dropInterval);
+          board.dropInterval = setInterval(drop, DROP_DELAY[level]);
+        }
+
+        switch (action) {
+          case 'left'   : board.slideDirection++;  break;
+          case 'right'  : board.slideDirection--;  break;
+          case 'counter': board.rotateDirection++; break;
+          case 'clock'  : board.rotateDirection--; break;
+        }
       }
       break;
   }

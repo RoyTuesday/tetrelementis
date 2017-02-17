@@ -43,7 +43,7 @@ function renderMouse(context, mouse) {
 function renderKeys(context, keyActions, activeKeys) {
   var x = 475;
   var y = 40;
-  var size = FONT_SIZE;
+  var size = 13;
   context.lineWidth = 3;
   context.strokeStyle = '#333';
   context.font = size + BLOCK_FONT;
@@ -53,7 +53,7 @@ function renderKeys(context, keyActions, activeKeys) {
   context.fillStyle = '#111';
   context.fillText('Pause', x, y);
   context.fillStyle = activeKeys.pause ? '#555' : '#DDD';
-  x += 9 * size;
+  x += 8 * size;
   context.textAlign = 'center';
   switch (keyActions.pause) {
     case 'Space':
@@ -73,7 +73,7 @@ function renderKeys(context, keyActions, activeKeys) {
   context.textAlign = 'left';
   context.fillStyle = '#111';
   context.fillText('Move', x, y);
-  x += 9 * size;
+  x += 8 * size;
   context.textAlign = 'center';
   // Left
   context.fillStyle = activeKeys.left ? '#555' : '#DDD';
@@ -123,7 +123,7 @@ function renderKeys(context, keyActions, activeKeys) {
   context.textAlign = 'left';
   context.fillStyle = '#111';
   context.fillText('Rotate', x, y);
-  x += 9 * size;
+  x += 8 * size;
   context.textAlign = 'center';
   // Counter
   context.fillStyle = activeKeys.counter ? '#555' : '#DDD';
