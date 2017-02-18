@@ -155,7 +155,7 @@ function renderKeys(context, keyActions, activeKeys) {
   context.fillText(keyActions.clock, x + (1.5 * size), y);
 }
 
-function renderOptionsMenu(context, keyActions, element) {
+function renderOptionsMenu(context, keyActions, hover) {
   context.fillStyle = '#0003';
   context.fillRect(330, 0, 570, 630);
   context.fillStyle = '#EEEE';
@@ -166,12 +166,9 @@ function renderOptionsMenu(context, keyActions, element) {
   context.fillText('Options Menu', 390, 60);
   context.fillText('Keybinds', 390, 105);
 
-  context.strokeStyle = '#111';
-  context.lineWidth = 2;
   var row = 150;
   for (var action in keyActions) {
-    context.strokeRect(485, row - 15, 140, 30);
-    context.fillStyle = '#FFF';
+    context.fillStyle = hover == action ? '#AEF' : '#FFF';
     context.fillRect(485, row - 15, 140, 30);
     context.fillStyle = '#111';
     context.textAlign = 'right';
@@ -195,7 +192,7 @@ function renderOptionsMenu(context, keyActions, element) {
   context.lineTo(849, 35);
   context.lineTo(855, 41);
   context.closePath();
-  context.fillStyle = element == 'close' ? '#8CF' : '#CCC';
+  context.fillStyle = hover == 'close' ? '#AEF' : '#CCC';
   context.fill();
 }
 

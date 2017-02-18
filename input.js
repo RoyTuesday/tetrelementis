@@ -27,6 +27,15 @@ function setOverElement(mouse) {
     if (mouse.x > 840 && mouse.x < 870 && mouse.y > 30 && mouse.y < 60) {
       if (mouse.overElement !== 'close') element = 'close';
     }
+    else if (mouse.x > 485 && mouse.x < 625 && mouse.y > 135 && mouse.y < 405) {
+      if (mouse.y < 165) { if (mouse.overElement !== 'pause') element = 'pause'; }
+      else if (mouse.y > 175 && mouse.y < 205) { if (mouse.overElement !== 'counter') element = 'counter'; }
+      else if (mouse.y > 215 && mouse.y < 245) { if (mouse.overElement !== 'clock') element = 'clock'; }
+      else if (mouse.y > 255 && mouse.y < 285) { if (mouse.overElement !== 'left') element = 'left'; }
+      else if (mouse.y > 295 && mouse.y < 325) { if (mouse.overElement !== 'right') element = 'right'; }
+      else if (mouse.y > 335 && mouse.y < 365) { if (mouse.overElement !== 'up') element = 'up'; }
+      else if (mouse.y > 375) { if (mouse.overElement !== 'down') element = 'down'; }
+    }
     else if (mouse.x > 0 && mouse.x < 330 && mouse.y > 0 && mouse.y < 630) {
       if (mouse.overElement !== 'board') element = 'board';
     }
