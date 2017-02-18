@@ -15,7 +15,7 @@ function playRotateSound(audio) {
 
   gain.gain.linearRampToValueAtTime(0, start);
   gain.gain.linearRampToValueAtTime(0.1, start + 0.01);
-  gain.gain.linearRampToValueAtTime(0, start + 0.19);
+  gain.gain.linearRampToValueAtTime(0, start + 0.2);
 }
 
 function playSlideSound(audio) {
@@ -33,7 +33,7 @@ function playSlideSound(audio) {
 
   gain.gain.linearRampToValueAtTime(0, start);
   gain.gain.linearRampToValueAtTime(0.1, start + 0.01);
-  gain.gain.linearRampToValueAtTime(0, start + 0.09);
+  gain.gain.linearRampToValueAtTime(0, start + 0.1);
 }
 
 function playDropSound(audio) {
@@ -50,5 +50,5 @@ function playDropSound(audio) {
 
   gain.gain.linearRampToValueAtTime(0, start);
   gain.gain.linearRampToValueAtTime(0.1, start + 0.01);
-  gain.gain.linearRampToValueAtTime(0, start + 0.09);
+  gain.gain.linearRampToValueAtTime(0, start + 0.1);
 }
