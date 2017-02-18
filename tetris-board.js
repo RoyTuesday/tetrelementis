@@ -8,7 +8,10 @@ function slideTetromino(tetrisBoard) {
   var blocks = tetrisBoard.tetromino.blocks;
   var direction = tetrisBoard.slideDirection;
   var wall = 4.5 + (direction * 4.5);
-  if (blocks.every(function(b) { return b % 10 !== wall && board[b + direction] === 0 })) tetrisBoard.tetromino.slide(direction);
+  if (blocks.every(function(b) { return b % 10 !== wall && board[b + direction] === 0 })) {
+    tetrisBoard.tetromino.slide(direction);
+    playSlideSound(gAudio);
+  }
 }
 function rotateTetromino(tetrisBoard) {
   var blocks = tetrisBoard.tetromino.rotate(tetrisBoard.rotateDirection);
@@ -20,7 +23,10 @@ function rotateTetromino(tetrisBoard) {
     if (dist > 4 || dist < -4) return false;
   }
   var board = tetrisBoard.board;
-  if (blocks.every(checkBoardIndexIsEmpty, tetrisBoard)) tetrisBoard.tetromino.blocks = blocks;
+  if (blocks.every(checkBoardIndexIsEmpty, tetrisBoard)) {
+    tetrisBoard.tetromino.blocks = blocks;
+    playRotateSound(gAudio);
+  }
 }
 function raiseTetromino(tetrisBoard) {
   var board = tetrisBoard.board;
@@ -44,7 +50,10 @@ function dropTetromino(tetrisBoard) {
     if (tetrisBoard.tetromino.blocks.some(checkBoardIndexIsNotEmpty, tetrisBoard)) return -1;
     lines = handleFullLines(tetrisBoard);
   }
-  else tetrisBoard.tetromino.blocks = blocks;
+  else {
+    tetrisBoard.tetromino.blocks = blocks;
+    playDropSound(gAudio);
+  }
   // If the number of lines is greater than 0, we'll update the score
   return lines;
 }
