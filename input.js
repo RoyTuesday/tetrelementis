@@ -155,13 +155,13 @@ function handleKeyDown(event) {
             case 'counter': board.rotateDirection--; break;
             case 'clock'  : board.rotateDirection++; break;
             case 'down':
-            clearInterval(board.dropInterval);
-            board.dropInterval = setInterval(drop, FAST_DROP);
-            break;
+              clearInterval(board.dropInterval);
+              board.dropInterval = setInterval(drop, FAST_DROP);
+              break;
             case 'pause':
-            pause(board);
-            isPaused = true;
-            break;
+              pause(board);
+              isPaused = true;
+              break;
           }
         }
         break;
@@ -176,7 +176,10 @@ function handleKeyUp(event) {
 
       if (!isPaused) {
         var board = gTetrisBoard;
-        if (!gameover && !isPaused && action == 'down') pause(gTetrisBoard);
+        if (!gameover && !isPaused && action == 'down') {
+          clearInterval(board.dropInterval);
+          board.dropInterval = setInterval(drop, DROP_DELAY[level]);
+        }
 
         switch (action) {
           case 'left'   : board.slideDirection++;  break;
