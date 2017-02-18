@@ -14,7 +14,7 @@ function setTableElement(table, aNum) {
   table.title = element.title;
   table.descrip = element.descrip;
 }
-function renderPeriodicTable(context, table) {
+function renderPeriodicTable(context, table, isOverLink) {
   var x = 345;
   var y = 345;
   var spacing = BLOCK_SPACING;
@@ -33,13 +33,15 @@ function renderPeriodicTable(context, table) {
   // Chemical Element Description
   if (table.element > 0) {
     context.textAlign = 'left';
-    context.fillStyle = '#111';
-    context.strokeStyle = '#111';
     context.font = (FONT_SIZE * 2) + BLOCK_FONT;
     context.lineWidth = 1;
 
+    var linkColor = isOverLink ? '#8CF' : '#111'
+    context.fillStyle = linkColor;
+    context.strokeStyle = linkColor;
     context.fillText(table.title, 350, 175);
     context.strokeText(table.title, 350, 175);
+    context.fillStyle = '#111';
     context.font = (FONT_SIZE * 1.5) + BLOCK_FONT;
     context.fillText('Atomic Number: ' + table.element, 700, 175);
     for (var i = 0; i < 5; i++) if (table.descrip[i]) context.fillText(table.descrip[i], 350, 204 + (i * (2 + FONT_SIZE * 1.5)));

@@ -42,6 +42,9 @@ function setOverElement(mouse) {
     }
     else if (mouse.overElement) element = '';
   }
+  else if (mouse.x > 345 && mouse.x < 700 && mouse.y > 155 && mouse.y < 185) {
+    if (mouse.overElement !== 'link') element = 'link';
+  }
   else if (mouse.x > 330 && mouse.x < 900 && mouse.y > 0 && mouse.y < 150) {
     if (mouse.overElement !== 'menu') element = 'menu';
   }

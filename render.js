@@ -266,7 +266,7 @@ function render(context, scene) {
       context.textAlign = 'center';
       renderPreview(context, gPreviewBoard);
       renderTetrisBoard(context, gTetrisBoard);
-      renderPeriodicTable(context, gPeriodicTable);
+      renderPeriodicTable(context, gPeriodicTable, gMouse.overElement === 'link');
 
       // Periodic Table element highlight
       var active = gPeriodicTable.activeIndex;
