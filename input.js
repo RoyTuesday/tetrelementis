@@ -27,6 +27,9 @@ function setOverElement(mouse) {
     if (mouse.x > 840 && mouse.x < 870 && mouse.y > 30 && mouse.y < 60) {
       if (mouse.overElement !== 'close') element = 'close';
     }
+    if (mouse.x > 0 && mouse.x < 330 && mouse.y > 0 && mouse.y < 630) {
+      if (mouse.overElement !== 'board') element = 'board';
+    }
     else if (mouse.overElement) element = '';
   }
   else if (mouse.x > 330 && mouse.x < 900 && mouse.y > 0 && mouse.y < 150) {
@@ -194,11 +197,22 @@ canvas.addEventListener('mousemove', handleMouseMove);
 function handleMouseDown(event) {
   var aNum = gPeriodicTable.board[gPeriodicTable.activeIndex];
   if (aNum > 0) setTableElement(gPeriodicTable, aNum);
-  else if (gMouse.overElement == 'menu') {
-    optionsMenu = true;
-    clearInterval(gTetrisBoard.dropInterval);
-    gTetrisBoard.dropInterval = 0;
-    paused = true;
+  else {
+    switch (gMouse.overElement) {
+      case 'close':
+      case 'board':
+        optionsMenu = false;
+        clearMovement(gTetrisBoard);
+        gTetrisBoard.dropInterval = setInterval(drop, DROP_DELAY[level]);
+        paused = false;
+        break;
+      case 'menu':
+        optionsMenu = true;
+        clearInterval(gTetrisBoard.dropInterval);
+        gTetrisBoard.dropInterval = 0;
+        paused = true;
+        break;
+    }
   }
 }
 canvas.addEventListener('mousedown', handleMouseDown);
