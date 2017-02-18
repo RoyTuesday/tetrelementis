@@ -72,6 +72,7 @@ function handleFullLines(tetrisBoard) {
     tetrisBoard.board = board;
     tetrisBoard.cheerOpacity = 50;
     tetrisBoard.cheer = CHEERS[lines][Math.random() * 2 >> 0];
+    playLineClearJingle(gAudio, lines);
   }
   return lines;
 }
