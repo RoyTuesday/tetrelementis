@@ -59,7 +59,7 @@ var resetBoard = 0;
 var gameoverElement = 0;
 var comboQueue = [];
 
-var gMouse = { x: 0, y: 0, overElement: '' }
+var gMouse = { x: -1, y: -1, overElement: '' }
 function setOverElement(mouse) {
   var element = false;
 
@@ -282,3 +282,9 @@ function handleMouseClick(event) {
   }
 }
 canvas.addEventListener('click', handleMouseClick);
+
+function handleMouseLeave(event) {
+  gMouse.x = -1;
+  gMouse.y = -1;
+}
+canvas.addEventListener('mouseleave', handleMouseLeave);
