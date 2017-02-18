@@ -9,6 +9,7 @@ else saveData = JSON.parse(storedData);
 
 var paused = true;
 var optionsMenu = false;
+var activeElement = '';
 var gameover = false;
 var scene = 0;
 var playerScore = 0;
@@ -207,7 +208,8 @@ function handleMouseDown(event) {
   var aNum = gPeriodicTable.board[gPeriodicTable.activeIndex];
   if (aNum > 0) setTableElement(gPeriodicTable, aNum);
   else {
-    switch (gMouse.overElement) {
+    var element = gMouse.overElement;
+    switch (element) {
       case 'close':
       case 'board':
         optionsMenu = false;
@@ -220,6 +222,9 @@ function handleMouseDown(event) {
         optionsMenu = true;
         clearInterval(gTetrisBoard.dropInterval);
         gTetrisBoard.dropInterval = 0;
+        break;
+      default:
+        if (element !== activeElement) activeElement = element;
         break;
     }
   }

@@ -155,7 +155,7 @@ function renderKeys(context, keyActions, activeKeys) {
   context.fillText(keyActions.clock, x + (1.5 * size), y);
 }
 
-function renderOptionsMenu(context, keyActions, hover) {
+function renderOptionsMenu(context, keyActions, hover, active) {
   context.fillStyle = '#0003';
   context.fillRect(330, 0, 570, 630);
   context.fillStyle = '#EEEE';
@@ -168,7 +168,7 @@ function renderOptionsMenu(context, keyActions, hover) {
 
   var row = 150;
   for (var action in keyActions) {
-    context.fillStyle = hover == action ? '#AEF' : '#FFF';
+    context.fillStyle = active == action ? '#7FA' : hover == action ? '#AEF' : '#FFF';
     context.fillRect(485, row - 15, 140, 30);
     context.fillStyle = '#111';
     context.textAlign = 'right';
@@ -302,7 +302,7 @@ function render(context, scene) {
         context.fillText('Paused', 165, 315);
       }
 
-      if (optionsMenu) renderOptionsMenu(context, keyActions, gMouse.overElement);
+      if (optionsMenu) renderOptionsMenu(context, keyActions, gMouse.overElement, activeElement);
       else if (gMouse.overElement == 'menu') {
         context.fillStyle = "#0003";
         context.fillRect(330, 0, 570, 150);
