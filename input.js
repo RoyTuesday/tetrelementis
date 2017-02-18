@@ -27,7 +27,7 @@ function setOverElement(mouse) {
     if (mouse.x > 840 && mouse.x < 870 && mouse.y > 30 && mouse.y < 60) {
       if (mouse.overElement !== 'close') element = 'close';
     }
-    if (mouse.x > 0 && mouse.x < 330 && mouse.y > 0 && mouse.y < 630) {
+    else if (mouse.x > 0 && mouse.x < 330 && mouse.y > 0 && mouse.y < 630) {
       if (mouse.overElement !== 'board') element = 'board';
     }
     else if (mouse.overElement) element = '';
@@ -202,15 +202,15 @@ function handleMouseDown(event) {
       case 'close':
       case 'board':
         optionsMenu = false;
-        clearMovement(gTetrisBoard);
-        gTetrisBoard.dropInterval = setInterval(drop, DROP_DELAY[level]);
-        paused = false;
+        if (!paused) {
+          clearMovement(gTetrisBoard);
+          gTetrisBoard.dropInterval = setInterval(drop, DROP_DELAY[level]);
+        }
         break;
       case 'menu':
         optionsMenu = true;
         clearInterval(gTetrisBoard.dropInterval);
         gTetrisBoard.dropInterval = 0;
-        paused = true;
         break;
     }
   }
