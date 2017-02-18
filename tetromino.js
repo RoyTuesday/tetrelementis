@@ -1,79 +1,39 @@
-var Tetromino = function(args) {
-  this.element;
-  this.blocks;
-  this.shape;
+function decreaseByTen(num) { return num -= 10 }
+function increaseByTen(num) { return num += 10 }
+function returnSelf(el) { return el }
 
-  this.set(args);
-}
-Tetromino.prototype.set = function(args) {
-  this.element = args.element;
-  this.shape = args.shape;
+var Tetromino = function() {
+  if (elementsQueue.length === 0) elementsQueue = generateRandomElements(CHEMICAL_ELEMENTS);
+  this.element = elementsQueue.pop();
 
-  this.blocks = this.shape.map(function(block) {
-    return {x: new Number(block.x), y: new Number(block.y)};
-  });
+  var shapes = TETROMINO_SHAPES;
+  if (shapesQueue.length === 0) shapesQueue = generateRandomShapes(shapes);
+  this.shape = shapesQueue.pop();
+  this.blocks = shapes[this.shape];
 
-  this.row = 0;
-  this.col = 4;
-
-  for(var block in this.blocks) {
-    this.blocks[block].y += this.row;
-    this.blocks[block].x += this.col;
-  }
-
-  var width = 0;
-  var height = 0;
-  this.shape.forEach(function(block) {
-    if(block.x > width) width = block.x;
-    if(block.y > height) height = block.y;
-  });
-
-  this.center = {
-    x: Math.floor(width / 2) + this.col,
-    y: Math.floor(height / 2) + this.row
-  }
+  setTableElement(gPeriodicTable, this.element);
 };
 Tetromino.prototype.raise = function() {
-  this.row--;
-  for(var block in this.blocks) {
-    this.blocks[block].y--;
-  }
-  this.center.y--;
+  return this.blocks.map(decreaseByTen);
 };
 Tetromino.prototype.drop = function() {
-  this.row++;
-  for(var block in this.blocks) {
-    this.blocks[block].y++;
-  }
-  this.center.y++;
+  return this.blocks.map(increaseByTen);
 };
-var directToInt = {
-  'left': -1,
-  'right': 1
-};
-Tetromino.prototype.slide = function(direction) {
-  this.blocks.forEach(function(block) {
-    block.x += directToInt[direction];
-  });
-  this.center.x += directToInt[direction];
+Tetromino.prototype.slide = function(xMod) {
+  var blocks = this.blocks;
+  for (var i = 0; i < 4; i++) blocks[i] += xMod;
+  this.blocks = blocks;
 };
 Tetromino.prototype.rotate = function(direction) {
-  var modX, modY;
-  var center = this.center;
+  if (this.shape == 'square') return false;
+  var blocks = this.blocks.map(returnSelf);
+  var center = blocks[0];
+  var transCenter = ((center % 10) * 10 * direction) + ((direction * center / -10) >> 0);
+  var transX = ((center % 10) - (transCenter % 10)) >> 0;
+  var transY = ((center / 10) >> 0) - ((transCenter / 10) >> 0);
 
-  this.blocks.forEach(function(block) {
-    modX = block.y - center.y;
-    modY = block.x - center.x;
-    if(direction == 'counter') {
-      if(modY !== 0) modY *= -1;
-    }
-    else {
-      if(modX !== 0) modX *= -1;
-    }
-
-    block.x = center.x + modX;
-    block.y = center.y + modY;
-  });
+  for (var i = 1; i < 4; i++) {
+    blocks[i] = ((((blocks[i] / -10) >> 0) * direction) + transX) + ((((blocks[i] % 10) * direction) + transY) * 10);
+  }
+  return blocks;
 };
-
-module.exports = Tetromino;

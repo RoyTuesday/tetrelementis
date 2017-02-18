@@ -1,139 +1,128 @@
-var CONST = require("./constants.js");
+function checkBoardIndexIsEmpty(b) { return this.board[b] === 0 }
+function checkBoardIndexIsNotEmpty(b) { return this.board[b] !== 0 }
+function checkBlocksAreNotFull(b) { return b > 199 || this.board[b] !== 0 }
+function checkGreaterThanZero(num) { return num > 0 }
 
-var Tetromino = require("./tetromino.js");
-
-var TetrisBoard = function(args) {
-  this.score = 0;
-  this.board = new Array;
-  this.randElements = CONST.generateRandomElements();
-  this.tetromino = args.tetromino || null;
-  this.createNextTetromino = args.createNextTetromino;
-  this.showGameOver = args.showGameOver;
-  this.gameState = 'gameover';
-
-  this.dropInterval = new Number;
-
-  for(var row = 0; row < 20; row++) {
-    this.board[row] = new Array;
-    for(var col = 0; col < 10; col++) {
-      this.board[row][col] = 0;
-    }
-  };
+function slideTetromino(tetrisBoard) {
+  var board = tetrisBoard.board;
+  var blocks = tetrisBoard.tetromino.blocks;
+  var direction = tetrisBoard.slideDirection;
+  var wall = 4.5 + (direction * 4.5);
+  if (blocks.every(function(b) { return b % 10 !== wall && board[b + direction] === 0 })) tetrisBoard.tetromino.slide(direction);
 }
-TetrisBoard.prototype.blit = function(clear) {
-  var element = this.tetromino.element;
+function rotateTetromino(tetrisBoard) {
+  var blocks = tetrisBoard.tetromino.rotate(tetrisBoard.rotateDirection);
+  if (!blocks) return;
+  for (var a = 0, b = 1; b < blocks.length; a++, b++) {
+    var xA = blocks[a] % 10, xB = blocks[b] % 10;
+    var yA = (blocks[a] / 10) >> 0, yB = (blocks[b] / 10) >> 0;
+    var dist = Math.sqrt(Math.pow(xA - xB, 2) + Math.pow(yA - yB, 2));
+    if (dist > 4 || dist < -4) return false;
+  }
+  var board = tetrisBoard.board;
+  if (blocks.every(checkBoardIndexIsEmpty, tetrisBoard)) tetrisBoard.tetromino.blocks = blocks;
+}
+function raiseTetromino(tetrisBoard) {
+  var board = tetrisBoard.board;
+  var blocks = tetrisBoard.tetromino.raise();
 
-  if(clear) {
-    element = 0;
-  }
-
-  for(var block in this.tetromino.blocks) {
-    var currentBlock = this.tetromino.blocks[block];
-    this.board[currentBlock.y][currentBlock.x] = element;
-  }
-};
-TetrisBoard.prototype.detectCollision = function() {
-  for(var block in this.tetromino.blocks) {
-    currentBlock = this.tetromino.blocks[block];
-    if(currentBlock.y >= CONST.GRID_HEIGHT) {
-      return 'floor';
-    }
-    else if(currentBlock.y < 0) {
-      return 'ceiling';
-    }
-    else if(currentBlock.x < 0 || currentBlock.x >= CONST.GRID_WIDTH) {
-      return 'wall';
-    }
-    else if(this.board[currentBlock.y][currentBlock.x] !== 0) {
-      return 'block';
-    }
-  }
-  return 'clear';
-};
-TetrisBoard.prototype.dropBlock = function() {
-  this.blit(true);
-  this.tetromino.drop();
-  var collision = this.detectCollision();
-  if(collision == 'floor' || collision == 'block') {
-    this.tetromino.raise();
-    this.blit();
-    this.createNextTetromino();
-    if(this.detectCollision() != 'clear') {
-      clearInterval(this.dropInterval);
-      this.blit();
-      this.showGameOver();
-      return;
-    }
-    this.handleFullLines();
-  }
-  this.blit();
-};
-TetrisBoard.prototype.slideBlock = function(direction) {
-  this.blit(true);
-  this.tetromino.slide(direction);
-  var collision = this.detectCollision();
-  if(collision == 'wall' || collision == 'block') {
-    var reverseDirection = direction == 'left' ? 'right' : 'left';
-    this.tetromino.slide(reverseDirection);
-  }
-  this.blit();
-};
-TetrisBoard.prototype.rotateBlock = function(direction) {
-  this.blit(true);
-  this.tetromino.rotate(direction);
-  var collision = this.detectCollision();
-  if(collision != 'clear') {
-    var reverseDirection = direction == 'clock' ? 'counter' : 'clock';
-    this.tetromino.rotate(reverseDirection);
-  }
-  this.blit();
-};
-TetrisBoard.prototype.handleFullLines = function() {
+  if (blocks.every(function(b) { return b > 0 && board[b] === 0 })) tetrisBoard.tetromino.blocks = blocks;
+}
+function dropTetromino(tetrisBoard) {
+  var board = tetrisBoard.board;
+  var blocks = tetrisBoard.tetromino.drop();
   var lines = 0;
-  this.board.forEach(function(row, rIndex, board) {
-    var filled = true;
-    row.forEach(function(block) {
-      if(block == 0) filled = false;
-    });
-    if(filled) {
+
+  if (blocks.some(checkBlocksAreNotFull, tetrisBoard)) {
+    var element = tetrisBoard.tetromino.element;
+    tetrisBoard.tetromino.blocks.forEach(function(b) { board[b] = element; });
+    showTableElement(gPeriodicTable, element);
+    tetrisBoard.tetromino = nextTetromino;
+    nextTetromino = new Tetromino;
+    gPreviewBoard = setPreviewBoard(nextTetromino);
+    // If any of the new tetromino's blocks collide with filled blocks in the board, it's game over
+    if (tetrisBoard.tetromino.blocks.some(checkBoardIndexIsNotEmpty, tetrisBoard)) return -1;
+    lines = handleFullLines(tetrisBoard);
+  }
+  else tetrisBoard.tetromino.blocks = blocks;
+  // If the number of lines is greater than 0, we'll update the score
+  return lines;
+}
+function handleFullLines(tetrisBoard) {
+  var board = [];
+  var lines = 0;
+  for (var i = 0; i < tetrisBoard.board.length; i += 10) {
+    var slice = tetrisBoard.board.slice(i, i + 10);
+    if (slice.every(checkGreaterThanZero)) {
       lines++;
-      for(var i = rIndex; i > 0; i--) {
-        board[i] = board[i - 1].map(function(col) {
-          return col;
-        });
-      }
-      board[0] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+      board = [0,0,0,0,0,0,0,0,0,0].concat(board);
     }
-  });
-  if(lines > 0) this.score += Math.pow(2, lines) / 2;
-};
-TetrisBoard.prototype.clearForGameover = function() {
-  var randElement = Math.ceil(Math.random() * 118);
-  var boardCoords = {x: 0, y: 0};
+    else board = board.concat(slice);
+  }
+  if (lines > 0) {
+    tetrisBoard.board = board;
+    tetrisBoard.cheerOpacity = 50;
+    tetrisBoard.cheer = CHEERS[lines][Math.random() * 2 >> 0];
+  }
+  return lines;
+}
+function clearMovement(tetrisBoard) {
+  if (tetrisBoard.dropInterval > 0) clearInterval(tetrisBoard.dropInterval);
+  tetrisBoard.dropInterval = 0;
+  tetrisBoard.slideDirection = 0;
+  tetrisBoard.rotateDirection = 0;
+}
+function setTetrisBoard() {
+  var board = [];
+  for (var i = 0; i < 200; i++) board.push(0);
+  return board;
+}
+function renderTetrisBoard(context, board) {
+  var x = 15;
+  var y = 15;
+  var spacing = BLOCK_SPACING;
+  var right = x + (spacing * 10);
 
-  var clearBoard = function(boardCoords) {
-    if(boardCoords.y < 20) {
-      this.board[boardCoords.y][boardCoords.x] = randElement;
-      if(boardCoords.x >= 9) {
-        boardCoords.y++;
-        boardCoords.x = 0;
-      }
-      else {
-        boardCoords.x++;
-      }
-      setTimeout(clearBoard.bind(this, boardCoords), CONST.CLEAR_DELAY);
+  for (var i = 0; i < 200; i++) {
+    renderBlock(context, board.board[i], x, y);
+    x += spacing;
+    if (x == right) {
+      x = 15;
+      y += spacing;
     }
-    else if(randElement > 0) {
-      randElement = 0;
-      boardCoords = {x: 0, y:0};
-      setTimeout(clearBoard.bind(this, boardCoords), CONST.CLEAR_DELAY);
-    }
-    else {
-      this.gameState = 'gameover';
-    }
-  }.bind(this);
+  }
 
-  clearBoard(boardCoords);
-};
+  if (board.cheerOpacity > 0) {
+    var opacity = board.cheerOpacity / 50;
+    context.textAlign = 'center';
+    context.lineWidth = 3;
+    context.font = (FONT_SIZE * 2) + BLOCK_FONT;
+    context.fillStyle = 'rgba(0,0,0,' + opacity + ')';
+    context.strokeStyle = 'rgba(141,225,240,' + opacity + ')';
 
-module.exports = TetrisBoard;
+    context.strokeText(board.cheer, 157, 330);
+    context.fillText(board.cheer, 157, 330);
+
+    board.cheerOpacity--;
+  }
+
+  if (!gameover) {
+    var blocks = board.tetromino.blocks;
+    var element = board.tetromino.element;
+    for (var i = 0; i < 4; i++) {
+      x = 15 + ((blocks[i] % 10) * spacing);
+      y = 15 + ((blocks[i] / 10 >> 0) * spacing);
+      renderBlock(context, element, x, y);
+    }
+  }
+}
+
+var gTetrisBoard = {
+  board: setTetrisBoard(),
+  tetromino: new Tetromino,
+  dropInterval: 0,
+  slideDirection: 0,
+  rotateDirection: 0,
+  cheerOpacity: 0,
+  cheer: ''
+}

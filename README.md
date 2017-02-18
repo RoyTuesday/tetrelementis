@@ -1,22 +1,12 @@
-# Tetrelementis
+# <a href="https://http://peternatewood.com/projects/tetrelementis" target="_blank">Tetrelementis</a>
 
 ### *A Tetris clone about learning the Chemical Elements*
 
-<img src='/imgs/marathon-ver-1_0.png' title='Marathon Mode'/>
-
-## Setup
-
-**Easy method:** I keep my most up-to-date, stable version of the game on my personal website <a href="http://peternatewood.com" target="_blank">here!</a>
-
-**Download:** If you want to keep a copy on your own computer instead of visiting my site (and why don't you want to visit my site?), keep reading.
-
-1. Clone the repo to your Desktop or whatever directory in which you want to keep it.
-2. Use your favorite browser to open 'index.html' in the root directory.
-3. Follow the in-game instructions to begin!
-
-<img src='/imgs/start-screen-ver-1_0.png' title="Start screen and directions"/>
+<img src='/imgs/marathon-ver-2_0.png' title='Marathon Mode'/>
 
 ## How to Play
+
+Check it out on <a href="https://http://peternatewood.com/projects/tetrelementis">here on my website.</a>
 
 Use the arrow keys and spacebar or the buttons in the upper right to control the game.
 * Spacebar starts a new game, and pauses/resumes a game in progress.
@@ -33,10 +23,9 @@ Your objective is to keep the board clear enough that more tetrominos can drop; 
 
 Every line you clear adds to your score; the more lines cleared at once, the more points earned. You can clear as many as four lines at once, if you're clever about it. Be wary! As your points increase, so does the Level; each level makes the tetromino drop faster, until it drops as fast as if you held the down arrow all the time!
 
-There are three game modes: **Marathon**, **Fixed Level**, and **Pentathlon**
-* **Marathon:** The classic Tetris gamemode in which tetrominos are generated forever, and the level increases with your score
-* **Fixed Level:** Like **Marathon**, but you choose at which level you want to start, and the level does not increase
-* **Pentathlon:** Like **Marathon**, but each tetromino is a permutation of _five_ blocks instead of four (not for the faint of heart)
+There are three game modes: **Marathon** and **Fixed Level**
+* **Marathon:** The classic Tetris gamemode in which tetrominos are generated forever, and the level increases with your score. Every ten points increases the level by one.
+* **Fixed Level:** Like **Marathon**, but you choose at which level you want to start, and the level does not increase.
 
 ## Development
 
@@ -44,25 +33,40 @@ While first learning JavaScript, but before learning Git workflow, I spent some 
 
 The more I learned about JavaScript, the more I realized my resulting game needed a total rehaul. Rather than start a new Git repository with no history of my work (or worse, continuing to work _without_ version control) I resolved to start over!
 
+I decided to come back to this project one more time, after learning more about web development and how to optimize JavaScript performance. This version contains all of the features of the previous with some improvements, and I intend to complete many features I had not implemented before.
+
 ## Browser Support
 
 The game has been tested and operates correctly in the following browsers:
 
-<img src='/imgs/logo-firefox.png' height=16 title='Firefox logo'/> FireFox: version 44
+<img src='/imgs/logo-firefox.png' height=16 title='Firefox logo'/> **FireFox:**
+* Tested: version 51.0
+* Oldest: version 3.6
 
-<img src='/imgs/logo-chrome.png' height=16 title='Chrome logo'/> Chrome: version 48
+<img src='/imgs/logo-chrome.png' height=16 title='Chrome logo'/> **Chrome:**
+* Tested: version 56.0
+* Oldest: version 4.0
 
-<img src='/imgs/logo-opera.png' height=16 title='Opera logo'/> Opera: version 35
+<img src='/imgs/logo-opera.png' height=16 title='Opera logo'/> **Opera:**
+* Tested: version 43.0
+* Oldest: version 10.1
 
-<img src='/imgs/logo-ie-11.png' height=16 title='Internet Explorer 11 logo'/> Internet Explorer (IE): version 11
+<!-- <img src='/imgs/logo-ie-11.png' height=16 title='Internet Explorer 11 logo'/> Internet Explorer (IE): version 11 -->
 
-* Testing for Safari is pending.
+#### Notes
+* Testing for IE 11 and Safari are pending. Neither supports the keyEvent.key property; though I have built compatibility for this, it requires extensive testing to ensure keybinding will work correctly. Also IE is terrible.
+
+<!--
 * The game should operate normally in IE 9 and 10.
 * Scripts may not load correctly in IE 8.
+* IE does not support the webAudio API; if you want music or sound, complain to Microsoft
+-->
 
 ## Version History
 
-:large_blue_diamond: **1.150 : 30 Mar 2016 -** High score is now saved in local storage, and returning users will find their high score is loaded into the page. Players can also reset their high score, if desired.
+:large_blue_diamond: **2.0 : 18 Feb 2017 -** Rewrote almost all the JS to get better performance, and use just one &lt;canvas&gt; element.
+
+:small_red_triangle_down: **1.150 : 30 Mar 2016 -** High score is now saved in local storage, and returning users will find their high score is loaded into the page. Players can also reset their high score, if desired.
 
 :small_red_triangle_down: **1.100 : 28 Mar 2016 -** Add controls to rotate the tetromino both clockwise and counter-clockwise. Button controls now more closely resemble keyboard keys.
 
@@ -125,27 +129,29 @@ The Minimum Viable Product must replicate Tetris, and have some educational cont
 :white_check_mark: Game Modes: Player can choose between three game modes:
 * Marathon uses four-block tetrominos, the level starts at zero and increases based on score up to level 20.
 * Fixed Level uses four-block tetrominos but the level starts and stays at the selected number.
-* Pentathlon is like Marathon mode but uses five-block tetrominos.
 
 :white_check_mark: Opera compatibility
 
-:white_check_mark: IE 11 compatibility
+:white_medium_small_square: IE 11 compatibility
 
 ## Planned Features
 
 :white_medium_small_square: Game responds with sound effects.
 
-:white_medium_small_square: Ensure compatibility on mobile platforms.
+:white_medium_small_square: Compatibility on mobile platforms?
 
-:white_medium_small_square: Provide alternate control scheme for mobile users.
+:white_medium_small_square: Provide alternate control scheme for mobile users (biggest barrier to mobile).
 
 :white_medium_small_square: Ensure compatibility on more browsers: Safari.
 
 ## Production Screenshots
+Version 2.0 introduces a mouse cursor, options menu, pause overlay, and keyboard icons that respond to key presses. Additionally, the JavaScript has been optimized for better performance.
 
-Version 1.0 added the extremely difficult Pentathlon mode.
+<img src='/imgs/marathon-ver-2_0.png' title='Version 2.0 Marathon Mode'/>
 
-<img src='/imgs/pentathlon-ver-1_0.png' title='Version 1.0 Pentathlon mode'/>
+Version 1.0 cleaned up the interface and used the &lt;canvas&gt; element instead of manipulating the classes on many divs. This approach also allowed me to fit the three-letter chemical symbols on tetromino blocks without too much trouble.
+
+<img src='/imgs/marathon-ver-1_0.png' title='Version 1.0 Marathon Mode'/>
 
 Version 0.764 (pictured below) was the earliest version to be reasonably playable.
 
