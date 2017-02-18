@@ -89,6 +89,26 @@ function playNote(audio, gain, note, start, end) {
   osc.stop(end);
 
   gain.gain.linearRampToValueAtTime(0, start);
-  gain.gain.linearRampToValueAtTime(0.1, start + 0.01);
+  gain.gain.linearRampToValueAtTime(0.2, start + 0.01);
   gain.gain.linearRampToValueAtTime(0, end);
+}
+
+function playLineClearJingle(audio, lines) {
+  if (audio === false) return;
+
+  var start = audio.currentTime;
+  var gain = audio.createGain();
+  gain.connect(audio.destination);
+
+  switch (lines) {
+    case 4:
+      playNote(audio, gain, ['a', 5], start + 0.25, start + 0.3);
+      playNote(audio, gain, ['db', 6], start + 0.2, start + 0.25);
+    case 3: playNote(audio, gain, ['a', 5], start + 0.15, start + 0.2);
+    case 2: playNote(audio, gain, ['e', 5], start + 0.1, start + 0.15);
+    case 1:
+      playNote(audio, gain, ['db', 5], start + 0.05, start + 0.1);
+      playNote(audio, gain, ['a', 4], start, start + 0.05);
+      break;
+  }
 }
