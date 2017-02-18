@@ -19,9 +19,22 @@ var resetBoard = 0;
 var gameoverElement = 0;
 var comboQueue = [];
 
-var gMouse = { x: 0, y: 0, isOverOptions: false }
-function isMouseOverOptions(mouse) {
-  return mouse.x > 330 && mouse.x < 900 && mouse.y > 0 && mouse.y < 150;
+var gMouse = { x: 0, y: 0, overElement: '' }
+function setOverElement(mouse) {
+  var element = false;
+
+  if (optionsMenu) {
+    if (mouse.x > 840 && mouse.x < 870 && mouse.y > 30 && mouse.y < 60) {
+      if (mouse.overElement !== 'close') element = 'close';
+    }
+    else if (mouse.overElement) element = '';
+  }
+  else if (mouse.x > 330 && mouse.x < 900 && mouse.y > 0 && mouse.y < 150) {
+    if (mouse.overElement !== 'menu') element = 'menu';
+  }
+  else if (mouse.overElement) element = '';
+
+  return element;
 }
 
 function drop() {
@@ -167,11 +180,8 @@ window.addEventListener('resize', handleResize);
 function handleMouseMove(event) {
   gMouse.x = event.layerX * canvasScale;
   gMouse.y = event.layerY * canvasScale;
-
-  if (isMouseOverOptions(gMouse)) {
-    if (!gMouse.isOverOptions) gMouse.isOverOptions = true;
-  }
-  else if (gMouse.isOverOptions) gMouse.isOverOptions = false;
+  var element = setOverElement(gMouse);
+  if (typeof element === 'string') gMouse.overElement = element;
 
   var x = gMouse.x - 345;
   var y = gMouse.y - 345;
@@ -184,7 +194,7 @@ canvas.addEventListener('mousemove', handleMouseMove);
 function handleMouseDown(event) {
   var aNum = gPeriodicTable.board[gPeriodicTable.activeIndex];
   if (aNum > 0) setTableElement(gPeriodicTable, aNum);
-  else if (gMouse.isOverOptions) {
+  else if (gMouse.overElement == 'menu') {
     optionsMenu = true;
     clearInterval(gTetrisBoard.dropInterval);
     gTetrisBoard.dropInterval = 0;

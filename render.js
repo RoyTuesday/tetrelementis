@@ -155,6 +155,50 @@ function renderKeys(context, keyActions, activeKeys) {
   context.fillText(keyActions.clock, x + (1.5 * size), y);
 }
 
+function renderOptionsMenu(context, keyActions, element) {
+  context.fillStyle = '#0003';
+  context.fillRect(330, 0, 570, 630);
+  context.fillStyle = '#EEEE';
+  context.fillRect(360, 30, 510, 570);
+
+  context.textAlign = 'left';
+  context.fillStyle = '#111';
+  context.fillText('Options Menu', 390, 60);
+  context.fillText('Keybinds', 390, 105);
+
+  context.strokeStyle = '#111';
+  context.lineWidth = 2;
+  var row = 150;
+  for (var action in keyActions) {
+    context.strokeRect(485, row - 15, 140, 30);
+    context.fillStyle = '#FFF';
+    context.fillRect(485, row - 15, 140, 30);
+    context.fillStyle = '#111';
+    context.textAlign = 'right';
+    context.fillText(action, 465, row);
+    context.textAlign = 'left';
+    context.fillText(keyActions[action], 495, row);
+    row += 40;
+  }
+
+  context.beginPath();
+  context.moveTo(861, 35);
+  context.lineTo(865, 39);
+  context.lineTo(859, 45);
+  context.lineTo(865, 51);
+  context.lineTo(861, 55);
+  context.lineTo(855, 49);
+  context.lineTo(849, 55);
+  context.lineTo(845, 52);
+  context.lineTo(851, 45);
+  context.lineTo(845, 39);
+  context.lineTo(849, 35);
+  context.lineTo(855, 41);
+  context.closePath();
+  context.fillStyle = element == 'close' ? '#8CF' : '#CCC';
+  context.fill();
+}
+
 function numToANum(num) {
   switch (num) {
     case '2': return 27;
@@ -222,6 +266,7 @@ function render(context, scene) {
       renderTitle(context);
       break;
     case 1:
+      context.textAlign = 'center';
       renderPreview(context, gPreviewBoard);
       renderTetrisBoard(context, gTetrisBoard);
       renderPeriodicTable(context, gPeriodicTable);
@@ -252,8 +297,6 @@ function render(context, scene) {
       context.textAlign = 'center';
       // Pause overlay
       if (paused) {
-        // var halfW = width / 2;
-        // var halfH = height / 2;
         context.fillStyle = '#FFF7';
         context.fillRect(0, 0, 330, 630);
         context.fillStyle = '#FFFD';
@@ -262,17 +305,8 @@ function render(context, scene) {
         context.fillText('Paused', 165, 315);
       }
 
-      if (optionsMenu) {
-        context.fillStyle = '#0003';
-        context.fillRect(330, 0, 570, 630);
-        context.fillStyle = '#FFFD';
-        context.fillRect(360, 30, 510, 570);
-
-        context.textAlign = 'left';
-        context.fillStyle = '#111';
-        context.fillText('Options Menu', 390, 60);
-      }
-      else if (gMouse.isOverOptions) {
+      if (optionsMenu) renderOptionsMenu(context, keyActions, gMouse.overElement);
+      else if (gMouse.overElement == 'menu') {
         context.fillStyle = "#0003";
         context.fillRect(330, 0, 570, 150);
         context.fillStyle = '#FFFD';
