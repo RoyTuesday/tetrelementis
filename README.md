@@ -1,4 +1,4 @@
-# <a href="https://http://peternatewood.com/projects/tetrelementis" target="_blank">Tetrelementis</a>
+# <a href="http://peternatewood.com/projects/tetrelementis" target="_blank">Tetrelementis</a>
 
 ### *A Tetris clone about learning the Chemical Elements*
 
@@ -6,7 +6,7 @@
 
 ## How to Play
 
-Check it out on <a href="https://http://peternatewood.com/projects/tetrelementis">here on my website.</a>
+Check it out on <a href="http://peternatewood.com/projects/tetrelementis">here on my website.</a>
 
 Use the arrow keys and spacebar or the buttons in the upper right to control the game.
 * Spacebar starts a new game, and pauses/resumes a game in progress.
