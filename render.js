@@ -293,7 +293,7 @@ function render(context, scene) {
       context.fillText(gameMode, 750, 112);
       context.textAlign = 'center';
       // Pause overlay
-      if (paused || optionsMenu) {
+      if (isPaused || optionsMenu) {
         context.fillStyle = '#FFF7';
         context.fillRect(0, 0, 330, 630);
         context.fillStyle = '#FFFD';

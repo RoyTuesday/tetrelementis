@@ -7,7 +7,7 @@ if (!storedData) {
 }
 else saveData = JSON.parse(storedData);
 
-var paused = true;
+var isPaused = true;
 var optionsMenu = false;
 var activeElement = '';
 var gameover = false;
@@ -51,6 +51,15 @@ function setOverElement(mouse) {
   else if (mouse.overElement) element = '';
 
   return element;
+}
+
+function pause(tetrisBoard) {
+  clearInterval(tetrisBoard.dropInterval);
+  tetrisBoard.dropInterval = 0;
+}
+function resume(tetrisBoard) {
+  clearMovement(tetrisBoard);
+  tetrisBoard.dropInterval = setInterval(drop, DROP_DELAY[level]);
 }
 
 function drop() {
@@ -132,12 +141,11 @@ function handleKeyDown(event) {
       case 1:
         var board = gTetrisBoard;
         activeKeys[action] = true;
-        if (paused) {
+        if (isPaused) {
           if (action == 'pause') {
             if (optionsMenu) optionsMenu = false;
-            clearMovement(board);
-            board.dropInterval = setInterval(drop, DROP_DELAY[level]);
-            paused = false;
+            resume(board);
+            isPaused = false;
           }
         }
         else if (! gameover) {
@@ -151,9 +159,8 @@ function handleKeyDown(event) {
             board.dropInterval = setInterval(drop, FAST_DROP);
             break;
             case 'pause':
-            clearInterval(board.dropInterval);
-            board.dropInterval = 0;
-            paused = true;
+            pause(board);
+            isPaused = true;
             break;
           }
         }
@@ -167,12 +174,9 @@ function handleKeyUp(event) {
     case 1:
       activeKeys[action] = false;
 
-      if (!paused) {
+      if (!isPaused) {
         var board = gTetrisBoard;
-        if (!gameover && !paused && action == 'down') {
-          clearInterval(board.dropInterval);
-          board.dropInterval = setInterval(drop, DROP_DELAY[level]);
-        }
+        if (!gameover && !isPaused && action == 'down') pause(gTetrisBoard);
 
         switch (action) {
           case 'left'   : board.slideDirection++;  break;
@@ -216,15 +220,11 @@ function handleMouseDown(event) {
       case 'close':
       case 'board':
         optionsMenu = false;
-        if (!paused) {
-          clearMovement(gTetrisBoard);
-          gTetrisBoard.dropInterval = setInterval(drop, DROP_DELAY[level]);
-        }
+        if (!isPaused) resume(gTetrisBoard);
         break;
       case 'menu':
         optionsMenu = true;
-        clearInterval(gTetrisBoard.dropInterval);
-        gTetrisBoard.dropInterval = 0;
+        pause(gTetrisBoard);
         break;
       default:
         if (element !== activeElement) activeElement = element;
@@ -239,6 +239,10 @@ function handleMouseClick(event) {
   if (gMouse.overElement === 'link' && gPeriodicTable.element > 0) {
     var newTab = window.open(CHEMISTRY_URL + gPeriodicTable.element + '/' + /^[a-zA-Z]+/.exec(CHEMICAL_ELEMENTS[gPeriodicTable.element].title)[0].toLowerCase(), '_blank');
     if (newTab) newTab.focus();
+    if (!isPaused) {
+      pause(gTetrisBoard);
+      isPaused = true;
+    }
   }
 }
 canvas.addEventListener('click', handleMouseClick);

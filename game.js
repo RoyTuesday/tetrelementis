@@ -25,7 +25,7 @@ function update() {
         else {
           if (gameoverElement === 0) {
             gameover = false;
-            paused = true;
+            isPaused = true;
             highScore = playerScore;
             playerScore = 0;
             level = 0;
