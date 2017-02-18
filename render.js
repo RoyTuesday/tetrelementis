@@ -156,9 +156,9 @@ function renderKeys(context, keyActions, activeKeys) {
 }
 
 function renderOptionsMenu(context, keyActions, hover, active) {
-  context.fillStyle = '#0003';
+  context.fillStyle = 'rgba(0, 0, 0, 0.2)';
   context.fillRect(330, 0, 570, 630);
-  context.fillStyle = '#EEEE';
+  context.fillStyle = 'rgba(255, 255, 255, 0.933)';
   context.fillRect(360, 30, 510, 570);
 
   context.textAlign = 'left';
@@ -271,7 +271,7 @@ function render(context, scene) {
       // Periodic Table element highlight
       var active = gPeriodicTable.activeIndex;
       if (active >= 0) {
-        context.fillStyle = '#FFF7';
+        context.fillStyle = 'rgba(255, 255, 255, 0.467)';
         context.fillRect(345 + (active % 18) * spacing, 345 + (active / 18 >> 0) * spacing, spacing, spacing);
       }
 
@@ -294,9 +294,9 @@ function render(context, scene) {
       context.textAlign = 'center';
       // Pause overlay
       if (isPaused || optionsMenu) {
-        context.fillStyle = '#FFF7';
+        context.fillStyle = 'rgba(255, 255, 255, 0.467)';
         context.fillRect(0, 0, 330, 630);
-        context.fillStyle = '#FFFD';
+        context.fillStyle = 'rgba(255, 255, 255, 0.867)';
         context.fillRect(113, 297, 104, 36);
         context.fillStyle = '#111';
         context.fillText('Paused', 165, 315);
@@ -304,9 +304,9 @@ function render(context, scene) {
 
       if (optionsMenu) renderOptionsMenu(context, keyActions, gMouse.overElement, activeElement);
       else if (gMouse.overElement == 'menu') {
-        context.fillStyle = "#0003";
+        context.fillStyle = "rgba(0, 0, 0, 0.2)";
         context.fillRect(330, 0, 570, 150);
-        context.fillStyle = '#FFFD';
+        context.fillStyle = 'rgba(255, 255, 255, 0.867)';
         context.fillRect(563, 58, 104, 36);
         context.fillStyle = '#111';
         context.fillText('Options', 615, 78);

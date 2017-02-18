@@ -2,8 +2,8 @@ const CHEMICAL_ELEMENTS = [
   {
     symbol: false,
     title: '',
-    background: '#0000',
-    border: '#0003',
+    background: 'rgba(0,0,0,0)',
+    border: 'rgba(0,0,0,0.2)',
     color: '#F1EEFA',
     descrip: [
       "n/a"
