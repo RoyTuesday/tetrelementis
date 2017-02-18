@@ -88,7 +88,7 @@ var CHEERS = [
   ]
 ];
 
-const CHEMISTRY_URL = "http://www.webelements.com/";
+const CHEMISTRY_URL = "http://www.rsc.org/periodic-table/element/";
 const FONT_SIZE = 11;
 const BLOCK_FONT = "px monospace";
 
