@@ -233,3 +233,12 @@ function handleMouseDown(event) {
   }
 }
 canvas.addEventListener('mousedown', handleMouseDown);
+
+// Required to open a new tab without triggering popup blockers
+function handleMouseClick(event) {
+  if (gMouse.overElement === 'link' && gPeriodicTable.element > 0) {
+    var newTab = window.open(CHEMISTRY_URL + gPeriodicTable.element + '/' + /^[a-zA-Z]+/.exec(CHEMICAL_ELEMENTS[gPeriodicTable.element].title)[0].toLowerCase(), '_blank');
+    if (newTab) newTab.focus();
+  }
+}
+canvas.addEventListener('click', handleMouseClick);
