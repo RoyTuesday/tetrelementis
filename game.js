@@ -1,5 +1,4 @@
-var canvas = document.getElementById('canvas');
-var context = canvas.getContext('2d');
+var context = document.getElementById('canvas').getContext('2d');
 context.textAlign = 'center';
 context.textBaseline = 'middle';
 

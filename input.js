@@ -227,6 +227,7 @@ function handleKeyUp(event) {
 document.addEventListener('keydown', handleKeyDown);
 document.addEventListener('keyup', handleKeyUp);
 
+var canvas = document.getElementById('canvas');
 var canvasScale = canvas.width / canvas.offsetWidth;
 function handleResize() {
   canvasScale = canvas.width / canvas.offsetWidth;
