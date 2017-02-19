@@ -106,9 +106,9 @@ var keyBinds = {
   'ArrowUp'   : 'up',
   'ArrowDown' : 'down'
 }
-function getAction(event) {
+function getKey(event) {
   var key = event.key;
-  return keyBinds[key ? key : KEY_CODES[event.keyCode]];
+  return key ? key : KEY_CODES[event.keyCode];
 }
 function setKeybind(keyBinds, keyActions, action, key) {
   var newKeys = {}
@@ -116,22 +116,23 @@ function setKeybind(keyBinds, keyActions, action, key) {
     if (keyBinds.hasOwnProperty(k) && keyBinds[k] !== action) newKeys[k] = keyBinds[k];
   }
 
+  var currentAction = keyBinds[key];
+  if (currentAction) {
+    activeKeys[currentAction] = false;
+    keyActions[currentAction] = '';
+  }
+
   newKeys[key] = action;
-  if (/^[a-z]$/.test(key)) {
-    newKeys[key.toUpperCase()] = action;
-    // keyActions[action] = key;
-  }
-  else if (/^[A-Z]$/.test(key)) {
-    newKeys[key.toLowerCase()] = action;
-    // keyActions[action] = key.toLowerCase();
-  }
+  if (/^[a-z]$/.test(key)) newKeys[key.toUpperCase()] = action;
+  else if (/^[A-Z]$/.test(key)) newKeys[key.toLowerCase()] = action;
   keyActions[action] = convertToDisplayKey(key);
 
   return newKeys;
 }
 
 function handleKeyDown(event) {
-  var action = getAction(event);
+  var key = getKey(event);
+  var action = keyBinds[key];
   if (!event.ctrlKey && !event.altKey && !event.metaKey) event.preventDefault();
   if (!event.repeat) {
     switch (scene) {
@@ -140,7 +141,12 @@ function handleKeyDown(event) {
         break;
       case 1:
         var board = gTetrisBoard;
-        activeKeys[action] = true;
+        if (action) activeKeys[action] = true;
+        if (optionsMenu && keyActions[activeElement]) {
+          keyBinds = setKeybind(keyBinds, keyActions, activeElement, key);
+          activeElement = '';
+        }
+
         if (isPaused) {
           if (action == 'pause') {
             if (optionsMenu) optionsMenu = false;
@@ -169,10 +175,11 @@ function handleKeyDown(event) {
   }
 }
 function handleKeyUp(event) {
-  var action = getAction(event);
+  var key = getKey(event);
+  var action = keyBinds[key];
   switch (scene) {
     case 1:
-      activeKeys[action] = false;
+      if (action) activeKeys[action] = false;
 
       if (!isPaused) {
         var board = gTetrisBoard;

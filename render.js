@@ -61,8 +61,8 @@ function renderKeys(context, keyActions, activeKeys) {
       context.strokeRect(x - (3 * size), y - size, 6 * size, 2 * size);
       break;
     default:
-      context.fillRect(x - (2 * size), y - size, 2 * size, 2 * size);
-      context.strokeRect(x - (2 * size), y - size, 2 * size, 2 * size);
+      context.fillRect(x - size, y - size, 2 * size, 2 * size);
+      context.strokeRect(x - size, y - size, 2 * size, 2 * size);
       break;
   }
   context.fillStyle = activeKeys.pause ? '#EEE' : '#111';
