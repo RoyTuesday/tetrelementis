@@ -1,6 +1,13 @@
-var gAudio = AudioContext ? new AudioContext : new webkitAudioContext;
+var gAudio;
+try {
+  gAudio = AudioContext ? new AudioContext : new webkitAudioContext;
+}
+catch (err) {
+  gAudio = false;
+}
 
 function playRotateSound(audio) {
+  if (gAudio === false) return;
   var osc = audio.createOscillator();
   var gain = audio.createGain();
   var start = audio.currentTime;
@@ -19,6 +26,7 @@ function playRotateSound(audio) {
 }
 
 function playSlideSound(audio) {
+  if (gAudio === false) return;
   var osc = audio.createOscillator();
   var gain = audio.createGain();
   var start = audio.currentTime;
@@ -37,6 +45,7 @@ function playSlideSound(audio) {
 }
 
 function playDropSound(audio) {
+  if (gAudio === false) return;
   var osc = audio.createOscillator();
   var gain = audio.createGain();
   var start = audio.currentTime;
