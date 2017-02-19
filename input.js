@@ -108,6 +108,17 @@ var keyBinds = {
 }
 function getKey(event) {
   var key = event.key;
+  // IE insists on using different values for certain keys in event.key
+  if (key) {
+    switch (key) {
+      case 'Esc'      : key = 'Escape'; break;
+      case 'Spacebar' : key = ' '; break;
+      case 'Left'     : key = 'ArrowLeft'; break;
+      case 'Right'    : key = 'ArrowRight'; break;
+      case 'Up'       : key = 'ArrowUp'; break;
+      case 'Down'     : key = 'ArrowDown'; break;
+    }
+  }
   return key ? key : KEY_CODES[event.keyCode];
 }
 function setKeybind(keyBinds, keyActions, action, key) {
