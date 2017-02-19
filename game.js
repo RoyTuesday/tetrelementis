@@ -30,7 +30,7 @@ function update() {
             playerScore = 0;
             level = 0;
             saveData.highScore = highScore;
-            window.localStorage.setItem('tetrelementis', JSON.stringify(saveData));
+            save(saveData);
             gTetrisBoard.board = setTetrisBoard();
           }
           else gameoverElement = 0;

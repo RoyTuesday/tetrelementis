@@ -244,7 +244,7 @@ function renderTitle(context) {
   context.font = '26px Courier, monospace';
   context.textAlign = 'center';
   context.fillStyle = '#111';
-  context.fillText('Press space to start', 450, 370);
+  context.fillText('Press ' + keyActions.pause + ' to start', 450, 370);
 }
 
 var frame = 0;

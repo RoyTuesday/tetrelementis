@@ -1,4 +1,7 @@
-var saveData;
+var saveData, keyActions, keyBinds;
+function save(saveData) {
+  window.localStorage.setItem('tetrelementis', JSON.stringify(saveData));
+}
 var storedData = window.localStorage.getItem('tetrelementis');
 if (!storedData) {
   saveData = {
@@ -6,6 +9,42 @@ if (!storedData) {
   }
 }
 else saveData = JSON.parse(storedData);
+
+if (saveData.keyActions) keyActions = saveData.keyActions;
+else {
+  keyActions = {
+    pause   : 'Space',
+    counter : 'Z',
+    clock   : 'X',
+    left    : '←',
+    right   : '→',
+    up      : '↑',
+    down    : '↓'
+  }
+}
+if (saveData.keyBinds) keyBinds = saveData.keyBinds;
+else {
+  keyBinds = {
+    ' ': 'pause',
+    'z': 'counter', 'Z': 'counter',
+    'x': 'clock',   'X': 'clock',
+    'ArrowLeft' : 'left',
+    'ArrowRight': 'right',
+    'ArrowUp'   : 'up',
+    'ArrowDown' : 'down'
+  }
+}
+save(saveData);
+
+var activeKeys = {
+  pause   : false,
+  counter : false,
+  clock   : false,
+  left    : false,
+  right   : false,
+  up      : false,
+  down    : false
+}
 
 var isPaused = true;
 var optionsMenu = false;
@@ -79,33 +118,6 @@ function allowSlide() { canSlide = true }
 canRotate = true;
 function allowRotate() { canRotate = true }
 
-var activeKeys = {
-  pause   : false,
-  counter : false,
-  clock   : false,
-  left    : false,
-  right   : false,
-  up      : false,
-  down    : false
-}
-var keyActions = {
-  pause   : 'Space',
-  counter : 'Z',
-  clock   : 'X',
-  left    : '←',
-  right   : '→',
-  up      : '↑',
-  down    : '↓'
-}
-var keyBinds = {
-  ' ': 'pause',
-  'z': 'counter', 'Z': 'counter',
-  'x': 'clock',   'X': 'clock',
-  'ArrowLeft' : 'left',
-  'ArrowRight': 'right',
-  'ArrowUp'   : 'up',
-  'ArrowDown' : 'down'
-}
 function getKey(event) {
   var key = event.key;
   // IE insists on using different values for certain keys in event.key
@@ -156,6 +168,9 @@ function handleKeyDown(event) {
         if (optionsMenu && keyActions[activeElement]) {
           keyBinds = setKeybind(keyBinds, keyActions, activeElement, key);
           activeElement = '';
+          saveData.keyBinds = keyBinds;
+          saveData.keyActions = keyActions;
+          save(saveData);
         }
 
         if (isPaused) {
