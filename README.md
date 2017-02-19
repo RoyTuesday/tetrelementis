@@ -51,16 +51,17 @@ The game has been tested and operates correctly in the following browsers:
 * Tested: version 43.0
 * Oldest: version 10.1
 
-<!-- <img src='/imgs/logo-ie-11.png' height=16 title='Internet Explorer 11 logo'/> Internet Explorer (IE): version 11 -->
+<img src='/imgs/logo-ie-11.png' height=16 title='Internet Explorer 11 logo'/> **Internet Explorer (IE):**
+* Tested: version 11.0
+* Oldest: version 9.0
 
 #### Notes
-* Testing for IE 11 and Safari are pending. Neither supports the keyEvent.key property; though I have built compatibility for this, it requires extensive testing to ensure keybinding will work correctly. Also IE is terrible.
-
-<!--
 * The game should operate normally in IE 9 and 10.
-* Scripts may not load correctly in IE 8.
-* IE does not support the webAudio API; if you want music or sound, complain to Microsoft
--->
+* Older versions of IE do not support the &lt;canvas&gt; tag.
+* IE 11 and older do not support the webAudio API; if you want music or sound, appeal to Microsoft.
+* Edge is just as finiky as older versions of IE, but should work just as well.
+
+* Testing for Safari is pending. It doesn't support the keyEvent.key property; though I have built compatibility for this, it requires extensive testing to ensure keybinding will work correctly.
 
 ## Version History
 
@@ -132,7 +133,7 @@ The Minimum Viable Product must replicate Tetris, and have some educational cont
 
 :white_check_mark: Opera compatibility
 
-:white_medium_small_square: IE 11 compatibility
+:white_check_mark: IE 11 compatibility
 
 ## Planned Features
 
