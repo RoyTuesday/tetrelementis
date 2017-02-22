@@ -262,6 +262,7 @@ function render(context, scene) {
 
   switch (scene) {
     case 0:
+    case 2:
       renderTitle(context);
       break;
     case 1:
@@ -313,6 +314,8 @@ function render(context, scene) {
         context.fillStyle = '#111';
         context.fillText('Options', 615, 78);
       }
+      break;
+    case 3:
       break;
   }
 

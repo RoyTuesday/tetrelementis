@@ -57,7 +57,21 @@ var level = 0;
 var gameMode = 'Marathon';
 var resetBoard = 0;
 var gameoverElement = 0;
+
 var comboQueue = [];
+var queueTimeout = 0;
+function clearComboQueue() { comboQueue = []; }
+function updateComboQueue(queue, key) {
+  queue.push(key);
+  if (/tetrelementis/i.test(queue.join(''))) {
+    scene = 2;
+    pause(gTetrisBoard);
+    isPaused = true;
+    clearComboQueue();
+    return 0;
+  }
+  else return setTimeout(clearComboQueue, 600);
+}
 
 var gMouse = { x: -1, y: -1, overElement: '' }
 function setOverElement(mouse) {
@@ -158,9 +172,13 @@ function handleKeyDown(event) {
   var action = keyBinds[key];
   if (!event.ctrlKey && !event.altKey && !event.metaKey) event.preventDefault();
   if (!event.repeat) {
+    clearTimeout(queueTimeout);
+    queueTimeout = updateComboQueue(comboQueue, key);
+
     switch (scene) {
       case 0:
-        if (action == 'pause') scene = 1;
+      case 2:
+        if (action == 'pause') scene++;
         break;
       case 1:
         var board = gTetrisBoard;
@@ -197,7 +215,7 @@ function handleKeyDown(event) {
           }
         }
         break;
-      }
+    }
   }
 }
 function handleKeyUp(event) {
