@@ -3,6 +3,14 @@
   <head>
     <meta charset="UTF-8"/>
     <style media="screen">
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
       body {
         background-color: #494A94;
         color: #222;
@@ -16,8 +24,42 @@
         max-width: 900px;
         width: 100vw;
       }
-      canvas {
-        background-color: #4CC;
+      h1 {
+        position: absolute;
+        color: white;
+        font: bold 64px Helvetica, Arial, sans-serif;
+        left: 0;
+        right: 0;
+        margin: 25% auto 0;
+      }
+      #spinner {
+        position: absolute;
+        left: 0;
+        right: 0;
+        width: 0;
+        height: 0;
+        margin: 40% auto 0;
+      }
+      #spinner:before,
+      #spinner:after {
+        content: '';
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        margin-left: -8px;
+        margin-top: -8px;
+        border-radius: 50%;
+        box-shadow: -18px -18px 0px 0px white, 18px -18px 0px 0px white, -18px 18px 0px 0px white, 18px 18px 0px 0px white;
+      }
+      #spinner:before {
+        animation: 1600ms spin linear infinite;
+      }
+      #spinner:after {
+        animation: 1300ms spin 200ms linear infinite;
+      }
+      #canvas {
+        background: rgba(0,0,0,0);
+        position: relative;
         cursor: none;
         width: 100%;
       }
@@ -27,6 +69,8 @@
   </head>
   <body>
     <main>
+      <h1>Loading</h1>
+      <div id="spinner"></div>
       <canvas id="canvas" width="900" height="630"></canvas>
     </main>
   </body>
