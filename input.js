@@ -130,7 +130,7 @@ function drop() {
   }
   else if (lines > 0) {
     playerScore += Math.pow(2, lines) / 2;
-    level = Math.min(20, playerScore / 10 >> 0);
+    if (gameMode !== 'Fixed') level = Math.min(20, playerScore / 10 >> 0);
   }
 }
 canSlide = true;
