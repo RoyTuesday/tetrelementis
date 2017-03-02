@@ -13,9 +13,6 @@ var Tetromino = function() {
 
   setTableElement(gPeriodicTable, this.element);
 };
-Tetromino.prototype.raise = function() {
-  return this.blocks.map(decreaseByTen);
-};
 Tetromino.prototype.drop = function() {
   return this.blocks.map(increaseByTen);
 };

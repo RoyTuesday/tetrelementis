@@ -49,6 +49,8 @@ function update() {
         setTimeout(allowRotate, FAST_DROP * 5);
       }
       break;
+    case 3:
+      break;
   }
 }
 

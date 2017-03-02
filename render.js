@@ -264,6 +264,7 @@ function render(context, scene) {
     case 0:
     case 2:
       renderTitle(context);
+      renderMouse(context, gMouse);
       break;
     case 1:
       context.textAlign = 'center';
@@ -314,10 +315,10 @@ function render(context, scene) {
         context.fillStyle = '#111';
         context.fillText('Options', 615, 78);
       }
+      renderMouse(context, gMouse);
       break;
     case 3:
+      renderMouse(context, gMouse);
       break;
   }
-
-  renderMouse(context, gMouse);
 }
