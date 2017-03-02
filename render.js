@@ -163,6 +163,7 @@ function renderOptionsMenu(context, keyActions, hover, active) {
   context.fillStyle = 'rgba(255, 255, 255, 0.933)';
   context.fillRect(360, 30, 510, 570);
 
+  // Keybinds
   context.textAlign = 'left';
   context.fillStyle = '#111';
   context.fillText('Options Menu', 390, 60);
@@ -179,6 +180,38 @@ function renderOptionsMenu(context, keyActions, hover, active) {
     context.fillText(keyActions[action], 495, row);
     row += 40;
   }
+
+  // Mode Options
+  context.strokeStyle = '#555';
+  context.lineWidth = 1;
+  // Marathon
+  if (hover == 'Marathon') {
+    context.fillStyle = '#FFF';
+    context.fillRect(655, 135, 140, 30);
+  }
+  context.beginPath();
+  context.arc(672, 150, 7, Math.PI * 2, 0);
+  context.stroke();
+  context.beginPath();
+  context.arc(672, 150, 4, Math.PI * 2, 0);
+  context.fillStyle = gameMode == 'Marathon' ? '#AEF' : '#FFF';
+  context.fill();
+  context.fillStyle = '#111';
+  context.fillText('Marathon', 692, 151);
+  if (hover == 'Fixed') {
+    context.fillStyle = '#FFF';
+    context.fillRect(655, 175, 140, 30);
+  }
+  // Fixed
+  context.beginPath();
+  context.arc(672, 190, 7, Math.PI * 2, 0);
+  context.stroke();
+  context.beginPath();
+  context.arc(672, 190, 4, Math.PI * 2, 0);
+  context.fillStyle = gameMode == 'Fixed' ? '#AEF' : '#FFF';
+  context.fill();
+  context.fillStyle = '#111';
+  context.fillText('Fixed', 692, 191);
 
   context.beginPath();
   context.moveTo(861, 35);

@@ -93,6 +93,12 @@ function setOverElement(mouse) {
     else if (mouse.x > 0 && mouse.x < 330 && mouse.y > 0 && mouse.y < 630) {
       if (mouse.overElement !== 'board') element = 'board';
     }
+    else if (mouse.x > 655 && mouse.x < 802 && mouse.y > 135 && mouse.y < 165) {
+      if (mouse.overElement !== 'Marathon') element = 'Marathon';
+    }
+    else if (mouse.x > 655 && mouse.x < 802 && mouse.y > 175 && mouse.y < 205) {
+      if (mouse.overElement !== 'Fixed') element = 'Fixed';
+    }
     else if (mouse.overElement) element = '';
   }
   else if (mouse.x > 345 && mouse.x < 700 && mouse.y > 155 && mouse.y < 185) {
@@ -280,6 +286,12 @@ function handleMouseDown(event) {
       case 'menu':
         optionsMenu = true;
         pause(gTetrisBoard);
+        break;
+      case 'Marathon':
+        if (gameMode !== 'Marathon') gameMode = 'Marathon';
+        break;
+      case 'Fixed':
+        if (gameMode !== 'Fixed') gameMode = 'Fixed';
         break;
       default:
         if (element !== activeElement) activeElement = element;
